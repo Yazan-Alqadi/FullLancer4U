@@ -29,7 +29,7 @@
                 </div>
                 <div class="wrap-input" data-validate="Password is required">
                     <span class="label-input">Password</span>
-                    <input class="input1" type="pass" name="password" minlength="8" required
+                    <input class="input1" type="password" name="password" minlength="8" required
                         placeholder="*************">
                 </div>
                 <div class="login-btn-confirm">
