@@ -35,7 +35,7 @@
                 <span class="label-input">Email</span>
                 <input class="input1" type="email" name="email" required placeholder="Email address...">
                 @error('email')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback alert-error" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -61,6 +61,16 @@
     </div>
 
     </div>
+
+    <div>
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        {{$error}}
+                    </div>
+                @endforeach
+            @endif
+        </div>
 </body>
 
 </html>
