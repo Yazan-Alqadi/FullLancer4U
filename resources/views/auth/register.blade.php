@@ -28,7 +28,7 @@
                 <span class="label-input ho">Full Name</span>
                 <input class="input1" type="text" name="full_name" required placeholder="Name...">
                 @error('full_name')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="alert-error" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -37,7 +37,7 @@
                 <span class="label-input">Username</span>
                 <input class="input1" type="text" name="user_name" required placeholder="Username...">
                 @error('user_name')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="alert-error" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -46,7 +46,7 @@
                 <span class="label-input">Email</span>
                 <input class="input1" type="email" name="email" required placeholder="Email address...">
                 @error('email')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="alert-error" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -56,7 +56,7 @@
                 <input class="input1" type="password" name="password" minlength="8" required
                     placeholder="*************">
                 @error('password')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="alert-error" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
