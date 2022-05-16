@@ -22,7 +22,7 @@ body {
 }
 
 .alert-error {
-    background-color: #ff00007a;
+    background-color: #e64a4a;
     position: relative;
     bottom: 69px;
     width: fit-content;
@@ -32,8 +32,8 @@ body {
 
 .alert-error-state {
     position: absolute;
-    right: 50%;
-    top: 25px;
+    right: 13%;
+    top: 148px;
     z-index: 4;
     /* background-color: #0000ff87; */
     border-radius: 5px;

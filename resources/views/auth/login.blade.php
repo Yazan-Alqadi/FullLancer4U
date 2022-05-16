@@ -23,7 +23,11 @@
 
 
     <div class="form-login-div">
-        
+        @if (session('status'))
+        <div class="alert-error-state">
+            {{ session('status') }}
+        </div>
+    @endif
         <form class="form-login-1" method="POST" action="{{ route('login.store') }}">
             @csrf
             <div class="form-title">Sign in</div>
