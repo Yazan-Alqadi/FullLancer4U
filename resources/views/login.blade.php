@@ -19,7 +19,6 @@
     <body>
 
         <div class="pic"></div>
-
         <div class="form-login-div">
             <form class="form-login-1">
                 <div class="form-title">Sign in</div>
@@ -41,7 +40,15 @@
                 </div>
             </form>
         </div>
-
+        </div>
+        <div>
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        {{$error}}
+                    </div>
+                @endforeach
+            @endif
         </div>
     </body>
 
