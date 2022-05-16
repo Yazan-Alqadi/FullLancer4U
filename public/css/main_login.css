@@ -21,6 +21,15 @@ body {
     z-index: -1;
 }
 
+.alert-error {
+    background-color: #ff00007a;
+    position: relative;
+    bottom: 69px;
+    width: fit-content;
+    border-radius: 8px;
+    left: 318px;
+}
+
 .pic::before {
     content: "";
     background-color: blueviolet;
