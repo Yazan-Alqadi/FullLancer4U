@@ -30,6 +30,16 @@ body {
     left: 318px;
 }
 
+.alert-error-state {
+    position: absolute;
+    right: 50%;
+    top: 25px;
+    z-index: 4;
+    /* background-color: #0000ff87; */
+    border-radius: 5px;
+    color: red;
+}
+
 .pic::before {
     content: "";
     background-color: blueviolet;

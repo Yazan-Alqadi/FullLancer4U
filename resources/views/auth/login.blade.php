@@ -24,7 +24,7 @@
 
     <div class="form-login-div">
         @if (session('status'))
-            <div class="alert alert-error">
+            <div class="alert alert-error-state">
                 {{ session('status') }}
             </div>
         @endif
