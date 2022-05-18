@@ -25,8 +25,18 @@
         <li class="for-inline"><a href="#" class="projects">Projects</a></li>
 
         @if (session('user'))
-            <li class="for-inline" style="margin-left: 13%;"><a class="sign-up"
-                    href="#">{{ session('user') }}</a></li>
+            <li class="for-inline" style="margin-left: 18%;">
+                <nav class="container-menu">
+                    <ul class="menu">
+                        <li> <a class="name-of-user" href="#">{{ session('user') }}</a>
+                            <ul class="sub-menu">
+                                <li> <a href="#" class="botton-1"> Profile </a> </li>
+                                <li> <a href="#" class="botton-1"> Log out </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </li>
         @else
             <li class="for-inline" style="margin-left: 13%;"><a class="sign-up"
                     href="{{ route('register.show') }}"> Sign up</a></li>

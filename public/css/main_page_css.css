@@ -9,6 +9,7 @@
     border-radius: 0px;
     border-style: inset;
     box-shadow: 7px 6px 31px 12px #e7e3e3;
+    white-space: nowrap;
 }
 
 .for-inline {
@@ -52,7 +53,8 @@
     text-decoration: none;
 }
 
-.projects {
+.projects,
+.name-of-user {
     padding: 10px;
     color: rebeccapurple;
     font-weight: bold;
@@ -153,4 +155,57 @@
     border-style: solid;
     width: calc(88%/3);
     margin-bottom: 5px;
+}
+
+.container-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.container-menu li {
+    position: relative;
+}
+
+.container-menu .botton-1 {
+    display: block;
+    padding: 3px 12px;
+    height: 24px;
+    line-height: 24px;
+    text-decoration: none;
+    white-space: nowrap;
+    background: #fff;
+    color: #5a6063;
+}
+
+.container-menu .botton-1:hover {
+    background: #c0c0c0;
+    color: #fff;
+}
+
+.menu {
+    position: relative;
+    *zoom: 1;
+}
+
+.menu:after {
+    clear: both;
+}
+
+.sub-menu {
+    position: absolute;
+    left: -999em;
+}
+
+.sub-menu:hover {
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+.menu>li:hover .sub-menu {
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: 10;
 }
