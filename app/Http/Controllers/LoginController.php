@@ -16,12 +16,13 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate( [
+        $cred =$request->validate( [
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], request()->filled ('remember'))) {
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password] , $request-> remember=='on') ){
             $user = Auth::user();
             return redirect()->route('home')->with('user',$user->full_name);
         } else {

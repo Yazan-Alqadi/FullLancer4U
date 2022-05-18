@@ -31,7 +31,7 @@
                         <li> <a class="name-of-user" href="#">{{ session('user') }}</a>
                             <ul class="sub-menu">
                                 <li> <a href="#" class="botton-1"> Profile </a> </li>
-                                <li> <a href="#" class="botton-1"> Log out </a> </li>
+                                <li> <a href="{{ route('logout') }}" class="botton-1"> Log out </a> </li>
                             </ul>
                         </li>
                     </ul>

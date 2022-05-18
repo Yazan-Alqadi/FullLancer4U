@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\authController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Freelancer;
@@ -20,16 +21,18 @@ use App\Models\User;
 */
 
 
-Route::get('/',function(){
+Route::get('/', function () {
     $freelancers = Freelancer::all();
     $professions = Profession::all();
     $projects = Project::all();
 
 
-    return view('auth.main_page',['freelancers'=>$freelancers,'professions'=>$professions,'projects'=>$projects]);
+    return view('auth.main_page', ['freelancers' => $freelancers, 'professions' => $professions, 'projects' => $projects]);
 })->name('home');
-Route::get('login', [LoginController::class,'index'])->name('login.show');
-Route::get('register', [RegisterController::class,'index'])->name('register.show');
+
+Route::get ('logout',[authController::class,'logout'])->name('logout');
+Route::get('login', [LoginController::class, 'index'])->name('login.show');
+Route::get('register', [RegisterController::class, 'index'])->name('register.show');
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::post('login', [LoginController::class, 'store'])->name('login.store');
