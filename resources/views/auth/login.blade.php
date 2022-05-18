@@ -24,10 +24,10 @@
 
     <div class="form-login-div">
         @if (session('status'))
-        <div class="alert-error-state">
-            {{ session('status') }}
-        </div>
-    @endif
+            <div class="alert-error-state">
+                {{ session('status') }}
+            </div>
+        @endif
         <form class="form-login-1" method="POST" action="{{ route('login.store') }}">
             @csrf
             <div class="form-title">Sign in</div>
@@ -49,6 +49,15 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+            </div>
+            <!-- Remember Me -->
+            <div class="txt1">
+                <label for="remember_me" class="inline-flex items-center">
+                    <input id="remember_me" type="checkbox"
+                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        name="remember">
+                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                </label>
             </div>
             <div class="login-btn-confirm">
                 <button type=" submit" class="login-form-btn">Sign In</button>

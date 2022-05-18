@@ -9,20 +9,23 @@ class LoginController extends Controller
 {
     //
 
-    public function index(){
+    public function index()
+    {
         return view('auth.login');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        $request->validate( [
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
 
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], request()->filled ('remember'))) {
             $user = Auth::user();
-            $success['token'] =  $user->createToken('MyApp')-> accessToken;
-            $success['user_name'] =  $user->user_name;
-            return redirect()->route('home');
-        }
-        else{
-            return redirect()->route('login.show')->with('status','Invalid Login');
+            return redirect()->route('home')->with('user',$user->full_name);
+        } else {
+            return redirect()->route('login.show')->with('status', 'Invalid Login');
         }
     }
 }
