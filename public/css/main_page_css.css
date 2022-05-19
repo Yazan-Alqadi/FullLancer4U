@@ -63,7 +63,8 @@
 .projects,
 .main-title,
 .sign-up,
-.log-in {
+.log-in,
+.name-of-user {
     padding: 10px;
     color: #f5ff9f;
     font-weight: bold;
