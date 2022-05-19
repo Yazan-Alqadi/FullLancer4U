@@ -53,7 +53,7 @@
         <a class="top-fls-title" href="#">Top Freelancers </a>
         @foreach ($freelancers as $counter => $freelancer)
             <span class="m-l-5 name-top-freelancer"><a href="#"> {{ ++$counter . ' - ' . $freelancer->user->full_name }} </a></span> <span
-                class="m-l-5 rate-top-freelancer">4.8</span>
+                class="m-l-5 rate-top-freelancer">{{ $freelancer->rate }}</span>
         @endforeach
     </span>
 

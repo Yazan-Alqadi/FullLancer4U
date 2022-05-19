@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Profession extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+
+    public function freelancer()
+    {
+        return $this->belongsTo(Freelancer::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
