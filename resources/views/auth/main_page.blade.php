@@ -16,6 +16,9 @@
 </head>
 
 <body>
+
+    <div class="pic"></div>
+
     <ul class="unor-li">
         <li class="for-inline"><a href="#" class="main-title">Fullancer4U </a></li>
         <li class="search-par for-inline"><input type="search" class="se-pa" placeholder="Search"></li>
@@ -25,7 +28,7 @@
         <li class="for-inline"><a href="#" class="projects">Projects</a></li>
 
         @if (session('user'))
-            <li class="for-inline" style="margin-left: 18%;">
+            <li class="for-inline for-position" style=" position: absolute; right: 20px; top: 2.4%;">
                 <nav class="container-menu">
                     <ul class="menu">
                         <li> <a class="name-of-user" href="#">{{ session('user') }}</a>
@@ -38,32 +41,20 @@
                 </nav>
             </li>
         @else
-            <li class="for-inline" style="margin-left: 13%;"><a class="sign-up"
-                    href="{{ route('register.show') }}"> Sign up</a></li>
-            <li class="for-inline"><a href="{{ route('login.show') }}" class="log-in">Log in </a></li>
+            <li class="for-inline for-position" style=" position: absolute; right: 20px; top: 1.2%;">
+                <div class="main-title">
+                    <span> <a href="{{ route('register.show') }}" class="sign-up">Sign up</a> </span>
+                    <span> <a href="{{ route('login.show') }}" class="log-in">Log in </a> </span>
+            </li>
         @endif
-
     </ul>
+
     <span class="continer-top-fls">
         <a class="top-fls-title" href="#">Top Freelancers </a>
         @foreach ($freelancers as $counter => $freelancer)
-            <div class="m-l-10">{{ ++$counter . ' - ' . $freelancer->user->full_name }}</div>
+            <span class="m-l-5 name-top-freelancer"><a href="#"> {{ ++$counter . ' - ' . $freelancer->user->full_name }} </a></span> <span
+                class="m-l-5 rate-top-freelancer">4.8</span>
         @endforeach
-    </span>
-
-    <span class="continer-your-fav">
-        <a class="your-fav-title" href="#">Your Favorits</a>
-        <div class="m-l-10">1 .........</div>
-        <div class="m-l-10">2 .........</div>
-        <div class="m-l-10">3 .........</div>
-        <div class="m-l-10">4 .........</div>
-        <div class="m-l-10">5 .........</div>
-        <div class="m-l-10">6 .........</div>
-        <div class="m-l-10">7 .........</div>
-        <div class="m-l-10">8 .........</div>
-        <div class="m-l-10">9 .........</div>
-        <div class="m-l-10">10 .........</div>
-        <div class="m-l-10">11 .........</div>
     </span>
 
 
