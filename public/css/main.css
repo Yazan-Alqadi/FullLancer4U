@@ -10,20 +10,20 @@ body {
 }
 
 .pic {
-    background-image: url(../files/main_background.jpg);
+    background-image: url(../Files/main_background.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    width: calc(100% - 520px);
-    position: absolute;
+    width: 70%;
+    position: fixed;
     height: 100vh;
     z-index: -1;
 }
 
 .pic::before {
     content: "";
-    background-color: blueviolet;
+    background-color: #250e2a;
     position: relative;
     width: 100%;
     height: 100%;
@@ -41,22 +41,32 @@ body {
     right: 0;
     top: 0;
     z-index: 1;
+    width: 30%;
 }
 
 .form-login-1 {
-    margin: 0px 27px;
+    margin: 9px 12px;
+    font-size: 1.2vw;
 }
 
 .form-login-title {
     font-weight: bold;
-    font-size: 35px;
-    font-family: 'Roboto Slab', serif;
+    font-size: inherit;
+    color: #712a83;
+    display: inline-block;
+    /* text-align: center; */
+    margin-left: 40%;
+    font-size: 1.4vw;
+    background-color: #ed77e9ab;
+    padding: 4px;
+    border-radius: 30px;
+    margin-bottom: 5%;
 }
 
 .input1 {
     display: block;
     width: 100%;
-    height: 50px;
+    height: 5vh;
     background: transparent;
     font-family: inherit;
     font-size: 22px;
@@ -64,19 +74,19 @@ body {
     line-height: 1.2;
     padding: 0 2px;
     border-bottom: 3px solid rebeccapurple;
-    font-size: 17px;
+    font-size: inherit;
 }
 
 .label-input {
     font-family: inherit;
-    font-size: 18px;
+    font-size: inherit;
     color: #999999;
     line-height: 1.2;
     margin-left: 7px;
 }
 
 .wrap-input {
-    margin-top: 33px;
+    margin-top: 2%;
 }
 
 input {
@@ -95,15 +105,39 @@ input {
 
 .login-form-btn {
     background-color: #663399ba;
-    padding: 10px 40px;
-    margin-left: 302px;
-    border-radius: 26px;
+    padding: 4% 10%;
+    margin-left: 28%;
+    border-radius: 11px;
     color: white;
+    border-width: thin;
+    /* text-align: center; */
+    font-size: inherit;
 }
 
-.already-have {
-    margin-top: -25px;
+.alert-error {
+    color: white;
+    left: 8vw;
+    position: relative;
+    bottom: 5.5vw;
+    background-color: #ff0000ad;
+    border-radius: 4px;
+    overflow-wrap: break-word;
+    padding: 3px;
+    display: inline-block;
+    width: 70%;
+    text-align: center;
 }
+
+.container-asq {
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 3%;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: rebeccapurple;
+    padding: 6px;
+}
+
 
 .lin {
     margin-left: 2px;
