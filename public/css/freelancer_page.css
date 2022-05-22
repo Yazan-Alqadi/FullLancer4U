@@ -1,0 +1,20 @@
+.in-hover:hover {
+    background-color: white;
+    color: #47587c !important;
+    border-radius: 3px;
+}
+
+.navbar-title-hover:hover {
+    color: white !important;
+}
+
+/* .btn-par {
+    font-size: 13px !important;
+    width: 17.9vw;
+    height: 30px;
+}
+
+.se-par {
+    width: 6.9vw;
+    height: 30px;
+} */
