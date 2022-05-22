@@ -10,7 +10,7 @@ body {
 }
 
 .pic {
-    background-image: url(../Files/main_background.jpg);
+    background-image: url(../files/main_background.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
