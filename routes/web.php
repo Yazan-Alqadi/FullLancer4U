@@ -8,7 +8,8 @@ use App\Models\Profession;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
-
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +23,7 @@ use App\Models\User;
 
 
 Route::get('/', function () {
-    $freelancers = Freelancer::all();
+    $freelancers = DB::select('CALL topFreelancer()');
     $professions = Profession::all();
     $projects = Project::all();
 
@@ -36,3 +37,6 @@ Route::get('register', [RegisterController::class, 'index'])->name('register.sho
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::post('login', [LoginController::class, 'store'])->name('login.store');
+
+Route::get('users', [UserController::class,'index']);
+

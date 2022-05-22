@@ -106,7 +106,7 @@
     <span class="continer-top-fls">
         <a class="top-fls-title" href="#">Top Freelancers </a>
         @foreach ($freelancers as $counter => $freelancer)
-            <span class="m-l-5 name-top-freelancer"><a href="#"> {{ ++$counter . ' - ' . $freelancer->user->full_name }} </a></span> <span
+            <span class="m-l-5 name-top-freelancer"><a href="#"> {{ ++$counter . ' - ' . $freelancer->full_name }} </a></span> <span
                 class="m-l-5 rate-top-freelancer">{{ $freelancer->rate }}</span>
         @endforeach
     </span>
@@ -115,7 +115,7 @@
     <div class="pro">Professions</div>
     <div class="continer-professions">
         @foreach ($professions as $profession)
-            <div class="pro-con"> {{ $profession->title }} </div>
+            <div class="pro-con"> {{ $profession->description }} </div>
         @endforeach
         <div class="pro-con"> one </div>
         <div class="pro-con"> one </div>
