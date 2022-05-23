@@ -115,9 +115,7 @@
                 </div>
                 <div class="col border border-dark py-1 px-1 border-1"
                     style="font-size: 1.5vw; background-color: #47587c; overflow: hidden; text-overflow: ellipsis;">
-                    <a href="#Professions" class="nav-link">
-                        Contact
-                    </a>
+                    Contact
                 </div>
 
             </div>
