@@ -1,11 +1,11 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Comfortaa', cursive !important;
+    font-family: 'Comfortaa', cursive;
 }
 
 .pic {
-    background-image: url(../files/main_background.jpg);
+    background-image: url(..//files/pic-1.jpg);
     position: fixed;
     height: 100vh;
     width: 100vw;
@@ -22,7 +22,7 @@
     width: 100%;
     background-color: beige;
     z-index: -1;
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 .unor-li {
@@ -63,8 +63,7 @@
 .projects,
 .main-title,
 .sign-up,
-.log-in,
-.name-of-user {
+.log-in {
     padding: 10px;
     color: #f5ff9f;
     font-weight: bold;
@@ -126,6 +125,10 @@
     text-decoration: none;
 } */
 
+.name-top-here:hover {
+    color: #e1d328;
+}
+
 .se-pa {
     line-height: 30px;
     border-radius: 8px;
@@ -138,7 +141,7 @@
     position: absolute;
     right: 0;
     min-height: 50%;
-    background-color: #47587c;
+    background-color: #383f46;
     width: 28%;
     border-left-color: #0000004f;
     border-left-style: solid;
@@ -169,7 +172,7 @@
 .top-fls-title,
 .your-fav-title {
     text-align: center;
-    color: #f5ff9f;
+    color: #0dcaf0;
     font-size: 20px;
     font-weight: bold;
     margin-top: 12px;
@@ -284,6 +287,7 @@
     left: 0;
     top: 0;
 }
+
 
 .menu>li:hover .sub-menu {
     position: absolute;
