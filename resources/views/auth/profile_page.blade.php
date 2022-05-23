@@ -96,8 +96,20 @@
             <form>
                 <div class="container">
 
-                    <img src="/files/main_background.jpg" class="rounded-5 mx-auto d-block m-3" style="width: 30%;" alt="...">
-                    <div class="input-group mb-3">
+                    <!-- if user does not have photo display icon -->
+
+                    <div class="container my-5" style="text-align: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor"
+                            class="bi bi-person-circle" viewBox="3 3 10 10">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                        </svg>
+                    </div>
+                    <!-- here put the image if user have one already -->
+                    <!-- <img src="/files/pic-1.jpg" class="rounded-circle mx-auto d-block m-3" style="width: 30%;"
+                        alt="..."> -->
+                        <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-default">Full Name</span>
                         <input type="text" class="form-control" aria-label="Sizing example input"
                             placeholder="Full Name" aria-label="Fullname" aria-describedby="inputGroup-sizing-default">
