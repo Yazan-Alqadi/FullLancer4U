@@ -16,7 +16,7 @@
         <link href="/css/fl.css" rel="stylesheet">
         <!-- CSS only -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">
-        <title>Freelancers</title>
+        <title>My Profile</title>
     </head>
 
     <body style="background-color: lightgrey;">
@@ -96,7 +96,7 @@
             <form>
                 <div class="container">
 
-                    <img src="/files/pic-1.jpg" class="rounded-5 mx-auto d-block m-3" style="width: 30%;" alt="...">
+                    <img src="/files/main_background.jpg" class="rounded-5 mx-auto d-block m-3" style="width: 30%;" alt="...">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-default">Full Name</span>
                         <input type="text" class="form-control" aria-label="Sizing example input"
