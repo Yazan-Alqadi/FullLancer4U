@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\authController;
+use App\Http\Controllers\FreelancerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Freelancer;
@@ -40,3 +41,10 @@ Route::post('login', [LoginController::class, 'store'])->name('login.store');
 
 Route::get('users', [UserController::class,'index']);
 
+Route::get('freelancers',[FreelancerController::class,'index'])->name('freelancers.index');
+
+Route::get('user/{id}', function ($id) {
+
+    return view('auth.profile_page');
+
+})->name('profile');

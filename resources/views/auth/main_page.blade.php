@@ -49,17 +49,17 @@
                 <div class="collapse navbar-collapse" id="mainmenu">
                     <ul class="navbar-nav ms-3">
                         <li class="nav-item"><a href="#Professions" class="nav-link in-hover">Professions</a></li>
-                        <li class="nav-item"><a href="#Freealncers" class="nav-link in-hover">Freealncers</a></li>
+                        <li class="nav-item"><a href="{{  route('freelancers.index') }}" class="nav-link in-hover">Freealncers</a></li>
                         <li class="nav-item"><a href="#Projects" class="nav-link in-hover">Projects</a></li>
                     </ul>
                     @if (session('user'))
                         <div class="navbar-nav ms-auto dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ session('user') }}
+                                {{ session('user')->full_name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#Profile">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile',session('user')->id) }}">Profile</a></li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}">Log out</a></li>
                             </ul>
                         </div>
@@ -72,7 +72,7 @@
                 </div>
             </div>
         </div>
-    
+
     <!-- <ul class="unor-li">
         <li class="for-inline"><a href="#" class="main-title">Fullancer4U </a></li>
         <li class="search-par for-inline"><input type="search" class="se-pa" placeholder="Search"></li>
@@ -115,7 +115,7 @@
     <div class="pro">Professions</div>
     <div class="continer-professions">
         @foreach ($professions as $profession)
-            <div class="pro-con"> {{ $profession->description }} </div>
+            <div class="pro-con"> {{ $profession->title }} </div>
         @endforeach
         <div class="pro-con"> one </div>
         <div class="pro-con"> one </div>

@@ -27,7 +27,7 @@
                     aria-expanded="true">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a href="#" class="navbar-brand text-info navbar-title-hover">Fullancer4U</a>
+                <a href="{{ route('home') }}" class="navbar-brand text-info navbar-title-hover">Fullancer4U</a>
 
 
                 <form class="form-inline collapse navbar-collapse" id="search-par">
@@ -49,7 +49,7 @@
                 <div class="collapse navbar-collapse" id="mainmenu">
                     <ul class="navbar-nav ms-3">
                         <li class="nav-item"><a href="#Professions" class="nav-link in-hover">Professions</a></li>
-                        <li class="nav-item"><a href="#Freealncers" class="nav-link in-hover">Freealncers</a></li>
+                        <li class="nav-item"><a href="{{ route('freelancers.index') }}" class="nav-link in-hover">Freealncers</a></li>
                         <li class="nav-item"><a href="#Projects" class="nav-link in-hover">Projects</a></li>
                     </ul>
                     <div class="navbar-nav ms-auto dropdown">

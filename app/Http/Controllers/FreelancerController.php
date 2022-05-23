@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Freelancer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FreelancerController extends Controller
 {
@@ -15,7 +16,12 @@ class FreelancerController extends Controller
     public function index()
     {
         //
-        
+        $freelancers = DB::select('select * from users,freelancers where users.id = user_id');
+
+        //dd($freelancers);
+
+        return view('auth.freelancers_page',['freelancers'=>$freelancers]);
+
     }
 
     /**

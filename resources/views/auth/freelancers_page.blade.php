@@ -27,7 +27,7 @@
                     aria-expanded="true">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a href="#" class="navbar-brand text-info navbar-title-hover">Fullancer4U</a>
+                <a href="{{ route('home') }}" class="navbar-brand text-info navbar-title-hover">Fullancer4U</a>
 
 
                 <form class="form-inline collapse navbar-collapse" id="search-par">
@@ -49,7 +49,7 @@
                 <div class="collapse navbar-collapse" id="mainmenu">
                     <ul class="navbar-nav ms-3">
                         <li class="nav-item"><a href="#Professions" class="nav-link in-hover">Professions</a></li>
-                        <li class="nav-item"><a href="#Freealncers" class="nav-link in-hover">Freealncers</a></li>
+                        <li class="nav-item"><a href="{{ route('freelancers.index') }}" class="nav-link in-hover">Freealncers</a></li>
                         <li class="nav-item"><a href="#Projects" class="nav-link in-hover">Projects</a></li>
                     </ul>
                     @if (session('user'))
@@ -100,10 +100,11 @@
         </div>
 
         <div class="text-center align-items-center" style="color: #ffffff;">
+            @foreach ($freelancers as $freelancer)
             <div class="row align-items-start">
                 <div class="col border border-dark py-1 px-1 border-1"
                     style="font-size: 1.5vw; background-color: #6a7da5;">
-                    yazan
+                    {{ $freelancer->full_name }}
                 </div>
                 <div class="col border border-dark py-1 px-1 border-1"
                     style="font-size: 1.5vw; background-color: #6a7da5;">
@@ -115,14 +116,15 @@
                 </div>
                 <div class="col border border-dark py-1 px-1 border-1"
                     style="font-size: 1.5vw; background-color: #6a7da5;">
-                    5
+                    {{ $freelancer->rate }}
                 </div>
                 <div class="col border border-dark py-1 px-1 border-1"
                     style="font-size: 1.5vw; background-color: #6a7da5;">
-                    yazanalqadi000@gmail.com
+                    {{ $freelancer->email }}
                 </div>
 
             </div>
+            @endforeach
         </div>
 
         <!-- JavaScript Bundle with Popper -->
