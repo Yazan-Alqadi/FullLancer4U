@@ -2,6 +2,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: 'Comfortaa', cursive !important;
 }
 
 body {
@@ -109,8 +110,6 @@ body {
     border-bottom: 3px solid rebeccapurple;
     font-size: inherit;
 }
-
-.label-input {
     font-family: inherit;
     font-size: inherit;
     color: #999999;
