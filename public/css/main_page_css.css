@@ -5,7 +5,7 @@
 }
 
 .pic {
-    background-image: url(../files/main_background.jpg);
+    background-image: url(/public/files/main_background.jpg);
     position: fixed;
     height: 100vh;
     width: 100vw;
@@ -22,7 +22,7 @@
     width: 100%;
     background-color: beige;
     z-index: -1;
-    opacity: 0.75;
+    opacity: 0.5;
 }
 
 .unor-li {
@@ -126,51 +126,10 @@
 } */
 
 .name-top-here:hover {
-    color: #e1d328 !important;
+    color: #e1d328;
 }
 
 .se-pa {
-    padding: 0 2px;
-    border-bottom: 3px solid rebeccapurple;
-    font-size: inherit;
-}
-
-.label-input {
-    font-family: inherit;
-    font-size: inherit;
-    color: #999999;
-    line-height: 1.2;
-    margin-left: 7px;
-}
-
-.wrap-input {
-    margin-top: 2%;
-}
-
-input {
-    outline: none;
-    border: none;
-}
-
-button,
-input {
-    overflow: visible;
-}
-
-.have-account {
-    margin-top: 24px;
-}
-
-.container-login-form-btn {
-    margin: 15px;
-}
-
-.login-form-btn {
-    background-color: #663399ba;
-    padding: 4% 10%;
-    margin-left: 28%;
-    border-radius: 11px;
-    color: white;
     line-height: 30px;
     border-radius: 8px;
     border-color: #66339994;
@@ -183,7 +142,7 @@ input {
     right: 0;
     min-height: 50%;
     background-color: #383f46;
-    width: 28%;
+    width: 25%;
     border-left-color: #0000004f;
     border-left-style: solid;
     border-bottom-color: #0000004f;
@@ -204,6 +163,7 @@ input {
 }
 
 .rate-top-freelancer {
+    white-space: nowrap;
     display: inline-block;
     width: calc(85% * calc(1/3));
     color: #b9f781;
@@ -258,9 +218,9 @@ input {
 }
 
 .continer-professions {
-    height: 245px;
-    width: 60%;
-    margin-left: 45px;
+    height: 350px;
+    width: 70%;
+    margin-left: 3%;
     margin-top: 22px;
     /* border-color: #0000004f; */
     /* border-style: solid; */
@@ -335,4 +295,12 @@ input {
     left: 0;
     top: 25px;
     z-index: 10;
+}
+
+.checked {
+    color: yellow;
+}
+
+.not-checked {
+    color: white;
 }
