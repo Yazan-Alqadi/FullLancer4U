@@ -1,4 +1,8 @@
-* {
+/* * {
+    font-family: 'Comfortaa', cursive !important;
+} */
+
+.form-font-family {
     font-family: 'Comfortaa', cursive !important;
 }
 
@@ -14,6 +18,37 @@
 
 .mg {
     margin-left: 15%;
+}
+
+.name-of-user-hover {
+    transition: 0.7s;
+}
+
+.name-of-user-hover:hover {
+    color: #00ff72 !important;
+}
+
+.section-style {
+    background-color: rgb(186, 195, 195) !important;
+    font-family: 'Comfortaa', cursive !important;
+    font-family: 'Roboto Slab', serif !important;
+    font-size: 14px !important;
+}
+
+.btn-font-size {
+    font-size: 11px !important;
+}
+
+.span-photo {
+    display: inline-block;
+    margin: 15px 6px 0px -84px;
+}
+
+.img-user-style {
+    width: 83px !important;
+    height: 83px !important;
+    border-radius: 50% !important;
+    margin: 12px 2px 0px 2px !important;
 }
 
 /* .btn-par {
