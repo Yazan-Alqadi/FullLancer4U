@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -27,9 +28,9 @@ class RegisterController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
+        Auth::login($user);
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['user_name'] =  $user->user_name;
-        dd($success);
         return redirect()->route('home');
     }
 }

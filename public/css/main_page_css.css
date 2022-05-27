@@ -5,7 +5,7 @@
 }
 
 .pic {
-    background-image: url(..//files/main_background.jpg);
+    background-image: url(../files/main_background.jpg);
     position: fixed;
     height: 100vh;
     width: 100vw;
@@ -22,7 +22,7 @@
     width: 100%;
     background-color: beige;
     z-index: -1;
-    opacity: 0.5;
+    opacity: 0.75;
 }
 
 .unor-li {

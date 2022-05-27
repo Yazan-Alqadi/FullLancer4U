@@ -32,7 +32,7 @@
                 <div class="form-login-title">Sign in</div>
                 <div class="wrap-input" data-validate="Valid email is required: ex@abc.xyz">
                     <span class="label-input">Email</span>
-                    <input class="input1" type="email" name="email" required placeholder="Email address...">
+                    <input class="input1" type="email" name="email" required placeholder="Email address..."  >
                     @error('email')
                     <span class="alert-error" role="alert">
                         <strong> {{ $message }} </strong>
@@ -70,6 +70,7 @@
                         </a>
                     </div>
                 </div>
+               
             </form>
         </div>
 

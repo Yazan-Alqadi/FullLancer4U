@@ -15,6 +15,8 @@
     <!-- CSS only -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <title>Main_Page</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -113,7 +115,7 @@
     <div class="pro">Professions</div>
     <div class="continer-professions">
         @foreach ($professions as $profession)
-            <div class="pro-con"> {{ $profession->description }} </div>
+            <div class="pro-con"> {{ $profession->title }} </div>
         @endforeach
         <div class="pro-con"> one </div>
         <div class="pro-con"> one </div>

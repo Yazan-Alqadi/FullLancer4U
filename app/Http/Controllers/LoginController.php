@@ -16,15 +16,19 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        $cred =$request->validate( [
+        $cred = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
 
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password] , $request-> remember=='on') ){
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember == 'on')) {
             $user = Auth::user();
-            return redirect()->route('home')->with('user',$user);
+            Auth::login($user);
+
+            $request->session()->regenerate();
+
+            return redirect()->route('home')->with('user', $user);
         } else {
             return redirect()->route('login.show')->with('status', 'Invalid Login');
         }

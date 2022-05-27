@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\authController;
 use App\Http\Controllers\FreelancerController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Freelancer;
@@ -48,3 +49,6 @@ Route::get('user/{id}', function ($id) {
     return view('auth.profile_page');
 
 })->name('profile');
+
+Route::get('auth/google',[GoogleController::class,'redirectToGoogle'])->name('redToGoogle');
+Route::get('auth/google/callback',[GoogleController::class,'handleGoogleCallback'])->name('googleCallBack');
