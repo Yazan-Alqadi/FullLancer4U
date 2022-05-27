@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class ProfessionController extends Controller
 {
     /**
@@ -14,6 +14,11 @@ class ProfessionController extends Controller
     public function index()
     {
         //
+        $freelancers = DB::select('select * from users,freelancers where users.id = user_id');
+
+        //dd($freelancers);
+
+        return view('auth.Professions_cards',['freelancers'=>$freelancers]);
     }
 
     /**

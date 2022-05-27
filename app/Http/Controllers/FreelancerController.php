@@ -20,7 +20,7 @@ class FreelancerController extends Controller
 
         //dd($freelancers);
 
-        return view('auth.freelancers_page',['freelancers'=>$freelancers]);
+        return view('auth.freelancer_cards',['freelancers'=>$freelancers]);
 
     }
 
