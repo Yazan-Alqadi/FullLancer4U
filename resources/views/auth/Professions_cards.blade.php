@@ -32,7 +32,7 @@
                 aria-expanded="true">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a href="#" class="navbar-brand text-info navbar-title-hover">Fullancer4U</a>
+            <a href="{{ route('home') }}" class="navbar-brand text-info navbar-title-hover">Fullancer4U</a>
 
 
             <form class="form-inline collapse navbar-collapse" id="search-par">
@@ -52,11 +52,11 @@
 
             <div class="collapse navbar-collapse" id="mainmenu">
                 <ul class="navbar-nav ms-3">
-                    <li class="nav-item"><a href="#Professions" class="nav-link in-hover">Professions</a></li>
-                    <li class="nav-item"><a href="#Freealncers" class="nav-link in-hover">Freealncers</a></li>
+                    <li class="nav-item"><a href="{{ route('professions.index') }}" class="nav-link in-hover">Professions</a></li>
+                    <li class="nav-item"><a href="{{ route('freelancers.index') }}" class="nav-link in-hover">Freealncers</a></li>
                     <li class="nav-item"><a href="#Projects" class="nav-link in-hover">Projects</a></li>
                 </ul>
-                @if (session('user'))
+                @auth
                     <div class="navbar-nav ms-auto dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -66,10 +66,10 @@
                                 <path fill-rule="evenodd"
                                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                             </svg>
-                            <span class="containar">Home</span>
+                            <span class="containar">{{ Auth::user()->full_name }}</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#Profile">
+                            <li><a class="dropdown-item" href="{{ route('profile',Auth::user()->id) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-person-badge" viewBox="0 0 16 16">
                                         <path
@@ -96,7 +96,7 @@
                         <li class="nav-item"><a href="{{ route('login.show') }}" class="nav-link">Log
                                 in</a></li>
                     </ul>
-                @endif
+                @endauth
             </div>
         </div>
     </div>

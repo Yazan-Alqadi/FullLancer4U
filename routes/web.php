@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +30,8 @@ Route::get('/', function () {
     $freelancers = DB::select('CALL topFreelancer()');
     $professions = Profession::all();
     $projects = Project::all();
-
-
-    return view('auth.main_page', ['freelancers' => $freelancers, 'professions' => $professions, 'projects' => $projects]);
+    $user = Auth::user();
+    return view('auth.main_page', ['user'=>$user,'freelancers' => $freelancers, 'professions' => $professions, 'projects' => $projects]);
 })->name('home');
 
 Route::get ('logout',[authController::class,'logout'])->name('logout');
@@ -51,6 +51,7 @@ Route::get('user/{id}', function ($id) {
     return view('auth.profile_page');
 
 })->name('profile');
+Route::get('user/update/{user}',[UserController::class,'update'])->name('user.update');
 
 Route::get('auth/google',[GoogleController::class,'redirectToGoogle'])->name('redToGoogle');
 Route::get('auth/google/callback',[GoogleController::class,'handleGoogleCallback'])->name('googleCallBack');

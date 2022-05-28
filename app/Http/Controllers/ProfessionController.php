@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class ProfessionController extends Controller
 {
     /**
@@ -15,10 +16,8 @@ class ProfessionController extends Controller
     {
         //
         $freelancers = DB::select('select * from users,freelancers where users.id = user_id');
-
-        //dd($freelancers);
-
-        return view('auth.Professions_cards',['freelancers'=>$freelancers]);
+        $user = Auth::user();
+        return view('auth.Professions_cards',['user'=>$user,'freelancers'=>$freelancers]);
     }
 
     /**

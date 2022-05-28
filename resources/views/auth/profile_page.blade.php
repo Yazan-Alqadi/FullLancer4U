@@ -47,7 +47,7 @@
 
             <div class="collapse navbar-collapse" id="mainmenu">
                 <ul class="navbar-nav ms-3">
-                    <li class="nav-item"><a href="#Professions" class="nav-link in-hover">Professions</a></li>
+                    <li class="nav-item"><a href="{{ route('professions.index') }}" class="nav-link in-hover">Professions</a></li>
                     <li class="nav-item"><a href="{{ route('freelancers.index') }}"
                             class="nav-link in-hover">Freealncers</a></li>
                     <li class="nav-item"><a href="#Projects" class="nav-link in-hover">Projects</a></li>
@@ -61,7 +61,7 @@
                             <path fill-rule="evenodd"
                                 d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                         </svg>
-                        <span class="containar">Home</span>
+                        <span  class="containar">Home</span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ route('logout') }}">
@@ -93,7 +93,9 @@
                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
             </svg>
         </div>
-        <form>
+        <form  method="PUT" action="{{ route('user.update', Auth::user()) }}" >
+            @csrf
+            @method('PUT')
             <div class="container">
 
                 <!-- if user does not have photo display icon -->
@@ -111,49 +113,49 @@
                         alt="..."> -->
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Full Name</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" placeholder="Full Name"
-                        aria-label="Fullname" aria-describedby="inputGroup-sizing-default">
+                    <input name="full_name" type="text" class="form-control" aria-label="Sizing example input" placeholder="Full Name"
+                        aria-label="Fullname" aria-describedby="inputGroup-sizing-default" value="{{ Auth::user()->full_name }}">
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">User Name</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" placeholder="User Name"
-                        aria-label="Username" aria-describedby="inputGroup-sizing-default">
+                    <input name="user_name" type="text" class="form-control" aria-label="Sizing example input" placeholder="User Name"
+                        aria-label="Username" aria-describedby="inputGroup-sizing-default" value="{{ Auth::user()->user_name }}">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
+                    <input name="email" type="email" class="form-control" id="exampleFormControlInput1"
+                        placeholder="name@example.com" value="{{ Auth::user()->email }}">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput2" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleFormControlInput2"
+                    <input name="password" type="password" class="form-control" id="exampleFormControlInput2"
                         placeholder="**************">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput3" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="exampleFormControlInput3"
+                    <input name="password_confirmation" type="password" class="form-control" id="exampleFormControlInput3"
                         placeholder="**************">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput4" class="form-label">Phone Number</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput4" placeholder="Phone Number">
+                    <input  name="phone" type="text" class="form-control" id="exampleFormControlInput4" placeholder="Phone Number" value="{{ Auth::user()->phone }}">
                 </div>
 
                 <div class="mb-3">
-                    <label for="exampleFormControlInput5" class="form-label">Addres</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput5" placeholder="Addres">
+                    <label for="exampleFormControlInput5" class="form-label">Address</label>
+                    <input name="address" type="text" class="form-control" id="exampleFormControlInput5" placeholder="Address" value="{{ Auth::user()->address }}">
                 </div>
 
             </div>
 
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" class="btn btn-success " disabled>Confirm Edit</button>
+                <button type="submit" class="btn btn-success " >Confirm Edit</button>
             </div>
         </form>
     </section>
