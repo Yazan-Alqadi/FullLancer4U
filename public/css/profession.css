@@ -14,25 +14,28 @@
 
 .title-des {
     color: red !important;
-    background-color: #d1ff00;
+    /* background-color: #d1ff00; */
     border-radius: 2px;
     border-bottom-right-radius: 10px;
     font-weight: bold;
-    animation-duration: 7s;
+    animation-duration: 1.5s;
     animation-name: change-color;
     animation-iteration-count: infinite;
+    /* text-shadow: 1px 1px 2px green; */
 }
 
 @keyframes change-color {
     0% {
-        background-color: #fffe00;
+        /* background-color: #fffe00;
+        text-shadow: H-shadow V-shadow Blur color; */
+        text-shadow: 1px 1px 5px rgb(161, 4, 161);
     }
 
     50% {
-        background-color: #00ff6d;
+        text-shadow: -1px -1px 5px rgb(0, 26, 255);
     }
 
     100% {
-        background-color: #fffe00;
+        text-shadow: 1px 1px 5px rgb(161, 4, 161);
     }
 }
