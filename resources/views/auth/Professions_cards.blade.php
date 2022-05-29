@@ -134,7 +134,7 @@
                                     <div class="container">
                                         <div class="col" style="color: #f5ff9f;">
                                             <!-- category belong to the profession -->
-                                            <div class="row justify-content-center">
+                                            <div class="row justify-content-center" style="font-size: 18px !important;">
                                                 <span class="for-size span-number-1">Title:</span>
                                                 <span class="for-size span-number-2">{{ $profession->title }}</span>
                                             </div>
