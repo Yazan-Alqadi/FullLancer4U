@@ -47,7 +47,8 @@
 
             <div class="collapse navbar-collapse" id="mainmenu">
                 <ul class="navbar-nav ms-3">
-                    <li class="nav-item"><a href="{{ route('professions.index') }}" class="nav-link in-hover">Professions</a></li>
+                    <li class="nav-item"><a href="{{ route('professions.index') }}"
+                            class="nav-link in-hover">Professions</a></li>
                     <li class="nav-item"><a href="{{ route('freelancers.index') }}"
                             class="nav-link in-hover">Freealncers</a></li>
                     <li class="nav-item"><a href="#Projects" class="nav-link in-hover">Projects</a></li>
@@ -61,7 +62,7 @@
                             <path fill-rule="evenodd"
                                 d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                         </svg>
-                        <span  class="containar">Home</span>
+                        <span class="containar">Home</span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ route('logout') }}">
@@ -78,6 +79,44 @@
         </div>
     </div>
 
+
+    <!-- alerts Icons -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+        </symbol>
+        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+        </symbol>
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+        </symbol>
+    </svg>
+
+    <!-- Error alert -->
+    <div class="alert alert-primary d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+            <use xlink:href="#info-fill" />
+        </svg>
+        <div>
+            Example: User Name already exist
+        </div>
+    </div>
+
+    <!-- successful alert -->
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+            <use xlink:href="#check-circle-fill" />
+        </svg>
+        <div>
+            Example: Profile has been updated
+        </div>
+    </div>
+
+
     <div class="h3 text-dark mg mt-5">
         My Account
     </div>
@@ -93,7 +132,7 @@
                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
             </svg>
         </div>
-        <form  method="PUT" action="{{ route('user.update', Auth::user()) }}" >
+        <form method="PUT" action="{{ route('user.update', Auth::user()) }}">
             @csrf
             @method('PUT')
             <div class="container">
@@ -113,14 +152,16 @@
                         alt="..."> -->
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Full Name</span>
-                    <input name="full_name" type="text" class="form-control" aria-label="Sizing example input" placeholder="Full Name"
-                        aria-label="Fullname" aria-describedby="inputGroup-sizing-default" value="{{ Auth::user()->full_name }}">
+                    <input name="full_name" type="text" class="form-control" aria-label="Sizing example input"
+                        placeholder="Full Name" aria-label="Fullname" aria-describedby="inputGroup-sizing-default"
+                        value="{{ Auth::user()->full_name }}">
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">User Name</span>
-                    <input name="user_name" type="text" class="form-control" aria-label="Sizing example input" placeholder="User Name"
-                        aria-label="Username" aria-describedby="inputGroup-sizing-default" value="{{ Auth::user()->user_name }}">
+                    <input name="user_name" type="text" class="form-control" aria-label="Sizing example input"
+                        placeholder="User Name" aria-label="Username" aria-describedby="inputGroup-sizing-default"
+                        value="{{ Auth::user()->user_name }}">
                 </div>
 
                 <div class="mb-3">
@@ -137,25 +178,27 @@
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput3" class="form-label">Confirm Password</label>
-                    <input name="password_confirmation" type="password" class="form-control" id="exampleFormControlInput3"
-                        placeholder="**************">
+                    <input name="password_confirmation" type="password" class="form-control"
+                        id="exampleFormControlInput3" placeholder="**************">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput4" class="form-label">Phone Number</label>
-                    <input  name="phone" type="text" class="form-control" id="exampleFormControlInput4" placeholder="Phone Number" value="{{ Auth::user()->phone }}">
+                    <input name="phone" type="text" class="form-control" id="exampleFormControlInput4"
+                        placeholder="Phone Number" value="{{ Auth::user()->phone }}">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput5" class="form-label">Address</label>
-                    <input name="address" type="text" class="form-control" id="exampleFormControlInput5" placeholder="Address" value="{{ Auth::user()->address }}">
+                    <input name="address" type="text" class="form-control" id="exampleFormControlInput5"
+                        placeholder="Address" value="{{ Auth::user()->address }}">
                 </div>
 
             </div>
 
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="submit" class="btn btn-success " >Confirm Edit</button>
+                <button type="submit" class="btn btn-success ">Confirm Edit</button>
             </div>
         </form>
     </section>

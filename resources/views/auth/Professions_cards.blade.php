@@ -19,6 +19,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/css/fl.css" rel="stylesheet">
+    <link href="/css/profession.css" rel="stylesheet">
     <!-- CSS only -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <title>Professions</title>
@@ -52,8 +53,10 @@
 
             <div class="collapse navbar-collapse" id="mainmenu">
                 <ul class="navbar-nav ms-3">
-                    <li class="nav-item"><a href="{{ route('professions.index') }}" class="nav-link in-hover">Professions</a></li>
-                    <li class="nav-item"><a href="{{ route('freelancers.index') }}" class="nav-link in-hover">Freealncers</a></li>
+                    <li class="nav-item"><a href="{{ route('professions.index') }}"
+                            class="nav-link in-hover">Professions</a></li>
+                    <li class="nav-item"><a href="{{ route('freelancers.index') }}"
+                            class="nav-link in-hover">Freealncers</a></li>
                     <li class="nav-item"><a href="#Projects" class="nav-link in-hover">Projects</a></li>
                 </ul>
                 @auth
@@ -69,7 +72,7 @@
                             <span class="containar">{{ Auth::user()->full_name }}</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('profile',Auth::user()->id) }}">
+                            <li><a class="dropdown-item" href="{{ route('profile', Auth::user()->id) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-person-badge" viewBox="0 0 16 16">
                                         <path
@@ -106,10 +109,9 @@
         <div class="container">
             <div class="row text-center">
                 @foreach ($professions as $profession)
-
-                <div class="col-md-6 col-lg-4 mb-2">
-                    <div class="card text-light" style="background-color: #031232;">
-                        <!-- <div class="container">
+                    <div class="col-md-6 col-lg-4 mb-2">
+                        <div class="card text-light" style="background-color: #001b24;">
+                            <!-- <div class="container">
 
                              <-- add image or icon here ----------
 
@@ -124,47 +126,55 @@
                                     </span>
                                 </div>
                             </div> -->
-                        <div class="card-body text-center">
+                            <div class="card-body text-center">
 
-                            <!-- descreption of the profession -->
+                                <!-- descreption of the profession -->
 
-                            <div class="card-text">
-                                <div class="container">
-                                    <div class="col" style="color: #f5ff9f;">
-                                        <!-- category belong to the profession -->
-                                        <div class="row justify-content-center">
-                                            Title : {{ $profession->title }}
+                                <div class="card-text">
+                                    <div class="container">
+                                        <div class="col" style="color: #f5ff9f;">
+                                            <!-- category belong to the profession -->
+                                            <div class="row justify-content-center">
+                                                <span class="for-size span-number-1">Title:</span>
+                                                <span class="for-size span-number-2">{{ $profession->title }}</span>
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <span class="for-size span-number-1">Category:</span>
+                                                <span
+                                                    class="for-size span-number-2">{{ $profession->category->title }}</span>
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <span class="for-size span-number-1">Name of professional:</span>
+                                                <span
+                                                    class="for-size span-number-2">{{ $profession->freelancer->user->full_name }}</span>
+                                            </div>
+                                            <div style="white-space: nowrap;">
+                                                <span class="for-size span-number-1">Rating:</span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star not-checked"></span>
+                                                <span class="fa fa-star not-checked"></span>
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <span class="for-size span-number-1">Price:</span>
+                                                <span class="for-size span-number-2">{{ $profession->price }}</span>
+                                            </div>
+                                            <div class="row justify-content-center mt-3" style="display: block;">
+                                                <span class="for-size span-number-1">descreption:</span>
+                                                <span
+                                                    class="for-size span-number-2">{{ $profession->description }}</span>
+                                            </div>
+                                            <!-- Profile of the user -->
+                                            <a href="#" class="btn btn-info mt-2 btn-font-size">
+                                                See more information
+                                            </a>
                                         </div>
-                                        <div class="row justify-content-center">
-                                            Category: {{ $profession->category->title }}
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            Name of professional: {{ $profession->freelancer->user->full_name }}
-                                        </div>
-                                        <div style="white-space: nowrap;">
-                                            Rating:
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star not-checked"></span>
-                                            <span class="fa fa-star not-checked"></span>
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            Price: {{ $profession->price }}
-                                        </div>
-                                        <div class="row justify-content-center mt-3">
-                                            descreption: {{ $profession->description }}
-                                        </div>
-                                        <!-- Profile of the user -->
-                                        <a href="#" class="btn btn-info mt-2 btn-font-size">
-                                            See more information
-                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>

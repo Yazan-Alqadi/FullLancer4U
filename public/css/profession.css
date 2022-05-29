@@ -1,0 +1,38 @@
+.for-size {
+    width: fit-content !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.span-number-1 {
+    /* color: red !important; */
+}
+
+.span-number-2 {
+    color: rgb(255 247 0) !important;
+}
+
+.title-des {
+    color: red !important;
+    background-color: #d1ff00;
+    border-radius: 2px;
+    border-bottom-right-radius: 10px;
+    font-weight: bold;
+    animation-duration: 7s;
+    animation-name: change-color;
+    animation-iteration-count: infinite;
+}
+
+@keyframes change-color {
+    0% {
+        background-color: #fffe00;
+    }
+
+    50% {
+        background-color: #00ff6d;
+    }
+
+    100% {
+        background-color: #fffe00;
+    }
+}
