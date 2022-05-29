@@ -105,6 +105,8 @@
     <section class="py-5 section-style">
         <div class="container">
             <div class="row text-center">
+                @foreach ($professions as $profession)
+
                 <div class="col-md-6 col-lg-4 mb-2">
                     <div class="card text-light" style="background-color: #031232;">
                         <!-- <div class="container">
@@ -131,13 +133,13 @@
                                     <div class="col" style="color: #f5ff9f;">
                                         <!-- category belong to the profession -->
                                         <div class="row justify-content-center">
-                                            Category : IT & Development
+                                            Title : {{ $profession->title }}
                                         </div>
                                         <div class="row justify-content-center">
-                                            Title: Back_End
+                                            Category: {{ $profession->category->title }}
                                         </div>
                                         <div class="row justify-content-center">
-                                            Name of professional: Basel
+                                            Name of professional: {{ $profession->freelancer->user->full_name }}
                                         </div>
                                         <div style="white-space: nowrap;">
                                             Rating:
@@ -148,11 +150,10 @@
                                             <span class="fa fa-star not-checked"></span>
                                         </div>
                                         <div class="row justify-content-center">
-                                            Price: 50,000
+                                            Price: {{ $profession->price }}
                                         </div>
                                         <div class="row justify-content-center mt-3">
-                                            descreption: Lorem ipsum dolor sit amet consectetur adipisicing
-                                            elit. Voluptatum neque, dolorem cumque aperiam aut rem?
+                                            descreption: {{ $profession->description }}
                                         </div>
                                         <!-- Profile of the user -->
                                         <a href="#" class="btn btn-info mt-2 btn-font-size">
@@ -164,120 +165,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-2">
-                    <div class="card text-light" style="background-color: #031232;">
-                        <!-- <div class="container">
-
-                             <-- add image or icon here ----------
-
-                                <div style="display: inline-grid;">
-                                    <span class="card-title">
-                                        <a href="#" class="navbar-brand text-light name-of-user-hover">
-                                            name of user
-                                        </a>
-                                    </span>
-                                    <span class="card-title">
-                                        user name
-                                    </span>
-                                </div>
-                            </div> -->
-                        <div class="card-body text-center">
-                            <!-- descreption of the profession -->
-                            <div class="card-text">
-                                <div class="container">
-                                    <div class="col" style="color: #f5ff9f;">
-                                        <!-- category belong to the profession -->
-                                        <div class="row justify-content-center">
-                                            Category : IT & Development
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            Title: Back_End
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            Name of professional: Basel
-                                        </div>
-                                        <div style="white-space: nowrap;">
-                                            Rating:
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star not-checked"></span>
-                                            <span class="fa fa-star not-checked"></span>
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            Price: 50,000
-                                        </div>
-                                        <div class="row justify-content-center mt-3">
-                                            descreption: Lorem ipsum dolor sit amet consectetur adipisicing
-                                            elit. Voluptatum neque, dolorem cumque aperiam aut rem?
-                                        </div>
-                                        <!-- Profile of the user -->
-                                        <a href="#" class="btn btn-info mt-2 btn-font-size">
-                                            See more information
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-2">
-                    <div class="card text-light" style="background-color: #031232;">
-                        <!-- <div class="container">
-
-                             <-- add image or icon here ----------
-
-                                <div style="display: inline-grid;">
-                                    <span class="card-title">
-                                        <a href="#" class="navbar-brand text-light name-of-user-hover">
-                                            name of user
-                                        </a>
-                                    </span>
-                                    <span class="card-title">
-                                        user name
-                                    </span>
-                                </div>
-                            </div> -->
-                        <div class="card-body text-center">
-                            <!-- descreption of the profession -->
-                            <div class="card-text">
-                                <div class="container">
-                                    <div class="col" style="color: #f5ff9f;">
-                                        <!-- category belong to the profession -->
-                                        <div class="row justify-content-center">
-                                            Category : IT & Development
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            Title: Back_End
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            Name of professional: Basel
-                                        </div>
-                                        <div style="white-space: nowrap;">
-                                            Rating:
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star not-checked"></span>
-                                            <span class="fa fa-star not-checked"></span>
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            Price: 50,000
-                                        </div>
-                                        <div class="row justify-content-center mt-3">
-                                            descreption: Lorem ipsum dolor sit amet consectetur adipisicing
-                                            elit. Voluptatum neque, dolorem cumque aperiam aut rem?
-                                        </div>
-                                        <!-- Profile of the user -->
-                                        <a href="#" class="btn btn-info mt-2 btn-font-size">
-                                            See more information
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

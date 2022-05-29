@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,8 @@ class ProfessionController extends Controller
     public function index()
     {
         //
-        $freelancers = DB::select('select * from users,freelancers where users.id = user_id');
-        $user = Auth::user();
-        return view('auth.Professions_cards',['user'=>$user,'freelancers'=>$freelancers]);
+        $professions = Profession::all();
+        return view('auth.Professions_cards',['professions'=>$professions]);
     }
 
     /**
