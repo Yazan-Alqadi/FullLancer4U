@@ -97,24 +97,29 @@
     </svg>
 
     <!-- Error alert -->
+    @if (count($errors)>0)
     <div class="alert alert-primary d-flex align-items-center" role="alert">
         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
             <use xlink:href="#info-fill" />
         </svg>
         <div>
-            Example: User Name already exist
+            {{ $errors->first()}}
         </div>
     </div>
+    @endif
 
     <!-- successful alert -->
+
+    @if(session('message'))
     <div class="alert alert-success d-flex align-items-center" role="alert">
         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
             <use xlink:href="#check-circle-fill" />
         </svg>
         <div>
-            Example: Profile has been updated
+            {{ session('message') }}
         </div>
     </div>
+    @endif
 
 
     <div class="h3 text-dark mg mt-5">
@@ -133,8 +138,6 @@
             </svg>
         </div>
         <form method="PUT" action="{{ route('user.update', Auth::user()) }}">
-            @csrf
-            @method('PUT')
             <div class="container">
 
                 <!-- if user does not have photo display icon -->

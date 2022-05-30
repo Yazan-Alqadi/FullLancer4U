@@ -73,28 +73,26 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update( $user)
+    public function update(Request $request ,$id)
     {
-
-        $inputs = request()->validate([
-
-            'user_name'=> ['required', 'string', 'max:255','unique:users'],
-            'full_name'=> ['required', 'string', 'max:255'],
-            'email'=> ['required', 'email', 'max:255'],
-            //'avatar'=> ['file'],
-            'password'=>['required','min:8','confirmed'],
-
+        $user= User::find($id);
+        $request->validate( [
+            'full_name' => 'required',
+            'user_name' => 'required|unique:users,user_name,'. $user->id ,
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'required|min:8|confirmed',
         ]);
 
+        $inputs = $request->all();
        // if(request('avatar')){
 
           //  $inputs['avatar'] = request('avatar')->store('images');
        // }
-       // dd($inputs);
 
 
         $user->update($inputs);
-
+        $user->save();
+        session()->flash('message', 'Your Profile has been updated');
 
         return back();
     }

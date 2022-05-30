@@ -51,7 +51,7 @@ Route::get('user/{id}', function ($id) {
     return view('auth.profile_page');
 
 })->name('profile');
-Route::get('user/update/{user}',[UserController::class,'update'])->name('user.update');
+Route::get('user/update/{id}',[UserController::class,'update'])->name('user.update');
 
 Route::get('auth/google',[GoogleController::class,'redirectToGoogle'])->name('redToGoogle');
 Route::get('auth/google/callback',[GoogleController::class,'handleGoogleCallback'])->name('googleCallBack');

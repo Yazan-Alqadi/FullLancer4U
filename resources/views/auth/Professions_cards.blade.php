@@ -141,10 +141,10 @@
                                             <div class="row justify-content-center">
                                                 <span class="for-size span-number-1">Category:</span>
                                                 <span
-                                                    class="for-size span-number-2">{{ $profession->category->title }}</span>
+                                                    class="for-size span-number-2">{{ "\n". $profession->category->title }}</span>
                                             </div>
                                             <div class="row justify-content-center">
-                                                <span class="for-size span-number-1">Name of professional:</span>
+                                                <span class="for-size span-number-1">professional:</span>
                                                 <span
                                                     class="for-size span-number-2">{{ $profession->freelancer->user->full_name }}</span>
                                             </div>
