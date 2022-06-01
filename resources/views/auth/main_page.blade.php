@@ -54,10 +54,11 @@
                             class="nav-link in-hover">Professions</a></li>
                     <li class="nav-item"><a href="{{ route('freelancers.index') }}"
                             class="nav-link in-hover">Freealncers</a></li>
-                    <li class="nav-item"><a href="#Projects" class="nav-link in-hover">Projects</a></li>
+                    <li class="nav-item"><a href="{{ route('projects.index') }}" class="nav-link in-hover">Projects</a></li>
                 </ul>
                 @auth
                     <div class="navbar-nav ms-auto dropdown">
+
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

@@ -22,7 +22,7 @@
     <link href="{{ asset('css/profession.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>Professions</title>
+    <title>Projects</title>
 </head>
 
 <body>
@@ -56,7 +56,7 @@
                             class="nav-link in-hover">Professions</a></li>
                     <li class="nav-item"><a href="{{ route('freelancers.index') }}"
                             class="nav-link in-hover">Freealncers</a></li>
-                    <li class="nav-item"><a href="#Projects" class="nav-link in-hover">Projects</a></li>
+                    <li class="nav-item"><a href="{{ route('projects.index') }}" class="nav-link in-hover">Projects</a></li>
                 </ul>
                 @auth
                     <div class="navbar-nav ms-auto dropdown">
@@ -107,7 +107,7 @@
     <section class="py-5 section-style">
         <div class="container">
             <div class="row text-center">
-                @foreach ($professions as $profession)
+                @foreach ($projects as $project)
                     <div class="col-md-6 col-lg-4 mb-2">
                         <div class="card text-light" style="background-color: #001b24;">
                             <!-- <div class="container">
@@ -136,27 +136,27 @@
                                             <div class="row justify-content-center" style="font-size: 18px !important;">
                                                 {{-- <span class="for-size span-number-1 ">Title:</span> --}}
                                                 <span
-                                                    class="for-size span-number-2 title-des">{{ $profession->title }}</span>
+                                                    class="for-size span-number-2 title-des">{{ $project->title }}</span>
                                             </div>
                                             <div class="row justify-content-center">
                                                 <span class="for-size span-number-1">Category:</span>
                                                 <span
-                                                    class="for-size span-number-2">{{ "\n" . $profession->category->title }}</span>
+                                                    class="for-size span-number-2">{{ "\n" . $project->category->title }}</span>
                                             </div>
                                             <div class="row justify-content-center">
                                                 <span class="for-size span-number-1">Client:</span>
                                                 <span
-                                                    class="for-size span-number-2">{{ $profession->freelancer->user->full_name }}</span>
+                                                    class="for-size span-number-2">{{ $project->freelancer->user->full_name }}</span>
                                             </div>
                                             <div class="row justify-content-center mt-3" style="display: block;">
                                                 <span class="for-size span-number-1">descreption:</span>
                                                 <span
-                                                    class="for-size span-number-2">{{ $profession->description }}</span>
+                                                    class="for-size span-number-2">{{ $project->description }}</span>
                                             </div>
                                             <!-- Profile of the user -->
                                             <<div class="row justify-content-center">
                                                 <span class="for-size span-number-1">Price:</span>
-                                                <span class="for-size span-number-2">{{ $profession->price }}</span>
+                                                <span class="for-size span-number-2">{{ $project->price }}</span>
                                         </div>
 
                                         {{-- Deadline --}}
