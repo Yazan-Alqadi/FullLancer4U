@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->has(Freelancer::factory()->count(1))->create();
         // \App\Models\Category::factory(10)->create();
         \App\Models\Profession::factory(10)->create();
+        \App\Models\Project::factory(10)->create();
+
     }
 }

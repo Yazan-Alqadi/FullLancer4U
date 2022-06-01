@@ -146,7 +146,7 @@
                                             <div class="row justify-content-center">
                                                 <span class="for-size span-number-1">Client:</span>
                                                 <span
-                                                    class="for-size span-number-2">{{ $project->freelancer->user->full_name }}</span>
+                                                    class="for-size span-number-2">{{ $project->client->user->full_name }}</span>
                                             </div>
                                             <div class="row justify-content-center mt-3" style="display: block;">
                                                 <span class="for-size span-number-1">descreption:</span>
