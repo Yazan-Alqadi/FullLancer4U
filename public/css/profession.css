@@ -39,3 +39,35 @@
         text-shadow: 2px 2px 5px rgb(161, 4, 161);
     }
 }
+
+
+/* Tooltip text */
+.tooltiptext {
+    visibility: hidden;
+    width: 41px;
+    background-color: rgb(255 255 255 / 76%);
+    color: rgb(0, 0, 0);
+    /* text-align: center; */
+    padding: 1px 3px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 42px;
+    right: 21px;
+
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipssss:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* @keyframes vis {
+    0% {
+        visibility: hidden;
+    }
+
+    100% {
+        visibility: visible;
+    }
+} */
