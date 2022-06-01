@@ -13,7 +13,7 @@
 }
 
 .title-des {
-    color: red !important;
+    color: #00ffe7 !important;
     /* background-color: #d1ff00; */
     border-radius: 2px;
     border-bottom-right-radius: 10px;
@@ -32,10 +32,10 @@
     }
 
     50% {
-        text-shadow: -1px -1px 5px rgb(0, 26, 255);
+        text-shadow: -2px -2px 5px rgb(0, 26, 255);
     }
 
     100% {
-        text-shadow: 1px 1px 5px rgb(161, 4, 161);
+        text-shadow: 2px 2px 5px rgb(161, 4, 161);
     }
 }

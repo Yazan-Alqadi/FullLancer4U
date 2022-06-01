@@ -144,21 +144,9 @@
                                                     class="for-size span-number-2">{{ "\n" . $profession->category->title }}</span>
                                             </div>
                                             <div class="row justify-content-center">
-                                                <span class="for-size span-number-1">professional:</span>
+                                                <span class="for-size span-number-1">Client:</span>
                                                 <span
                                                     class="for-size span-number-2">{{ $profession->freelancer->user->full_name }}</span>
-                                            </div>
-                                            <div style="white-space: nowrap;">
-                                                <span class="for-size span-number-1">Rating:</span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star not-checked"></span>
-                                                <span class="fa fa-star not-checked"></span>
-                                            </div>
-                                            <div class="row justify-content-center">
-                                                <span class="for-size span-number-1">Price:</span>
-                                                <span class="for-size span-number-2">{{ $profession->price }}</span>
                                             </div>
                                             <div class="row justify-content-center mt-3" style="display: block;">
                                                 <span class="for-size span-number-1">descreption:</span>
@@ -166,19 +154,31 @@
                                                     class="for-size span-number-2">{{ $profession->description }}</span>
                                             </div>
                                             <!-- Profile of the user -->
-                                            <a href="#" class="btn btn-info mt-2 btn-font-size">
-                                                See more information
-                                            </a>
+                                            <<div class="row justify-content-center">
+                                                <span class="for-size span-number-1">Price:</span>
+                                                <span class="for-size span-number-2">{{ $profession->price }}</span>
                                         </div>
+
+                                        {{-- Deadline --}}
+                                        <span class="navbar-text">
+                                            14/9/2021
+                                        </span>
+
+                                        {{-- Price --}}
+                                        <span class="navbar-text">
+                                            Navbar text with an inline element
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
             </div>
+            @endforeach
+        </div>
         </div>
     </section>
+
 
     <!-- JavaScript Bundle with Popper -->
     <script src="/js/bootstrap.bundle.min.js"></script>

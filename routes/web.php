@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
-    $freelancers = DB::select('CALL topFreelancer()');
+    $freelancers = Freelancer::all();//DB::select('CALL topFreelancer()');
     $professions = Profession::all();
     $projects = Project::all();
     $user = Auth::user();

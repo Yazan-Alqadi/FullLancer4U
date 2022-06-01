@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/fl.css">
     <!-- CSS only -->
-    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <title>Main_Page</title>
 </head>
 
@@ -50,7 +50,8 @@
 
             <div class="collapse navbar-collapse" id="mainmenu">
                 <ul class="navbar-nav ms-3">
-                    <li class="nav-item"><a href="{{ route('professions.index') }}" class="nav-link in-hover">Professions</a></li>
+                    <li class="nav-item"><a href="{{ route('professions.index') }}"
+                            class="nav-link in-hover">Professions</a></li>
                     <li class="nav-item"><a href="{{ route('freelancers.index') }}"
                             class="nav-link in-hover">Freealncers</a></li>
                     <li class="nav-item"><a href="#Projects" class="nav-link in-hover">Projects</a></li>
@@ -88,14 +89,14 @@
                                 </a></li>
                         </ul>
                     </div>
-                    @else
+                @else
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a href="{{ route('register.show') }}" class="nav-link">Sign
                                 Up</a></li>
                         <li class="nav-item"><a href="{{ route('login.show') }}" class="nav-link">Log
                                 in</a></li>
                     </ul>
-                    @endauth
+                @endauth
 
 
             </div>
@@ -107,8 +108,6 @@
     <span class="continer-top-fls">
         <a class="top-fls-title" href="#">Top Freelancers </a>
         @foreach ($freelancers as $counter => $freelancer)
-            h
-
             {{-- here is the name of the freelancer --}}
             <span class="ms-2 name-top-freelancer"
                 style="margin-bottom: -5px; overflow: hidden; text-overflow: ellipsis;">
