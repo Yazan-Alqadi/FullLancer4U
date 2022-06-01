@@ -135,13 +135,14 @@
                                         <div class="col" style="color: #f5ff9f;">
                                             <!-- category belong to the profession -->
                                             <div class="row justify-content-center" style="font-size: 18px !important;">
-                                                <span class="for-size span-number-1">Title:</span>
-                                                <span class="for-size span-number-2">{{ $profession->title }}</span>
+                                                {{-- <span class="for-size span-number-1 ">Title:</span> --}}
+                                                <span
+                                                    class="for-size span-number-2 title-des">{{ $profession->title }}</span>
                                             </div>
                                             <div class="row justify-content-center">
                                                 <span class="for-size span-number-1">Category:</span>
                                                 <span
-                                                    class="for-size span-number-2">{{ "\n". $profession->category->title }}</span>
+                                                    class="for-size span-number-2">{{ "\n" . $profession->category->title }}</span>
                                             </div>
                                             <div class="row justify-content-center">
                                                 <span class="for-size span-number-1">professional:</span>
