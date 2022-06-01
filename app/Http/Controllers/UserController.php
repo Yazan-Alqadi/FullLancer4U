@@ -89,6 +89,8 @@ class UserController extends Controller
           //  $inputs['avatar'] = request('avatar')->store('images');
        // }
 
+       $inputs['password'] = bcrypt($inputs['password']);
+
 
         $user->update($inputs);
         $user->save();

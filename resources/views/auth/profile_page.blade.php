@@ -13,9 +13,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap"
         rel="stylesheet">
-    <link href="/css/fl.css" rel="stylesheet">
+    <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <!-- CSS only -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <title>My Profile</title>
 </head>
 

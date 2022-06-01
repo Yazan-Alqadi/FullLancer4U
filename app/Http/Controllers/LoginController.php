@@ -22,7 +22,7 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        $cred = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
