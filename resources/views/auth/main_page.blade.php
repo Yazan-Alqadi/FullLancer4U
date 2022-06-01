@@ -121,11 +121,31 @@
                 checked means that this star have been given to the user
                 not-checked means that this star have not been given to the user --}}
             <span class="rate-top-freelancer">
+                @if($freelancer->rate >0)
                 <span class="fa fa-star checked"></span> {{-- star one --}}
-                <span class="fa fa-star checked"></span> {{-- star tow --}}
+                @else
+                <span class="fa fa-star not-checked"></span> {{-- star one --}}
+                @endif
+                @if($freelancer->rate >1)
+                <span class="fa fa-star checked"></span> {{-- star two --}}
+                @else
+                <span class="fa fa-star not-checked"></span> {{-- star two --}}
+                @endif
+                @if($freelancer->rate >2)
                 <span class="fa fa-star checked"></span> {{-- star three --}}
+                @else
+                <span class="fa fa-star not-checked"></span> {{-- star three --}}
+                @endif
+                @if($freelancer->rate >3)
                 <span class="fa fa-star checked"></span> {{-- star four --}}
+                @else
+                <span class="fa fa-star not-checked"></span> {{-- star four --}}
+                @endif
+                @if($freelancer->rate >4)
+                <span class="fa fa-star checked"></span> {{-- star five --}}
+                @else
                 <span class="fa fa-star not-checked"></span> {{-- star five --}}
+                @endif
 
                 {{-- {{ $freelancer->rate }} --}}
             </span>

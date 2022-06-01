@@ -150,11 +150,32 @@
                                             </div>
                                             <div style="white-space: nowrap;">
                                                 <span class="for-size span-number-1">Rating:</span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star not-checked"></span>
-                                                <span class="fa fa-star not-checked"></span>
+                                                @if($profession->freelancer->rate >0)
+                                                <span class="fa fa-star checked"></span> {{-- star one --}}
+                                                @else
+                                                <span class="fa fa-star not-checked"></span> {{-- star one --}}
+                                                @endif
+                                                @if($profession->freelancer->rate  >1)
+                                                <span class="fa fa-star checked"></span> {{-- star two --}}
+                                                @else
+                                                <span class="fa fa-star not-checked"></span> {{-- star two --}}
+                                                @endif
+                                                @if($profession->freelancer->rate  >2)
+                                                <span class="fa fa-star checked"></span> {{-- star three --}}
+                                                @else
+                                                <span class="fa fa-star not-checked"></span> {{-- star three --}}
+                                                @endif
+                                                @if($profession->freelancer->rate  >3)
+                                                <span class="fa fa-star checked"></span> {{-- star four --}}
+                                                @else
+                                                <span class="fa fa-star not-checked"></span> {{-- star four --}}
+                                                @endif
+                                                @if($profession->freelancer->rate  >4)
+                                                <span class="fa fa-star checked"></span> {{-- star five --}}
+                                                @else
+                                                <span class="fa fa-star not-checked"></span> {{-- star five --}}
+                                                @endif
+
                                             </div>
                                             <div class="row justify-content-center">
                                                 <span class="for-size span-number-1">Price:</span>
