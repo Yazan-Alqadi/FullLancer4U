@@ -179,7 +179,7 @@
 
                                                 {{-- Price --}}
                                                 <span class="text-end text-dark bg-light rounded px-2 py-1 tooltipssss">
-                                                    {{ $project->price }}
+                                                    {{ $project->price . ' Sp' }}
                                                     <span class="tooltiptext">Price</span>
                                                 </span>
                                             </div>
