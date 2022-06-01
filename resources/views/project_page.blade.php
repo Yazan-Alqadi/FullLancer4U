@@ -136,7 +136,6 @@
                                         <div class="col" style="color: #f5ff9f;">
                                             <!-- category belong to the profession -->
                                             <div class="row justify-content-center" style="font-size: 18px !important;">
-                                                <span class="for-size span-number-1 ">Title:</span>
                                                 <span class="for-size span-number-2 title-des">
                                                     {{ $project->title }}
                                                 </span>
@@ -150,7 +149,7 @@
                                             <div class="row justify-content-center">
                                                 <span class="for-size span-number-1">Client:</span>
                                                 <span class="for-size span-number-2">
-                                                    {{ $project->client -> user->full_name }}
+                                                    {{ $project->client->user->full_name }}
 
                                                 </span>
                                             </div>
