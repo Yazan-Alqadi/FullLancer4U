@@ -5,6 +5,7 @@ use App\Http\Controllers\FreelancerController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Freelancer;
 use App\Models\Profession;
@@ -40,11 +41,11 @@ Route::get('register', [RegisterController::class, 'index'])->name('register.sho
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::post('login', [LoginController::class, 'store'])->name('login.store');
-
 Route::get('users', [UserController::class,'index']);
 
 Route::get('freelancers',[FreelancerController::class,'index'])->name('freelancers.index');
 Route::get('professions',[ProfessionController::class,'index'])->name('professions.index');
+Route::get('projects',[ProjectController::class,'index'])->name('projects.index');
 
 Route::get('user/{id}', function ($id) {
 
