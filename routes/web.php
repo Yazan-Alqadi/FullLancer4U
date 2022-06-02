@@ -31,8 +31,7 @@ Route::get('/', function () {
     $freelancers = Freelancer::all();// DB::select('CALL topFreelancer()');
     $professions = Profession::all();
     $projects = Project::all();
-    $user = Auth::user();
-    return view('auth.main_page', ['user'=>$user,'freelancers' => $freelancers, 'professions' => $professions, 'projects' => $projects]);
+    return view('auth.main_page', ['freelancers' => $freelancers, 'professions' => $professions, 'projects' => $projects]);
 })->name('home');
 
 Route::get ('logout',[authController::class,'logout'])->name('logout');
