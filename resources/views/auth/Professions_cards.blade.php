@@ -27,7 +27,7 @@
 
 <body>
 
-    <div class="navbar navbar-expand-md bg-dark navbar-dark text-light form-font-family">
+    <div class="navbar navbar-expand-md bg-dark navbar-dark text-light ">
         <div class="container justify-content-between">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search-par"
                 aria-expanded="true">
@@ -45,6 +45,7 @@
                     </svg></button>
             </form>
 
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainmenu"
                 aria-expanded="true">
                 <span class="navbar-toggler-icon"></span>
@@ -56,10 +57,12 @@
                             class="nav-link in-hover">Professions</a></li>
                     <li class="nav-item"><a href="{{ route('freelancers.index') }}"
                             class="nav-link in-hover">Freealncers</a></li>
-                    <li class="nav-item"><a href="#Projects" class="nav-link in-hover">Projects</a></li>
+                    <li class="nav-item"><a href="{{ route('projects.index') }}"
+                            class="nav-link in-hover">Projects</a></li>
                 </ul>
                 @auth
                     <div class="navbar-nav ms-auto dropdown">
+
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -68,10 +71,10 @@
                                 <path fill-rule="evenodd"
                                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                             </svg>
-                            <span class="containar">{{ Auth::user()->full_name }}</span>
+                            <span class="containar">{{ $user->full_name }}</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('profile', Auth::user()->id) }}">
+                            <li><a class="dropdown-item" href="{{ route('profile', $user->id) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-person-badge" viewBox="0 0 16 16">
                                         <path
@@ -99,6 +102,8 @@
                                 in</a></li>
                     </ul>
                 @endauth
+
+
             </div>
         </div>
     </div>
@@ -150,30 +155,30 @@
                                             </div>
                                             <div style="white-space: nowrap;">
                                                 <span class="for-size span-number-1">Rating:</span>
-                                                @if($profession->freelancer->rate >0)
-                                                <span class="fa fa-star checked"></span> {{-- star one --}}
+                                                @if ($profession->freelancer->rate > 0)
+                                                    <span class="fa fa-star checked"></span> {{-- star one --}}
                                                 @else
-                                                <span class="fa fa-star not-checked"></span> {{-- star one --}}
+                                                    <span class="fa fa-star not-checked"></span> {{-- star one --}}
                                                 @endif
-                                                @if($profession->freelancer->rate  >1)
-                                                <span class="fa fa-star checked"></span> {{-- star two --}}
+                                                @if ($profession->freelancer->rate > 1)
+                                                    <span class="fa fa-star checked"></span> {{-- star two --}}
                                                 @else
-                                                <span class="fa fa-star not-checked"></span> {{-- star two --}}
+                                                    <span class="fa fa-star not-checked"></span> {{-- star two --}}
                                                 @endif
-                                                @if($profession->freelancer->rate  >2)
-                                                <span class="fa fa-star checked"></span> {{-- star three --}}
+                                                @if ($profession->freelancer->rate > 2)
+                                                    <span class="fa fa-star checked"></span> {{-- star three --}}
                                                 @else
-                                                <span class="fa fa-star not-checked"></span> {{-- star three --}}
+                                                    <span class="fa fa-star not-checked"></span> {{-- star three --}}
                                                 @endif
-                                                @if($profession->freelancer->rate  >3)
-                                                <span class="fa fa-star checked"></span> {{-- star four --}}
+                                                @if ($profession->freelancer->rate > 3)
+                                                    <span class="fa fa-star checked"></span> {{-- star four --}}
                                                 @else
-                                                <span class="fa fa-star not-checked"></span> {{-- star four --}}
+                                                    <span class="fa fa-star not-checked"></span> {{-- star four --}}
                                                 @endif
-                                                @if($profession->freelancer->rate  >4)
-                                                <span class="fa fa-star checked"></span> {{-- star five --}}
+                                                @if ($profession->freelancer->rate > 4)
+                                                    <span class="fa fa-star checked"></span> {{-- star five --}}
                                                 @else
-                                                <span class="fa fa-star not-checked"></span> {{-- star five --}}
+                                                    <span class="fa fa-star not-checked"></span> {{-- star five --}}
                                                 @endif
 
                                             </div>
