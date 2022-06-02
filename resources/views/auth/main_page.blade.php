@@ -136,7 +136,7 @@
                     </p>
                     <button type="button" class="btn btn-primary btn-lg">Register now</button>
                 </div>
-                <img class="ms-2 d-none d-sm-block img-fluid" style="width: 20% !important;"
+                <img class="ms-2 d-none d-sm-block img-fluid" style="width: 100% !important;"
                     src={{ 'files/img_hero.svg' }} alt="">
             </div>
         </div>
