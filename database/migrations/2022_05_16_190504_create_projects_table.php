@@ -23,8 +23,6 @@ class CreateProjectsTable extends Migration
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->bigInteger('category_id')->unsigned()->index();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->bigInteger('freelancer_id')->unsigned()->index()->nullable();
-            $table->foreign('freelancer_id')->references('id')->on('freelancers')->onDelete('cascade');
             $table->string('status')->default('pinned');
             $table->timestamps();
         });
