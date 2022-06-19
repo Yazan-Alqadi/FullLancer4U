@@ -55,3 +55,10 @@ Route::get('user/update/{id}',[UserController::class,'update'])->name('user.upda
 
 Route::get('auth/google',[GoogleController::class,'redirectToGoogle'])->name('redToGoogle');
 Route::get('auth/google/callback',[GoogleController::class,'handleGoogleCallback'])->name('googleCallBack');
+Route::get('professions/{id}',function ($id) {
+
+    $professions = Profession::all()->where('freelancer_id',$id);
+
+    return view('profile_freelancer_for_client',['professions'=>$professions]);
+
+})->name('more_information');
