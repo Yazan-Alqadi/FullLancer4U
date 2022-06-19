@@ -59,6 +59,10 @@
     color: white;
 }
 
+.back-img {
+    background-image: url("/public/files/bilding.jpg");
+}
+
 /* .btn-par {
     font-size: 13px !important;
     width: 17.9vw;

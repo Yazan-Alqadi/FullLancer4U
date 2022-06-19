@@ -73,8 +73,8 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('profile', Auth::user()->id) }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-person-badge" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
                                         <path
                                             d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                         <path
@@ -83,8 +83,8 @@
                                     Profile
                                 </a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                                         <path
                                             d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
                                     </svg>
@@ -112,8 +112,8 @@
             <div class="d-flex">
                 <div>
                     <h2>How to make this site <span class="text-info">useful to you</span>
-                        <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                             </svg></span>
@@ -136,7 +136,7 @@
                     </p>
                     <button type="button" class="btn btn-primary btn-lg">Register now</button>
                 </div>
-                <img class="ms-2 d-none d-sm-block img-fluid" style="width: 100% !important;"
+                <img class="ms-2 d-none d-sm-block img-fluid" style="width: 20% !important;"
                     src={{ 'files/img_hero.svg' }} alt="">
             </div>
         </div>
@@ -268,6 +268,61 @@
             </div>
     </section>
 
+    {{-- How works ? --}}
+    <section class="py-5 section-style" style=" background-image: url({{ 'files/bilding.jpg' }});"">
+
+        <h1 class="text-center" style="color: #560b0b !important;"> How Fullancer4U works</h1>
+
+        <div class="container text-white">
+            <div class="card bg-success mb-3">
+                <div class="card-text p-3" style="background-color: cadetblue;">
+                    <h5 class="">
+                        <span class="bg-light text-dark rounded-5 d-inline-block p-1 m-1">1</span>Browse
+                        services
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                            <path
+                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                        </svg>
+                    </h5>
+                    Find the service you need using the search box at the top or via the categories.
+                </div>
+            </div>
+
+            <div class="card bg-success mb-3">
+                <div class="card-text p-3" style="background-color: darkcyan;">
+                    <h5 class=""> <span class="bg-light text-dark rounded-5 d-inline-block p-1 m-1">2</span>
+                        Request service
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z" />
+                        </svg>
+                    </h5>
+                    Review the service description and buyers' reviews and then ask to open a connection with the
+                    seller.
+                </div>
+            </div>
+
+            <div class="card bg-success mb-3">
+                <div class="card-text p-3">
+                    <h5 class="">
+                        <span class="bg-light text-dark rounded-5 d-inline-block p-1 m-1">3</span>
+                        receive your service
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
+                        </svg>
+                    </h5>
+                    Contact the seller directly within the Fiverr website until receiving your entire order.
+                </div>
+            </div>
+        </div>
+
+    </section>
+
     <!-- Professions Cards -->
     <section class="py-5 section-style" style="background-color: #c0faff99 !important;">
 
@@ -301,7 +356,8 @@
                                     <div class="container">
                                         <div class="col" style="color: #f5ff9f;">
                                             <!-- category belong to the profession -->
-                                            <div class="row justify-content-center" style="font-size: 18px !important;">
+                                            <div class="row justify-content-center"
+                                                style="font-size: 18px !important;">
                                                 {{-- <span class="for-size span-number-1 ">Title:</span> --}}
                                                 <span
                                                     class="for-size span-number-2 title-des">{{ $profession->title }}</span>
@@ -437,9 +493,9 @@
                                                 <span>
                                                     <span class="text-start d-inline-block">
                                                         {{ $project->deadline }}
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-calendar-check"
-                                                            viewBox="0 0 16 16">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                            height="16" fill="currentColor"
+                                                            class="bi bi-calendar-check" viewBox="0 0 16 16">
                                                             <path
                                                                 d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
                                                             <path
