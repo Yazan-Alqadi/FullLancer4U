@@ -6,6 +6,7 @@ use App\Models\Profession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 class ProfessionController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class ProfessionController extends Controller
     {
         //
         $professions = Profession::all();
-        return view('auth.Professions_cards',['professions'=>$professions]);
+        return view('auth.Professions_cards', ['professions' => $professions]);
     }
 
     /**
@@ -50,6 +51,11 @@ class ProfessionController extends Controller
     public function show($id)
     {
         //
+        $profession =  Profession::find($id);
+
+
+        $professions = Profession::all()->where('freelancer_id', $profession->category_id);
+        return view('profile_freelancer_for_client', ['professions' => $professions,'profession'=> $profession]);
     }
 
     /**

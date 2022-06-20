@@ -120,9 +120,9 @@
         </symbol>
     </svg>
 
-    <!-- Error alert
-        @if (count($errors) > 0)
-<div class="alert alert-primary d-flex align-items-center" role="alert">
+    {{-- Error alert --}}
+    {{-- @if (count($errors) > 0)
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
                 <use xlink:href="#info-fill" />
             </svg>
@@ -130,12 +130,12 @@
                 {{ $errors->first() }}
             </div>
         </div>
-@endif
+    @endif --}}
 
-        <!-- successful alert
+    {{-- successful alert --}}
 
-        @if (session('message'))
-<div class="alert alert-success d-flex align-items-center" role="alert">
+    {{-- @if (session('message'))
+        <div class="alert alert-success d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                 <use xlink:href="#check-circle-fill" />
             </svg>
@@ -143,10 +143,10 @@
                 {{ session('message') }}
             </div>
         </div>
-@endif -->
+    @endif --}}
 
 
-    <div class="text-dark ms-1 container h1 mt-5 row"> Name of the serves </div>
+    <div class="text-dark ms-1 container h1 mt-5 row"> {{ $profession->title }} </div>
     <div class="m-2">
         <span class="bg-success p-2 rounded text-light">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -197,7 +197,7 @@
                                 </div>
                                 <div>
                                     <span>Service price starts at:</span>
-                                    <span>10.00$</span>
+                                    <span>{{ $profession->price  }} Sp</span>
                                 </div>
                                 <div>
                                     <span>Delivery term:</span>
@@ -224,7 +224,7 @@
                                 <div style="display: inline-grid;">
                                     <span class="card-title">
                                         <a href="#" class="navbar-brand text-dark">
-                                            name of user
+                                           {{  $profession->freelancer->user->full_name  }}
                                         </a>
                                     </span>
                                 </div>
@@ -242,24 +242,7 @@
                         <div class="p-4">
                             <h2>Description</h2>
                             <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque dicta ea iusto
-                                quia qui eaque impedit, sed aut expedita molestiae ullam eligendi est rerum odio
-                                molestias. Molestias animi nobis non.
-
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore ullam voluptates,
-                                consequuntur distinctio, culpa maxime facilis quisquam perspiciatis, nesciunt
-                                eligendi temporibus odio! Praesentium molestias delectus, alias voluptatum
-                                consectetur est magni.
-
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis velit aut voluptas
-                                veniam sequi pariatur?
-
-
-
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, debitis. Dolores
-                                consectetur accusantium tenetur molestiae ex! Saepe vero corrupti rem, ipsam libero
-                                consequuntur nisi fugit sit. Nihil mollitia officia nam saepe minus eos suscipit
-                                quis. Totam, consequuntur qui maiores ea sequi adipisci quaerat rerum ratione?
+                                {{ $profession->description }}
                             </p>
                         </div>
                     </div>

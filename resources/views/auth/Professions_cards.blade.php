@@ -192,7 +192,7 @@
                                                     class="for-size span-number-2">{{ $profession->description }}</span>
                                             </div>
                                             <!-- Profile of the user -->
-                                            <a href="{{ route('more_information',$profession->id) }}" class="btn btn-info mt-2 btn-font-size">
+                                            <a href="{{ route('more_information',$profession) }}" class="btn btn-info mt-2 btn-font-size">
                                                 See more information
                                             </a>
                                         </div>
