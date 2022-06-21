@@ -107,7 +107,7 @@
     </div>
 
 
-    <section id="hero" class="bg-dark text-light text-lg-center text-md-center text-sm-start pt-5 pb-2">
+    <section id="hero" class="bg-dark text-light text-lg-center text-md-center text-sm-start pt-5 mt-5 pb-2">
         <div class="container">
             <div class="d-flex">
                 <div>
