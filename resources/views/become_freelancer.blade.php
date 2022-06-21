@@ -16,7 +16,7 @@
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>My Profile</title>
+    <title>Beacom Freelancer</title>
 </head>
 
 <body style="background-color: lightgrey;">
