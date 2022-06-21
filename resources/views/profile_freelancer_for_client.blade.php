@@ -147,14 +147,14 @@
 
 
     <div class="text-dark ms-1 container h1 mt-5 row"> {{ $profession->title }} </div>
-    <div class="m-2">
-        <span class="bg-success p-2 rounded text-light">
+    <div class="m-3">
+        <span class="bg-info p-2 rounded text-dark">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-cart3" viewBox="0 0 16 16">
                 <path
                     d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
             </svg>
-            <a href="#buy" class="text-light text-decoration-none"> Buy this service </a>
+            <a href="#buy" class="text-dark text-decoration-none"> Buy this service </a>
         </span>
     </div>
 
@@ -197,7 +197,7 @@
                                 </div>
                                 <div>
                                     <span>Service price starts at:</span>
-                                    <span>{{ $profession->price  }} Sp</span>
+                                    <span>{{ $profession->price }} Sp</span>
                                 </div>
                                 <div>
                                     <span>Delivery term:</span>
@@ -224,7 +224,7 @@
                                 <div style="display: inline-grid;">
                                     <span class="card-title">
                                         <a href="#" class="navbar-brand text-dark">
-                                           {{  $profession->freelancer->user->full_name  }}
+                                            {{ $profession->freelancer->user->full_name }}
                                         </a>
                                     </span>
                                 </div>
@@ -233,7 +233,7 @@
                     </div>
                     <div class="card bg-light text-start text-dark rounded">
                         <div class="card-body text-center">
-                            <button type="button" class="btn btn-success">Contact</button>
+                            <button type="button" class="btn btn-info">Contact</button>
                         </div>
                     </div>
                 </div>
@@ -251,9 +251,8 @@
                         <div class="card-body text-center">
                             <div class="h5">Buy this service</div>
                             <!-- if the service not buyed yet -->
-                            <button href="#" type="button" class="btn btn-success mt-2" id="buy">Buy,
-                                and add to my
-                                projects</button>
+                            <button href="#" type="button" class="btn btn-info mt-2" id="buy">Buy,
+                                and add to my projects</button>
                             <!-- if the service is required and has not yet been approved -->
                             <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->
                             <!-- if the service is accepted and not finished -->

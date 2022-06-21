@@ -25,7 +25,7 @@
 
     {{-- <div class="pic"></div> --}}
 
-    <div class="navbar navbar-expand-md bg-dark navbar-dark text-light ">
+    <div class="navbar navbar-expand-md bg-dark navbar-dark text-light fixed-top">
         <div class="container justify-content-between">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search-par"
                 aria-expanded="true">
