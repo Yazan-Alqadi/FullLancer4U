@@ -69,7 +69,8 @@
                                 Profile
                             </a>
                         </li>
-                        <li><a class="dropdown-item" href="#">
+                        @if (count($tmp) > 0)
+                        <li><a class="dropdown-item" href="{{ route('become_freelancer') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
                                     <path
@@ -78,6 +79,7 @@
                                 Add new service
                             </a>
                         </li>
+                        @endif
                         <li><a class="dropdown-item" href="{{ route('logout') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
@@ -93,7 +95,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="{{ route('register.show') }}" class="nav-link">Sign
                             Up</a></li>
-                    <li class="nav-item"><a href="{{ route('login.show') }}" class="nav-link">Log
+                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Log
                             in</a></li>
                 </ul>
             @endauth

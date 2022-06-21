@@ -75,12 +75,12 @@
                     </div>
                     <div class="container-asq">
                         <span class="asq">Already have account ?</span>
-                        <a href="{{ route('login.show') }}" class="lin">
+                        <a href="{{ route('login') }}" class="lin">
                             Sign in
                             <i class="fa fa-long-arrow-right m-l-5"></i>
                         </a>
                     </div>
-                    
+
                 </div>
             </form>
         </div>

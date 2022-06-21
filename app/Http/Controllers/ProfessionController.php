@@ -40,8 +40,7 @@ class ProfessionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-       // dd($request);
+        
         $request->validate( [
             'title' => 'required',
             'price' => 'required|integer',
@@ -50,17 +49,25 @@ class ProfessionController extends Controller
         ]);
         $inputs = $request->all();
 
-        $freelancer = Freelancer::all()->where('user_id',Auth::id());
+        $freelancer = DB::table('freelancers')->where('user_id',Auth::id())->first();
 
-       // dd($freelancer);
+        if ($freelancer==null)
+        {
+            $freelancer = Freelancer::create([
+                'user_id'=>Auth::id(),
+            ]);
+        }
+
         Profession::create([
             'title'=>$inputs['title'],
             'price'=>$inputs['price'],
             'description'=>$inputs['description'],
             'category_id'=>$inputs['category'],
-            'freelancer_id'=>23,
+            'freelancer_id'=>$freelancer->id,
         ]);
-        session()->flash('message', 'Your service has been added ');
+        session()->flash('message', 'Your service was submited and will be reviewed by admin');
+
+        return back();
 
     }
 

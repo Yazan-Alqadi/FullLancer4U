@@ -73,7 +73,9 @@
     <section class="py-2">
         <div class="mx-3">
             <div class="row">
-
+                @php
+                    $tmp = \App\Models\Freelancer::all()->where('user_id', Auth::id());
+                @endphp
                 {{-- services section --}}
                 <div class="col-lg-4 col-md-4 mb-4">
                     <div class="card bg-light text-dark rounded">
@@ -81,22 +83,34 @@
                             <h5 class="card-title"> My services </h5>
 
                             {{-- if user is freelancer --}}
+                            @if (count($tmp) > 0)
+                            @foreach ($services as $service )
                             <div class="d-flex mb-1 border-bottom border-secondary pb-1"
                                 style="justify-content: space-between;">
                                 {{-- here is the title of the service --}}
-                                <span class="mt-1">Service Title here</span>
-                                <span> <button class="btn btn-info p-1" type="button">Edit</button> </span>
+                                <span class="mt-1">{{  $service->title }}</span>
+                                <span> <a class="btn btn-info p-1" href="{{ route('become_freelancer') }}">Edit</a> </span>
+
                             </div>
+                            @endforeach
                             {{-- if not --}}
-                            {{-- <div class="text-center fw-bold h5 text-dark">You are not freelancer yet</div> --}}
+                            @else
+                            <div class="text-center fw-bold h5 text-dark">You are not freelancer yet</div>
+                            @endif
                         </div>
                     </div>
                     <div class="card bg-light text-dark rounded text-center">
                         <div class="card-body">
                             {{-- if user is freelancer --}}
-                            <a  class="btn btn-primary" href="{{ route('become_freelancer') }}"> Add new service </a>
-                            {{-- if not --}}
-                            {{-- <button type="button" class="btn btn-primary"> Become Freelancer </button> --}}
+                            @if (count($tmp) > 0)
+                                <a class="btn btn-primary" href="{{ route('become_freelancer') }}"> Add new service
+                                </a>
+                            @else
+                                {{-- if not --}}
+                                <a class="btn btn-primary" href="{{ route('become_freelancer') }}"> Become Freelancer
+                                </a>
+                            @endif
+
                         </div>
                     </div>
                 </div>

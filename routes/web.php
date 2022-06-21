@@ -29,39 +29,45 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
-    $freelancers = Freelancer::all();// DB::select('CALL topFreelancer()');
+    $freelancers = Freelancer::all(); // DB::select('CALL topFreelancer()');
     $professions = Profession::all();
     $projects = Project::all();
     return view('auth.main_page', ['freelancers' => $freelancers, 'professions' => $professions, 'projects' => $projects]);
 })->name('home');
 
-Route::get ('logout',[authController::class,'logout'])->name('logout');
-Route::get('login', [LoginController::class, 'index'])->name('login.show');
+Route::get('logout', [authController::class, 'logout'])->name('logout');
+Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::get('register', [RegisterController::class, 'index'])->name('register.show');
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::post('login', [LoginController::class, 'store'])->name('login.store');
-Route::get('users', [UserController::class,'index']);
+Route::get('users', [UserController::class, 'index']);
 
-Route::get('freelancers',[FreelancerController::class,'index'])->name('freelancers.index');
-Route::get('professions',[ProfessionController::class,'index'])->name('professions.index');
-Route::get('projects',[ProjectController::class,'index'])->name('projects.index');
+Route::get('freelancers', [FreelancerController::class, 'index'])->name('freelancers.index');
+Route::get('professions', [ProfessionController::class, 'index'])->name('professions.index');
+Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
 
-Route::get('user/{id}', function ($id) {
 
-    return view('auth.profile_page');
 
-})->name('profile');
-Route::get('user/update/{id}',[UserController::class,'update'])->name('user.update');
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('redToGoogle');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('googleCallBack');
+Route::get('professions/{id}', [ProfessionController::class, 'show'])->name('more_information');
 
-Route::get('auth/google',[GoogleController::class,'redirectToGoogle'])->name('redToGoogle');
-Route::get('auth/google/callback',[GoogleController::class,'handleGoogleCallback'])->name('googleCallBack');
-Route::get('professions/{id}',[ProfessionController::class,'show'])->name('more_information');
 
-Route::get('freelancer/sign', function () {
-    $categories = Category::all();
-    return view('become_freelancer',['categories'=>$categories]);
 
-})->name('become_freelancer');
+Route::middleware(['auth'])->group(function () {
+    Route::get('freelancer/sign', function () {
+        $categories = Category::all();
+        return view('become_freelancer', ['categories' => $categories]);
+    })->name('become_freelancer');
+    Route::post('profession/store', [ProfessionController::class, 'store'])->name('profession_store');
+    Route::get('user', function () {
+        $freelancer = DB::table('freelancers')->where('user_id',Auth::id())->first();
+        $services = DB::table('professions')->where('freelancer_id',$freelancer->id)->get();
 
-Route::post('profession/store',[ProfessionController::class,'store'])->name('profession_store');
+
+        return view('auth.profile_page',['services'=>$services]);
+    })->name('profile');
+    Route::get('user/update/{id}', [UserController::class, 'update'])->name('user.update');
+
+});
