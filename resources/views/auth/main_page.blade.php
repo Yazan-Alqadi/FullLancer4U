@@ -61,6 +61,8 @@
                 @auth
                     <div class="navbar-nav ms-auto dropdown">
 
+                        <a href="{{ route('projects.index') }}" class="nav-link in-hover">Become Freelancer</a></li>
+
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -94,6 +96,9 @@
                     </div>
                 @else
                     <ul class="navbar-nav ms-auto">
+                        <li> <a href="{{ route('projects.index') }}" class="nav-link in-hover-t text-warning">Become
+                                Freelancer</a>
+                        </li>
                         <li class="nav-item"><a href="{{ route('register.show') }}" class="nav-link">Sign
                                 Up</a></li>
                         <li class="nav-item"><a href="{{ route('login.show') }}" class="nav-link">Log

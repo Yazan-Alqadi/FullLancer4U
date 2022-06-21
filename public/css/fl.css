@@ -12,6 +12,12 @@
     border-radius: 3px;
 }
 
+.in-hover-t:hover {
+    background-color: white;
+    color: #ffc107 !important;
+    border-radius: 3px;
+}
+
 .navbar-title-hover:hover {
     color: white !important;
 }
