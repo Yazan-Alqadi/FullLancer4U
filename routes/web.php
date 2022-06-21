@@ -56,3 +56,9 @@ Route::get('user/update/{id}',[UserController::class,'update'])->name('user.upda
 Route::get('auth/google',[GoogleController::class,'redirectToGoogle'])->name('redToGoogle');
 Route::get('auth/google/callback',[GoogleController::class,'handleGoogleCallback'])->name('googleCallBack');
 Route::get('professions/{id}',[ProfessionController::class,'show'])->name('more_information');
+
+Route::get('freelancer/sign', function () {
+
+    return view('become_freelancer');
+
+})->name('become_freelancer');

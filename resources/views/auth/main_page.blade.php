@@ -58,7 +58,7 @@
                     <li class="nav-item"><a href="{{ route('projects.index') }}"
                             class="nav-link in-hover">Projects</a></li>
                     {{-- Bacome freelancer --}}
-                    <li> <a href="#" class="nav-link in-hover-t text-warning fw-bold">Become Freelancer</a></li>
+                    <li> <a href="{{ route('become_freelancer') }}" class="nav-link in-hover-t text-warning fw-bold">Become Freelancer</a></li>
                 </ul>
                 @auth
                     <div class="navbar-nav ms-auto dropdown">
