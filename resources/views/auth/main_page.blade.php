@@ -55,7 +55,7 @@
                         then
                         read the service details and see the seller's information,
                     </p>
-                    <button type="button" class="btn btn-primary btn-lg">Register now</button>
+                    <a href="#" class="btn btn-primary btn-lg">Register now</a>
                 </div>
                 <img class="ms-2 d-none d-sm-block img-fluid" style="width: 20% !important;"
                     src={{ 'files/img_hero.svg' }} alt="">
