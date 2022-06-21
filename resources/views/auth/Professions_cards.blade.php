@@ -30,7 +30,7 @@
     @include('layouts.nav-bar')
 
     <!-- card is here -->
-    <section class="py-5 section-style">
+    <section class="py-5 section-style mt-5">
         <div class="container">
             <div class="row text-center">
                 @foreach ($professions as $profession)
@@ -113,7 +113,8 @@
                                                     class="for-size span-number-2">{{ $profession->description }}</span>
                                             </div>
                                             <!-- Profile of the user -->
-                                            <a href="{{ route('more_information',$profession) }}" class="btn btn-info mt-2 btn-font-size">
+                                            <a href="{{ route('more_information', $profession) }}"
+                                                class="btn btn-info mt-2 btn-font-size">
                                                 See more information
                                             </a>
                                         </div>

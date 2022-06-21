@@ -1,6 +1,6 @@
-/* * {
+* {
     font-family: 'Comfortaa', cursive !important;
-} */
+}
 
 .form-font-family {
     font-family: 'Comfortaa', cursive !important;
@@ -24,6 +24,10 @@
 
 .mg {
     margin-left: 15%;
+}
+
+.mgg {
+    margin-top: 90px !important;
 }
 
 .name-of-user-hover {
