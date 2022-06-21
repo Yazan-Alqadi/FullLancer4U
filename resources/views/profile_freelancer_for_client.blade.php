@@ -68,7 +68,7 @@
     @endif --}}
 
 
-    <div class="text-dark ms-1 container h1 mt-5 row"> {{ $profession->title }} </div>
+    <div class="text-dark ms-1 container h1 mgg row"> {{ $profession->title }} </div>
     <div class="m-3">
         <span class="bg-info p-2 rounded text-dark">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
