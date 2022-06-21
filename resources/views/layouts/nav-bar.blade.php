@@ -24,20 +24,21 @@
 
         <div class="collapse navbar-collapse" id="mainmenu">
             <ul class="navbar-nav ms-3">
-                <li class="nav-item"><a href="{{ route('professions.index') }}"
-                        class="nav-link in-hover">Professions</a></li>
+                <li class="nav-item"><a href="{{ route('professions.index') }}" class="nav-link in-hover">Services</a>
+                </li>
                 <li class="nav-item"><a href="{{ route('freelancers.index') }}"
                         class="nav-link in-hover">Freealncers</a></li>
-                <li class="nav-item"><a href="{{ route('projects.index') }}"
-                        class="nav-link in-hover">Projects</a></li>
+                <li class="nav-item"><a href="{{ route('projects.index') }}" class="nav-link in-hover">Projects</a>
+                </li>
                 {{-- Bacome freelancer --}}
 
                 @php
-                    $tmp = \App\Models\Freelancer::all()->where('user_id',Auth::id());
+                    $tmp = \App\Models\Freelancer::all()->where('user_id', Auth::id());
                 @endphp
 
-                @if(count($tmp)<1)
-                <li> <a href="{{ route('become_freelancer') }}" class="nav-link in-hover-t text-warning fw-bold">Become Freelancer</a></li>
+                @if (count($tmp) < 1)
+                    <li> <a href="{{ route('become_freelancer') }}"
+                            class="nav-link in-hover-t text-warning fw-bold">Become Freelancer</a></li>
                 @endif
 
 
@@ -58,8 +59,8 @@
 
                     <ul class="dropdown-menu" aria-labelledby="#navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ route('profile', Auth::user()->id) }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-person-badge" viewBox="0 0 16 16">
                                     <path
                                         d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                     <path
@@ -68,8 +69,8 @@
                                 Profile
                             </a></li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
                                 </svg>
