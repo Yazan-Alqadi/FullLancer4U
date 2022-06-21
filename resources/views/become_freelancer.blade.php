@@ -156,6 +156,7 @@
                         <option value="3">Writing & Translation</option>
                         <option value="4">Engineering & Architecture</option>
                         <option value="5">Sales & Marketing</option>
+                        <option value="6">Self employees </option>
                     </select>
                 </div>
 
