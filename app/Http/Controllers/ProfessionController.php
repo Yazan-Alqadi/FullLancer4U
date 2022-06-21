@@ -58,7 +58,7 @@ class ProfessionController extends Controller
             'price'=>$inputs['price'],
             'description'=>$inputs['description'],
             'category_id'=>$inputs['category'],
-            'freelancer_id'=>$freelancer->id,
+            'freelancer_id'=>23,
         ]);
         session()->flash('message', 'Your service has been added ');
 

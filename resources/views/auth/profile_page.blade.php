@@ -94,7 +94,7 @@
                     <div class="card bg-light text-dark rounded text-center">
                         <div class="card-body">
                             {{-- if user is freelancer --}}
-                            <button type="button" class="btn btn-primary"> Add new service </button>
+                            <a  class="btn btn-primary" href="{{ route('become_freelancer') }}"> Add new service </a>
                             {{-- if not --}}
                             {{-- <button type="button" class="btn btn-primary"> Become Freelancer </button> --}}
                         </div>
