@@ -27,13 +27,14 @@
 
     @include('layouts.nav-bar')
 
+
     <section id="hero" class="bg-dark text-light text-lg-center text-md-center text-sm-start pt-5 mt-5 pb-2">
         <div class="container">
             <div class="d-flex">
                 <div>
                     <h2>How to make this site <span class="text-info">useful to you</span>
-                        <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                             </svg></span>
@@ -88,29 +89,49 @@
                                 <td>Back_end</td>
                                 <td>
                                     @if (5 > 0)
-                                        <span class="fa fa-star checked"></span> {{-- star one --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star one --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star one --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star one --}}
                                     @endif
                                     @if (5 > 1)
-                                        <span class="fa fa-star checked"></span> {{-- star two --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star two --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star two --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star two --}}
                                     @endif
                                     @if (5 > 2)
-                                        <span class="fa fa-star checked"></span> {{-- star three --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star three --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star three --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star three --}}
                                     @endif
                                     @if (5 > 3)
-                                        <span class="fa fa-star checked"></span> {{-- star four --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star four --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star four --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star four --}}
                                     @endif
                                     @if (5 > 4)
-                                        <span class="fa fa-star checked"></span> {{-- star five --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star five --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star five --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star five --}}
                                     @endif
 
                                 </td>
@@ -121,29 +142,49 @@
                                 <td>Back_end ,Front_end ,Teacher ,desiner ,transleater</td>
                                 <td>
                                     @if (5 > 0)
-                                        <span class="fa fa-star checked"></span> {{-- star one --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star one --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star one --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star one --}}
                                     @endif
                                     @if (5 > 1)
-                                        <span class="fa fa-star checked"></span> {{-- star two --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star two --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star two --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star two --}}
                                     @endif
                                     @if (5 > 2)
-                                        <span class="fa fa-star checked"></span> {{-- star three --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star three --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star three --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star three --}}
                                     @endif
                                     @if (5 > 3)
-                                        <span class="fa fa-star checked"></span> {{-- star four --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star four --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star four --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star four --}}
                                     @endif
                                     @if (5 > 4)
-                                        <span class="fa fa-star checked"></span> {{-- star five --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star five --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star five --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star five --}}
                                     @endif
 
                                 </td>
@@ -154,29 +195,49 @@
                                 <td>Front_end</td>
                                 <td>
                                     @if (5 > 0)
-                                        <span class="fa fa-star checked"></span> {{-- star one --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star one --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star one --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star one --}}
                                     @endif
                                     @if (5 > 1)
-                                        <span class="fa fa-star checked"></span> {{-- star two --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star two --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star two --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star two --}}
                                     @endif
                                     @if (5 > 2)
-                                        <span class="fa fa-star checked"></span> {{-- star three --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star three --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star three --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star three --}}
                                     @endif
                                     @if (5 > 3)
-                                        <span class="fa fa-star checked"></span> {{-- star four --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star four --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star four --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star four --}}
                                     @endif
                                     @if (5 > 4)
-                                        <span class="fa fa-star checked"></span> {{-- star five --}}
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star five --}}
                                     @else
-                                        <span class="fa fa-star not-checked"></span> {{-- star five --}}
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star five --}}
                                     @endif
 
                                 </td>
@@ -295,29 +356,49 @@
                                             <div style="white-space: nowrap;">
                                                 <span class="for-size span-number-1">Rating:</span>
                                                 @if ($profession->freelancer->rate > 0)
-                                                    <span class="fa fa-star checked"></span> {{-- star one --}}
+                                                    <span class="fa fa-star checked"
+                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                    {{-- star one --}}
                                                 @else
-                                                    <span class="fa fa-star not-checked"></span> {{-- star one --}}
+                                                    <span class="fa fa-star not-checked"
+                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                    {{-- star one --}}
                                                 @endif
                                                 @if ($profession->freelancer->rate > 1)
-                                                    <span class="fa fa-star checked"></span> {{-- star two --}}
+                                                    <span class="fa fa-star checked"
+                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                    {{-- star two --}}
                                                 @else
-                                                    <span class="fa fa-star not-checked"></span> {{-- star two --}}
+                                                    <span class="fa fa-star not-checked"
+                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                    {{-- star two --}}
                                                 @endif
                                                 @if ($profession->freelancer->rate > 2)
-                                                    <span class="fa fa-star checked"></span> {{-- star three --}}
+                                                    <span class="fa fa-star checked"
+                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                    {{-- star three --}}
                                                 @else
-                                                    <span class="fa fa-star not-checked"></span> {{-- star three --}}
+                                                    <span class="fa fa-star not-checked"
+                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                    {{-- star three --}}
                                                 @endif
                                                 @if ($profession->freelancer->rate > 3)
-                                                    <span class="fa fa-star checked"></span> {{-- star four --}}
+                                                    <span class="fa fa-star checked"
+                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                    {{-- star four --}}
                                                 @else
-                                                    <span class="fa fa-star not-checked"></span> {{-- star four --}}
+                                                    <span class="fa fa-star not-checked"
+                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                    {{-- star four --}}
                                                 @endif
                                                 @if ($profession->freelancer->rate > 4)
-                                                    <span class="fa fa-star checked"></span> {{-- star five --}}
+                                                    <span class="fa fa-star checked"
+                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                    {{-- star five --}}
                                                 @else
-                                                    <span class="fa fa-star not-checked"></span> {{-- star five --}}
+                                                    <span class="fa fa-star not-checked"
+                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                    {{-- star five --}}
                                                 @endif
 
                                             </div>
