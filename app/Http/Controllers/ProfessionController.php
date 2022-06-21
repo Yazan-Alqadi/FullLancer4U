@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Freelancer;
 use App\Models\Profession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,27 @@ class ProfessionController extends Controller
     public function store(Request $request)
     {
         //
+       // dd($request);
+        $request->validate( [
+            'title' => 'required',
+            'price' => 'required|integer',
+            'description' => 'required|min:5',
+            'category'=>'required|not_in:0,something else'
+        ]);
+        $inputs = $request->all();
+
+        $freelancer = Freelancer::all()->where('user_id',Auth::id());
+
+       // dd($freelancer);
+        Profession::create([
+            'title'=>$inputs['title'],
+            'price'=>$inputs['price'],
+            'description'=>$inputs['description'],
+            'category_id'=>$inputs['category'],
+            'freelancer_id'=>$freelancer->id,
+        ]);
+        session()->flash('message', 'Your service has been added ');
+
     }
 
     /**

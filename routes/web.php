@@ -13,6 +13,7 @@ use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\UserController;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -58,7 +59,9 @@ Route::get('auth/google/callback',[GoogleController::class,'handleGoogleCallback
 Route::get('professions/{id}',[ProfessionController::class,'show'])->name('more_information');
 
 Route::get('freelancer/sign', function () {
-
-    return view('become_freelancer');
+    $categories = Category::all();
+    return view('become_freelancer',['categories'=>$categories]);
 
 })->name('become_freelancer');
+
+Route::post('profession/store',[ProfessionController::class,'store'])->name('profession_store');
