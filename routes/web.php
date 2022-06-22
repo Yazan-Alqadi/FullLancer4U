@@ -63,7 +63,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('profession/store', [ProfessionController::class, 'store'])->name('profession_store');
     Route::get('user', function () {
         $freelancer = DB::table('freelancers')->where('user_id',Auth::id())->first();
-        $services = DB::table('professions')->where('freelancer_id',$freelancer->id)->get();
+        $services=null;
+        if ($freelancer!=null)
+             $services = DB::table('professions')->where('freelancer_id',$freelancer->id)->get();
 
 
         return view('auth.profile_page',['services'=>$services]);
