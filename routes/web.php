@@ -71,5 +71,11 @@ Route::middleware(['auth'])->group(function () {
         return view('auth.profile_page',['services'=>$services]);
     })->name('profile');
     Route::get('user/update/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::get('contact', function(){
+        return view('contact_page');
+    })->name('contact');
+    Route::get('contact/me', function(){
+        return view('contact_me');
+    })->name('contact_me');
 
 });

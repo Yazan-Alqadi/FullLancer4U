@@ -155,7 +155,7 @@
                     </div>
                     <div class="card bg-light text-start text-dark rounded">
                         <div class="card-body text-center">
-                            <button type="button" class="btn btn-info">Contact</button>
+                            <a href="{{ route('contact_me') }}" type="button" class="btn btn-info">Contact</a>
                         </div>
                     </div>
                 </div>
