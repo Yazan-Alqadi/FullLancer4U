@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Freelancer;
 use App\Models\Profession;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,7 @@ class ProfessionController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate( [
             'title' => 'required',
             'price' => 'required|integer',
@@ -65,7 +66,7 @@ class ProfessionController extends Controller
             'category_id'=>$inputs['category'],
             'freelancer_id'=>$freelancer->id,
         ]);
-        session()->flash('message', 'Your service was submited and will be reviewed by admin');
+        session()->flash('message', 'Your service has been submited and will be reviewed by admin');
 
         return back();
 
@@ -96,6 +97,9 @@ class ProfessionController extends Controller
     public function edit($id)
     {
         //
+        $service =  Profession::find($id);
+        $categories = Category::all();
+        return view('edit_service',['service'=>$service,'categories'=>$categories]);
     }
 
     /**
@@ -108,6 +112,19 @@ class ProfessionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $service = Profession::find($id);
+        $request->validate( [
+            'title' => 'required',
+            'price' => 'required|integer',
+            'description' => 'required|min:5',
+            'category_id'=>'required|not_in:0,something else'
+        ]);
+        $inputs = $request->all();
+        $service->update($inputs);
+
+        session()->flash('message', 'Your service has been updated ');
+        return back();
+
     }
 
     /**

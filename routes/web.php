@@ -78,4 +78,8 @@ Route::middleware(['auth'])->group(function () {
         return view('contact_me');
     })->name('contact_me');
 
+
+    Route::get('service/edit/{id}',[ProfessionController::class,'edit'])->name('edit_service');
+    Route::get('service/update/{id}',[ProfessionController::class,'update'])->name('update_service');
+
 });

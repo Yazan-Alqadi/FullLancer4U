@@ -16,7 +16,7 @@
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>New Service</title>
+    <title>Edit Service</title>
 </head>
 
 <body style="background-color: lightgrey;">
@@ -66,22 +66,26 @@
 
     <section class="bg-light text-dark mg w-75 p-3 rounded mgg">
         <div class="border-bottom border-dark ps-3 h5 py-1">
-            New Service
+            Update Service
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                 class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
                 <path
                     d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
             </svg>
         </div>
-        <form method="POST" action="{{ route('profession_store') }}">
+        <form method="PUT" action="{{ route('update_service',$service->id) }}">
             @csrf
             <div class="container mt-4">
                 <div class="input-group mb-3">
                     <span  class="input-group-text" id="inputGroup-sizing-default">Category</span>
-                    <select class="form-select" name="category" aria-label="Default select example">
-                        <option value="0" selected>Choose Category</option>
+                    <select class="form-select" name="category_id" aria-label="Default select example">
+                        <option value="0" >Choose Category</option>
                         @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @if ($category->id == $service->category_id)
+                            <option value="{{ $category->id }}" selected>{{ $category->title }}</option>
+                            @else
+                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -89,23 +93,23 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
                     <input name="title" type="text" class="form-control" aria-label="Sizing example input"
-                        placeholder="Type Title" aria-describedby="inputGroup-sizing-default">
+                        placeholder="Type Title" aria-describedby="inputGroup-sizing-default" value="{{ $service->title }}">
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
                     <input name="price" type="text" class="form-control" aria-label="Sizing example input"
-                        placeholder="Price start at" aria-describedby="inputGroup-sizing-default">
+                        placeholder="Price start at" aria-describedby="inputGroup-sizing-default" value="{{ $service->price }}">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Description</label>
                     <textarea name="description" type="text" class="form-control" style="height: 200px !important;" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput1" placeholder="Type at least 2 lines"></textarea>
+                        aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput1" placeholder="Type at least 2 lines" >{{ $service->description }}</textarea>
                 </div>
 
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button class="btn btn-primary" type="submit" >Submit
+                    <button class="btn btn-primary" type="submit" d >Update
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-send-fill" viewBox="0 0 16 16">
                             <path
@@ -120,6 +124,7 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script src=" /js/bootstrap.bundle.min.js"></script>
+    
 </body>
 
 </html>
