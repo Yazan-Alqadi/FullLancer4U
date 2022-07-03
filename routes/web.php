@@ -4,6 +4,7 @@ use App\Http\Controllers\authController;
 use App\Http\Controllers\FreelancerController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Message;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,14 +74,24 @@ Route::middleware(['auth'])->group(function () {
     })->name('profile');
     Route::get('user/update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::get('contact', function(){
-        return view('contact_page');
+
+        $messages = Message::where(['sender_id'=>Auth::id()] )->orWhere(['receiver_id'=>Auth::id()])->orderByDesc('created_at')->get();
+        //dd($messages);
+        return view('contact_page',compact('messages'));
     })->name('contact');
-    Route::get('contact/me', function(){
-        return view('contact_me');
+    Route::get('contact-me/{id}', function($id){
+        $user = User::where('id',$id)->first();
+        return view('contact_me',compact('user'));
     })->name('contact_me');
 
 
     Route::get('service/edit/{id}',[ProfessionController::class,'edit'])->name('edit_service');
     Route::get('service/update/{id}',[ProfessionController::class,'update'])->name('update_service');
+    Route::get('send-notification/{id}',[MessageController::class,'sendMessageNotification']);
+
+    Route::post('contact-me/{id}',[MessageController::class,'send'])->name('send_message');
+    Route::get('test', function () {
+        event(new App\Events\NewMessage('Someone','fdfvf'));
+    });
 
 });

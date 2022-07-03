@@ -155,7 +155,7 @@
                     </div>
                     <div class="card bg-light text-start text-dark rounded">
                         <div class="card-body text-center">
-                            <a href="{{ route('contact_me') }}" type="button" class="btn btn-info">Contact</a>
+                            <a href="{{ route('contact_me',$profession->freelancer->user->id) }}" type="button" class="btn btn-info">Contact</a>
                         </div>
                     </div>
                 </div>

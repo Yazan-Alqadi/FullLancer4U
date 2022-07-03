@@ -43,19 +43,21 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
+                @foreach ($messages as $message )
+
                 <tr>
+
                     <th scope="row" class="table-light"> <a href="#"
-                            class="link-info text-decoration-none">Yazan</a> </th>
+                            class="link-info text-decoration-none">{{ $message->sender->full_name }}</a> </th>
                     <th scope="row" class="table-info"> <a href="#"
-                            class="link-secondary text-decoration-none">Basel</a> </th>
-                    <td class="table-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, dolores!
-                        Porro quaerat dolor quam
-                        nobis tempora quisquam mollitia quo doloribus iure, iste minus excepturi atque enim numquam
-                        facilis delectus ullam?</td>
-                    <td class="table-info">3 secondes ago
+                            class="link-secondary text-decoration-none">{{ $message->reciever->full_name }}</a> </th>
+                    <td class="table-light">{{ $message->body }}</td>
+                    <td class="table-info">{{ $message->created_at }}
                         <div> <a href="#" class="text-decoration-none text-center"> replay </a> </div>
                     </td>
                 </tr>
+                @endforeach
+
             </tbody>
         </table>
 

@@ -54,4 +54,13 @@ public function client(){
     return $this->hasOne(Client::class);
 }
 
+public function sent(){
+    return $this->hasMany(Message::class,'sender_id');
+}
+
+public function received(){
+    return $this->hasMany(Message::class,'receiver_id');
+}
+
+
 }
