@@ -34,7 +34,7 @@
             <div class="row text-center">
                 @foreach ($freelancers as $freelancer)
                     <div class="col-md-6 col-lg-4 mb-2">
-                        <div class="card text-light" style="background-color: #031232;">
+                        <div class="card text-light" style="background-color: #031232; height: 100%;">
 
                             <div class="container">
                                 <!-- if user set a pic -->

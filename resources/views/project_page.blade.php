@@ -36,7 +36,7 @@
             <div class="row text-center">
                 @foreach ($projects as $project)
                     <div class="col-md-6 col-lg-4 mb-2">
-                        <div class="card text-light" style="background-color: #001b24;">
+                        <div class="card text-light" style="background-color: #001b24; height: 100%;">
                             <!-- <div class="container">
 
                              <-- add image or icon here ----------
@@ -53,7 +53,7 @@
                                 </div>
                             </div> -->
 
-                            <div class="card-body text-center">
+                            <div class="card-body text-center" style="display: flex !important; align-items: center;">
 
                                 <!-- descreption of the project -->
 
