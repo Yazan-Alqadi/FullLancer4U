@@ -94,4 +94,6 @@ Route::middleware(['auth'])->group(function () {
         event(new App\Events\NewMessage('Someone','fdfvf'));
     });
 
+    Route::view('My_notifications', 'my_notifications');
+
 });
