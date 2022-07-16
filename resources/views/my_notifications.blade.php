@@ -36,6 +36,9 @@
         </div>
         <section class="bg-light rounded border border-1">
 
+            {{-- if there is no nots yet --}}
+            {{-- <div class="text-uppercase h1 p-5 text-center">No notifications yet</div> --}}
+
             <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25">
                 {{-- message from who ? --}}
                 <div class="h4 text-danger">Message from Admin</div>
@@ -92,6 +95,9 @@
         </div>
         <section class="bg-light rounded border border-1">
 
+            {{-- if there is no nots yet --}}
+            {{-- <div class="text-uppercase h1 p-5 text-center">No notifications yet</div> --}}
+            
             <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25">
                 {{-- message from who ? --}}
                 <div class="h4 text-danger">Message from Admin</div>
@@ -148,6 +154,9 @@
             </svg>
         </div>
         <section class="bg-light rounded border border-1">
+
+            {{-- if there is no nots yet --}}
+            {{-- <div class="text-uppercase h1 p-5 text-center">No notifications yet</div> --}}
 
             <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25">
                 {{-- message from who ? --}}
