@@ -53,7 +53,7 @@
                                 </div>
                             </div> -->
 
-                            <div class="card-body text-center" style="display: flex !important; align-items: center;">
+                            <div class="card-body text-center" style="display: flex !important; align-items: center; justify-content: center;">
 
                                 <!-- descreption of the project -->
 

@@ -4,10 +4,6 @@
     padding-right: 5px !important;
 }
 
-.span-number-1 {
-    /* color: red !important; */
-}
-
 .span-number-2 {
     color: rgb(255 247 0) !important;
 }
@@ -43,14 +39,14 @@
 
 /* Tooltip text */
 .tooltiptext {
-    visibility: hidden;
+    display: none;
     width: 49px;
     background-color: rgb(255 255 255 / 76%);
     color: rgb(0, 0, 0);
     /* text-align: center; */
     padding: 1px 3px;
     border-radius: 6px;
-    position: absolute;
+    position: relative;
     z-index: 1;
     bottom: 42px;
     right: 21px;
@@ -59,7 +55,7 @@
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltipssss:hover .tooltiptext {
-    visibility: visible;
+    display: contents;
 }
 
 /* @keyframes vis {
