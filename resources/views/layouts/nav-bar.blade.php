@@ -42,31 +42,14 @@
                     <li> <a href="{{ route('become_freelancer') }}"
                             class="nav-link in-hover-t text-warning fw-bold">Become Freelancer</a></li>
                 @endif
-                {{-- Notification --}}
-                <li class="dropdown dropdown-notifications">
-                    <a href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown">
-                        <i data-count="0" class="glyphicon glyphicon-bell notification-icon"></i>
-                    </a>
 
-                    <div class="dropdown-container">
-                        <div class="dropdown-toolbar">
-                            <div class="dropdown-toolbar-actions">
-                                <a href="#">Mark all as read</a>
-                            </div>
-                            <h3 class="dropdown-toolbar-title">Notifications (<span class="notif-count">0</span>)</h3>
-                        </div>
-                        <ul class="dropdown-menu">
-                        </ul>
-                        <div class="dropdown-footer text-center">
-                            <a href="#">View All</a>
-                        </div>
-                    </div>
-                </li>
 
 
             </ul>
             @auth
                 <div class="navbar-nav ms-auto dropdown">
+
+
 
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -122,6 +105,27 @@
                         </li>
                     </ul>
                 </div>
+
+                {{-- Notification --}}
+                <li class="dropdown dropdown-notifications">
+                    <a href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown">
+                        <i data-count="0" class="glyphicon glyphicon-bell notification-icon"></i>
+                    </a>
+
+                    <div class="dropdown-container">
+                        <div class="dropdown-toolbar">
+                            <div class="dropdown-toolbar-actions">
+                                <a href="#">Mark all as read</a>
+                            </div>
+                            <h3 class="dropdown-toolbar-title">Notifications (<span class="notif-count">0</span>)</h3>
+                        </div>
+                        <ul class="dropdown-menu">
+                        </ul>
+                        <div class="dropdown-footer text-center">
+                            <a href="#">View All</a>
+                        </div>
+                    </div>
+                </li>
             @else
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="{{ route('register.show') }}" class="nav-link">Sign

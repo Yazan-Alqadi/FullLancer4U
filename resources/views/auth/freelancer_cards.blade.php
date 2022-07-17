@@ -56,12 +56,9 @@
                                             {{ $freelancer->full_name }}
                                         </a>
                                     </span>
-                                    <span class="card-title">
-                                        user name
-                                    </span>
                                 </div>
                             </div>
-                            <div class="card-body text-center">
+                            <div class="card-body text-center" style="display: flex !important; align-items: center; justify-content: center;">
                                 <!-- descreption of the user info -->
                                 <div class="card-text">
                                     <div class="container">
