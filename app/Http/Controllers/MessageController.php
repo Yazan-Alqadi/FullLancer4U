@@ -29,7 +29,7 @@ class MessageController extends Controller
         ]);
 
         session()->flash('message', 'Message have been sent');
-        event(new NewMessage(Auth::user()->full_name,$message));
+        event(new NewMessage($id,Auth::user()->full_name,$message));
 
 
 

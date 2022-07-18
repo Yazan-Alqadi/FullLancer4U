@@ -165,7 +165,7 @@
     });
 
     // Subscribe to the channel we specified in our Laravel Event
-    var channel = pusher.subscribe('new-message');
+    var channel = pusher.subscribe('new-message'+{{ Auth::user()->id }});
 
     // Bind a function to a Event (the full Laravel class)
     channel.bind('my', function(data) {

@@ -30,7 +30,7 @@ use App\Models\Message;
 */
 
 Route::get('opp', function () {
-    event(new App\Events\NewMessage('Someone','fdfvf'));
+    event(new App\Events\NewMessage(1,'Someone','fdfvf'));
     return "Event has been sent!";
 });
 
