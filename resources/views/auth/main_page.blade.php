@@ -25,7 +25,11 @@
 
     {{-- <div class="pic"></div> --}}
 
+
+
     @include('layouts.nav-bar')
+
+
 
 
     <section id="hero" class="bg-dark text-light text-lg-center text-md-center text-sm-start pt-5 mt-5 pb-2">

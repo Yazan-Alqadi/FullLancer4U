@@ -144,8 +144,13 @@
                         </div>
                     </div>
                 @endforeach
+
             </div>
+            {{ $professions->links('vendor.pagination.bootstrap-4') }}
+
         </div>
+
+
     </section>
 
     <!-- JavaScript Bundle with Popper -->

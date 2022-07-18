@@ -5,6 +5,7 @@ use App\Http\Controllers\FreelancerController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
@@ -91,10 +92,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('service/edit/{id}',[ProfessionController::class,'edit'])->name('edit_service');
     Route::get('service/update/{id}',[ProfessionController::class,'update'])->name('update_service');
-    Route::get('send-notification/{id}',[MessageController::class,'sendMessageNotification']);
 
     Route::post('contact-me/{id}',[MessageController::class,'send'])->name('send_message');
 
+    Route::get('mynotification',[NotificationController::class,'index'])->name('my_notification');
 
 
 

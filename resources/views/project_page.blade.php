@@ -118,7 +118,9 @@
                     </div>
                 @endforeach
             </div>
+            {{ $projects->links('pagination::bootstrap-4') }}
         </div>
+
     </section>
 
 

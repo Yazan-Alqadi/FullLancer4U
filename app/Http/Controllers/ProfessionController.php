@@ -19,7 +19,7 @@ class ProfessionController extends Controller
     public function index()
     {
         //
-        $professions = Profession::all();
+        $professions = Profession::paginate(6);;
         return view('auth.Professions_cards', ['professions' => $professions]);
     }
 

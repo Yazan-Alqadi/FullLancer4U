@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        $projects = Project::paginate(6);
-        return view('project_page',['projects'=>$projects]);
+        return view('my_notifications');
     }
 
     /**

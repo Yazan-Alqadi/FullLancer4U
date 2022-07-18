@@ -16,7 +16,7 @@ class FreelancerController extends Controller
     public function index()
     {
         //
-        $freelancers = DB::select('select * from users,freelancers where users.id = user_id');
+        $freelancers = Freelancer::paginate(6);
 
         //dd($freelancers);
 
