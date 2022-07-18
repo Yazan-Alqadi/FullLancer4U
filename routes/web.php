@@ -29,6 +29,10 @@ use App\Models\Message;
 |
 */
 
+Route::get('opp', function () {
+    event(new App\Events\NewMessage('Someone','fdfvf'));
+    return "Event has been sent!";
+});
 
 Route::get('/', function () {
     $freelancers = Freelancer::all(); // DB::select('CALL topFreelancer()');
@@ -90,10 +94,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('send-notification/{id}',[MessageController::class,'sendMessageNotification']);
 
     Route::post('contact-me/{id}',[MessageController::class,'send'])->name('send_message');
-    Route::get('test', function () {
-        event(new App\Events\NewMessage('Someone','fdfvf'));
-    });
 
-    Route::view('My_notifications', 'my_notifications');
+
+
 
 });
+
+
+
