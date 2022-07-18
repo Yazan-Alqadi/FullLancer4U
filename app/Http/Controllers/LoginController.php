@@ -36,7 +36,7 @@ class LoginController extends Controller
 
             return redirect()->route('home')->with('user', $user);
         } else {
-            return redirect()->route('login.show')->with('status', 'Invalid Login');
+            return redirect()->route('login')->with('status', 'Invalid Login');
         }
     }
 }

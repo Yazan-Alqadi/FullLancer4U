@@ -90,7 +90,7 @@
         </table>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-primary" type="submit">Submit
+            <button class="btn btn-primary" type="submit">Send
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-send-fill" viewBox="0 0 16 16">
                     <path
