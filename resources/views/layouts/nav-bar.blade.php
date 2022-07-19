@@ -29,16 +29,15 @@
             <ul class="navbar-nav ms-1">
                 @auth
                     {{-- Notification --}}
-                    <li>
+                    <li class="dropdown-notifications">
                         <div class="btn-group">
                             <button type="button" class="btn btn-secondary dropdown-toggle p-1" data-bs-toggle="dropdown"
-                                data-bs-display="static" aria-expanded="false">
+                                data-bs-display="static" aria-expanded="false" data-toggle="dropdown">
                                 {{-- number of nots --}}
-                                <span class="text-dark border rounded-pill bg-light p-1">1</span>
+                                <span data-count="0" class="text-dark border rounded-pill bg-light p-1 notif-count">0</span>
+
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                                <li><a class="dropdown-item" href="#">This is notification</a></li>
-                                <li><a class="dropdown-item" href="#">This is notification</a></li>
                                 <br>
                                 <li><a class="btn btn-link f-s-li-nots" href="{{ route('my_notification') }}">show all notifications</a></li>
                             </ul>
@@ -145,13 +144,13 @@
 
 <script type="text/javascript">
     var notificationsWrapper = $('.dropdown-notifications');
-    var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
-    var notificationsCountElem = notificationsToggle.find('i[data-count]');
+    var notificationsToggle = notificationsWrapper.find('button[data-toggle]');
+    var notificationsCountElem = notificationsToggle.find('span[data-count]');
     var notificationsCount = parseInt(notificationsCountElem.data('count'));
     var notifications = notificationsWrapper.find('ul.dropdown-menu');
 
     if (notificationsCount <= 0) {
-        // notificationsWrapper.hide();
+        notificationsWrapper.hide();
     }
 
     // Enable pusher logging - don't include this in production
@@ -169,23 +168,12 @@
         var existingNotifications = notifications.html();
         var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
         var newNotificationHtml = `
-          <li class="notification active">
-              <div class="media">
-                <div class="media-left">
+        <div class="media-left">
                   <div class="media-object">
-                    <img src="https://api.adorable.io/avatars/71/` + avatar + `.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
+                    <img src="https://api.adorable.io/avatars/71/`+ avatar+`.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
                   </div>
                 </div>
-                <div class="media-body">
-                  <strong class="notification-title"> message from ` + data.username + `</strong>
-                  <!--p class="notification-desc">Extra description can go here</p-->
-                  <div class="notification-meta">
-                    <small class="timestamp">about a minute ago</small>
-                  </div>
-                </div>
-              </div>
-          </li>
-        `;
+        <li><a class="dropdown-item" href="#"> message from `+ data.username + `</a></li>`;
         notifications.html(newNotificationHtml + existingNotifications);
         notificationsCount += 1;
         notificationsCountElem.attr('data-count', notificationsCount);
