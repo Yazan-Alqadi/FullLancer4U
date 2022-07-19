@@ -6,6 +6,7 @@ use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Events\NewMessage;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
@@ -20,12 +21,17 @@ class MessageController extends Controller
         ]);
 
         $message = $request->body;
-        $user =User::where('id',$id)->first();
 
         Message::create([
             'body'=>$message,
             'sender_id'=>Auth::id(),
             'receiver_id'=>$id,
+        ]);
+        Notification::create([
+            'title'=>'Message from '. Auth::user()->full_name,
+            'content'=>$message,
+            'user_id'=>$id,
+
         ]);
 
         session()->flash('message', 'Message have been sent');

@@ -62,5 +62,9 @@ public function received(){
     return $this->hasMany(Message::class,'receiver_id');
 }
 
+public function notification(){
+    return $this->hasMany(Notification::class,'user_id');
+}
+
 
 }
