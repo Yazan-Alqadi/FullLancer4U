@@ -19,13 +19,32 @@
         </form>
 
 
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainmenu"
             aria-expanded="true">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="mainmenu">
-            <ul class="navbar-nav ms-3">
+            <ul class="navbar-nav ms-1">
+                @auth
+                    {{-- Notification --}}
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle p-1" data-bs-toggle="dropdown"
+                                data-bs-display="static" aria-expanded="false">
+                                {{-- number of nots --}}
+                                <span class="text-dark border rounded-pill bg-light p-1">1</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                                <li><a class="dropdown-item" href="#">This is notification</a></li>
+                                <li><a class="dropdown-item" href="#">This is notification</a></li>
+                                <br>
+                                <li><a class="btn btn-link f-s-li-nots" href="{{ route('my_notification') }}">show all notifications</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endauth
                 <li class="nav-item"><a href="{{ route('professions.index') }}" class="nav-link in-hover">Services</a>
                 </li>
                 <li class="nav-item"><a href="{{ route('freelancers.index') }}"
@@ -48,8 +67,6 @@
             </ul>
             @auth
                 <div class="navbar-nav ms-auto dropdown">
-
-
 
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -86,8 +103,8 @@
                             </li>
                         @endif
                         <li><a class="dropdown-item" href="{{ route('contact') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                                 </svg>
@@ -95,8 +112,8 @@
                             </a>
                         </li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
                                 </svg>
@@ -105,27 +122,6 @@
                         </li>
                     </ul>
                 </div>
-
-                {{-- Notification --}}
-                <li class="dropdown dropdown-notifications">
-                    <a href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown">
-                        <i data-count="0" class="glyphicon glyphicon-bell notification-icon"></i>
-                    </a>
-
-                    <div class="dropdown-container">
-                        <div class="dropdown-toolbar">
-                            <div class="dropdown-toolbar-actions">
-                                <a href="#">Mark all as read</a>
-                            </div>
-                            <h3 class="dropdown-toolbar-title">Notifications (<span class="notif-count">0</span>)</h3>
-                        </div>
-                        <ul class="dropdown-menu">
-                        </ul>
-                        <div class="dropdown-footer text-center">
-                            <a href="{{ route('my_notification') }}">View All</a>
-                        </div>
-                    </div>
-                </li>
             @else
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="{{ route('register.show') }}" class="nav-link">Sign
@@ -147,32 +143,32 @@
 </script>
 
 
-    <script type="text/javascript">
-        var notificationsWrapper = $('.dropdown-notifications');
-        var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
-        var notificationsCountElem = notificationsToggle.find('i[data-count]');
-        var notificationsCount = parseInt(notificationsCountElem.data('count'));
-        var notifications = notificationsWrapper.find('ul.dropdown-menu');
+<script type="text/javascript">
+    var notificationsWrapper = $('.dropdown-notifications');
+    var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
+    var notificationsCountElem = notificationsToggle.find('i[data-count]');
+    var notificationsCount = parseInt(notificationsCountElem.data('count'));
+    var notifications = notificationsWrapper.find('ul.dropdown-menu');
 
-        if (notificationsCount <= 0) {
-           // notificationsWrapper.hide();
-        }
+    if (notificationsCount <= 0) {
+        // notificationsWrapper.hide();
+    }
 
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
 
-        var pusher = new Pusher('c8e5a10ba21a1531fe1f', {
-            cluster: 'ap2'
-        });
+    var pusher = new Pusher('c8e5a10ba21a1531fe1f', {
+        cluster: 'ap2'
+    });
 
-        // Subscribe to the channel we specified in our Laravel Event
-        var channel = pusher.subscribe('new-message' + {{ Auth::user()->id?? ' ' }});
+    // Subscribe to the channel we specified in our Laravel Event
+    var channel = pusher.subscribe('new-message' + {{ Auth::user()->id ?? ' ' }});
 
-        // Bind a function to a Event (the full Laravel class)
-        channel.bind('my', function(data) {
-            var existingNotifications = notifications.html();
-            var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
-            var newNotificationHtml = `
+    // Bind a function to a Event (the full Laravel class)
+    channel.bind('my', function(data) {
+        var existingNotifications = notifications.html();
+        var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
+        var newNotificationHtml = `
           <li class="notification active">
               <div class="media">
                 <div class="media-left">
@@ -190,10 +186,10 @@
               </div>
           </li>
         `;
-            notifications.html(newNotificationHtml + existingNotifications);
-            notificationsCount += 1;
-            notificationsCountElem.attr('data-count', notificationsCount);
-            notificationsWrapper.find('.notif-count').text(notificationsCount);
-            notificationsWrapper.show();
-        });
-    </script>
+        notifications.html(newNotificationHtml + existingNotifications);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    });
+</script>
