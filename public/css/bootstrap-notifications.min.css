@@ -3,6 +3,10 @@
  * Copyright 2016 Martin Staněk
  * Licensed under MIT
  */
+
+ .f-s-li-nots {
+    font-size: 12px !important;
+ }
 .dropdown-container {
     position: absolute;
     top: 100%;

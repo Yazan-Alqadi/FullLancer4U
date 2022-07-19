@@ -29,6 +29,32 @@
 
     @include('layouts.nav-bar')
 
+    {{-- <div class="h3 mgg ms-5 pt-3">Filters</div>
+    <form class="pt-3" role="search">
+        <div class="d-flex" style="justify-content: space-between; align-items: center;">
+
+
+            <span>
+                <span>Filter category</span>
+                <span><select class="form-select" aria-label="Default select example">
+                        <option selected>Filter category</option>
+                        <option value="1">IT & Development</option>
+                        <option value="2">Design & Creative</option>
+                        <option value="3">Writing & Translation</option>
+                        <option value="4">Engineering & Architecture</option>
+                        <option value="5">Sales & Marketing</option>
+                        <option value="6">Self employees </option>
+                    </select></span>
+            </span>
+
+
+            <span> <input class="form-control me-2" type="search" placeholder="Type title" aria-label="Search"></span>
+
+        </div>
+
+
+        {{-- <div><button class="btn btn-outline-success " type="submit">Search</button></div> --}}
+    {{-- </form> --}}
 
     <!-- card is here -->
     <section class="py-5 section-style mt-5">
@@ -53,7 +79,8 @@
                                 </div>
                             </div> -->
 
-                            <div class="card-body text-center" style="display: flex !important; align-items: center; justify-content: center;">
+                            <div class="card-body text-center"
+                                style="display: flex !important; align-items: center; justify-content: center;">
 
                                 <!-- descreption of the project -->
 
@@ -110,6 +137,8 @@
                                                     <span class="tooltiptext">Price</span>
                                                 </span>
                                             </div>
+                                            <a href="{{ route('project-card-for-client') }}"
+                                                class="text-center mt-2 bg-light btn text-dark fw-bold">see more</a>
                                         </div>
                                     </div>
                                 </div>
