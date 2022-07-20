@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
 
-<div class="navbar navbar-expand-md bg-dark navbar-dark text-light fixed-top">
+<div class="navbar navbar-expand-lg bg-dark navbar-dark text-light fixed-top">
     <div class="container justify-content-between">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search-par"
             aria-expanded="true">
@@ -27,29 +27,13 @@
 
         <div class="collapse navbar-collapse" id="mainmenu">
             <ul class="navbar-nav ms-1">
-                @auth
-                    {{-- Notification --}}
-                    <li>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-secondary dropdown-toggle p-1" data-bs-toggle="dropdown"
-                                data-bs-display="static" aria-expanded="false">
-                                {{-- number of nots --}}
-                                <span class="text-dark border rounded-pill bg-light p-1">1</span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                                <li><a class="dropdown-item" href="#">This is notification</a></li>
-                                <li><a class="dropdown-item" href="#">This is notification</a></li>
-                                <br>
-                                <li><a class="btn btn-link f-s-li-nots" href="{{ route('my_notification') }}">show all notifications</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                @endauth
-                <li class="nav-item"><a href="{{ route('professions.index') }}" class="nav-link in-hover">Services</a>
+
+                <li class="nav-item h6"><a href="{{ route('professions.index') }}"
+                        class="nav-link in-hover">Services</a>
                 </li>
-                <li class="nav-item"><a href="{{ route('freelancers.index') }}"
+                <li class="nav-item h6"><a href="{{ route('freelancers.index') }}"
                         class="nav-link in-hover">Freealncers</a></li>
-                <li class="nav-item"><a href="{{ route('projects.index') }}" class="nav-link in-hover">Projects</a>
+                <li class="nav-item h6"><a href="{{ route('projects.index') }}" class="nav-link in-hover">Projects</a>
                 </li>
                 {{-- Bacome freelancer --}}
 
@@ -62,6 +46,58 @@
                             class="nav-link in-hover-t text-warning fw-bold">Become Freelancer</a></li>
                 @endif
 
+                @auth
+                    {{-- Notification --}}
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-dark dropdown-toggle py-1 px-2" data-bs-toggle="dropdown"
+                                data-bs-display="static" aria-expanded="false">
+                                {{-- number of nots --}}
+                                {{-- if there is no nots yet --}}
+                                {{-- <span class="text-dark border rounded-pill bg-light m-1 p-1 h4">0 <svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-bell-slash-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.164 14H15c-1.5-1-2-5.902-2-7 0-.264-.02-.523-.06-.776L5.164 14zm6.288-10.617A4.988 4.988 0 0 0 8.995 2.1a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 7c0 .898-.335 4.342-1.278 6.113l9.73-9.73zM10 15a2 2 0 1 1-4 0h4zm-9.375.625a.53.53 0 0 0 .75.75l14.75-14.75a.53.53 0 0 0-.75-.75L.625 15.625z" />
+                                    </svg></span> --}}
+                                {{-- if there is 1 or more nots --}}
+                                <span class="text-dark border rounded-pill bg-danger py-1 px-2 h4">1 <svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                                    </svg></span>
+
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start-end ">
+                                {{-- if there is no nots yet --}}
+                                {{-- <li><div class="text-uppercase h6 p-2 text-center" style="width: 300px">No notifications yet</div></li> --}}
+
+                                {{-- else there is 1 or more nots --}}
+                                <li class="text-end"> <button type="" class="btn btn-link f-s-li-nots"> mark all as readed</button></li>
+                                <li>
+                                    <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 fs-6" style="width: 450px">
+                                    {{-- message from who ? --}}
+                                    <div class="d-flex" style="justify-content: space-between; align-items: center;">
+                                        <span class="fs-5 text-danger">Message from Admin</span>
+                                        <span class=" rounded-2 p-1 text-secondary">From 4min ago</span>
+                                    </div>
+                                    <div class="">
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quasi magni
+                                        consequatur unde
+                                        deleniti sint possimus architecto totam corporis, quidem modi explicabo! Praesentium
+                                        reprehenderit,
+                                        saepe odio aperiam pariatur id a?
+                                    </div>
+                                </div>
+                                </li>
+                                <br>
+                                <li><a class="btn btn-link f-s-li-nots" href="{{ route('my_notification') }}">show all
+                                        notifications</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endauth
 
 
             </ul>

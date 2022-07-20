@@ -39,6 +39,7 @@
             {{-- if there is no nots yet --}}
             {{-- <div class="text-uppercase h1 p-5 text-center">No notifications yet</div> --}}
 
+            {{-- else there is 1 or more nots --}}
             <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25">
                 {{-- message from who ? --}}
                 <div class="d-flex" style="justify-content: space-between; align-items: center;">
