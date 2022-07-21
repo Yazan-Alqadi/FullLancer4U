@@ -64,7 +64,7 @@
                                     <div
                                         style="min-width: 400px !important; display: flex; justify-content: space-between;align-items: center;">
                                         <span>Notifications (<span class="notif-count">0</span>)</span>
-                                        <span><button class="btn btn-link px-0">mark all readed</button></span>
+                                        <span><button class="btn btn-link px-0">mark all as read</button></span>
                                     </div>
                                     <div style="overflow: hidden;max-height: 320px;overflow: auto;">
                                         <ul class="disd" style="display: contents;">
@@ -170,7 +170,7 @@
 
 <script type="text/javascript">
     var notificationsWrapper = $('.dropdown-notifications');
-    var notificationsToggle = notificationsWrapper.find('button[data-toggle]');
+    var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
     var notificationsCountElem = notificationsToggle.find('span[data-count]');
     var notificationsCount = parseInt(notificationsCountElem.data('count'));
     var notifications = notificationsWrapper.find('ul.disd');
