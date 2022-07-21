@@ -60,13 +60,13 @@
                                             d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
                                     </svg>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light p-2" style="width: 500px;">
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light p-2">
                                     <div
-                                        style="width: 484px !important; !important; display: flex; justify-content: space-between;align-items: center;">
+                                        style="min-width: 400px !important; display: flex; justify-content: space-between;align-items: center;">
                                         <span>Notifications (<span class="notif-count">0</span>)</span>
-                                        <span><button class="btn btn-link px-0">mark all as read</button></span>
+                                        <span><button class="btn btn-link px-0">mark all readed</button></span>
                                     </div>
-                                    <div style="overflow: hidden; max-height: 320px; overflow: auto;">
+                                    <div style="overflow: hidden;max-height: 320px;overflow: auto;">
                                         <ul class="disd" style="display: contents;">
 
                                         </ul>
@@ -170,7 +170,7 @@
 
 <script type="text/javascript">
     var notificationsWrapper = $('.dropdown-notifications');
-    var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
+    var notificationsToggle = notificationsWrapper.find('button[data-toggle]');
     var notificationsCountElem = notificationsToggle.find('span[data-count]');
     var notificationsCount = parseInt(notificationsCountElem.data('count'));
     var notifications = notificationsWrapper.find('ul.disd');
@@ -202,7 +202,7 @@
             data.username + `</span>
                                             <span class="rounded-2 p-1 text-secondary" >From 1day ago</span>
                                         </div>
-                                        <div style="overflow-wrap: break-word;">
+                                        <div>
                                             ` + data.message + `
                                         </div>
                                     </div>
