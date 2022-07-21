@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -27,6 +29,9 @@ class ProjectController extends Controller
     public function create()
     {
         //
+                $categories = Category::all();
+
+        return view('add_new_project', compact('categories'));
     }
 
     /**
@@ -50,6 +55,7 @@ class ProjectController extends Controller
     {
         //
         $project = Project::find($id);
+
         $projects = Project::all()->where('category_id', $project->category_id);
 
         return view('project-web-page-for-client',compact('project','projects'));
