@@ -99,6 +99,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('project/{id}',[ProjectController::class,'show'])->name('get_project');
 
+
+        Route::get('projects/create', [ProjectController::class, 'create'])->name('create_project');
+
 });
 
 
