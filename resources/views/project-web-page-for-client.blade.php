@@ -13,7 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap"
         rel="stylesheet">
-    <link href="../css/fl.css" rel="stylesheet">
+    <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/profession.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- CSS only -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -26,20 +27,71 @@
 
 
     <div class="text-dark ms-1 container h1 mgg row"> {{ $project->title }} </div>
-    <div class="m-3">
-        <span class="bg-info p-2 rounded text-dark">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-cart3" viewBox="0 0 16 16">
-                <path
-                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-        </span>
-    </div>
 
     <section class="py-2">
         <div class="mx-3">
             <div class="row">
-
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <div class="card bg-light text-start text-dark rounded">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Card Service
+                            </h5>
+                        </div>
+                    </div>
+                    <!-- Info about the service -->
+                    <div class="card bg-light text-start text-dark rounded">
+                        <div class="card-body">
+                            <div class="card-text d-inline-block">
+                                <div>
+                                    <span>Category:</span>
+                                    <span>{{ $project->category->title }}</span>
+                                </div>
+                                <div>
+                                    <span>Service price starts at:</span>
+                                    <span>{{ $project->price }} Sp</span>
+                                </div>
+                                <div>
+                                    <span>Deadline:</span>
+                                    <span>{{ $project->deadline }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Here the img -->
+                    <div class="card bg-light text-start text-dark rounded">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <!-- if user set a pic -->
+                                <!-- <img src="/files/pic-1.jpg" class="card-img-top img-user-style" alt="..."> -->
+                                <!-- if does not set a pic yet -->
+                                <span class="span-photo ms-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70"
+                                        fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd"
+                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>
+                                </span>
+                                <div style="display: inline-grid;">
+                                    <span class="card-title">
+                                        <a href="#" class="navbar-brand text-dark">
+                                            {{ $project->client->user->full_name }}
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card bg-light text-start text-dark rounded">
+                        <div class="card-body text-center">
+                            <a href="#
+                        {{-- {{ route('contact_me', $project->freelancer->user->id) }} --}}
+                        "
+                                type="button" class="btn btn-info">Contact</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-8 col-md-8">
                     <div class="card bg-light text-dark rounded">
                         <div class="p-4">
@@ -54,7 +106,8 @@
                         <div class="card-body text-center">
                             <div class="h5">Apply for this project</div>
                             <!-- if the service not buyed yet -->
-                            <button href="#" type="button" class="btn btn-info mt-2" id="buy">Apply</button>
+                            <button href="#" type="button" class="btn btn-info mt-2"
+                                id="buy">Apply</button>
                             <!-- if the service is required and has not yet been approved -->
                             <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->
                             <!-- if the service is accepted and not finished -->
@@ -64,34 +117,33 @@
                         </div>
                     </div>
 
-                    <!-- Other suggested services -->
+                    <!-- Other suggested projects -->
                     <div class="card bg-light text-start text-dark rounded">
                         <div class="card-body text-center">
                             <div class="h5 mb-3">Other suggested services</div>
                             <!-- Only the first 6 similar services -->
-                            @foreach ($projects as $project)
-
                             <section class="py-5 section-style mt-5">
                                 <div class="container">
                                     <div class="row text-center">
-                                            <div class="col-md-6 col-lg-4 mb-2">
+                                        @foreach ($projects as $project)
+                                            <div class="col-md-6 col-lg-6 mb-2">
                                                 <div class="card text-light"
                                                     style="background-color: #001b24; height: 100%;">
                                                     <!-- <div class="container">
 
-                                                    <-- add image or icon here ----------
+                             <-- add image or icon here ----------
 
-                                                        <div style="display: inline-grid;">
-                                                            <span class="card-title">
-                                                                <a href="#" class="navbar-brand text-light name-of-user-hover">
-                                                                    name of user
-                                                                </a>
-                                                            </span>
-                                                            <span class="card-title">
-                                                                user name
-                                                            </span>
-                                                        </div>
-                                                    </div> -->
+                                <div style="display: inline-grid;">
+                                    <span class="card-title">
+                                        <a href="#" class="navbar-brand text-light name-of-user-hover">
+                                            name of user
+                                        </a>
+                                    </span>
+                                    <span class="card-title">
+                                        user name
+                                    </span>
+                                </div>
+                            </div> -->
 
                                                     <div class="card-body text-center"
                                                         style="display: flex !important; align-items: center; justify-content: center;">
@@ -159,22 +211,20 @@
                                                                             <span class="tooltiptext">Price</span>
                                                                         </span>
                                                                     </div>
-                                                                    {{-- <a href="{{ route('project-card-for-client') }}"
+                                                                    <a href="{{ route('get_project', $project->id) }}"
                                                                         class="text-center mt-2 bg-light btn text-dark fw-bold">see
-                                                                        more</a> --}}
+                                                                        more</a>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        @endforeach
                                     </div>
-                                    {{-- {{ $projects->links('pagination::bootstrap-4') }} --}}
                                 </div>
 
                             </section>
-                            @endforeach
-
                         </div>
                     </div>
                 </div>

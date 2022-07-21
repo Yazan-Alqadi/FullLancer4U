@@ -138,7 +138,7 @@
                                                 </span>
                                             </div>
                                             <a href="{{ route('get_project',$project->id) }}"
-                                                class="text-center mt-2 bg-light btn text-dark fw-bold">see more</a>
+                                                class="text-center mt-4 bg-light btn text-dark h6">see more</a>
                                         </div>
                                     </div>
                                 </div>
