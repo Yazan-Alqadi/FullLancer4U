@@ -49,6 +49,10 @@ class ProjectController extends Controller
     public function show($id)
     {
         //
+        $project = Project::find($id);
+        $projects = Project::all()->where('category_id', $project->category_id);
+
+        return view('project-web-page-for-client',compact('project','projects'));
     }
 
     /**

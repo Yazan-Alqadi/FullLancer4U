@@ -25,7 +25,7 @@
     @include('layouts.nav-bar')
 
 
-    <div class="text-dark ms-1 container h1 mgg row"> profession title </div>
+    <div class="text-dark ms-1 container h1 mgg row"> {{ $project->title }} </div>
     <div class="m-3">
         <span class="bg-info p-2 rounded text-dark">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -45,19 +45,16 @@
                         <div class="p-4">
                             <h2>Description</h2>
                             <p>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus dolorem distinctio ea
-                                modi provident sunt explicabo voluptates odit minus, illo sequi libero earum delectus,
-                                aliquid qui expedita labore vel aperiam.
+                                {{ $project->description }}
                             </p>
                         </div>
                     </div>
 
                     <div class="card bg-light text-start text-dark mb-4 rounded">
                         <div class="card-body text-center">
-                            <div class="h5">Buy this service</div>
+                            <div class="h5">Apply for this project</div>
                             <!-- if the service not buyed yet -->
-                            <button href="#" type="button" class="btn btn-info mt-2" id="buy">Buy,
-                                and add to my projects</button>
+                            <button href="#" type="button" class="btn btn-info mt-2" id="buy">Apply</button>
                             <!-- if the service is required and has not yet been approved -->
                             <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->
                             <!-- if the service is accepted and not finished -->
@@ -72,10 +69,11 @@
                         <div class="card-body text-center">
                             <div class="h5 mb-3">Other suggested services</div>
                             <!-- Only the first 6 similar services -->
+                            @foreach ($projects as $project)
+
                             <section class="py-5 section-style mt-5">
                                 <div class="container">
                                     <div class="row text-center">
-                                        @foreach ($projects as $project)
                                             <div class="col-md-6 col-lg-4 mb-2">
                                                 <div class="card text-light"
                                                     style="background-color: #001b24; height: 100%;">
@@ -161,21 +159,22 @@
                                                                             <span class="tooltiptext">Price</span>
                                                                         </span>
                                                                     </div>
-                                                                    <a href="{{ route('project-card-for-client') }}"
+                                                                    {{-- <a href="{{ route('project-card-for-client') }}"
                                                                         class="text-center mt-2 bg-light btn text-dark fw-bold">see
-                                                                        more</a>
+                                                                        more</a> --}}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
                                     </div>
-                                    {{ $projects->links('pagination::bootstrap-4') }}
+                                    {{-- {{ $projects->links('pagination::bootstrap-4') }} --}}
                                 </div>
 
                             </section>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>

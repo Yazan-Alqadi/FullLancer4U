@@ -97,7 +97,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('mynotification',[NotificationController::class,'index'])->name('my_notification');
 
-    Route::view('Project-card-for-client' , 'project-web-page-for-client')->name('project-card-for-client');
+    Route::get('project/{id}',[ProjectController::class,'show'])->name('get_project');
 
 });
 

@@ -137,7 +137,7 @@
                                                     <span class="tooltiptext">Price</span>
                                                 </span>
                                             </div>
-                                            <a href="{{ route('project-card-for-client') }}"
+                                            <a href="{{ route('get_project',$project->id) }}"
                                                 class="text-center mt-2 bg-light btn text-dark fw-bold">see more</a>
                                         </div>
                                     </div>

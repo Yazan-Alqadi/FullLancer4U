@@ -84,7 +84,7 @@ class ProfessionController extends Controller
         $profession =  Profession::find($id);
 
 
-        $professions = Profession::all()->where('freelancer_id', $profession->category_id);
+        $professions = Profession::all()->where('category_id', $profession->category_id);
         return view('profile_freelancer_for_client', ['professions' => $professions,'profession'=> $profession]);
     }
 
