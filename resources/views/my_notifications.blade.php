@@ -40,43 +40,23 @@
             {{-- <div class="text-uppercase h1 p-5 text-center">No notifications yet</div> --}}
 
             {{-- else there is 1 or more nots --}}
-            <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25">
-                {{-- message from who ? --}}
-                <div class="d-flex" style="justify-content: space-between; align-items: center;">
-                    <span class="h4 text-danger">Message from Admin</span>
-                    <span class="h6 rounded-2 p-1 text-secondary">From 4min ago</span>
-                </div>
-                <div class="h6">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quasi magni consequatur unde
-                    deleniti sint possimus architecto totam corporis, quidem modi explicabo! Praesentium reprehenderit,
-                    saepe odio aperiam pariatur id a?
-                </div>
-            </div>
-            <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25">
-                {{-- message from who ? --}}
-                <div class="d-flex" style="justify-content: space-between; align-items: center;">
-                    <span class="h4 text-danger">Message from BSBS</span>
-                    <span class="h6 rounded-2 p-1 text-secondary">From 1day ago</span>
-                </div>
-                <div class="h6">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quasi magni consequatur unde
-                    deleniti sint possimus architecto totam corporis, quidem modi explicabo! Praesentium reprehenderit,
-                    saepe odio aperiam pariatur id a?
-                </div>
-            </div>
 
 
             {{-- if there is more than 5 nots then collapse them here --}}
-            <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 collapse"
-                id = "collapseExample1">
+            @foreach ($notifications as $notification)
+            <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 @if($loop->iteration > 3) collapse @endif"
+                @if($loop->iteration > 3) id = "collapseExample1" @endif>
                 {{-- message from who ? --}}
-                <div class="h4 text-danger">Message from Admin</div>
-                <div class="h6">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quasi magni consequatur unde
-                    deleniti sint possimus architecto totam corporis, quidem modi explicabo! Praesentium reprehenderit,
-                    saepe odio aperiam pariatur id a?
+                <div class="d-flex" style="justify-content: space-between; align-items: center;">
+                    <span class="h4 text-danger">{{ $notification->title }}</span>
+                    <span class="h6 rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                </div>                <div class="h6">
+                    {{ $notification->content }}
                 </div>
             </div>
+            @endforeach
+
+
 
             <button class="btn btn-link text-end" type="button"
                 data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false"
