@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
 
-<div class="navbar navbar-expand-lg bg-dark navbar-dark text-light fixed-top">
-    <div class="container justify-content-between">
+<div class="ps-3 pe-5 navbar container-fluid navbar-expand-lg bg-dark navbar-dark text-light fixed-top">
+    <div class="container-fluid justify-content-between">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search-par"
             aria-expanded="true">
             <span class="navbar-toggler-icon"></span>
@@ -47,50 +47,54 @@
 
                 @auth
                     {{-- Notification --}}
-                    <li class="dropdown-notifications">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-dark dropdown-toggle py-1 px-2" data-bs-toggle="dropdown"
-                                data-bs-display="static" aria-expanded="false" data-toggle="dropdown">
-                                {{-- number of nots --}}
-                                {{-- if there is no nots yet --}}
-                                {{-- <span class="text-dark border rounded-pill bg-light m-1 p-1 h4">0 <svg
-                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-bell-slash-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M5.164 14H15c-1.5-1-2-5.902-2-7 0-.264-.02-.523-.06-.776L5.164 14zm6.288-10.617A4.988 4.988 0 0 0 8.995 2.1a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 7c0 .898-.335 4.342-1.278 6.113l9.73-9.73zM10 15a2 2 0 1 1-4 0h4zm-9.375.625a.53.53 0 0 0 .75.75l14.75-14.75a.53.53 0 0 0-.75-.75L.625 15.625z" />
-                                    </svg></span> --}}
-                                {{-- if there is 1 or more nots --}}
-                                <span class="text-dark border rounded-pill bg-danger py-1 px-2 h4 notif-count"
-                                    data-count="0">0 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    <li class="dropdown-notifications" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#notifications-panel" class="dropdown-toggle"
+                                    data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="bg-danger border rounded px-1 notif-count" data-count="0"
+                                        style="position: absolute; top: 0px; right: 0px; font-size: 10px;">0</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
                                         <path
                                             d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                                    </svg></span>
+                                    </svg>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light p-2">
+                                    <div
+                                        style="min-width: 400px !important; display: flex; justify-content: space-between;align-items: center;">
+                                        <span>Notifications (<span class="notif-count">0</span>)</span>
+                                        <span><button class="btn btn-link px-0">mark all readed</button></span>
+                                    </div>
+                                    <div style="overflow: hidden;max-height: 320px;overflow: auto;">
+                                        <ul class="disd" style="display: contents;">
 
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start-end ">
-                                {{-- if there is no nots yet --}}
-                                {{-- <li><div class="text-uppercase h6 p-2 text-center" style="width: 300px">No notifications yet</div></li> --}}
+                                        </ul>
+                                    </div>
+                                    <br>
+                                    <div class="text-center">
+                                        <a href="#" class="bg-light text-primary text-decoration-none">View
+                                            all</a>
+                                    </div>
+                                </ul>
 
-                                {{-- else there is 1 or more nots --}}
-                                <li class="text-end"> <button type="" class="btn btn-link f-s-li-nots"> mark all as
-                                        readed</button></li>
 
-                                <br>
-                                <li><a class="btn btn-link f-s-li-nots" href="{{ route('my_notification') }}">show all
-                                        notifications</a></li>
-                            </ul>
-                        </div>
+                            </li>
+                        </ul>
                     </li>
                 @endauth
 
 
             </ul>
+
+
+
+
             @auth
                 <div class="navbar-nav ms-auto dropdown">
 
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -100,10 +104,10 @@
                         <span class="containar">{{ Auth::user()->full_name }}</span>
                     </a>
 
-                    <ul class="dropdown-menu" aria-labelledby="#navbarDropdownMenuLink">
+                    <ul class="dropdown-menu" id="navbarDropdownMenuLink1">
                         <li><a class="dropdown-item" href="{{ route('profile') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-person-badge" viewBox="0 0 16 16">
                                     <path
                                         d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                     <path
@@ -169,7 +173,7 @@
     var notificationsToggle = notificationsWrapper.find('button[data-toggle]');
     var notificationsCountElem = notificationsToggle.find('span[data-count]');
     var notificationsCount = parseInt(notificationsCountElem.data('count'));
-    var notifications = notificationsWrapper.find('ul.dropdown-menu');
+    var notifications = notificationsWrapper.find('ul.disd');
 
     if (notificationsCount <= 0) {
         //notificationsWrapper.hide();
@@ -191,19 +195,19 @@
         var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
         var newNotificationHtml = `
         <li>
-            <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 fs-6"
-                                        style="width: 450px">
+            <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">
                                         {{-- message from who ? --}}
                                         <div class="d-flex" style="justify-content: space-between; align-items: center;">
-                                            <span class="fs-5 text-danger">message from ` + data.username + `</span>
-                                            <span class=" rounded-2 p-1 text-secondary">From 4min ago</span>
+                                            <span class="text-danger" style="font-size: 15px">Message from ` +
+            data.username + `</span>
+                                            <span class="rounded-2 p-1 text-secondary" >From 1day ago</span>
                                         </div>
-                                        <div class="">
+                                        <div>
                                             ` + data.message + `
-
                                         </div>
                                     </div>
-                                </li>`;
+                                    </li>`;
+        // alert(notificationsCountElem);
 
         notifications.html(newNotificationHtml + existingNotifications);
         notificationsCount += 1;
