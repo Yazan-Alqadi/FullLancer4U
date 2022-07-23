@@ -50,7 +50,8 @@
                 <div class="d-flex" style="justify-content: space-between; align-items: center;">
                     <span class="h4 text-danger">{{ $notification->title }}</span>
                     <span class="h6 rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
-                </div>                <div class="h6">
+                </div>
+                <div class="h6" style="word-break: break-word;">
                     {{ $notification->content }}
                 </div>
             </div>

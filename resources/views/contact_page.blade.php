@@ -51,7 +51,7 @@
                             class="link-info text-decoration-none">{{ $message->sender->full_name }}</a> </th>
                     <th scope="row" class="table-info"> <a href="#"
                             class="link-secondary text-decoration-none">{{ $message->reciever->full_name }}</a> </th>
-                    <td class="table-light">{{ $message->body }}</td>
+                    <td class="table-light" style="word-break: break-word;">{{ $message->body }}</td>
                     <td class="table-info">{{ $message->created_at }}
                         <div> <a href="#" class="text-decoration-none text-center"> replay </a> </div>
                     </td>
