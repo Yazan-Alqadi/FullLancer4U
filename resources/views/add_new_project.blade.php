@@ -104,7 +104,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Deadline</span>
                     <div class="input-append date" id="dp3" data-date="12-02-2012"
                         data-date-format="dd-mm-yyyy">
-                        <input class="form-control" type="text" value="12-02-2012" aria-label="Sizing example input"
+                        <input class="form-control" type="date" value="12-02-2012" aria-label="Sizing example input"
                         placeholder="Price start at" aria-describedby="inputGroup-sizing-default">
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
