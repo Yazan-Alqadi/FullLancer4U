@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
+
+
+
+    protected $casts =[
+        'deadline' => 'date'
+    ];
+
+
     public function freelancer()
     {
         return $this->belongsTo(Freelancer::class);

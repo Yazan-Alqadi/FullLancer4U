@@ -15,8 +15,10 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('admin_id')->unsigned()->index();
-            $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('name');
+            $table->string('email');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             $table->timestamps();
         });
     }
