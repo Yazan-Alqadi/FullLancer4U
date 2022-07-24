@@ -1,47 +1,8 @@
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
 
-<div style="position: absolute; z-index: 100000; right: 16px; top: -13px;">
-    @auth
-        {{-- Notification --}}
-        <li class="dropdown-notifications" id="navbarNavDarkDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="bg-danger border rounded px-1 notif-count" data-count="0"
-                            style="position: absolute; top: 0px; left: -7px; font-size: 10px;">0</span>
-                        <svg style="z-index: 100;color: white;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-bell-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                        </svg>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light p-2">
-                        <div
-                            style="min-width: 400px !important; display: flex; justify-content: space-between;align-items: center;">
-                            <span>Notifications (<span class="notif-count">0</span>)</span>
-                            <span><button class="btn btn-link px-0">mark all as read</button></span>
-                        </div>
-                        <div style="overflow: hidden;max-height: 320px;overflow: auto;">
-                            <ul class="disd" style="display: contents;">
-
-                            </ul>
-                        </div>
-                        <br>
-                        <div class="text-center">
-                            <a href="{{ route('my_notification') }}" class="bg-light text-primary text-decoration-none">View
-                                all</a>
-                        </div>
-                    </ul>
 
 
-                </li>
-            </ul>
-        </li>
-    @endauth
-</div>
-
-<div class="ps-3 pe-5 navbar container-fluid navbar-expand-lg bg-dark navbar-dark text-light fixed-top h6">
+<div class="ps-3 pe-2 navbar container-fluid navbar-expand-lg bg-dark navbar-dark text-light fixed-top h6">
     <div class="container-fluid justify-content-between" style="align-items: baseline;">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search-par"
             aria-expanded="true">
@@ -94,14 +55,6 @@
 
             </ul>
 
-        </div>
-    </div>
-
-
-
-    <div>
-        <div class="collapse navbar-collapse" id="mainmenu">
-
 
             @auth
                 <div class="navbar-nav ms-auto dropdown">
@@ -119,8 +72,8 @@
 
                     <ul class="dropdown-menu dropdown-menu-end" id="navbarDropdownMenuLink1">
                         <li><a class="dropdown-item" href="{{ route('profile') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-person-badge" viewBox="0 0 16 16">
                                     <path
                                         d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                     <path
@@ -141,8 +94,8 @@
                             </li>
                         @endif
                         <li><a class="dropdown-item" href="{{ route('create_project') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
                                 </svg>
@@ -150,8 +103,8 @@
                             </a>
                         </li>
                         <li><a class="dropdown-item" href="{{ route('contact') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                                 </svg>
@@ -180,7 +133,49 @@
 
 
         </div>
+        <div {{-- style="position: absolute; z-index: 100000; right: 16px; top: -13px;" --}}>
+        @auth
+            {{-- Notification --}}
+            <div class="dropdown-notifications" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="bg-danger border rounded px-1 notif-count" data-count="0"
+                                style="position: absolute; top: 0px; left: -7px; font-size: 10px;">0</span>
+                            <svg style="z-index: 100;color: white;" xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light p-2">
+                            <div
+                                style="min-width: 400px !important; display: flex; justify-content: space-between;align-items: center;">
+                                <span>Notifications (<span class="notif-count">0</span>)</span>
+                                <span><button class="btn btn-link px-0">mark all as read</button></span>
+                            </div>
+                            <div style="overflow: hidden;max-height: 320px;overflow: auto;">
+                                <ul class="disd" style="display: contents;">
+
+                                </ul>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <a href="{{ route('my_notification') }}"
+                                    class="bg-light text-primary text-decoration-none">View
+                                    all</a>
+                            </div>
+                        </ul>
+
+
+                    </li>
+                </ul>
+            </div>
+        @endauth
     </div>
+    </div>
+
 </div>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

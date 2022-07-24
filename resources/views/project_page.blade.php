@@ -25,39 +25,16 @@
     <title>Projects</title>
 </head>
 
-<body>
+<body style="background-color: rgb(186, 195, 195);">
 
     @include('layouts.nav-bar')
 
-    {{-- <div class="h3 mgg ms-5 pt-3">Filters</div>
-    <form class="pt-3" role="search">
-        <div class="d-flex" style="justify-content: space-between; align-items: center;">
 
 
-            <span>
-                <span>Filter category</span>
-                <span><select class="form-select" aria-label="Default select example">
-                        <option selected>Filter category</option>
-                        <option value="1">IT & Development</option>
-                        <option value="2">Design & Creative</option>
-                        <option value="3">Writing & Translation</option>
-                        <option value="4">Engineering & Architecture</option>
-                        <option value="5">Sales & Marketing</option>
-                        <option value="6">Self employees </option>
-                    </select></span>
-            </span>
 
-
-            <span> <input class="form-control me-2" type="search" placeholder="Type title" aria-label="Search"></span>
-
-        </div>
-
-
-        {{-- <div><button class="btn btn-outline-success " type="submit">Search</button></div> --}}
-    {{-- </form> --}}
 
     <!-- card is here -->
-    <section class="py-5 section-style mt-5">
+    <section class="py-5 mgg section-style">
         <div class="container">
             <div class="row text-center">
                 @foreach ($projects as $project)
@@ -88,7 +65,8 @@
                                     <div class="container">
                                         <div class="col" style="color: #f5ff9f;">
                                             <!-- category belong to the profession -->
-                                            <div class="row justify-content-center" style="font-size: 18px !important;">
+                                            <div class="row justify-content-center"
+                                                style="font-size: 18px !important;">
                                                 <span class="for-size span-number-2 title-des">
                                                     {{ $project->title }}
                                                 </span>
@@ -137,7 +115,7 @@
                                                     <span class="tooltiptext">Price</span>
                                                 </span>
                                             </div>
-                                            <a href="{{ route('get_project',$project->id) }}"
+                                            <a href="{{ route('get_project', $project->id) }}"
                                                 class="text-center mt-4 bg-light btn text-dark h6">see more</a>
                                         </div>
                                     </div>
@@ -151,6 +129,63 @@
         </div>
 
     </section>
+
+    <div class="bg-secondary pb-3">
+        <div class="h3 mgg ms-3 pt-3"> Filters </div>
+
+        <form class="pt-3" role="search">
+
+            <div class="row justify-content-between ms-5">
+                <div class="col-4 me-5">
+                    Filter category
+                </div>
+                <div class="col-4 me-5">
+                    <label for="inputTitle" class="col-form-label">Filter on Tilte</label>
+                </div>
+            </div>
+            <div class="row justify-content-between ms-5">
+                <div class="col-4">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Filter category</option>
+                        <option value="1">IT & Development</option>
+                        <option value="2">Design & Creative</option>
+                        <option value="3">Writing & Translation</option>
+                        <option value="4">Engineering & Architecture</option>
+                        <option value="5">Sales & Marketing</option>
+                        <option value="6">Self employees </option>
+                    </select>
+                </div>
+                <div class="col-4 me-5">
+                    <input type="text" class="form-control" id="inputTitle">
+                </div>
+            </div>
+            <div class="row justify-content-between ms-5 mt-3">
+                <div class="col-4 me-5">
+                    <label for="inputName" class="col-form-label">Filter on client name</label>
+                </div>
+                <div class="col-4 me-5">
+                    <label for="inputPrice" class="col-form-label">Filter on Price</label>
+                </div>
+            </div>
+            <div class="row justify-content-between ms-5">
+                <div class="col-4">
+                    <input type="text" class="form-control" id="inputName">
+                </div>
+                <div class="col-4 me-5">
+                    <input type="text" class="form-control" id="inputPrice">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-info">Search <svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg></button>
+            </div>
+
+        </form>
+    </div>
 
 
     <!-- JavaScript Bundle with Popper -->
