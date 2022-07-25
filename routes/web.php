@@ -19,6 +19,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
+use Illuminate\Support\Facades\Cache;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,9 +37,10 @@ Route::get('opp', function () {
 });
 
 Route::get('/', function () {
-    $freelancers = Freelancer::all(); // DB::select('CALL topFreelancer()');
-    $professions = Profession::all();
-    $projects = Project::all();
+
+    $freelancers = cache()->remember('free',60+60+24,function(){ return Freelancer::all();}); // DB::select('CALL topFreelancer()');
+    $professions = cache()->remember('prof',60+60+24,function(){ return Profession::all();});
+    $projects = cache()->remember('proj',60+60+24,function(){ return Project::all();});
     return view('auth.main_page', ['freelancers' => $freelancers, 'professions' => $professions, 'projects' => $projects]);
 })->name('home');
 
