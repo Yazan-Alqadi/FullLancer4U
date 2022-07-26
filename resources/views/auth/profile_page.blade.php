@@ -73,9 +73,6 @@
     <section class="py-2">
         <div class="mx-3">
             <div class="row">
-                @php
-                    $tmp = \App\Models\Freelancer::all()->where('user_id', Auth::id());
-                @endphp
                 {{-- services section --}}
                 <div class="col-lg-4 col-md-4 mb-4">
                     <div class="card bg-light text-dark rounded">
@@ -83,7 +80,7 @@
                             <h5 class="card-title"> My services </h5>
 
                             {{-- if user is freelancer --}}
-                            @if (count($tmp) > 0)
+                            @if (Auth::user()->is_freelancer)
                                 @foreach ($services as $service)
                                     <div class="d-flex mb-1 border-bottom border-secondary pb-1"
                                         style="justify-content: space-between;">
@@ -103,7 +100,7 @@
                     <div class="card bg-light text-dark rounded text-center">
                         <div class="card-body">
                             {{-- if user is freelancer --}}
-                            @if (count($tmp) > 0)
+                            @if (Auth::user()->is_freelancer)
                                 <a class="btn btn-primary" href="{{ route('become_freelancer') }}"> Add new service
                                 </a>
                             @else
@@ -119,27 +116,24 @@
                         <div class="card-body">
                             <h5 class="card-title"> My Projects </h5>
 
-                            {{-- if user is freelancer --}}
-                            @if (count($tmp) > 0)
-                                @foreach ($services as $service)
-                                    <div class="d-flex mb-1 border-bottom border-secondary pb-1"
-                                        style="justify-content: space-between;">
-                                        {{-- here is the title of the service --}}
-                                        <span class="mt-1">{{ $service->title }}</span>
-                                        <span> <a class="btn btn-info p-1"
-                                                href="{{ route('edit_service', $service->id) }}">Edit</a> </span>
-
-                                    </div>
-                                @endforeach
-                                {{-- if not --}}
-                            @else
+                            {{-- if user has projects --}}
+                            @forelse(Auth::user()->projects as $project)
+                                <div class="d-flex mb-1 border-bottom border-secondary pb-1"
+                                    style="justify-content: space-between;">
+                                    {{-- here is the title of the service --}}
+                                    <span class="mt-1">{{ $project->title }}</span>
+                                    <span> <a class="btn btn-info p-1"
+                                            href="{{ route('edit_service',5) }}">Edit</a> </span>
+                                </div>
+                            @empty
                                 <div class="text-center fw-bold h5 text-dark">No Projects Yet</div>
-                            @endif
+                            @endforelse
+
                         </div>
                     </div>
                     <div class="card bg-light text-dark rounded text-center">
                         <div class="card-body">
-                            <a class="btn btn-primary" href="{{ route('become_freelancer') }}"> Add new Project
+                            <a class="btn btn-primary" href="{{ route('create_project') }}"> Add new Project
                             </a>
 
                         </div>
@@ -149,8 +143,8 @@
                         <div class="card-body">
                             <h5 class="card-title"> My Skills </h5>
 
-                            {{-- if user is freelancer --}}
-                            @if (count($tmp) > 0)
+                            {{-- if user has skills --}}
+                            @if (Auth::user()->is_freelancer)
                                 @foreach ($services as $service)
                                     <div class="d-flex mb-1 border-bottom border-secondary pb-1"
                                         style="justify-content: space-between;">

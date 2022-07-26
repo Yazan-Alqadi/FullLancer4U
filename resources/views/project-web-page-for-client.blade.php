@@ -76,7 +76,7 @@
                                 <div style="display: inline-grid;">
                                     <span class="card-title">
                                         <a href="#" class="navbar-brand text-dark">
-                                            {{ $project->client->user->full_name }}
+                                            {{ $project->user->full_name }}
                                         </a>
                                     </span>
                                 </div>
@@ -85,8 +85,8 @@
                     </div>
                     <div class="card bg-light text-start text-dark rounded">
                         <div class="card-body text-center">
-                            <a href="#
-                        {{-- {{ route('contact_me', $project->freelancer->user->id) }} --}}
+                            <a href="
+                        {{ route('contact_me', $project->user->id) }}
                         "
                                 type="button" class="btn btn-info">Contact</a>
                         </div>
@@ -171,7 +171,7 @@
                                                                         <span
                                                                             class="for-size span-number-1">Client:</span>
                                                                         <span class="for-size span-number-2">
-                                                                            {{ $project->client->user->full_name }}
+                                                                            {{ $project->user->full_name }}
 
                                                                         </span>
                                                                     </div>

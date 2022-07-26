@@ -17,10 +17,10 @@ class CreateFreelancersTable extends Migration
         Schema::create('freelancers', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('rate');
-            $table->integer('number_of_professions')->default('0');
-            $table->integer('number_of_projects')->default('0');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('rate')->default(0);
+            $table->integer('number_of_professions')->default(0);
+            $table->integer('number_of_projects')->default(0);
             $table->timestamps();
         });
     }

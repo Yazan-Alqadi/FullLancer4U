@@ -80,7 +80,7 @@
                                             <div class="row justify-content-center">
                                                 <span class="for-size span-number-1">Client:</span>
                                                 <span class="for-size span-number-2">
-                                                    {{ $project->client->user->full_name }}
+                                                    {{ $project->user->full_name }}
 
                                                 </span>
                                             </div>

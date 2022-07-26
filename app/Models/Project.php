@@ -10,6 +10,9 @@ class Project extends Model
     use HasFactory;
 
 
+    protected $guarded = [];
+
+
 
     protected $casts =[
         'deadline' => 'date'
@@ -24,9 +27,9 @@ class Project extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function client()
+    public function user()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(User::class);
     }
 
 }

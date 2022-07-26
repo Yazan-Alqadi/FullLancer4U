@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewMessage;
 use App\Models\Project;
 use App\Models\Category;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -18,7 +20,7 @@ class ProjectController extends Controller
     {
         //
         $projects = Project::paginate(6);
-        return view('project_page',['projects'=>$projects]);
+        return view('project_page', ['projects' => $projects]);
     }
 
     /**
@@ -29,8 +31,7 @@ class ProjectController extends Controller
     public function create()
     {
         //
-                $categories = Category::all();
-
+        $categories = Category::all();
         return view('add_new_project', compact('categories'));
     }
 
@@ -42,7 +43,24 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate( [
+            'title' => 'required',
+            'price' => 'required|integer',
+            'description' => 'required|min:5',
+            'category'=>'required|not_in:0,something else',
+            'deadline'=>'required|date',
+        ]);
+        $inputs = $request->all();
+        Project::create([
+            'title'=>$inputs['title'],
+            'price'=>$inputs['price'],
+            'description'=>$inputs['description'],
+            'deadline'=>$inputs['deadline'],
+            'category_id'=>$inputs['category'],
+            'user_id'=>Auth::id(),
+        ]);
+        session()->flash('message', 'Your project has been submited and will be reviewed by admin');
+        return back();
     }
 
     /**
@@ -55,10 +73,9 @@ class ProjectController extends Controller
     {
         //
         $project = Project::find($id);
+        $projects = Project::where('category_id', $project->category_id)->where('id'!=$id);
 
-        $projects = Project::all()->where('category_id', $project->category_id);
-
-        return view('project-web-page-for-client',compact('project','projects'));
+        return view('project-web-page-for-client', compact('project', 'projects'));
     }
 
     /**
@@ -92,6 +109,22 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::find($id);
+        $this->authorize('delete',$project);
+        $project->delete();
+        return back();
     }
+
+    public function apply($id)
+    {
+
+        $project = Project::find($id);
+        session()->flash('message', 'Your apply have been sent to client');
+        $message = 'Your project ' . $project->title . 'have been applyed by freelancer' . Auth::user()->full_name;
+        event(new NewMessage($project->user->id,Auth::user()->full_name,$project));
+        return back();
+
+    }
+
+
 }

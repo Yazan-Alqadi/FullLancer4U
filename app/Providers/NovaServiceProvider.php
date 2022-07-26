@@ -32,6 +32,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 'email' => $email,
                 'password' => Hash::make($password),            // My custom fields
                 'email_verified_at' => now(),
+                'is_admin'=>true
             ])->save();
         });
     }

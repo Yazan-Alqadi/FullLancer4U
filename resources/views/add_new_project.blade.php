@@ -75,7 +75,7 @@
                     d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
             </svg>
         </div>
-        <form method="POST" action="{{ route('profession_store') }}">
+        <form method="POST" action="{{ route('project_store') }}">
             @csrf
             <div class="container mt-4">
                 <div class="input-group mb-3">
@@ -102,10 +102,10 @@
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Deadline</span>
-                    <div class="input-append date" id="dp3" data-date="12-02-2012"
-                        data-date-format="dd-mm-yyyy">
-                        <input class="form-control" type="date" min="<?php echo date("Y-m-d"); ?>" aria-label="Sizing example input"
-                        placeholder="Price start at" aria-describedby="inputGroup-sizing-default">
+                    <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                        <input value="save" name="deadline" class="form-control" type="date" min="<?php echo date('Y-m-d'); ?>"
+                            aria-label="Sizing example input" placeholder="Price start at"
+                            aria-describedby="inputGroup-sizing-default">
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
                 </div>

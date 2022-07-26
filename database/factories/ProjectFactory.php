@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProjectFactory extends Factory
@@ -22,7 +23,7 @@ class ProjectFactory extends Factory
             'description' =>$this->faker->text,
             'deadline'=>$this->faker->date(),
             'category_id'=>Category::factory(),
-            'client_id'=>Client::factory(),
+            'user_id'=>User::factory(),
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Freelancer;
 use App\Models\Profession;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -50,10 +51,12 @@ class ProfessionController extends Controller
         ]);
         $inputs = $request->all();
 
-        $freelancer = DB::table('freelancers')->where('user_id',Auth::id())->first();
 
-        if ($freelancer==null)
+        if (!Auth::user()->is_freelancer)
         {
+            $user = User::find(Auth::id());
+            $user->is_freelancer = true;
+            $user->save();
             $freelancer = Freelancer::create([
                 'user_id'=>Auth::id(),
             ]);
@@ -67,7 +70,6 @@ class ProfessionController extends Controller
             'freelancer_id'=>$freelancer->id,
         ]);
         session()->flash('message', 'Your service has been submited and will be reviewed by admin');
-
         return back();
 
     }
@@ -82,8 +84,6 @@ class ProfessionController extends Controller
     {
         //
         $profession =  Profession::find($id);
-
-
         $professions = Profession::all()->where('category_id', $profession->category_id);
         return view('profile_freelancer_for_client', ['professions' => $professions,'profession'=> $profession]);
     }

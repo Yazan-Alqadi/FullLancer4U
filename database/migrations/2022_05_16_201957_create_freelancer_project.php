@@ -19,6 +19,7 @@ class CreateFreelancerProject extends Migration
             $table->foreign('freelancer_id')->references('id')->on('freelancers')->onDelete('cascade');
             $table->bigInteger('project_id')->unsigned()->index();
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->string('status')->default('new');
             $table->timestamps();
         });
     }

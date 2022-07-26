@@ -25,6 +25,7 @@ class User extends Authenticatable
         'google_id',
         'phone',
         'address',
+        'is_freelancer',
     ];
     protected $guarded=[];
 
@@ -50,8 +51,9 @@ class User extends Authenticatable
 public function freelancer(){
     return $this->hasOne(Freelancer::class);
 }
-public function client(){
-    return $this->hasOne(Client::class);
+
+public function projects(){
+    return $this->hasMany(Project::class);
 }
 
 public function sent(){

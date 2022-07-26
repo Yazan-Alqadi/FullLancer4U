@@ -39,11 +39,9 @@
                 </li>
                 {{-- Bacome freelancer --}}
 
-                @php
-                    $tmp = \App\Models\Freelancer::all()->where('user_id', Auth::id());
-                @endphp
 
-                @if (count($tmp) < 1)
+
+                @if (!Auth::user()->is_freelancer)
                     <li> <a href="{{ route('become_freelancer') }}"
                             class="nav-link in-hover-t text-warning fw-bold">Become Freelancer</a>
                     </li>
@@ -82,7 +80,7 @@
                                 Profile
                             </a>
                         </li>
-                        @if (count($tmp) > 0)
+                        @if (Auth::user()->is_freelancer)
                             <li><a class="dropdown-item" href="{{ route('become_freelancer') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">

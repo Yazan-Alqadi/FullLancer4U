@@ -32,16 +32,20 @@ use Illuminate\Support\Facades\Cache;
 */
 
 Route::get('opp', function () {
-    event(new App\Events\NewMessage(1,'Someone','fdfvf'));
+    event(new App\Events\NewMessage(1, 'Someone', 'fdfvf'));
     return "Event has been sent!";
 });
 
 Route::get('/', function () {
 
-    $freelancers = cache()->remember('free',60+60+24,function(){ return Freelancer::all();}); // DB::select('CALL topFreelancer()');
-    $professions = cache()->remember('prof',60+60+24,function(){ return Profession::all();});
-    $projects = cache()->remember('proj',60+60+24,function(){ return Project::all();});
-    return view('auth.main_page', ['freelancers' => $freelancers, 'professions' => $professions, 'projects' => $projects]);
+     // DB::select('CALL topFreelancer()');
+    $professions = cache()->remember('prof', 60 + 60 + 24, function () {
+        return Profession::all();
+    });
+    $projects = cache()->remember('proj', 60 + 60 + 24, function () {
+        return Project::all();
+    });
+    return view('auth.main_page', ['professions' => $professions, 'projects' => $projects]);
 })->name('home');
 
 Route::get('logout', [authController::class, 'logout'])->name('logout');
@@ -71,40 +75,39 @@ Route::middleware(['auth'])->group(function () {
     })->name('become_freelancer');
     Route::post('profession/store', [ProfessionController::class, 'store'])->name('profession_store');
     Route::get('user', function () {
-        $freelancer = DB::table('freelancers')->where('user_id',Auth::id())->first();
-        $services=null;
-        if ($freelancer!=null)
-             $services = DB::table('professions')->where('freelancer_id',$freelancer->id)->get();
+        $freelancer = DB::table('freelancers')->where('user_id', Auth::id())->first();
+        $services = null;
+        if ($freelancer != null)
+            $services = DB::table('professions')->where('freelancer_id', $freelancer->id)->get();
 
 
-        return view('auth.profile_page',['services'=>$services]);
+        return view('auth.profile_page', ['services' => $services]);
     })->name('profile');
     Route::get('user/update/{id}', [UserController::class, 'update'])->name('user.update');
-    Route::get('contact', function(){
+    Route::get('contact', function () {
 
-        $messages = Message::where(['sender_id'=>Auth::id()] )->orWhere(['receiver_id'=>Auth::id()])->orderByDesc('created_at')->get();
+        $messages = Message::where(['sender_id' => Auth::id()])->orWhere(['receiver_id' => Auth::id()])->orderByDesc('created_at')->get();
         //dd($messages);
-        return view('contact_page',compact('messages'));
+        return view('contact_page', compact('messages'));
     })->name('contact');
-    Route::get('contact-me/{id}', function($id){
-        $user = User::where('id',$id)->first();
-        return view('contact_me',compact('user'));
+    Route::get('contact-me/{id}', function ($id) {
+        $user = User::where('id', $id)->first();
+        return view('contact_me', compact('user'));
     })->name('contact_me');
 
 
-    Route::get('service/edit/{id}',[ProfessionController::class,'edit'])->name('edit_service');
-    Route::get('service/update/{id}',[ProfessionController::class,'update'])->name('update_service');
+    Route::get('service/edit/{id}', [ProfessionController::class, 'edit'])->name('edit_service');
+    Route::get('service/update/{id}', [ProfessionController::class, 'update'])->name('update_service');
 
-    Route::post('contact-me/{id}',[MessageController::class,'send'])->name('send_message');
+    Route::post('contact-me/{id}', [MessageController::class, 'send'])->name('send_message');
 
-    Route::get('mynotification',[NotificationController::class,'index'])->name('my_notification');
+    Route::get('mynotification', [NotificationController::class, 'index'])->name('my_notification');
 
-    Route::get('project/{id}',[ProjectController::class,'show'])->name('get_project');
+    Route::get('project/{id}', [ProjectController::class, 'show'])->name('get_project');
 
 
-        Route::get('projects/create', [ProjectController::class, 'create'])->name('create_project');
+    Route::get('projects/create', [ProjectController::class, 'create'])->name('create_project');
+    Route::post('project/store', [ProjectController::class, 'store'])->name('project_store');
+    Route::get('project/delete/{id}', [ProjectController::class, 'destroy'])->name('project_delete');
 
 });
-
-
-

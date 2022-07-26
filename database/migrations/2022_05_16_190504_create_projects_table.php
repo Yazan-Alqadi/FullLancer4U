@@ -19,8 +19,8 @@ class CreateProjectsTable extends Migration
             $table->double('price')->index();
             $table->text('description')->nullable();
             $table->date('deadline')->index();
-            $table->bigInteger('client_id')->unsigned()->index();
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('category_id')->unsigned()->index();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('status')->default('pinned');
