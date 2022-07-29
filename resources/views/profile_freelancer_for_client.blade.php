@@ -155,9 +155,57 @@
                     </div>
                     <div class="card bg-light text-start text-dark rounded">
                         <div class="card-body text-center">
-                            <a href="{{ route('contact_me',$profession->freelancer->user->id) }}" type="button" class="btn btn-info">Contact</a>
+                            <a href="{{ route('contact_me', $profession->freelancer->user->id) }}" type="button"
+                                class="btn btn-info">Contact</a>
                         </div>
                     </div>
+                    <div class="card bg-light text-start text-dark rounded">
+                        <div class="h4 bold mx-4 mt-4">Rate</div>
+
+
+                        <div class="card-body text-center">
+                            <button class="btn btn-info" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Rate me</button>
+
+                        </div>
+                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
+                            aria-labelledby="offcanvasBottomLabel">
+                            <div class="offcanvas-header">
+                                <div class="offcanvas-title" id="offcanvasBottomLabel">Rate</div>
+
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body small">
+                                <div>
+                                    <section>
+                                        <div class="row justify-content-between algin-iteam">
+                                            <div class="col-lg-2 col-md-4 mb-3">
+                                                <button type="button" class="btn btn-danger">one star</button>
+                                            </div>
+                                            <div class="col-lg-2 col-md-4 mb-3">
+                                                <button type="button" class="btn btn-danger">tow star</button>
+                                            </div>
+                                            <div class="col-lg-2 col-md-4 mb-3">
+                                                <button type="button" class="btn btn-warning">three star</button>
+                                            </div>
+                                            <div class="col-lg-2 col-md-4 mb-3">
+                                                <button type="button" class="btn btn-success">four star</button>
+                                            </div>
+                                            <div class="col-lg-2 col-md-4 mb-3">
+                                                <button type="button" class="btn btn-success">five star</button>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="card-body text-center">
+                            <button href="{{ route('contact_me', $profession->freelancer->user->id) }}" type="submit"
+                                class="btn btn-info">Rate</button>
+                        </div> --}}
+                    </div>
+
                 </div>
                 <div class="col-lg-8 col-md-8">
                     <div class="card bg-light text-dark rounded">
