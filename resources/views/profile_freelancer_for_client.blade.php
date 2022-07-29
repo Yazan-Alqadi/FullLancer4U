@@ -7,13 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap"
         rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link href="../css/fl.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- CSS only -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -179,7 +188,71 @@
                             <div class="offcanvas-body small">
                                 <div>
                                     <section>
-                                        <div class="row justify-content-between algin-iteam">
+                                        <div class="container d-flex justify-content-center">
+
+
+                                            <div class="row">
+
+                                                <div class="col-md-12">
+
+                                                    <div class="stars">
+
+                                                        <form action="">
+
+
+                                                            <div>
+                                                                <input class="star star-5" id="star-5"
+                                                                    type="radio" name="star" />
+
+                                                                <label class="star star-5" for="star-5"></label>
+
+                                                                <input class="star star-4" id="star-4"
+                                                                    type="radio" name="star" />
+
+                                                                <label class="star star-4" for="star-4"></label>
+
+                                                                <input class="star star-3" id="star-3"
+                                                                    type="radio" name="star" />
+
+                                                                <label class="star star-3" for="star-3"></label>
+
+                                                                <input class="star star-2" id="star-2"
+                                                                    type="radio" name="star" />
+
+                                                                <label class="star star-2" for="star-2"></label>
+
+                                                                <input class="star star-1" id="star-1"
+                                                                    type="radio" name="star" />
+
+                                                                <label class="star star-1" for="star-1"></label>
+
+                                                            </div>
+                                                            <div class="d-grid gap-2 col-8 mx-auto">
+                                                                <button class="btn btn-primary" type="submit">
+                                                                    submit Rate
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        width="16" height="16"
+                                                                        fill="currentColor"
+                                                                        class="bi bi-hand-index-thumb-fill"
+                                                                        viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="M8.5 1.75v2.716l.047-.002c.312-.012.742-.016 1.051.046.28.056.543.18.738.288.273.152.456.385.56.642l.132-.012c.312-.024.794-.038 1.158.108.37.148.689.487.88.716.075.09.141.175.195.248h.582a2 2 0 0 1 1.99 2.199l-.272 2.715a3.5 3.5 0 0 1-.444 1.389l-1.395 2.441A1.5 1.5 0 0 1 12.42 16H6.118a1.5 1.5 0 0 1-1.342-.83l-1.215-2.43L1.07 8.589a1.517 1.517 0 0 1 2.373-1.852L5 8.293V1.75a1.75 1.75 0 0 1 3.5 0z" />
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+
+
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                        {{-- <div class="row justify-content-between algin-iteam">
                                             <div class="col-lg-2 col-md-4 mb-3">
                                                 <button type="button" class="btn btn-danger">one star</button>
                                             </div>
@@ -195,7 +268,7 @@
                                             <div class="col-lg-2 col-md-4 mb-3">
                                                 <button type="button" class="btn btn-success">five star</button>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </section>
                                 </div>
                             </div>
@@ -242,7 +315,7 @@
                                     <div class="row text-center">
                                         @foreach ($professions as $profession)
                                             <div class="col-md-6 col-lg-6 mb-2">
-                                                <div class="card text-light" style="background-color: #001b24;">
+                                                <div class="card text-light" style="background-color: #001b24; height: 100%;">
                                                     <!-- <div class="container">
 
                                                              <-- add image or icon here ----------
@@ -258,7 +331,7 @@
                                                                     </span>
                                                                 </div>
                                                             </div> -->
-                                                    <div class="card-body text-center">
+                                                    <div class="card-body text-center" style="display: flex !important;align-items: center;justify-content: center;">
 
                                                         <!-- descreption of the profession -->
 
