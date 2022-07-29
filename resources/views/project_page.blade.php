@@ -30,7 +30,43 @@
     @include('layouts.nav-bar')
 
 
+    <div class="bg-secondary pb-3 mggg">
+        <div class="h3 ms-3 pt-2 text-light"> Filters </div>
 
+        <form class="pt-3" role="search">
+            <div class="row justify-content-between">
+                <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Filter category</option>
+                        <option value="1">IT & Development</option>
+                        <option value="2">Design & Creative</option>
+                        <option value="3">Writing & Translation</option>
+                        <option value="4">Engineering & Architecture</option>
+                        <option value="5">Sales & Marketing</option>
+                        <option value="6">Self employees </option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
+                    <input type="text" class="form-control" id="inputTitle" placeholder="Tilte">
+                </div>
+                <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
+                    <input type="text" class="form-control" id="inputName" placeholder="Client name">
+                </div>
+                <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
+                    <input type="text" class="form-control" id="inputPrice" placeholder="Price">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-info">Search <svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg></button>
+            </div>
+
+        </form>
+    </div>
 
 
     <!-- card is here -->
@@ -129,63 +165,6 @@
         </div>
 
     </section>
-
-    <div class="bg-secondary pb-3">
-        <div class="h3 mgg ms-3 pt-3"> Filters </div>
-
-        <form class="pt-3" role="search">
-
-            <div class="row justify-content-between ms-5">
-                <div class="col-4 me-5">
-                    Filter category
-                </div>
-                <div class="col-4 me-5">
-                    <label for="inputTitle" class="col-form-label">Filter on Tilte</label>
-                </div>
-            </div>
-            <div class="row justify-content-between ms-5">
-                <div class="col-4">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Filter category</option>
-                        <option value="1">IT & Development</option>
-                        <option value="2">Design & Creative</option>
-                        <option value="3">Writing & Translation</option>
-                        <option value="4">Engineering & Architecture</option>
-                        <option value="5">Sales & Marketing</option>
-                        <option value="6">Self employees </option>
-                    </select>
-                </div>
-                <div class="col-4 me-5">
-                    <input type="text" class="form-control" id="inputTitle">
-                </div>
-            </div>
-            <div class="row justify-content-between ms-5 mt-3">
-                <div class="col-4 me-5">
-                    <label for="inputName" class="col-form-label">Filter on client name</label>
-                </div>
-                <div class="col-4 me-5">
-                    <label for="inputPrice" class="col-form-label">Filter on Price</label>
-                </div>
-            </div>
-            <div class="row justify-content-between ms-5">
-                <div class="col-4">
-                    <input type="text" class="form-control" id="inputName">
-                </div>
-                <div class="col-4 me-5">
-                    <input type="text" class="form-control" id="inputPrice">
-                </div>
-            </div>
-
-            <div class="text-center">
-                <button type="submit" class="btn btn-info">Search <svg xmlns="http://www.w3.org/2000/svg"
-                        width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                    </svg></button>
-            </div>
-
-        </form>
-    </div>
 
 
     <!-- JavaScript Bundle with Popper -->
