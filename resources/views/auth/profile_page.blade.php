@@ -169,6 +169,71 @@
                         </div>
                     </div>
 
+                    <br>
+                    <div class="card bg-light text-dark rounded">
+                        <div class="card-body">
+                            <h5 class="card-title"> My Rate </h5>
+
+                            {{-- if user has skills --}}
+                            @if (Auth::user()->is_freelancer)
+                                <div class="row justify-content-center">
+                                                <div style="white-space: nowrap;">
+                                                    Rating:
+                                                    @if ($freelancer->rate > 0)
+                                                        <span class="fa fa-star checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star one --}}
+                                                    @else
+                                                        <span class="fa fa-star not-checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star one --}}
+                                                    @endif
+                                                    @if ($freelancer->rate > 1)
+                                                        <span class="fa fa-star checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star two --}}
+                                                    @else
+                                                        <span class="fa fa-star not-checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star two --}}
+                                                    @endif
+                                                    @if ($freelancer->rate > 2)
+                                                        <span class="fa fa-star checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star three --}}
+                                                    @else
+                                                        <span class="fa fa-star not-checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star three --}}
+                                                    @endif
+                                                    @if ($freelancer->rate > 3)
+                                                        <span class="fa fa-star checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star four --}}
+                                                    @else
+                                                        <span class="fa fa-star not-checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star four --}}
+                                                    @endif
+                                                    @if ($freelancer->rate > 4)
+                                                        <span class="fa fa-star checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star five --}}
+                                                    @else
+                                                        <span class="fa fa-star not-checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star five --}}
+                                                    @endif
+
+                                                </div>
+                                            </div>
+                                {{-- if not --}}
+                            @else
+                                <div class="text-center fw-bold h5 text-dark">You are not freelancer yet</div>
+                            @endif
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="col-lg-8 col-md-8">
