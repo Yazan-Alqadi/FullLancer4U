@@ -41,7 +41,7 @@
 
 
 
-                @if (!Auth::user()->is_freelancer)
+                @if (Auth::check() && !Auth::user()->is_freelancer)
                     <li> <a href="{{ route('become_freelancer') }}"
                             class="nav-link in-hover-t text-warning fw-bold">Become Freelancer</a>
                     </li>
@@ -80,7 +80,7 @@
                                 Profile
                             </a>
                         </li>
-                        @if (Auth::user()->is_freelancer)
+                        @if (Auth::check() && Auth::user()->is_freelancer)
                             <li><a class="dropdown-item" href="{{ route('become_freelancer') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">

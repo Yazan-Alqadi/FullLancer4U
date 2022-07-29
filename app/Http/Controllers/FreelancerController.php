@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Freelancer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Category;
 
 class FreelancerController extends Controller
 {
@@ -31,7 +32,8 @@ class FreelancerController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('become_freelancer', compact('categories'));
     }
 
     /**

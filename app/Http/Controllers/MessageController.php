@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Events\NewMessage;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class MessageController extends Controller
 {
@@ -37,8 +37,22 @@ class MessageController extends Controller
         session()->flash('message', 'Message have been sent');
         event(new NewMessage($id,Auth::user()->full_name,$message));
 
-
-
         return back();
     }
+
+    public function getContact(){
+
+        $messages = Message::where(['sender_id' => Auth::id()])->orWhere(['receiver_id' => Auth::id()])->orderByDesc('created_at')->get();
+        return view('contact_page', compact('messages'));
+    }
+
+    public function contactMe($id){
+
+        $user = User::where('id', $id)->first();
+        return view('contact_me', compact('user'));
+
+    }
+
+
+
 }
