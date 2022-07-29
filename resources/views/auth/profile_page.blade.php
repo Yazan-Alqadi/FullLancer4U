@@ -154,8 +154,7 @@
                                         style="justify-content: space-between;">
                                         {{-- here is the title of the service --}}
                                         <span class="mt-1">{{ $service->title }}</span>
-                                        <span> <a class="btn btn-info p-1"
-                                                href="{{ route('edit_service', $service->id) }}">Edit</a> </span>
+                                        <span> <button class="btn btn-info p-1">Delete</button> </span>
 
                                     </div>
                                 @endforeach
