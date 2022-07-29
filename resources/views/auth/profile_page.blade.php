@@ -179,7 +179,7 @@
                                 <div class="row justify-content-center">
                                                 <div style="white-space: nowrap;">
                                                     Rating:
-                                                    @if ($freelancer->rate > 0)
+                                                    @if (Auth::user()->freelancer->rate> 0)
                                                         <span class="fa fa-star checked"
                                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                                         {{-- star one --}}
@@ -188,7 +188,7 @@
                                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                                         {{-- star one --}}
                                                     @endif
-                                                    @if ($freelancer->rate > 1)
+                                                    @if (Auth::user()->freelancer->rate > 1)
                                                         <span class="fa fa-star checked"
                                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                                         {{-- star two --}}
@@ -197,7 +197,7 @@
                                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                                         {{-- star two --}}
                                                     @endif
-                                                    @if ($freelancer->rate > 2)
+                                                    @if (Auth::user()->freelancer->rate > 2)
                                                         <span class="fa fa-star checked"
                                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                                         {{-- star three --}}
@@ -206,7 +206,7 @@
                                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                                         {{-- star three --}}
                                                     @endif
-                                                    @if ($freelancer->rate > 3)
+                                                    @if (Auth::user()->freelancer->rate > 3)
                                                         <span class="fa fa-star checked"
                                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                                         {{-- star four --}}
@@ -215,7 +215,7 @@
                                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                                         {{-- star four --}}
                                                     @endif
-                                                    @if ($freelancer->rate > 4)
+                                                    @if (Auth::user()->freelancer->rate > 4)
                                                         <span class="fa fa-star checked"
                                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                                         {{-- star five --}}
