@@ -37,16 +37,18 @@ Route::get('opp', function () {
     return "Event has been sent!";
 });
 
+Route::middleware(['guest'])->group(function () {
+    Route::get('login', [LoginController::class, 'index'])->name('login');
+    Route::get('register', [RegisterController::class, 'index'])->name('register.show');
+    Route::post('register', [RegisterController::class, 'store'])->name('register.store');
+    Route::post('login', [LoginController::class, 'store'])->name('login.store');
+});
+
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::get('logout', [authController::class, 'logout'])->name('logout');
-Route::get('login', [LoginController::class, 'index'])->name('login');
-Route::get('register', [RegisterController::class, 'index'])->name('register.show');
-Route::post('register', [RegisterController::class, 'store'])->name('register.store');
-
-Route::post('login', [LoginController::class, 'store'])->name('login.store');
 Route::get('users', [UserController::class, 'index']);
-
 Route::get('freelancers', [FreelancerController::class, 'index'])->name('freelancers.index');
 Route::get('professions', [ProfessionController::class, 'index'])->name('professions.index');
 Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
