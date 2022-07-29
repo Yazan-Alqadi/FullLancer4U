@@ -12,6 +12,7 @@
         "barryvdh/laravel-debugbar": "^3.7",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^8.75",
         "laravel/nova": "*",
         "laravel/sanctum": "^2.15",

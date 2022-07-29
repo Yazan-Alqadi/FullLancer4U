@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Profession;
+use App\Models\Freelancer;
+use App\Models\Project;
 
-class UserController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-        $users = User::all();
-
-        return response()->json(['users', $users]);
+        // DB::select('CALL topFreelancer()');
+        $professions = cache()->remember('prof', 60 + 60 + 24, function () {
+            return Profession::all();
+        });
+        $projects = cache()->remember('proj', 60 + 60 + 24, function () {
+            return Project::all();
+        });
+        return view('auth.main_page',compact('professions','projects'));
     }
 
     /**
@@ -49,14 +53,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
         //
-        $freelancer = DB::table('freelancers')->where('user_id', Auth::id())->first();
-        $services = null;
-        if ($freelancer != null)
-            $services = DB::table('professions')->where('freelancer_id', $freelancer->id)->get();
-        return view('auth.profile_page', compact('services'));
     }
 
     /**
@@ -79,28 +78,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        $request->validate([
-            'full_name' => 'required',
-            'user_name' => 'required|unique:users,user_name,' . $user->id,
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'required|min:8|confirmed',
-        ]);
-
-        $inputs = $request->all();
-        // if(request('avatar')){
-
-        //  $inputs['avatar'] = request('avatar')->store('images');
-        // }
-
-        $inputs['password'] = bcrypt($inputs['password']);
-
-
-        $user->update($inputs);
-        $user->save();
-        session()->flash('message', 'Your Profile has been updated');
-
-        return back();
+        //
     }
 
     /**
@@ -109,11 +87,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($user)
+    public function destroy($id)
     {
         //
-        $user->delete();
-
-        return response()->json(['message' => 'success']);
     }
 }

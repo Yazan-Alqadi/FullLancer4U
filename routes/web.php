@@ -3,6 +3,7 @@
 use App\Http\Controllers\authController;
 use App\Http\Controllers\FreelancerController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NotificationController;
@@ -36,17 +37,7 @@ Route::get('opp', function () {
     return "Event has been sent!";
 });
 
-Route::get('/', function () {
-
-     // DB::select('CALL topFreelancer()');
-    $professions = cache()->remember('prof', 60 + 60 + 24, function () {
-        return Profession::all();
-    });
-    $projects = cache()->remember('proj', 60 + 60 + 24, function () {
-        return Project::all();
-    });
-    return view('auth.main_page', ['professions' => $professions, 'projects' => $projects]);
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('logout', [authController::class, 'logout'])->name('logout');
 Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -69,31 +60,14 @@ Route::get('professions/{id}', [ProfessionController::class, 'show'])->name('mor
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('freelancer/sign', function () {
-        $categories = Category::all();
-        return view('become_freelancer', ['categories' => $categories]);
-    })->name('become_freelancer');
+
+
+    Route::get('freelancer/sign', [FreelancerController::class, 'create'])->name('become_freelancer');
     Route::post('profession/store', [ProfessionController::class, 'store'])->name('profession_store');
-    Route::get('user', function () {
-        $freelancer = DB::table('freelancers')->where('user_id', Auth::id())->first();
-        $services = null;
-        if ($freelancer != null)
-            $services = DB::table('professions')->where('freelancer_id', $freelancer->id)->get();
-
-
-        return view('auth.profile_page', ['services' => $services]);
-    })->name('profile');
+    Route::get('user', [UserController::class, 'show'])->name('profile');
     Route::get('user/update/{id}', [UserController::class, 'update'])->name('user.update');
-    Route::get('contact', function () {
-
-        $messages = Message::where(['sender_id' => Auth::id()])->orWhere(['receiver_id' => Auth::id()])->orderByDesc('created_at')->get();
-        //dd($messages);
-        return view('contact_page', compact('messages'));
-    })->name('contact');
-    Route::get('contact-me/{id}', function ($id) {
-        $user = User::where('id', $id)->first();
-        return view('contact_me', compact('user'));
-    })->name('contact_me');
+    Route::get('contact', [MessageController::class, 'getContact'])->name('contact');
+    Route::get('contact-me/{id}', [MessageController::class, 'contactMe'])->name('contact_me');
 
 
     Route::get('service/edit/{id}', [ProfessionController::class, 'edit'])->name('edit_service');
@@ -109,5 +83,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('projects/create', [ProjectController::class, 'create'])->name('create_project');
     Route::post('project/store', [ProjectController::class, 'store'])->name('project_store');
     Route::get('project/delete/{id}', [ProjectController::class, 'destroy'])->name('project_delete');
-
 });

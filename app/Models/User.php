@@ -48,6 +48,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    
+
 public function freelancer(){
     return $this->hasOne(Freelancer::class);
 }
