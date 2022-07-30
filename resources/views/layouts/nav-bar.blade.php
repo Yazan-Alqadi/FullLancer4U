@@ -109,6 +109,26 @@
                                 My Contacts
                             </a>
                         </li>
+                        @if (Auth::check() && Auth::user()->is_freelancer)
+                            <li><a class="dropdown-item" href="{{ route('contact') }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0Zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708ZM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11Z" />
+                                    </svg>
+                                    My Works
+                                </a>
+                            </li>
+                        @endif
+                        <li><a class="dropdown-item" href="{{ route('contact') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
+                                </svg>
+                                My Purchases
+                            </a>
+                        </li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
@@ -156,23 +176,27 @@
                                 <div style="overflow: hidden;max-height: 320px;overflow: auto;">
                                     <ul class="disd" style="display: contents;">
                                         @php
-                                            $notification=\App\Models\Notification::latest()->where('user_id',Auth::id())->take(5)->get();
+                                            $notification = \App\Models\Notification::latest()
+                                                ->where('user_id', Auth::id())
+                                                ->take(5)
+                                                ->get();
                                         @endphp
                                         @foreach ($notification as $otif)
                                             <li>
                                                 <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">
-                                                    <a class="text-decoration-none"  href="{{ route('my_notification') }}">
+                                                    <a class="text-decoration-none"
+                                                        href="{{ route('my_notification') }}">
                                                         {{-- message from who ? --}}
-                                                    <div class="d-flex"
-                                                        style="justify-content: space-between; align-items: center;">
-                                                        <span class="text-danger" style="font-size: 15px">
-                                                            {{ $otif->title }} </span>
-                                                        <span
-                                                            class="rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($otif->created_at)->diffForHumans() }}</span>
-                                                    </div>
-                                                    <div class="text-dark" style="word-break: break-word;">
-                                                        {{ $otif->content }}
-                                                    </div>
+                                                        <div class="d-flex"
+                                                            style="justify-content: space-between; align-items: center;">
+                                                            <span class="text-danger" style="font-size: 15px">
+                                                                {{ $otif->title }} </span>
+                                                            <span
+                                                                class="rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($otif->created_at)->diffForHumans() }}</span>
+                                                        </div>
+                                                        <div class="text-dark" style="word-break: break-word;">
+                                                            {{ $otif->content }}
+                                                        </div>
                                                     </a>
                                                 </div>
                                             </li>
