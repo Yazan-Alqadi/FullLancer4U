@@ -89,4 +89,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('apply/{id}',[ProfessionController::class,'buyService'])->name('buy_service');
 
     Route::view('chat', 'chat_messages');
+    Route::view('profile/{id}', 'profile_user');
 });
