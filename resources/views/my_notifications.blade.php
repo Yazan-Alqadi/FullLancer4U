@@ -60,6 +60,12 @@
                         <div class="h6 border-bottom border-secondary pb-3"
                             style="word-break: break-word; --bs-border-opacity: .5;">
                             {{ $notification->content }} </div>
+
+                        {{-- if reject the applay --}}
+                        <div class="h5 text-info">You reject the applay</div>
+                        {{-- if accept the applay --}}
+                        <div class="h5 text-info">You accept the applay</div>
+
                         <div class="text-start">
                             Do you want to Accept this Apply ?
                         </div>
