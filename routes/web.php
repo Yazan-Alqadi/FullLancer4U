@@ -87,4 +87,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('project/delete/{id}', [ProjectController::class, 'destroy'])->name('project_delete');
 
     Route::view('chat', 'chat_messages');
+    Route::view('profile/{id}', 'profile_user');
 });
