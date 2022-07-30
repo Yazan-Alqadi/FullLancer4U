@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Events\NewMessage;
+use App\Models\Notification;
 
 class ProfessionController extends Controller
 {
@@ -137,4 +139,27 @@ class ProfessionController extends Controller
     {
         //
     }
+
+    public function buyService($id){
+
+        $service = Profession::findOrFail($id);
+
+        $user_id=$service->freelancer->user->id;
+
+
+        Notification::create([
+            'title'=>'Message from '. Auth::user()->full_name,
+            'content'=>'New Apply for your Service '. $service->title,
+            'user_id'=>$user_id,
+            're_id'=>$service->id,
+        ]);
+
+        event(new NewMessage($user_id,Auth::user()->full_name,'New Apply for your Service'));
+        session()->flash('message', 'You Apply for this service has been sent to client');
+        return back();
+
+
+    }
+
+
 }

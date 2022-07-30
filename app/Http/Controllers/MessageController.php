@@ -43,7 +43,7 @@ class MessageController extends Controller
     public function getContact(){
 
         $messages = Message::where(['sender_id' => Auth::id()])->orWhere(['receiver_id' => Auth::id()])->orderByDesc('created_at')->get();
-        return view('contact_page', compact('messages'));
+        return view('chat_messages', compact('messages'));
     }
 
     public function contactMe($id){
@@ -52,6 +52,7 @@ class MessageController extends Controller
         return view('contact_me', compact('user'));
 
     }
+
 
 
 

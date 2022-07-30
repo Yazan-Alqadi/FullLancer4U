@@ -294,8 +294,8 @@
                         <div class="card-body text-center">
                             <div class="h5">Buy this service</div>
                             <!-- if the service not buyed yet -->
-                            <button href="#" type="button" class="btn btn-info mt-2" id="buy">Buy,
-                                and add to my projects</button>
+                            <a href="{{ route('buy_service',$profession->id) }}" type="submit" class="btn btn-info mt-2" id="buy">Buy,
+                                and add to my projects</a>
                             <!-- if the service is required and has not yet been approved -->
                             <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->
                             <!-- if the service is accepted and not finished -->
