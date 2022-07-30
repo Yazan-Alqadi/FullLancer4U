@@ -90,11 +90,12 @@ class NotificationController extends Controller
         $notification= Notification::find($id);
         if ($request->options_outlined=="yes" )
         {
-            $notification->status = 1;
+            $notification->status = 2;
             $notification->save();
+
         }
         else{
-            $notification->status = 0;
+            $notification->status = 1;
             $notification->save();
 
         }

@@ -62,25 +62,28 @@
                             {{ $notification->content }} </div>
 
                         {{-- if reject the applay --}}
-                        <div class="h5 text-info">You reject the applay</div>
-                        {{-- if accept the applay --}}
-                        <div class="h5 text-info">You accept the applay</div>
+                        @if ( $notification->status==1)
+                            <div class="h5 text-info">You reject the applay</div>
+                            {{-- if accept the applay --}}
+                        @elseif ($notification->status == 2)
+                            <div class="h5 text-info">You accept the applay</div>
+                        @else
+                            <div class="text-start">
+                                Do you want to Accept this Apply ?
+                            </div>
+                            <div class="text-end">
+                                <form action="{{ route('confirm', $notification->id) }}">
+                                    <input id="no" type="radio" class="btn-check" name="options_outlined"
+                                        autocomplete="no" value="no">
+                                    <label class="btn btn-outline-danger" for="no">No</label>
 
-                        <div class="text-start">
-                            Do you want to Accept this Apply ?
-                        </div>
-                        <div class="text-end">
-                            <form action="{{ route('confirm',$notification->id) }}">
-                                <input  type="radio" class="btn-check" name="options_outlined" id="danger-outlined"
-                                    autocomplete="no" value="no">
-                                <label class="btn btn-outline-danger" for="danger-outlined">No</label>
-
-                                <input  type="radio" class="btn-check" name="options_outlined" id="success-outlined"
-                                    autocomplete="yes" checked value="yes">
-                                <label class="btn btn-outline-success" for="success-outlined">Yes</label>
-                                <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger">Confirm</button>
-                            </form>
-                        </div>
+                                    <input id="yes" type="radio" class="btn-check" name="options_outlined"
+                                         autocomplete="yes"  value="yes">
+                                    <label class="btn btn-outline-success" for="yes">Yes</label>
+                                    <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger">Confirm</button>
+                                </form>
+                            </div>
+                        @endif
 
                     </div>
                 @else

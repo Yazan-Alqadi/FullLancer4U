@@ -93,4 +93,13 @@ Route::middleware(['auth'])->group(function () {
     Route::view('profile/{id}', 'profile_user');
     Route::view('My-purchases', 'purchases_page');
     Route::view('My-works', 'works_page');
+
+    Route::get('my_purchase',function(){
+        return view('purchases_page');
+
+    })->name('purchase_page');
+    Route::get('my_work',function(){
+        return view('works_page');
+
+    })->name('work_page');
 });

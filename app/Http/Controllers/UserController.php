@@ -80,14 +80,13 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $request->validate([
+        $inputs =$request->validate([
             'full_name' => 'required',
             'user_name' => 'required|unique:users,user_name,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'required|min:8|confirmed',
         ]);
 
-        $inputs = $request->all();
         // if(request('avatar')){
 
         //  $inputs['avatar'] = request('avatar')->store('images');

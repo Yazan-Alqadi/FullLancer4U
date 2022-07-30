@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b876d0744c03c1f1561fbb284249c8f",
+    "content-hash": "7b8aed9c959d78cc219bc7a3d43aa240",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1744,7 +1744,7 @@
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "d23a50b598fa7227ec755a1a9deeb05d059214cb"
+                "reference": "16e1b68b0cd5131db3e6c3c967b254ff5750eee0"
             },
             "require": {
                 "brick/money": "^0.5.0",
@@ -2018,6 +2018,74 @@
                 "source": "https://github.com/laravel/socialite"
             },
             "time": "2022-07-18T13:51:19+00:00"
+        },
+        {
+            "name": "laravel/telescope",
+            "version": "v4.9.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/telescope.git",
+                "reference": "93d6a2f7b7e39407389a505abdfeceda09709f71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/93d6a2f7b7e39407389a505abdfeceda09709f71",
+                "reference": "93d6a2f7b7e39407389a505abdfeceda09709f71",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": "^8.37|^9.0",
+                "php": "^7.3|^8.0",
+                "symfony/var-dumper": "^5.0|^6.0"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "orchestra/testbench": "^6.0|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Telescope\\TelescopeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Telescope\\": "src/",
+                    "Laravel\\Telescope\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Mohamed Said",
+                    "email": "mohamed@laravel.com"
+                }
+            ],
+            "description": "An elegant debug assistant for the Laravel framework.",
+            "keywords": [
+                "debugging",
+                "laravel",
+                "monitoring"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/telescope/issues",
+                "source": "https://github.com/laravel/telescope/tree/v4.9.1"
+            },
+            "time": "2022-07-18T14:49:11+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -9676,5 +9744,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }

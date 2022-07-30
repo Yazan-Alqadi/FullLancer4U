@@ -110,7 +110,7 @@
                             </a>
                         </li>
                         @if (Auth::check() && Auth::user()->is_freelancer)
-                            <li><a class="dropdown-item" href="{{ route('contact') }}">
+                            <li><a class="dropdown-item" href="{{ route('work_page') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
                                         <path
@@ -120,7 +120,7 @@
                                 </a>
                             </li>
                         @endif
-                        <li><a class="dropdown-item" href="{{ route('contact') }}">
+                        <li><a class="dropdown-item" href="{{ route('purchase_page') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
                                     <path
