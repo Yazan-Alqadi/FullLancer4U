@@ -27,8 +27,6 @@ class NewMessage implements ShouldBroadcast
         $this->username = $username;
         $this->message  = $message;
         $this->forUserId  = $forUserId;
-
-
     }
 
     /**

@@ -65,7 +65,7 @@
 
     {{-- successful alert --}}
 
-    {{-- @if (session('message'))
+    @if (session('message'))
         <div class="alert alert-success d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                 <use xlink:href="#check-circle-fill" />
@@ -74,7 +74,7 @@
                 {{ session('message') }}
             </div>
         </div>
-    @endif --}}
+    @endif
 
 
     <div class="text-dark ms-1 container h1 mgg row"> {{ $profession->title }} </div>

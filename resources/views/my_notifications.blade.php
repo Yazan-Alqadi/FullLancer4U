@@ -43,52 +43,56 @@
 
 
             {{-- this is the new one --}}
-            <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 " id="rr">
-                {{-- message from who ? --}}
 
-                <div class="d-flex" style="justify-content: space-between; align-items: center;">
-                    <span class="h4 text-danger">bbbbbbbbbbbbbbbbbb</span>
-                    <span class="h6 rounded-2 p-1 text-secondary">1 hour</span>
-                </div>
-                <div class="h6 border-bottom border-secondary pb-3"
-                    style="word-break: break-word; --bs-border-opacity: .5;">
-                    rbj reinbvrhif vbvrweugbvyrwnb vihwrb vuowebrfgvowritegybvrwifspnvopewnrvpiheb vpihe trgrw
-                </div>
-                <div class="text-start">
-                    do you want to apply ?
-                </div>
-                <div class="text-end">
-                    <form action="">
-                        <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="danger-outlined">No</label>
-
-                        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined"
-                            autocomplete="off">
-                        <label class="btn btn-outline-success" for="success-outlined">Yes</label>
-                        <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger">Confirm</button>
-                    </form>
-                </div>
-
-            </div>
 
 
             {{-- if there is more than 5 nots then collapse them here --}}
             @foreach ($notifications as $notification)
-                <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 @if ($loop->iteration > 3) collapse @endif"
-                    @if ($loop->iteration > 3) id = "collapseExample1" @endif>
-                    <a class="text-decoration-none" href="#">
+                @if ($notification->re_id != null)
+                    <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 " id="rr">
                         {{-- message from who ? --}}
-                        <div class="d-flex " style="justify-content: space-between; align-items: center;">
+
+                        <div class="d-flex" style="justify-content: space-between; align-items: center;">
                             <span class="h4 text-danger">{{ $notification->title }}</span>
                             <span
                                 class="h6 rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
                         </div>
-                        <div class="h6 text-dark" style="word-break: break-word;">
-                            {{ $notification->content }}
+                        <div class="h6 border-bottom border-secondary pb-3"
+                            style="word-break: break-word; --bs-border-opacity: .5;">
+                            {{ $notification->content }} </div>
+                        <div class="text-start">
+                            Do you want to Accept this Apply ?
                         </div>
-                    </a>
-                </div>
+                        <div class="text-end">
+                            <form action="{{ route('confirm',$notification->id) }}">
+                                <input  type="radio" class="btn-check" name="options_outlined" id="danger-outlined"
+                                    autocomplete="no" value="no">
+                                <label class="btn btn-outline-danger" for="danger-outlined">No</label>
+
+                                <input  type="radio" class="btn-check" name="options_outlined" id="success-outlined"
+                                    autocomplete="yes" checked value="yes">
+                                <label class="btn btn-outline-success" for="success-outlined">Yes</label>
+                                <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger">Confirm</button>
+                            </form>
+                        </div>
+
+                    </div>
+                @else
+                    <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 @if ($loop->iteration > 3) collapse @endif"
+                        @if ($loop->iteration > 3) id = "collapseExample1" @endif>
+                        <a class="text-decoration-none" href="#">
+                            {{-- message from who ? --}}
+                            <div class="d-flex " style="justify-content: space-between; align-items: center;">
+                                <span class="h4 text-danger">{{ $notification->title }}</span>
+                                <span
+                                    class="h6 rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                            </div>
+                            <div class="h6 text-dark" style="word-break: break-word;">
+                                {{ $notification->content }}
+                            </div>
+                        </a>
+                    </div>
+                @endif
             @endforeach
 
 
