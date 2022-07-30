@@ -87,6 +87,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('project/delete/{id}', [ProjectController::class, 'destroy'])->name('project_delete');
 
     Route::get('apply/{id}',[ProfessionController::class,'buyService'])->name('buy_service');
+    Route::get('confirm/{id}',[NotificationController::class,'confirm'])->name('confirm');
 
     Route::view('chat', 'chat_messages');
     Route::view('profile/{id}', 'profile_user');

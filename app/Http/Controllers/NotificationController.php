@@ -85,4 +85,19 @@ class NotificationController extends Controller
     {
         //
     }
+    public function confirm(Request $request,$id)
+    {
+        $notification= Notification::find($id);
+        if ($request->options_outlined=="yes" )
+        {
+            $notification->status = 1;
+            $notification->save();
+        }
+        else{
+            $notification->status = 0;
+            $notification->save();
+
+        }
+        return back();
+    }
 }

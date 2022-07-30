@@ -161,7 +161,7 @@
                                         @foreach ($notification as $otif)
                                             <li>
                                                 <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">
-                                                    <a class="text-decoration-none" href="#">
+                                                    <a class="text-decoration-none"  href="{{ route('my_notification') }}">
                                                         {{-- message from who ? --}}
                                                     <div class="d-flex"
                                                         style="justify-content: space-between; align-items: center;">
@@ -231,7 +231,7 @@
         var existingNotifications = notifications.html();
         var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
         var newNotificationHtml = `
-        <a href="#" class="text-decoration-none">
+        <a href="{{ route('my_notification') }}" class="text-decoration-none">
             <li>
             <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">
                                         {{-- message from who ? --}}
