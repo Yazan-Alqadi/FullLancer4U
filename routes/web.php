@@ -86,5 +86,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('project/store', [ProjectController::class, 'store'])->name('project_store');
     Route::get('project/delete/{id}', [ProjectController::class, 'destroy'])->name('project_delete');
 
+    Route::get('apply/{id}',[ProfessionController::class,'buyService'])->name('buy_service');
+
     Route::view('chat', 'chat_messages');
 });
