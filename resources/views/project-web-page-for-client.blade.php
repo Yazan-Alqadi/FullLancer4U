@@ -104,16 +104,25 @@
 
                     <div class="card bg-light text-start text-dark mb-4 rounded">
                         <div class="card-body text-center">
-                            <div class="h5">Apply for this project</div>
-                            <!-- if the service not buyed yet -->
-                            <button href="#" type="button" class="btn btn-info mt-2"
-                                id="buy">Apply</button>
-                            <!-- if the service is required and has not yet been approved -->
-                            <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->
-                            <!-- if the service is accepted and not finished -->
-                            <!-- <button type="button" class="btn btn-info" disabled>In work</button> -->
-                            <!-- if the service is over -->
-                            <!-- <button type="button" class="btn btn-success" disabled>Service over</button> -->
+                            @if (Auth::check() && !Auth::user()->is_freelancer)
+                                <div class="h5">Apply for this project</div>
+                                <!-- if the service not buyed yet -->
+
+                                <button href="#" type="button" class="btn btn-info mt-2"
+                                    id="buy">Apply</button>
+                                <!-- if the service is required and has not yet been approved -->
+                                <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->
+                                <!-- if the service is accepted and not finished -->
+                                <!-- <button type="button" class="btn btn-info" disabled>In work</button> -->
+                                <!-- if the service is over -->
+                                <!-- <button type="button" class="btn btn-success" disabled>Service over</button> -->
+
+                                {{-- if buyer are not freelancer yet --}}
+                            @else
+                                <h5 class="mt-2">You are not freelancer yet</h5>
+                                <a href="{{ route('become_freelancer') }}"
+                                    class="nav-link in-hover-t text-warning fw-bold">Become Freelancer</a>
+                            @endif
                         </div>
                     </div>
 
