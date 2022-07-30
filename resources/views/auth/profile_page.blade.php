@@ -92,7 +92,7 @@
                                         <span class="mt-1">{{ $service->title }}</span>
                                         <span> <a class="btn btn-info p-1"
                                                 href="{{ route('edit_service', $service->id) }}">Edit</a>
-                                            <span> <button class="btn btn-info p-1">Delete</button> </span>
+                                            <span> <button class="btn btn-danger p-1">Delete</button> </span>
                                         </span>
 
 
@@ -157,7 +157,7 @@
                                         style="justify-content: space-between;">
                                         {{-- here is the title of the service --}}
                                         <span class="mt-1">{{ $service->title }}</span>
-                                        <span> <button class="btn btn-info p-1">Delete</button> </span>
+                                        <span> <button class="btn btn-danger p-1">Delete</button> </span>
 
                                     </div>
                                 @endforeach
@@ -167,7 +167,7 @@
                             @endif
                         </div>
                     </div>
-                    
+
                     <div class="card bg-light text-dark rounded text-center">
                         <div class="card-body">
 
