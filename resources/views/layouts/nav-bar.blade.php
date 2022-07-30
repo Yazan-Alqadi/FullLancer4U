@@ -161,7 +161,8 @@
                                         @foreach ($notification as $otif)
                                             <li>
                                                 <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">
-                                                    {{-- message from who ? --}}
+                                                    <a class="text-decoration-none" href="#">
+                                                        {{-- message from who ? --}}
                                                     <div class="d-flex"
                                                         style="justify-content: space-between; align-items: center;">
                                                         <span class="text-danger" style="font-size: 15px">
@@ -169,9 +170,10 @@
                                                         <span
                                                             class="rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($otif->created_at)->diffForHumans() }}</span>
                                                     </div>
-                                                    <div style="word-break: break-word;">
+                                                    <div class="text-dark" style="word-break: break-word;">
                                                         {{ $otif->content }}
                                                     </div>
+                                                    </a>
                                                 </div>
                                             </li>
                                         @endforeach
@@ -229,7 +231,8 @@
         var existingNotifications = notifications.html();
         var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
         var newNotificationHtml = `
-        <li>
+        <a href="#" class="text-decoration-none">
+            <li>
             <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">
                                         {{-- message from who ? --}}
                                         <div class="d-flex" style="justify-content: space-between; align-items: center;">
@@ -237,11 +240,12 @@
             data.username + `</span>
                                             <span class="rounded-2 p-1 text-secondary" >1 seconds ago</span>
                                         </div>
-                                        <div style="word-break: break-word;">
+                                        <div class="text-dark" style="word-break: break-word;">
                                             ` + data.message + `
                                         </div>
                                     </div>
-                                    </li>`;
+                                    </li>
+            </a>`;
         // alert(notificationsCountElem);
 
         notifications.html(newNotificationHtml + existingNotifications);
