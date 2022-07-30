@@ -90,4 +90,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::view('chat', 'chat_messages');
     Route::view('profile/{id}', 'profile_user');
+    Route::view('My-purchases', 'purchases_page');
+    Route::view('My-works', 'works_page');
 });

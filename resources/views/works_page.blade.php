@@ -16,7 +16,7 @@
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>My Purchases</title>
+    <title>My Works</title>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -66,13 +66,13 @@
         </div>
     @endif
 
-    <section class="bg-light text-dark mg w-75 p-3 rounded mgg mb-4">
+    <section class="bg-light text-dark mg w-75 p-3 rounded mgg">
         <div class="border-bottom border-dark ps-3 h5 py-1">
-            My Purchases
+            My Works
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                class="bi bi-tools" viewBox="0 0 16 16">
                 <path
-                    d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
+                    d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0Zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708ZM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11Z" />
             </svg>
         </div>
 
@@ -88,8 +88,8 @@
             </div>
             <div class="d-flex " style="justify-content: space-between; align-items: center;">
                 <span class="h4 text-danger">
-                    <span>Freelancer:</span>
-                    <span class="ms-1">name of the Freelancer</span>
+                    <span>Client:</span>
+                    <span class="ms-1">name of the client</span>
                 </span>
             </div>
             <div class="h6 text-dark" style="word-break: break-word;">
@@ -107,7 +107,24 @@
                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"> Canceled
                 </span>
 
+                {{-- if work is in timeline then he can change the state --}}
+                <div class="text-start">
 
+                    <form action="" class="my-3">
+                        <span> change state into: </span>
+                        <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined"
+                            autocomplete="off">
+                        <label class="btn btn-outline-danger" for="danger-outlined"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Canceled</label>
+
+                        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined"
+                            autocomplete="off">
+                        <label class="btn btn-outline-success" for="success-outlined"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Done</label>
+                        <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Confirm</button>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -123,8 +140,8 @@
             </div>
             <div class="d-flex " style="justify-content: space-between; align-items: center;">
                 <span class="h4 text-danger">
-                    <span>Freelancer:</span>
-                    <span class="ms-1">name of the Freelancer</span>
+                    <span>Client:</span>
+                    <span class="ms-1">name of the client</span>
                 </span>
             </div>
             <div class="h6 text-dark" style="word-break: break-word;">
@@ -139,11 +156,27 @@
                 </span>
                 {{-- if work canceled --}}
                 <span class="ms-1 disabled btn btn-danger"
-                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                    Canceled
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"> Canceled
                 </span>
 
+                {{-- if work is in timeline --}}
+                <div class="text-start">
 
+                    <form action="" class="my-3">
+                        <span> change state into: </span>
+                        <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined"
+                            autocomplete="off">
+                        <label class="btn btn-outline-danger" for="danger-outlined"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Canceled</label>
+
+                        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined"
+                            autocomplete="off">
+                        <label class="btn btn-outline-success" for="success-outlined"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Done</label>
+                        <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Confirm</button>
+                    </form>
+                </div>
             </div>
         </div>
 
