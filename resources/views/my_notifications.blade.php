@@ -73,13 +73,13 @@
                             </div>
                             <div class="text-end">
                                 <form action="{{ route('confirm', $notification->id) }}">
-                                    <input id="no" type="radio" class="btn-check" name="options_outlined"
+                                    <input id="no{{ $notification->id }}" type="radio" class="btn-check" name="options_outlined"
                                         autocomplete="no" value="no">
-                                    <label class="btn btn-outline-danger" for="no">No</label>
+                                    <label class="btn btn-outline-danger" for="no{{ $notification->id }}">No</label>
 
-                                    <input id="yes" type="radio" class="btn-check" name="options_outlined"
+                                    <input id="yes{{ $notification->id }}" type="radio" class="btn-check" name="options_outlined"
                                          autocomplete="yes"  value="yes">
-                                    <label class="btn btn-outline-success" for="yes">Yes</label>
+                                    <label class="btn btn-outline-success" for="yes{{ $notification->id }}">Yes</label>
                                     <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger">Confirm</button>
                                 </form>
                             </div>

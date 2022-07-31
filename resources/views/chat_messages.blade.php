@@ -28,13 +28,14 @@
     <div class="container-fluid px-4">
         <!-- For demo purpose-->
 
-        <div class="row rounded-lg overflow-hidden shadow mgg mx-2 mb-5">
+        <div class="rounded-lg overflow-hidden shadow mgg mx-2 mb-5">
             <!-- Users box-->
-            <div class="col-5 px-0 " style="height: 100% !important;">
+            <div class="5 px-0 " style="height: 100% !important;">
                 <div class="bg-white">
 
-                    <div class="bg-gray px-4 py-2 bg-light">
-                        <p class="h5 mb-0 py-1">My chats
+                    <div class="bg-gray px-4 py-2 bg-light d-flex" style="justify-content: space-between;">
+                        <span class="h5 mb-0 py-1">
+                            My chats
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-chat-left-dots" viewBox="0 0 16 16">
                                 <path
@@ -42,7 +43,13 @@
                                 <path
                                     d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                             </svg>
-                        </p>
+                        </span>
+
+                        {{-- if there is no chat yet --}}
+                        @if (count($threads) < 1)
+                            <span class="text-warning"> No chats yet </span>
+                        @endif
+
                     </div>
 
 
@@ -76,91 +83,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Chat Box-->
-            <div class="col-7 px-0">
-                <div class="px-4 py-5 chat-box bg-white">
-                    <!-- Sender Message-->
-                    <div class="media w-50 mb-3"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg"
-                            alt="user" width="50" class="rounded-circle">
-                        <div class="media-body ml-3">
-                            <div class="bg-light rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
-                            </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-
-                    <!-- Reciever Message-->
-                    <div class="media w-50 ml-auto mb-3">
-                        <div class="media-body">
-                            <div class="bg-primary rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-white">Test which is a new approach to have all
-                                    solutions</p>
-                            </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-
-                    <!-- Sender Message-->
-                    <div class="media w-50 mb-3"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg"
-                            alt="user" width="50" class="rounded-circle">
-                        <div class="media-body ml-3">
-                            <div class="bg-light rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-muted">Test, which is a new approach to have</p>
-                            </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-
-                    <!-- Reciever Message-->
-                    <div class="media w-50 ml-auto mb-3">
-                        <div class="media-body">
-                            <div class="bg-primary rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
-                            </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-
-                    <!-- Sender Message-->
-                    <div class="media w-50 mb-3"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg"
-                            alt="user" width="50" class="rounded-circle">
-                        <div class="media-body ml-3">
-                            <div class="bg-light rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-muted">Test, which is a new approach</p>
-                            </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-
-                    <!-- Reciever Message-->
-                    <div class="media w-50 ml-auto mb-3">
-                        <div class="media-body">
-                            <div class="bg-primary rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
-                            </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Typing area -->
-                <form action="#" class="bg-light">
-                    <div class="input-group">
-                        <input type="text" placeholder="Type a message" aria-describedby="button-addon2"
-                            class="form-control rounded-0 border-0 py-4 bg-light">
-                        <div class="input-group-append d-flex px-3">
-                            <button id="button-addon2" type="submit" class="btn btn-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                    fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </form>
 
             </div>
 

@@ -159,7 +159,21 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#notifications-panel" class="dropdown-toggle"
                                 data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="bg-danger border rounded px-1 notif-count" data-count="0"
+                                <span
+                                    class="
+                                @php
+                                    $notification = \App\Models\Notification::latest()
+                                        ->where('user_id', Auth::id())
+                                        ->take(5)
+                                        ->get();
+                                @endphp
+                                @if (count($notification) == 0)
+bg-light
+@else
+bg-danger
+@endif
+                                    border rounded px-1 notif-count text-dark"
+                                    data-count="0"
                                     style="position: absolute; top: 0px; left: -7px; font-size: 10px;">0</span>
                                 <svg style="z-index: 100;color: white;" xmlns="http://www.w3.org/2000/svg" width="16"
                                     height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
