@@ -121,14 +121,14 @@
 
                         <form action="" class="my-3">
                             <span> change state into: </span>
-                            <input type="radio" class="btn-check" name="options-outlined" id="can{{ $service->id }}"
+                            <input type="radio" class="btn-check" name="options-outlined" id="can{{ $service->user_id }}"
                                 autocomplete="off">
-                            <label class="btn btn-outline-danger" for="danger-outlined"
+                            <label class="btn btn-outline-danger" for="can{{ $service->user_id }}"
                                 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Canceled</label>
 
-                            <input type="radio" class="btn-check" name="options-outlined" id="done{{ $service->id }}"
+                            <input type="radio" class="btn-check" name="options-outlined" id="done{{ $service->user_id }}"
                                 autocomplete="off">
-                            <label class="btn btn-outline-success" for="success-outlined"
+                            <label class="btn btn-outline-success" for="done{{ $service->user_id }}"
                                 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Done</label>
                             <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger"
                                 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Confirm</button>
