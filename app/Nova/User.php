@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
@@ -72,6 +73,9 @@ class User extends Resource
             Text::make('Phone', 'phone')
                 ->sortable()
                 ->rules('max:255'),
+            Boolean::make('is_freelacner','is_freelancer'),
+            Boolean::make('is_admin','is_admin'),
+
         ];
     }
 

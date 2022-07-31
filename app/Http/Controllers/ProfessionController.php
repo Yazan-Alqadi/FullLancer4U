@@ -86,7 +86,7 @@ class ProfessionController extends Controller
     {
         //
         $profession =  Profession::find($id);
-        $professions = Profession::all()->where('category_id', $profession->category_id);
+        $professions = Profession::where('category_id', $profession->category_id)->get();
         return view('profile_freelancer_for_client', ['professions' => $professions,'profession'=> $profession]);
     }
 
@@ -151,6 +151,8 @@ class ProfessionController extends Controller
             'title'=>'Message from '. Auth::user()->full_name,
             'content'=>'New Apply for your Service '. $service->title,
             'user_id'=>$user_id,
+            'reciver_id'=>Auth::id(),
+            'type'=>'service',
             're_id'=>$service->id,
         ]);
 

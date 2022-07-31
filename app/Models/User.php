@@ -69,8 +69,15 @@ public function received(){
 public function notification(){
     return $this->hasMany(Notification::class,'user_id');
 }
+public function notification_re(){
+    return $this->hasMany(Notification::class,'reciver_id');
+}
 public function threads(){
     return $this->hasMany(Thread::class,'user_id');
+}
+
+public function services(){
+    return $this->belongsToMany(Profession::class,'client_service','user_id','service_id')->withPivot('status')->withTimestamps();
 }
 
 

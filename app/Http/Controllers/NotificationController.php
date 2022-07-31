@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewMessage;
 use App\Models\Notification;
+use App\Models\Profession;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -93,10 +97,44 @@ class NotificationController extends Controller
             $notification->status = 2;
             $notification->save();
 
+            if ($notification->type=="service")
+            {
+                $service=Profession::find($notification->re_id);
+                $user=User::find($notification->reciver_id);
+
+                $user->services()->attach($service->id,[
+                    'status'=>'in work',
+                ]);
+
+            }
+
+            Notification::create([
+                'title'=>'Message from '. Auth::user()->full_name,
+                'content'=>'Accept For Your Apply',
+                'user_id'=>$notification->reciver_id,
+                'reciver_id'=>Auth::id(),
+                'type'=>'message',
+                're_id'=>$notification->re_id,
+            ]);
+
+            event(new NewMessage($notification->reciver_id,Auth::user()->full_name,'Accept For Your Apply'));
+
+
         }
         else{
             $notification->status = 1;
             $notification->save();
+
+            Notification::create([
+                'title'=>'Message from '. Auth::user()->full_name,
+                'content'=>'Reject For Your Apply',
+                'user_id'=>$notification->reciver_id,
+                'reciver_id'=>Auth::id(),
+                'type'=>'message',
+                're_id'=>$notification->re_id,
+            ]);
+
+            event(new NewMessage($notification->reciver_id,Auth::user()->full_name,'Reject For Your Apply'));
 
         }
         return back();

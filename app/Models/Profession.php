@@ -21,4 +21,7 @@ class Profession extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function users(){
+        return $this->belongsToMany(User::class,'client_service','service_id','user_id')->withPivot('status')->withTimestamps();
+    }
 }

@@ -110,7 +110,7 @@
                             </a>
                         </li>
                         @if (Auth::check() && Auth::user()->is_freelancer)
-                            <li><a class="dropdown-item" href="{{ route('work_page') }}">
+                            <li><a class="dropdown-item" href="{{ route('work_page',Auth::id()) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
                                         <path
