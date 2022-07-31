@@ -77,35 +77,42 @@
         </div>
 
         {{-- if the work is service --}}
+        @foreach ($services as $service)
+
         <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25">
             {{-- message from who ? --}}
             <div class="d-flex " style="justify-content: space-between; align-items: center;">
                 <span class="h4 text-danger">
                     <span>Service:</span>
-                    <span class="ms-1">name of service</span>
+                    <span class="ms-1">{{ $service->title }}</span>
                 </span>
-                <span class="h6 rounded-2 p-1 text-secondary">1 hour</span>
+                <span class="h6 rounded-2 p-1 text-secondary">{{ $service->updated_at }}</span>
             </div>
             <div class="d-flex " style="justify-content: space-between; align-items: center;">
                 <span class="h4 text-danger">
                     <span>Client:</span>
-                    <span class="ms-1">name of the client</span>
+                    <span class="ms-1">{{ $service->full_name }}</span>
                 </span>
             </div>
             <div class="h6 text-dark" style="word-break: break-word;">
                 <span>state:</span>
                 {{-- if work is in timeline --}}
+                @if ($service->status=='in work')
                 <span class="ms-1 disabled btn btn-warning"
                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"> In Work
                 </span>
                 {{-- if work Done --}}
+                @elseif($service->status=='done')
                 <span class="ms-1 disabled btn btn-success"
                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"> Done
                 </span>
                 {{-- if work canceled --}}
+                @else
                 <span class="ms-1 disabled btn btn-danger"
                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"> Canceled
                 </span>
+                @endif
+
 
                 {{-- if work is in timeline then he can change the state --}}
                 <div class="text-start">
@@ -127,6 +134,8 @@
                 </div>
             </div>
         </div>
+        @endforeach
+
 
         {{-- if the work is Project --}}
         <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25">
@@ -156,7 +165,8 @@
                 </span>
                 {{-- if work canceled --}}
                 <span class="ms-1 disabled btn btn-danger"
-                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"> Canceled
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                    Canceled
                 </span>
 
                 {{-- if work is in timeline --}}

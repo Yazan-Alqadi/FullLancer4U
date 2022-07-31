@@ -48,7 +48,7 @@
 
             {{-- if there is more than 5 nots then collapse them here --}}
             @foreach ($notifications as $notification)
-                @if ($notification->re_id != null)
+                @if ($notification->type != 'message')
                     <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 " id="rr">
                         {{-- message from who ? --}}
 

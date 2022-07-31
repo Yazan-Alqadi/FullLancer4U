@@ -55,6 +55,7 @@ class MessageController extends Controller
             'title' => 'Message from ' . Auth::user()->full_name,
             'content' => $message,
             'user_id' => $id,
+            'reciver_id'=>Auth::id(),
 
         ]);
 

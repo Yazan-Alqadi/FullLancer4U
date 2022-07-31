@@ -20,6 +20,8 @@ use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
+use App\Nova\Service;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Cache;
 /*
 |--------------------------------------------------------------------------
@@ -86,20 +88,26 @@ Route::middleware(['auth'])->group(function () {
     Route::post('project/store', [ProjectController::class, 'store'])->name('project_store');
     Route::get('project/delete/{id}', [ProjectController::class, 'destroy'])->name('project_delete');
 
-    Route::get('apply/{id}',[ProfessionController::class,'buyService'])->name('buy_service');
-    Route::get('confirm/{id}',[NotificationController::class,'confirm'])->name('confirm');
+    Route::get('apply/{id}', [ProfessionController::class, 'buyService'])->name('buy_service');
+    Route::get('confirm/{id}', [NotificationController::class, 'confirm'])->name('confirm');
 
     Route::view('chat', 'chat_messages');
     Route::view('profile/{id}', 'profile_user');
     Route::view('My-purchases', 'purchases_page');
     Route::view('My-works', 'works_page');
 
-    Route::get('my_purchase',function(){
+    Route::get('my_purchase', function () {
         return view('purchases_page');
-
     })->name('purchase_page');
-    Route::get('my_work',function(){
-        return view('works_page');
+    Route::get('my_work/{id}', function ($id) {
+        $user = User::find($id);
+        $services = DB::table('client_service')
+            ->join('professions', 'client_service.service_id', '=', 'professions.id')
+            ->join('users', 'client_service.user_id', '=', 'users.id')
+            ->where('freelancer_id', $user->freelancer->id)
+            ->get();
 
+      //  dd($services);
+        return view('works_page', compact('services'));
     })->name('work_page');
 });
