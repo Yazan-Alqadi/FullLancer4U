@@ -107,8 +107,12 @@ Route::middleware(['auth'])->group(function () {
             ->join('users', 'client_service.user_id', '=', 'users.id')
             ->where('freelancer_id', $user->freelancer->id)
             ->get();
-
-      //  dd($services);
         return view('works_page', compact('services'));
     })->name('work_page');
+    Route::get('my_work/update/{id}',function($id){
+
+        DB::statement('update client_service set status=? where id= ? ',['done',$id]);
+        return back();
+
+    })->name('work_update');
 });
