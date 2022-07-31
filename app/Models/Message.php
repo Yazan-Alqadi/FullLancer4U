@@ -11,11 +11,10 @@ class Message extends Model
 
     protected $guarded=[];
 
-    public function sender(){
-        return $this->belongsTo(User::class,'sender_id');
+    public function thread(){
+        return $this->belongsTo(Thread::class,'thread_id');
     }
-    public function reciever(){
-        return $this->belongsTo(User::class,'receiver_id');
-    }
+
+
 
 }

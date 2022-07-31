@@ -17,6 +17,7 @@
         "laravel/nova": "*",
         "laravel/sanctum": "^2.15",
         "laravel/socialite": "^5.5",
+        "laravel/telescope": "^4.9",
         "laravel/tinker": "^2.5",
         "pusher/pusher-php-server": "^7.0"
     },

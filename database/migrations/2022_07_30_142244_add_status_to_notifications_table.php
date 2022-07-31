@@ -14,7 +14,7 @@ class AddStatusToNotificationsTable extends Migration
     public function up()
     {
         Schema::table('notifications', function (Blueprint $table) {
-            $table->integer('status')->nullable();
+            $table->integer('status')->default(0);
         });
     }
 

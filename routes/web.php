@@ -57,7 +57,7 @@ Route::get('projects', [ProjectController::class, 'index'])->name('projects.inde
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('redToGoogle');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('googleCallBack');
-Route::get('professions/{id}', [ProfessionController::class, 'show'])->name('more_information');
+Route::get('profession/{id}', [ProfessionController::class, 'show'])->name('more_information');
 
 
 
@@ -94,4 +94,13 @@ Route::middleware(['auth'])->group(function () {
     Route::view('My-purchases', 'purchases_page');
     Route::view('My-works', 'works_page');
     Route::view('test', 'test');
+
+    Route::get('my_purchase',function(){
+        return view('purchases_page');
+
+    })->name('purchase_page');
+    Route::get('my_work',function(){
+        return view('works_page');
+
+    })->name('work_page');
 });

@@ -164,12 +164,12 @@
 
                     <form action="" class="my-3">
                         <span> change state into: </span>
-                        <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined"
+                        <input type="radio" class="btn-check" name="options-outline" id="danger-outlined"
                             autocomplete="off">
                         <label class="btn btn-outline-danger" for="danger-outlined"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Canceled</label>
 
-                        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined"
+                        <input type="radio" class="btn-check" name="options-outline" id="success-outlined"
                             autocomplete="off">
                         <label class="btn btn-outline-success" for="success-outlined"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Done</label>
