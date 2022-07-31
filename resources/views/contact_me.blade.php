@@ -13,6 +13,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap"
         rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="{{ asset('css/fll3.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -52,56 +55,205 @@
         </div>
     @endif
 
-    <section class="bg-light text-dark mg w-75 p-3 rounded mgg">
-        <div class="border-bottom border-dark ps-3 h5 py-1">
-            Send new message
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
-                <path
-                    d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-            </svg>
-        </div>
+    <div class="container bootstrap snippets bootdey mgg">
 
-        <table class="table table-bordered border-secondary text-center">
-            <thead>
-                <tr>
-                    <th scope="col" class="table-light"> Send to </th>
-                    <th scope="col" class="table-info"> Message </th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider text-center">
-                <tr>
-                    <th scope="row" class="table-light">
-                        <a href="#" class="link-info text-decoration-none">{{ $user->full_name }}</a>
-                    </th>
-                    <form method="POST" action="{{ route('send_message',$user->id) }}">
-                        @csrf
-                        <td class="table-light">
-                            {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, dolores!
-                        Porro quaerat dolor quam
-                        nobis tempora quisquam mollitia quo doloribus iure, iste minus excepturi atque enim numquam
-                        facilis delectus ullam? --}}
-                            <textarea name="body" type="text" class="form-control" style="height: 200px !important;"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Type a message"></textarea>
-
-                        </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-primary" type="submit">Send
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-send-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
-                </svg>
-            </button>
+        <!--=========================================================-->
+        <!-- selected chat -->
+        <div class="bg-white ">
+            <div class="p-5" style="height: 500px !important; overflow: auto;">
+                <ul class="chat">
+                    {{-- messages's Sender --}}
+                    <li class="left clearfix bg-secondary p-2" style="background-color: #5bff0045 !important;">
+                        <span class="chat-img pull-left">
+                            <img src="https://bootdey.com/img/Content/user_3.jpg" alt="User Avatar">
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                {{-- name of the sender --}}
+                                <strong class="primary-font h5">John Doe</strong>
+                                {{-- messgae sent time --}}
+                                <small class="pull-right text-muted"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="10" height="10" fill="currentColor" class="bi bi-clock"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                                    </svg>
+                                    {{-- here is the time --}}
+                                    12 mins ago
+                                </small>
+                            </div>
+                            {{-- the message body --}}
+                            <p style="word-break: break-all;" class="h6">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </p>
+                        </div>
+                    </li>
+                    {{-- message's recever (you always) --}}
+                    <li class="right clearfix p-2" style="background-color: #003cff59 !important;">
+                        <span class="chat-img pull-right">
+                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                {{-- Your name --}}
+                                <strong class="primary-font h5">Sarah</strong>
+                                {{-- messgae sent time --}}
+                                <small class="pull-right text-muted"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="10" height="10" fill="currentColor" class="bi bi-clock"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                                    </svg>
+                                    {{-- here is the time --}}
+                                    13 mins ago
+                                </small>
+                            </div>
+                            {{-- the message body --}}
+                            <p style="word-break: break-all;" class="h6">
+                                wknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbt
+                            </p>
+                        </div>
+                    </li>
+                    {{-- messages's Sender --}}
+                    <li class="left clearfix bg-secondary p-2" style="background-color: #5bff0045 !important;">
+                        <span class="chat-img pull-left">
+                            <img src="https://bootdey.com/img/Content/user_3.jpg" alt="User Avatar">
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <strong class="primary-font h5">John Doe</strong>
+                                <small class="pull-right text-muted"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="10" height="10" fill="currentColor" class="bi bi-clock"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                                    </svg> 12 mins
+                                    ago</small>
+                            </div>
+                            <p style="word-break: break-all;" class="h6">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </p>
+                        </div>
+                    </li>
+                    {{-- message's recever (you always) --}}
+                    <li class="right clearfix p-2" style="background-color: #003cff59 !important;">
+                        <span class="chat-img pull-right">
+                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <strong class="primary-font h5">Sarah</strong>
+                                <small class="pull-right text-muted"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="10" height="10" fill="currentColor" class="bi bi-clock"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                                    </svg> 13 mins
+                                    ago</small>
+                            </div>
+                            <p style="word-break: break-all;" class="h6">
+                                wknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbt
+                            </p>
+                        </div>
+                    </li>
+                    {{-- messages's Sender --}}
+                    <li class="left clearfix bg-secondary p-2" style="background-color: #5bff0045 !important;">
+                        <span class="chat-img pull-left">
+                            <img src="https://bootdey.com/img/Content/user_3.jpg" alt="User Avatar">
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <strong class="primary-font h5">John Doe</strong>
+                                <small class="pull-right text-muted"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="10" height="10" fill="currentColor" class="bi bi-clock"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                                    </svg> 12 mins
+                                    ago</small>
+                            </div>
+                            <p style="word-break: break-all;" class="h6">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </p>
+                        </div>
+                    </li>
+                    {{-- message's recever (you always) --}}
+                    <li class="right clearfix p-2" style="background-color: #003cff59 !important;">
+                        <span class="chat-img pull-right">
+                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <strong class="primary-font h5">Sarah</strong>
+                                <small class="pull-right text-muted"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="10" height="10" fill="currentColor" class="bi bi-clock"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                                    </svg> 13 mins
+                                    ago</small>
+                            </div>
+                            <p style="word-break: break-all;" class="h6">
+                                wknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbt
+                            </p>
+                        </div>
+                    </li>
+                    {{-- message's recever (you always) --}}
+                    <li class="right clearfix p-2" style="background-color: #003cff59 !important;">
+                        <span class="chat-img pull-right">
+                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <strong class="primary-font h5">Sarah</strong>
+                                <small class="pull-right text-muted"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="10" height="10" fill="currentColor" class="bi bi-clock"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                                    </svg> 13 mins
+                                    ago</small>
+                            </div>
+                            <p style="word-break: break-all;" class="h6">
+                                wknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbtwknmtbojtnbotjnopenbt
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <form action="">
+                <div class="bg-white p-3">
+                    <div>
+                        <textarea style="height: 200px !important;" class="form-control border no-shadow no-rounded"
+                            placeholder="Type your message here"></textarea>
+                    </div>
+                    <div class="input-group-btn text-center my-3">
+                        <button class="btn btn-info no-rounded" type="submit">Send
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </form>
-
         </div>
-
-    </section>
+    </div>
 
 
 
