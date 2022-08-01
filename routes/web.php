@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NewMessage;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\FreelancerController;
 use App\Http\Controllers\GoogleController;
@@ -102,17 +103,58 @@ Route::middleware(['auth'])->group(function () {
     })->name('purchase_page');
     Route::get('my_work/{id}', function ($id) {
         $user = User::find($id);
-        $services = DB::table('client_service')
+        $services = DB::table('client_service')->select(['client_service.id', 'status', 'title', 'full_name', 'client_service.updated_at'])
             ->join('professions', 'client_service.service_id', '=', 'professions.id')
             ->join('users', 'client_service.user_id', '=', 'users.id')
             ->where('freelancer_id', $user->freelancer->id)
             ->get();
+        // dd($services);
         return view('works_page', compact('services'));
     })->name('work_page');
-    Route::get('my_work/update/{id}',function($id){
+    Route::get('my_work/update/{id}', function ($id) {
 
-        DB::statement('update client_service set status=? where id= ? ',['done',$id]);
+
+        if (request('options_outlined') == 'done')
+        {
+            DB::statement('update client_service set status=? where id= ? ', ['done', $id]);
+            $client_id = DB::statement('select user_id from client_service where id= ? ', [$id]);
+
+            event(new NewMessage($client_id,Auth::user()->full_name,'I am done for your work You can now rate my service'));
+        }
+
+        else
+        {
+            DB::statement('update client_service set status=? where id= ? ', ['cancel', $id]);
+            $client_id = DB::statement('select user_id from client_service where id= ? ', [$id]);
+
+            event(new NewMessage($client_id,Auth::user()->full_name,'I am cancel Your work'));
+        }
+
+
         return back();
-
     })->name('work_update');
+
+    Route::get('rate/update/{id}', function ($id) {
+        $freelancer=Freelancer::find($id);
+        $rate=0;
+        if (request('rate5')=='on')
+            $rate+=5;
+        else if (request('rate4')=='on')
+            $rate+=4;
+        else if (request('rate3')=='on')
+            $rate+=3;
+        else if (request('rate2')=='on')
+            $rate+=2;
+        else if (request('rate1')=='on')
+            $rate+=1;
+
+        $freelancer->rate=$rate;
+        $freelancer->save();
+
+        return back()->with('message','You rate this service');
+
+
+
+    })->name('rate_me');
+
 });

@@ -121,14 +121,14 @@
 
                         <form action="{{ route('work_update',$service->id) }}" class="my-3">
                             <span> change state into: </span>
-                            <input type="radio" class="btn-check" name="options-outlined" id="can{{ $service->user_id }}"
+                            <input  type="radio" class="btn-check" value="cancel" name="options_outlined" id="can{{ $service->id }}"
                                 autocomplete="off">
-                            <label class="btn btn-outline-danger" for="can{{ $service->user_id }}"
+                            <label class="btn btn-outline-danger" id="can{{ $service->id }}" for="can{{ $service->id }}"
                                 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Canceled</label>
 
-                            <input type="radio" class="btn-check" name="options-outlined" id="done{{ $service->user_id }}"
+                            <input type="radio" class="btn-check" value="done" name="options_outlined" id="done{{ $service->id }}"
                                 autocomplete="off">
-                            <label class="btn btn-outline-success" for="done{{ $service->user_id }}"
+                            <label class="btn btn-outline-success" id="done{{ $service->id }}" for="done{{ $service->id }}"
                                 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Done</label>
                             <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger"
                                 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Confirm</button>

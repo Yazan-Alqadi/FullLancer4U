@@ -107,16 +107,51 @@
                             <div class="card-text d-inline-block">
                                 <div>
                                     <span>Rating:</span>
-                                    <span class="fa fa-star checked"
-                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                    <span class="fa fa-star checked"
-                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                    <span class="fa fa-star checked"
-                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                    <span class="fa fa-star not-checked"
-                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                    <span class="fa fa-star not-checked"
-                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                    @if ($profession->freelancer->rate > 0)
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star one --}}
+                                    @else
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star one --}}
+                                    @endif
+                                    @if ($profession->freelancer->rate > 1)
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star two --}}
+                                    @else
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star two --}}
+                                    @endif
+                                    @if ($profession->freelancer->rate > 2)
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star three --}}
+                                    @else
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star three --}}
+                                    @endif
+                                    @if ($profession->freelancer->rate > 3)
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star four --}}
+                                    @else
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star four --}}
+                                    @endif
+                                    @if ($profession->freelancer->rate > 4)
+                                        <span class="fa fa-star checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star five --}}
+                                    @else
+                                        <span class="fa fa-star not-checked"
+                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        {{-- star five --}}
+                                    @endif
                                 </div>
                                 <div>
                                     <span>Number of buyers:</span>
@@ -168,284 +203,284 @@
                                 class="btn btn-info">Contact</a>
                         </div>
                     </div>
-                    <div class="card bg-light text-start text-dark rounded">
-                        <div class="h4 bold mx-4 mt-4">Rate</div>
+
+                    @foreach ($profession->users as $ps)
+                        @if (Auth::id() == $ps->id)
+                            <div class="card bg-light text-start text-dark rounded">
+                                <div class="h4 bold mx-4 mt-4">Rate</div>
 
 
-                        <div class="card-body text-center">
-                            <button class="btn btn-info" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Rate me</button>
+                                <div class="card-body text-center">
+                                    <button class="btn btn-info" type="button" data-bs-toggle="offcanvas"
+                                        data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Rate
+                                        me</button>
 
-                        </div>
-                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
-                            aria-labelledby="offcanvasBottomLabel">
-                            <div class="offcanvas-header">
-                                <div class="offcanvas-title" id="offcanvasBottomLabel">Rate</div>
+                                </div>
+                                <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
+                                    aria-labelledby="offcanvasBottomLabel">
+                                    <div class="offcanvas-header">
+                                        <div class="offcanvas-title" id="offcanvasBottomLabel">Rate</div>
 
-                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="offcanvas-body small">
-                                <div>
-                                    <section>
-                                        <div class="container d-flex justify-content-center">
-
-
-                                            <div class="row">
-
-                                                <div class="col-md-12">
-
-                                                    <div class="stars">
-
-                                                        <form action="">
+                                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="offcanvas-body small">
+                                        <div>
+                                            <section>
+                                                <div class="container d-flex justify-content-center">
 
 
-                                                            <div>
-                                                                <input class="star star-5" id="star-5"
-                                                                    type="radio" name="rate" />
+                                                    <div class="row">
 
-                                                                <label class="star star-5" for="star-5"></label>
+                                                        <div class="col-md-12">
 
-                                                                <input class="star star-4" id="star-4"
-                                                                    type="radio" name="rate" />
+                                                            <div class="stars">
 
-                                                                <label class="star star-4" for="star-4"></label>
+                                                                <form
+                                                                    action="{{ route('rate_me', $profession->freelancer->id) }}">
 
-                                                                <input class="star star-3" id="star-3"
-                                                                    type="radio" name="rate" />
 
-                                                                <label class="star star-3" for="star-3"></label>
+                                                                    <div>
+                                                                        <input class="star star-5" id="star-5"
+                                                                            type="radio" name="rate5" />
 
-                                                                <input class="star star-2" id="star-2"
-                                                                    type="radio" name="rate" />
+                                                                        <label class="star star-5"
+                                                                            for="star-5"></label>
 
-                                                                <label class="star star-2" for="star-2"></label>
+                                                                        <input class="star star-4" id="star-4"
+                                                                            type="radio" name="rate4" />
 
-                                                                <input class="star star-1" id="star-1"
-                                                                    type="radio" name="rate" />
+                                                                        <label class="star star-4"
+                                                                            for="star-4"></label>
 
-                                                                <label class="star star-1" for="star-1"></label>
+                                                                        <input class="star star-3" id="star-3"
+                                                                            type="radio" name="rate3" />
+
+                                                                        <label class="star star-3"
+                                                                            for="star-3"></label>
+
+                                                                        <input class="star star-2" id="star-2"
+                                                                            type="radio" name="rate2" />
+
+                                                                        <label class="star star-2"
+                                                                            for="star-2"></label>
+
+                                                                        <input class="star star-1" id="star-1"
+                                                                            type="radio" name="rate1" />
+
+                                                                        <label class="star star-1"
+                                                                            for="star-1"></label>
+
+                                                                    </div>
+                                                                    <div class="d-grid gap-2 col-8 mx-auto">
+                                                                        <button class="btn btn-primary"
+                                                                            type="submit">
+                                                                            submit Rate
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="16" height="16"
+                                                                                fill="currentColor"
+                                                                                class="bi bi-hand-index-thumb-fill"
+                                                                                viewBox="0 0 16 16">
+                                                                                <path
+                                                                                    d="M8.5 1.75v2.716l.047-.002c.312-.012.742-.016 1.051.046.28.056.543.18.738.288.273.152.456.385.56.642l.132-.012c.312-.024.794-.038 1.158.108.37.148.689.487.88.716.075.09.141.175.195.248h.582a2 2 0 0 1 1.99 2.199l-.272 2.715a3.5 3.5 0 0 1-.444 1.389l-1.395 2.441A1.5 1.5 0 0 1 12.42 16H6.118a1.5 1.5 0 0 1-1.342-.83l-1.215-2.43L1.07 8.589a1.517 1.517 0 0 1 2.373-1.852L5 8.293V1.75a1.75 1.75 0 0 1 3.5 0z" />
+                                                                            </svg>
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
 
                                                             </div>
-                                                            <div class="d-grid gap-2 col-8 mx-auto">
-                                                                <button class="btn btn-primary" type="submit">
-                                                                    submit Rate
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        width="16" height="16"
-                                                                        fill="currentColor"
-                                                                        class="bi bi-hand-index-thumb-fill"
-                                                                        viewBox="0 0 16 16">
-                                                                        <path
-                                                                            d="M8.5 1.75v2.716l.047-.002c.312-.012.742-.016 1.051.046.28.056.543.18.738.288.273.152.456.385.56.642l.132-.012c.312-.024.794-.038 1.158.108.37.148.689.487.88.716.075.09.141.175.195.248h.582a2 2 0 0 1 1.99 2.199l-.272 2.715a3.5 3.5 0 0 1-.444 1.389l-1.395 2.441A1.5 1.5 0 0 1 12.42 16H6.118a1.5 1.5 0 0 1-1.342-.83l-1.215-2.43L1.07 8.589a1.517 1.517 0 0 1 2.373-1.852L5 8.293V1.75a1.75 1.75 0 0 1 3.5 0z" />
-                                                                    </svg>
-                                                                </button>
-                                                            </div>
-                                                        </form>
+
+
+
+                                                        </div>
+
 
                                                     </div>
 
-
-
                                                 </div>
 
-
-                                            </div>
-
+                                            </section>
                                         </div>
-                                        {{-- <div class="row justify-content-between algin-iteam">
-                                            <div class="col-lg-2 col-md-4 mb-3">
-                                                <button type="button" class="btn btn-danger">one star</button>
-                                            </div>
-                                            <div class="col-lg-2 col-md-4 mb-3">
-                                                <button type="button" class="btn btn-danger">tow star</button>
-                                            </div>
-                                            <div class="col-lg-2 col-md-4 mb-3">
-                                                <button type="button" class="btn btn-warning">three star</button>
-                                            </div>
-                                            <div class="col-lg-2 col-md-4 mb-3">
-                                                <button type="button" class="btn btn-success">four star</button>
-                                            </div>
-                                            <div class="col-lg-2 col-md-4 mb-3">
-                                                <button type="button" class="btn btn-success">five star</button>
-                                            </div>
-                                        </div> --}}
-                                    </section>
+                                    </div>
                                 </div>
+
                             </div>
-                        </div>
-                        {{-- <div class="card-body text-center">
-                            <button href="{{ route('contact_me', $profession->freelancer->user->id) }}" type="submit"
-                                class="btn btn-info">Rate</button>
-                        </div> --}}
-                    </div>
+                        @break
+                    @endif
+                @endforeach
 
+
+            </div>
+            <div class="col-lg-8 col-md-8">
+                <div class="card bg-light text-dark rounded">
+                    <div class="p-4">
+                        <h2>Description</h2>
+                        <p>
+                            {{ $profession->description }}
+                        </p>
+                    </div>
                 </div>
-                <div class="col-lg-8 col-md-8">
-                    <div class="card bg-light text-dark rounded">
-                        <div class="p-4">
-                            <h2>Description</h2>
-                            <p>
-                                {{ $profession->description }}
-                            </p>
-                        </div>
+
+                <div class="card bg-light text-start text-dark mb-4 rounded">
+                    <div class="card-body text-center">
+                        <div class="h5">Buy this service</div>
+                        <!-- if the service not buyed yet -->
+                        <a href="{{ route('buy_service', $profession->id) }}" type="submit"
+                            class="btn btn-info mt-2" id="buy">Buy,
+                            and add to my projects</a>
+                        <!-- if the service is required and has not yet been approved -->
+                        <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->
+                        <!-- if the service is accepted and not finished -->
+                        <!-- <button type="button" class="btn btn-info" disabled>In work</button> -->
+                        <!-- if the service is over -->
+                        <!-- <button type="button" class="btn btn-success" disabled>Service over</button> -->
                     </div>
+                </div>
 
-                    <div class="card bg-light text-start text-dark mb-4 rounded">
-                        <div class="card-body text-center">
-                            <div class="h5">Buy this service</div>
-                            <!-- if the service not buyed yet -->
-                            <a href="{{ route('buy_service',$profession->id) }}" type="submit" class="btn btn-info mt-2" id="buy">Buy,
-                                and add to my projects</a>
-                            <!-- if the service is required and has not yet been approved -->
-                            <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->
-                            <!-- if the service is accepted and not finished -->
-                            <!-- <button type="button" class="btn btn-info" disabled>In work</button> -->
-                            <!-- if the service is over -->
-                            <!-- <button type="button" class="btn btn-success" disabled>Service over</button> -->
-                        </div>
-                    </div>
+                <!-- Other suggested services -->
+                <div class="card bg-light text-start text-dark rounded">
+                    <div class="card-body text-center">
+                        <div class="h5 mb-3">Other suggested services</div>
+                        <!-- Only the first 6 similar services -->
+                        <section class="py-5 section-style">
+                            <div class="container">
+                                <div class="row text-center">
+                                    @foreach ($professions as $profession)
+                                        <div class="col-md-6 col-lg-6 mb-2">
+                                            <div class="card text-light"
+                                                style="background-color: #001b24; height: 100%;">
+                                                <!-- <div class="container">
 
-                    <!-- Other suggested services -->
-                    <div class="card bg-light text-start text-dark rounded">
-                        <div class="card-body text-center">
-                            <div class="h5 mb-3">Other suggested services</div>
-                            <!-- Only the first 6 similar services -->
-                            <section class="py-5 section-style">
-                                <div class="container">
-                                    <div class="row text-center">
-                                        @foreach ($professions as $profession)
-                                            <div class="col-md-6 col-lg-6 mb-2">
-                                                <div class="card text-light" style="background-color: #001b24; height: 100%;">
-                                                    <!-- <div class="container">
+                                                     <-- add image or icon here ----------
 
-                                                             <-- add image or icon here ----------
+                                                        <div style="display: inline-grid;">
+                                                            <span class="card-title">
+                                                                <a href="#" class="navbar-brand text-light name-of-user-hover">
+                                                                    name of user
+                                                                </a>
+                                                            </span>
+                                                            <span class="card-title">
+                                                                user name
+                                                            </span>
+                                                        </div>
+                                                    </div> -->
+                                                <div class="card-body text-center"
+                                                    style="display: flex !important;align-items: center;justify-content: center;">
 
-                                                                <div style="display: inline-grid;">
-                                                                    <span class="card-title">
-                                                                        <a href="#" class="navbar-brand text-light name-of-user-hover">
-                                                                            name of user
-                                                                        </a>
-                                                                    </span>
-                                                                    <span class="card-title">
-                                                                        user name
-                                                                    </span>
+                                                    <!-- descreption of the profession -->
+
+                                                    <div class="card-text">
+                                                        <div class="container">
+                                                            <div class="col" style="color: #f5ff9f;">
+                                                                <!-- category belong to the profession -->
+                                                                <div class="row justify-content-center"
+                                                                    style="font-size: 18px !important;">
+                                                                    {{-- <span class="for-size span-number-1 ">Title:</span> --}}
+                                                                    <span
+                                                                        class="for-size span-number-2 title-des">{{ $profession->title }}</span>
                                                                 </div>
-                                                            </div> -->
-                                                    <div class="card-body text-center" style="display: flex !important;align-items: center;justify-content: center;">
-
-                                                        <!-- descreption of the profession -->
-
-                                                        <div class="card-text">
-                                                            <div class="container">
-                                                                <div class="col" style="color: #f5ff9f;">
-                                                                    <!-- category belong to the profession -->
-                                                                    <div class="row justify-content-center"
-                                                                        style="font-size: 18px !important;">
-                                                                        {{-- <span class="for-size span-number-1 ">Title:</span> --}}
-                                                                        <span
-                                                                            class="for-size span-number-2 title-des">{{ $profession->title }}</span>
-                                                                    </div>
-                                                                    <div class="row justify-content-center">
-                                                                        <span
-                                                                            class="for-size span-number-1">Category:</span>
-                                                                        <span
-                                                                            class="for-size span-number-2">{{ "\n" . $profession->category->title }}</span>
-                                                                    </div>
-                                                                    <div class="row justify-content-center">
-                                                                        <span
-                                                                            class="for-size span-number-1">professional:</span>
-                                                                        <span
-                                                                            class="for-size span-number-2">{{ $profession->freelancer->user->full_name }}</span>
-                                                                    </div>
-                                                                    <div style="white-space: nowrap;">
-                                                                        <span
-                                                                            class="for-size span-number-1">Rating:</span>
-                                                                        @if ($profession->freelancer->rate > 0)
-                                                                            <span class="fa fa-star checked"
-                                                                                style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                            {{-- star one --}}
-                                                                        @else
-                                                                            <span class="fa fa-star not-checked"
-                                                                                style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                            {{-- star one --}}
-                                                                        @endif
-                                                                        @if ($profession->freelancer->rate > 1)
-                                                                            <span class="fa fa-star checked"
-                                                                                style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                            {{-- star two --}}
-                                                                        @else
-                                                                            <span class="fa fa-star not-checked"
-                                                                                style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                            {{-- star two --}}
-                                                                        @endif
-                                                                        @if ($profession->freelancer->rate > 2)
-                                                                            <span class="fa fa-star checked"
-                                                                                style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                            {{-- star three --}}
-                                                                        @else
-                                                                            <span class="fa fa-star not-checked"
-                                                                                style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                            {{-- star three --}}
-                                                                        @endif
-                                                                        @if ($profession->freelancer->rate > 3)
-                                                                            <span class="fa fa-star checked"
-                                                                                style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                            {{-- star four --}}
-                                                                        @else
-                                                                            <span class="fa fa-star not-checked"
-                                                                                style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                            {{-- star four --}}
-                                                                        @endif
-                                                                        @if ($profession->freelancer->rate > 4)
-                                                                            <span class="fa fa-star checked"
-                                                                                style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                            {{-- star five --}}
-                                                                        @else
-                                                                            <span class="fa fa-star not-checked"
-                                                                                style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                            {{-- star five --}}
-                                                                        @endif
-
-                                                                    </div>
-                                                                    <div class="row justify-content-center">
-                                                                        <span
-                                                                            class="for-size span-number-1">Price:</span>
-                                                                        <span
-                                                                            class="for-size span-number-2">{{ $profession->price }}</span>
-                                                                    </div>
-                                                                    <div class="row justify-content-center mt-3"
-                                                                        style="display: block;">
-                                                                        <span
-                                                                            class="for-size span-number-1">descreption:</span>
-                                                                        <span
-                                                                            class="for-size span-number-2">{{ $profession->description }}</span>
-                                                                    </div>
-                                                                    <!-- Profile of the user -->
-                                                                    <a href="#"
-                                                                        class="btn btn-info mt-2 btn-font-size">
-                                                                        See more information
-                                                                    </a>
+                                                                <div class="row justify-content-center">
+                                                                    <span
+                                                                        class="for-size span-number-1">Category:</span>
+                                                                    <span
+                                                                        class="for-size span-number-2">{{ "\n" . $profession->category->title }}</span>
                                                                 </div>
+                                                                <div class="row justify-content-center">
+                                                                    <span
+                                                                        class="for-size span-number-1">professional:</span>
+                                                                    <span
+                                                                        class="for-size span-number-2">{{ $profession->freelancer->user->full_name }}</span>
+                                                                </div>
+                                                                <div style="white-space: nowrap;">
+                                                                    <span
+                                                                        class="for-size span-number-1">Rating:</span>
+                                                                    @if ($profession->freelancer->rate > 0)
+                                                                        <span class="fa fa-star checked"
+                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                                        {{-- star one --}}
+                                                                    @else
+                                                                        <span class="fa fa-star not-checked"
+                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                                        {{-- star one --}}
+                                                                    @endif
+                                                                    @if ($profession->freelancer->rate > 1)
+                                                                        <span class="fa fa-star checked"
+                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                                        {{-- star two --}}
+                                                                    @else
+                                                                        <span class="fa fa-star not-checked"
+                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                                        {{-- star two --}}
+                                                                    @endif
+                                                                    @if ($profession->freelancer->rate > 2)
+                                                                        <span class="fa fa-star checked"
+                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                                        {{-- star three --}}
+                                                                    @else
+                                                                        <span class="fa fa-star not-checked"
+                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                                        {{-- star three --}}
+                                                                    @endif
+                                                                    @if ($profession->freelancer->rate > 3)
+                                                                        <span class="fa fa-star checked"
+                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                                        {{-- star four --}}
+                                                                    @else
+                                                                        <span class="fa fa-star not-checked"
+                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                                        {{-- star four --}}
+                                                                    @endif
+                                                                    @if ($profession->freelancer->rate > 4)
+                                                                        <span class="fa fa-star checked"
+                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                                        {{-- star five --}}
+                                                                    @else
+                                                                        <span class="fa fa-star not-checked"
+                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                                        {{-- star five --}}
+                                                                    @endif
+
+                                                                </div>
+                                                                <div class="row justify-content-center">
+                                                                    <span
+                                                                        class="for-size span-number-1">Price:</span>
+                                                                    <span
+                                                                        class="for-size span-number-2">{{ $profession->price }}</span>
+                                                                </div>
+                                                                <div class="row justify-content-center mt-3"
+                                                                    style="display: block;">
+                                                                    <span
+                                                                        class="for-size span-number-1">descreption:</span>
+                                                                    <span
+                                                                        class="for-size span-number-2">{{ $profession->description }}</span>
+                                                                </div>
+                                                                <!-- Profile of the user -->
+                                                                <a href="#"
+                                                                    class="btn btn-info mt-2 btn-font-size">
+                                                                    See more information
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
-                                    </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                            </section>
-                        </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
 
-    <!-- JavaScript Bundle with Popper -->
-    <script src=" /js/bootstrap.bundle.min.js"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src=" /js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
