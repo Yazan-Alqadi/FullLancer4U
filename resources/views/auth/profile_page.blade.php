@@ -92,7 +92,8 @@
                                         <span class="mt-1">{{ $service->title }}</span>
                                         <span> <a class="btn btn-info p-1"
                                                 href="{{ route('edit_service', $service->id) }}">Edit</a>
-                                            <span> <a href="{{ route('service_delete',$service->id) }}" class="btn btn-danger p-1">Delete</a> </span>
+                                            <span> <a href="{{ route('service_delete', $service->id) }}"
+                                                    class="btn btn-danger p-1">Delete</a> </span>
                                         </span>
 
 
@@ -130,8 +131,10 @@
                                     {{-- here is the title of the service --}}
                                     <span class="mt-1">{{ $project->title }}</span>
                                     <span>
-                                        <a class="btn btn-info p-1" href="{{ route('edit_project', $project->id) }}">Edit</a>
-                                        <span> <a href="{{ route('project_delete',$project->id) }}" class="btn btn-danger p-1">Delete</a> </span>
+                                        <a class="btn btn-info p-1"
+                                            href="{{ route('edit_project', $project->id) }}">Edit</a>
+                                        <span> <a href="{{ route('project_delete', $project->id) }}"
+                                                class="btn btn-danger p-1">Delete</a> </span>
                                     </span>
                                 </div>
                             @empty
@@ -159,15 +162,16 @@
                                         style="justify-content: space-between;">
                                         {{-- here is the title of the service --}}
                                         <span class="mt-1">{{ $skill->title }}</span>
-                                        <span> <a  href="{{ route('skill_delete',$skill->id) }}" class="btn btn-danger p-1">Delete</a> </span>
+                                        <span> <a href="{{ route('skill_delete', $skill->id) }}"
+                                                class="btn btn-danger p-1">Delete</a> </span>
 
                                     </div>
-                                    @empty
+                                @empty
                                     <div class="text-center fw-bold h5 text-dark">No Skills Yet</div>
                                 @endforelse
                                 {{-- if not --}}
                             @else
-                            <div class="text-center fw-bold h5 text-dark">You are not freelancer</div>
+                                <div class="text-center fw-bold h5 text-dark">You are not freelancer</div>
                             @endif
                         </div>
                     </div>
@@ -175,8 +179,10 @@
                     <div class="card bg-light text-dark rounded text-center">
                         <div class="card-body">
 
-                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Add new skill</button>
+                            @if (Auth::user()->is_freelancer)
+                                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Add new skill</button>
+                            @endif
 
                             <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop"
                                 aria-labelledby="offcanvasTopLabel">
@@ -189,8 +195,9 @@
                                     <form action="{{ route('skill_store') }}">
                                         <div class="input-group mb-3 w-50">
                                             <span class="input-group-text" id="basic-addon1">skill</span>
-                                            <input type="text" name="title" class="form-control" placeholder="Type skill"
-                                                aria-label="text" aria-describedby="basic-addon1">
+                                            <input type="text" name="title" class="form-control"
+                                                placeholder="Type skill" aria-label="text"
+                                                aria-describedby="basic-addon1">
                                         </div>
                                         <div class="text-start mx-auto">
                                             <button class="btn btn-primary" type="submit">

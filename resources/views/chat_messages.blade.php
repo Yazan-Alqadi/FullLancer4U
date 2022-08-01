@@ -56,7 +56,9 @@
                     <div class="messages-box" style="height: 534px;">
                         <div class="list-group rounded-0">
                             @foreach ($threads as $thread)
-                                <a href="#"
+                                <a href="{{ route('contact_me', $thread->reciever->id==Auth::id() ?
+                                    $thread->sender->id : $thread->reciever->id
+                                    ) }}"
                                     class="list-group-item list-group-item-action list-group-item-light rounded-0">
                                     <div class="media">
                                         {{-- here is the image --}}
@@ -66,10 +68,11 @@
                                         <div class="media-body ml-4">
                                             <div class="d-flex align-items-center justify-content-between mb-1">
                                                 {{-- name of the user chat --}}
-                                                <h6 class="mb-0">{{ $thread->reciever->full_name }}</h6>
+                                                <h6 class="mb-0">{{ $thread->reciever->id==Auth::id() ?
+                                                    $thread->sender->full_name : $thread->reciever->full_name }}</h6>
                                                 {{-- last date --}}
                                                 <small class="small font-weight-bold">
-                                                    {{ $thread->updated_at }}
+                                                    {{ \Carbon\Carbon::parse($thread->updated_at)->diffForHumans() }}
                                                 </small>
                                             </div>
                                             {{-- last message --}}
@@ -84,10 +87,10 @@
                 </div>
             </div>
 
-            </div>
-
-
         </div>
+
+
+    </div>
     </div>
 
 

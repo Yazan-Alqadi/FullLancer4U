@@ -11,7 +11,7 @@ class Freelancer extends Model
 
     protected $guarded = [];
 
-    
+
 
 
     public function user(){
@@ -20,5 +20,8 @@ class Freelancer extends Model
 
     public function professions(){
         return $this->hasMany(Profession::class);
+    }
+    public function projects(){
+        return $this->belongsToMany(Project::class)->withTimestamps();
     }
 }

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Events\NewMessage;
 use App\Models\Project;
 use App\Models\Category;
-
+use App\Models\Notification;
+use App\Models\Profession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,20 +44,20 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $inputs =$request->validate( [
+        $inputs = $request->validate([
             'title' => 'required',
             'price' => 'required|integer',
             'description' => 'required|min:5',
-            'category'=>'required|not_in:0,something else',
-            'deadline'=>'required|date',
+            'category' => 'required|not_in:0,something else',
+            'deadline' => 'required|date',
         ]);
         Project::create([
-            'title'=>$inputs['title'],
-            'price'=>$inputs['price'],
-            'description'=>$inputs['description'],
-            'deadline'=>$inputs['deadline'],
-            'category_id'=>$inputs['category'],
-            'user_id'=>Auth::id(),
+            'title' => $inputs['title'],
+            'price' => $inputs['price'],
+            'description' => $inputs['description'],
+            'deadline' => $inputs['deadline'],
+            'category_id' => $inputs['category'],
+            'user_id' => Auth::id(),
         ]);
         session()->flash('message', 'Your project has been submited and will be reviewed by admin');
         return back();
@@ -72,7 +73,7 @@ class ProjectController extends Controller
     {
         //
         $project = Project::find($id);
-        $projects = Project::where('category_id', $project->category_id)->where('id'!=$id);
+        $projects = Project::where('category_id', $project->category_id)->where('id' != $id);
 
         return view('project-web-page-for-client', compact('project', 'projects'));
     }
@@ -88,7 +89,7 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $categories = Category::all();
 
-        return view('edit_project',compact('project','categories'));
+        return view('edit_project', compact('project', 'categories'));
     }
 
     /**
@@ -100,18 +101,18 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $project=Project::find($id);
-        $inputs =$request->validate( [
+        $project = Project::find($id);
+        $inputs = $request->validate([
             'title' => 'required',
             'price' => 'required|integer',
             'description' => 'required|min:5',
-            'category_id'=>'required|not_in:0,something else',
-            'deadline'=>'required|date',
+            'category_id' => 'required|not_in:0,something else',
+            'deadline' => 'required|date',
         ]);
         $project->update($inputs);
         $project->save();
 
-        return back()->with('message','Your project have been updated');
+        return back()->with('message', 'Your project have been updated');
     }
 
     /**
@@ -123,9 +124,9 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $project = Project::find($id);
-        $this->authorize('delete',$project);
+        $this->authorize('delete', $project);
         $project->delete();
-        return back()->with('message','Your project have been deleted');;
+        return back()->with('message', 'Your project have been deleted');;
     }
 
     public function apply($id)
@@ -134,10 +135,29 @@ class ProjectController extends Controller
         $project = Project::find($id);
         session()->flash('message', 'Your apply have been sent to client');
         $message = 'Your project ' . $project->title . 'have been applyed by freelancer' . Auth::user()->full_name;
-        event(new NewMessage($project->user->id,Auth::user()->full_name,$project));
+        event(new NewMessage($project->user->id, Auth::user()->full_name, $project));
         return back();
-
     }
 
+    public function buyProject($id)
+    {
 
+        $project = Project::findOrFail($id);
+
+        $user_id = $project->user->id;
+
+
+        Notification::create([
+            'title' => 'Message from ' . Auth::user()->full_name,
+            'content' => 'New Apply for your Project ' . $project->title,
+            'user_id' => $user_id,
+            'reciver_id' => Auth::id(),
+            'type' => 'project',
+            're_id' => $project->id,
+        ]);
+
+        event(new NewMessage($user_id, Auth::user()->full_name, 'New Apply for your Project'));
+        session()->flash('message', 'YourApply for this project has been sent to client');
+        return back();
+    }
 }

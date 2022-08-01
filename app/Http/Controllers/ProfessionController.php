@@ -168,7 +168,7 @@ class ProfessionController extends Controller
         ]);
 
         event(new NewMessage($user_id, Auth::user()->full_name, 'New Apply for your Service'));
-        session()->flash('message', 'You Apply for this service has been sent to client');
+        session()->flash('message', 'You Apply for this service has been sent to freelancer');
         return back();
     }
 }

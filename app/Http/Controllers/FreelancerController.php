@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewMessage;
 use App\Models\Freelancer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
+use App\Models\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class FreelancerController extends Controller
 {
@@ -21,8 +24,7 @@ class FreelancerController extends Controller
 
         //dd($freelancers);
 
-        return view('auth.freelancer_cards',['freelancers'=>$freelancers]);
-
+        return view('auth.freelancer_cards', ['freelancers' => $freelancers]);
     }
 
     /**
@@ -90,5 +92,36 @@ class FreelancerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateWork($id)
+    {
+        if (request('options_outlined') == 'done') {
+            DB::statement('update client_service set status=? where id= ? ', ['done', $id]);
+            $client_id = DB::table('client_service')->select('user_id')->where('id', $id)->first();
+
+            Notification::create([
+                'title' => 'Message from ' . Auth::user()->full_name,
+                'content' => 'I am done for your work You can now rate my service',
+                'user_id' => $client_id->user_id,
+                'reciver_id' => Auth::id(),
+            ]);
+
+            event(new NewMessage($client_id->user_id, Auth::user()->full_name, 'I am done for your work You can now rate my service'));
+        } else {
+            DB::statement('update client_service set status=? where id= ? ', ['cancel', $id]);
+            $client_id = DB::table('client_service')->select('user_id')->where('id', $id)->first();
+
+            Notification::create([
+                'title' => 'Message from ' . Auth::user()->full_name,
+                'content' => 'I am cancel Your work',
+                'user_id' => $client_id->user_id,
+                'reciver_id' => Auth::id(),
+            ]);
+
+            event(new NewMessage($client_id->user_id, Auth::user()->full_name, 'I am cancel Your work'));
+        }
+
+        return back();
     }
 }

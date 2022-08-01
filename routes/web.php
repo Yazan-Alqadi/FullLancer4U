@@ -75,13 +75,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('user', [UserController::class, 'show'])->name('profile');
     Route::get('user/update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::get('contact', [MessageController::class, 'getContact'])->name('contact');
-    Route::get('contact-me/{id}', [MessageController::class, 'contactMe'])->name('contact_me');
+    Route::get('contact-page/{id}', [MessageController::class, 'contactMe'])->name('contact_me');
 
 
     Route::get('service/edit/{id}', [ProfessionController::class, 'edit'])->name('edit_service');
     Route::get('service/update/{id}', [ProfessionController::class, 'update'])->name('update_service');
 
-    Route::post('contact-me/{id}', [MessageController::class, 'send'])->name('send_message');
+    Route::get('contact-me/{id}', [MessageController::class, 'send'])->name('send_message');
 
     Route::get('mynotification', [NotificationController::class, 'index'])->name('my_notification');
 
@@ -97,8 +97,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('skill/delete/{id}', [SkillController::class, 'destroy'])->name('skill_delete');
     Route::get('skill/post/', [SkillController::class, 'store'])->name('skill_store');
 
-    Route::get('apply/{id}', [ProfessionController::class, 'buyService'])->name('buy_service');
+    Route::get('apply/service/{id}', [ProfessionController::class, 'buyService'])->name('buy_service');
     Route::get('confirm/{id}', [NotificationController::class, 'confirm'])->name('confirm');
+    Route::get('apply/project/{id}', [ProjectController::class, 'buyProject'])->name('buy_project');
+
 
     Route::view('chat', 'chat_messages');
     Route::view('profile/{id}', 'profile_user');
@@ -109,6 +111,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('my_purchase', function () {
         return view('purchases_page');
     })->name('purchase_page');
+
+
     Route::get('my_work/{id}', function ($id) {
         $user = User::find($id);
         $services = DB::table('client_service')->select(['client_service.id', 'status', 'title', 'full_name', 'client_service.updated_at'])
@@ -116,31 +120,11 @@ Route::middleware(['auth'])->group(function () {
             ->join('users', 'client_service.user_id', '=', 'users.id')
             ->where('freelancer_id', $user->freelancer->id)
             ->get();
-        // dd($services);
-        return view('works_page', compact('services'));
+        $freelancer = Freelancer::where('user_id',$id)->first();
+        //dd($freelancer->projects);
+        return view('works_page', compact('services','freelancer'));
     })->name('work_page');
-    Route::get('my_work/update/{id}', function ($id) {
-
-
-        if (request('options_outlined') == 'done')
-        {
-            DB::statement('update client_service set status=? where id= ? ', ['done', $id]);
-            $client_id = DB::statement('select user_id from client_service where id= ? ', [$id]);
-
-            event(new NewMessage($client_id,Auth::user()->full_name,'I am done for your work You can now rate my service'));
-        }
-
-        else
-        {
-            DB::statement('update client_service set status=? where id= ? ', ['cancel', $id]);
-            $client_id = DB::statement('select user_id from client_service where id= ? ', [$id]);
-
-            event(new NewMessage($client_id,Auth::user()->full_name,'I am cancel Your work'));
-        }
-
-
-        return back();
-    })->name('work_update');
+    Route::get('my_work/update/{id}', [FreelancerController::class,'updateWork'])->name('work_update');
 
     Route::get('rate/update/{id}', function ($id) {
         $freelancer=Freelancer::find($id);

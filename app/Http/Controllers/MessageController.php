@@ -19,6 +19,7 @@ class MessageController extends Controller
 
     public function send($id, Request $request)
     {
+
         $request->validate([
             'body' => 'required',
         ]);
@@ -32,7 +33,7 @@ class MessageController extends Controller
             $query->where('sender_id', '=', $user_id)
                 ->where('receiver_id', '=', $id);
         })->first();
-        //dd($thread);
+       // dd($thread);
 
         if ($thread== null) {
             $thread =Thread::create([
@@ -49,6 +50,7 @@ class MessageController extends Controller
 
         Message::create([
             'body' => $message,
+            'user_id'=>Auth::id(),
             'thread_id' => $thread->id,
         ]);
         Notification::create([
@@ -74,8 +76,17 @@ class MessageController extends Controller
 
     public function contactMe($id)
     {
+        $user_id = Auth::id();
+
+        $threads = Thread::where(function ($query) use ($id, $user_id) {
+            $query->where('sender_id', '=', $id)
+                ->where('receiver_id', '=', $user_id);
+        })->orWhere(function ($query) use ($id, $user_id) {
+            $query->where('sender_id', '=', $user_id)
+                ->where('receiver_id', '=', $id);
+        })->first();
 
         $user = User::where('id', $id)->first();
-        return view('contact_me', compact('user'));
+        return view('contact_me', compact('user','threads'));
     }
 }

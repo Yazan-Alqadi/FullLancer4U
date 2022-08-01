@@ -66,7 +66,7 @@
     {{-- successful alert --}}
 
     @if (session('message'))
-        <div class="alert alert-success d-flex align-items-center" role="alert">
+        <div class="alert alert-success d-flex align-items-center mgg" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                 <use xlink:href="#check-circle-fill" />
             </svg>
@@ -351,19 +351,19 @@
                                                 style="background-color: #001b24; height: 100%;">
                                                 <!-- <div class="container">
 
-                                                     <-- add image or icon here ----------
+                                                 <-- add image or icon here ----------
 
-                                                        <div style="display: inline-grid;">
-                                                            <span class="card-title">
-                                                                <a href="#" class="navbar-brand text-light name-of-user-hover">
-                                                                    name of user
-                                                                </a>
-                                                            </span>
-                                                            <span class="card-title">
-                                                                user name
-                                                            </span>
-                                                        </div>
-                                                    </div> -->
+                                                    <div style="display: inline-grid;">
+                                                        <span class="card-title">
+                                                            <a href="#" class="navbar-brand text-light name-of-user-hover">
+                                                                name of user
+                                                            </a>
+                                                        </span>
+                                                        <span class="card-title">
+                                                            user name
+                                                        </span>
+                                                    </div>
+                                                </div> -->
                                                 <div class="card-body text-center"
                                                     style="display: flex !important;align-items: center;justify-content: center;">
 

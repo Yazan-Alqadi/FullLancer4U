@@ -140,50 +140,55 @@
 
 
         {{-- if the work is Project --}}
+        @foreach ($freelancer->projects as $project)
         <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25">
             {{-- message from who ? --}}
             <div class="d-flex " style="justify-content: space-between; align-items: center;">
                 <span class="h4 text-danger">
                     <span>Project:</span>
-                    <span class="ms-1">name of Project</span>
+                    <span class="ms-1">{{ $project->title }}</span>
                 </span>
-                <span class="h6 rounded-2 p-1 text-secondary">1 hour</span>
+                <span class="h6 rounded-2 p-1 text-secondary">{{ $project->updated_at }}</span>
             </div>
             <div class="d-flex " style="justify-content: space-between; align-items: center;">
                 <span class="h4 text-danger">
                     <span>Client:</span>
-                    <span class="ms-1">name of the client</span>
+                    <span class="ms-1">{{ $project->user->full_name }}</span>
                 </span>
             </div>
             <div class="h6 text-dark" style="word-break: break-word;">
                 <span>state:</span>
                 {{-- if work is in timeline --}}
+                @if ($project->status == 'in work')
                 <span class="ms-1 disabled btn btn-warning"
                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"> In Work
                 </span>
                 {{-- if work Done --}}
+                @elseif ($project->status == 'done')
                 <span class="ms-1 disabled btn btn-success"
                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"> Done
                 </span>
                 {{-- if work canceled --}}
+                @else
                 <span class="ms-1 disabled btn btn-danger"
                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                     Canceled
                 </span>
+                @endif
 
                 {{-- if work is in timeline --}}
                 <div class="text-start">
 
                     <form action="" class="my-3">
                         <span> change state into: </span>
-                        <input type="radio" class="btn-check" name="options-outline" id="danger-outlined"
+                        <input type="radio" class="btn-check" name="options_outline" id="{{ $project->id }}"
                             autocomplete="off">
-                        <label class="btn btn-outline-danger" for="danger-outlined"
+                        <label class="btn btn-outline-danger"  id="c{{ $project->id }}" for="c{{ $project->id }}"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Canceled</label>
 
-                        <input type="radio" class="btn-check" name="options-outline" id="success-outlined"
+                        <input type="radio" class="btn-check" name="options_outline" id="c{{ $project->id }}"
                             autocomplete="off">
-                        <label class="btn btn-outline-success" for="success-outlined"
+                        <label class="btn btn-outline-success" id="c{{ $project->id }}" for="c{{ $project->id }}"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Done</label>
                         <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Confirm</button>
@@ -191,6 +196,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
 
 
     </section>

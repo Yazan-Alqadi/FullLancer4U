@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewMessage;
+use App\Models\Freelancer;
 use App\Models\Notification;
 use App\Models\Profession;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Http\Request;
@@ -19,9 +21,9 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $notifications=Notification::latest()->where('user_id',Auth::id())->get();
+        $notifications = Notification::latest()->where('user_id', Auth::id())->get();
 
-        return view('my_notifications',compact('notifications'));
+        return view('my_notifications', compact('notifications'));
     }
 
     /**
@@ -89,53 +91,55 @@ class NotificationController extends Controller
     {
         //
     }
-    public function confirm(Request $request,$id)
+    public function confirm(Request $request, $id)
     {
-        $notification= Notification::find($id);
-        if ($request->options_outlined=="yes" )
-        {
+        $notification = Notification::find($id);
+        if ($request->options_outlined == "yes") {
             $notification->status = 2;
             $notification->save();
 
-            if ($notification->type=="service")
-            {
-                $service=Profession::find($notification->re_id);
-                $user=User::find($notification->reciver_id);
+            if ($notification->type == "service") {
 
-                $user->services()->attach($service->id,[
-                    'status'=>'in work',
+                $service = Profession::find($notification->re_id);
+                $user = User::find($notification->reciver_id);
+                $user->services()->attach($service->id, [
+                    'status' => 'in work',
                 ]);
+            }
+            else {
 
+                $project = Project::find($notification->re_id);
+                $user = User::find($notification->reciver_id);
+                $freelancer = Freelancer::where('user_id',$user->id)->first();
+                $freelancer->projects()->attach($project->id, [
+                    'status' => 'in work',
+                ]);
             }
 
             Notification::create([
-                'title'=>'Message from '. Auth::user()->full_name,
-                'content'=>'Accept For Your Apply',
-                'user_id'=>$notification->reciver_id,
-                'reciver_id'=>Auth::id(),
-                'type'=>'message',
-                're_id'=>$notification->re_id,
+                'title' => 'Message from ' . Auth::user()->full_name,
+                'content' => 'Accept For Your Apply',
+                'user_id' => $notification->reciver_id,
+                'reciver_id' => Auth::id(),
+                'type' => 'message',
+                're_id' => $notification->re_id,
             ]);
 
-            event(new NewMessage($notification->reciver_id,Auth::user()->full_name,'Accept For Your Apply'));
-
-
-        }
-        else{
+            event(new NewMessage($notification->reciver_id, Auth::user()->full_name, 'Accept For Your Apply'));
+        } else {
             $notification->status = 1;
             $notification->save();
 
             Notification::create([
-                'title'=>'Message from '. Auth::user()->full_name,
-                'content'=>'Reject For Your Apply',
-                'user_id'=>$notification->reciver_id,
-                'reciver_id'=>Auth::id(),
-                'type'=>'message',
-                're_id'=>$notification->re_id,
+                'title' => 'Message from ' . Auth::user()->full_name,
+                'content' => 'Reject For Your Apply',
+                'user_id' => $notification->reciver_id,
+                'reciver_id' => Auth::id(),
+                'type' => 'message',
+                're_id' => $notification->re_id,
             ]);
 
-            event(new NewMessage($notification->reciver_id,Auth::user()->full_name,'Reject For Your Apply'));
-
+            event(new NewMessage($notification->reciver_id, Auth::user()->full_name, 'Reject For Your Apply'));
         }
         return back();
     }

@@ -25,6 +25,17 @@
 
     @include('layouts.nav-bar')
 
+    @if (session('message'))
+        <div class="alert alert-success d-flex align-items-center mgg" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                <use xlink:href="#check-circle-fill" />
+            </svg>
+            <div>
+                {{ session('message') }}
+            </div>
+        </div>
+    @endif
+
 
     <div class="text-dark ms-1 container h1 mgg row"> {{ $project->title }} </div>
 
@@ -104,12 +115,12 @@
 
                     <div class="card bg-light text-start text-dark mb-4 rounded">
                         <div class="card-body text-center">
-                            @if (Auth::check() && !Auth::user()->is_freelancer)
+                            @if (Auth::check() && Auth::user()->is_freelancer)
                                 <div class="h5">Apply for this project</div>
                                 <!-- if the service not buyed yet -->
 
-                                <button href="#" type="button" class="btn btn-info mt-2"
-                                    id="buy">Apply</button>
+                                <a href="{{ route('buy_project', $project->id) }}" class="btn btn-info mt-2"
+                                    id="buy">Apply</a>
                                 <!-- if the service is required and has not yet been approved -->
                                 <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->
                                 <!-- if the service is accepted and not finished -->

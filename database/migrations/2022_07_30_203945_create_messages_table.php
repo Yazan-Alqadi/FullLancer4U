@@ -18,6 +18,8 @@ class CreateMessagesTable extends Migration
             $table->text('body');
             $table->bigInteger('thread_id')->unsigned();
             $table->foreign('thread_id')->references('id')->on('threads')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

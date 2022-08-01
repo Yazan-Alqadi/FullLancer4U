@@ -89,7 +89,7 @@
                 @else
                     <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 @if ($loop->iteration > 3) collapse @endif"
                         @if ($loop->iteration > 3) id = "collapseExample1" @endif>
-                        <a class="text-decoration-none" href="#">
+                        <a class="text-decoration-none" href="{{ route('contact_me',$notification->reciver_id) }}">
                             {{-- message from who ? --}}
                             <div class="d-flex " style="justify-content: space-between; align-items: center;">
                                 <span class="h4 text-danger">{{ $notification->title }}</span>
