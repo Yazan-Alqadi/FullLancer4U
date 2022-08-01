@@ -20,6 +20,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SkillController;
 use App\Models\Message;
 use App\Nova\Service;
 use Illuminate\Database\Eloquent\Relations\Pivot;
@@ -69,6 +70,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('freelancer/sign', [FreelancerController::class, 'create'])->name('become_freelancer');
     Route::post('profession/store', [ProfessionController::class, 'store'])->name('profession_store');
+    Route::get('service/delete/{id}', [ProfessionController::class, 'destroy'])->name('service_delete');
+
     Route::get('user', [UserController::class, 'show'])->name('profile');
     Route::get('user/update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::get('contact', [MessageController::class, 'getContact'])->name('contact');
@@ -83,11 +86,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('mynotification', [NotificationController::class, 'index'])->name('my_notification');
 
     Route::get('project/{id}', [ProjectController::class, 'show'])->name('get_project');
+    Route::get('project/edit/{id}', [ProjectController::class, 'edit'])->name('edit_project');
+    Route::post('project/update/{id}', [ProjectController::class, 'update'])->name('update_project');
 
 
     Route::get('projects/create', [ProjectController::class, 'create'])->name('create_project');
     Route::post('project/store', [ProjectController::class, 'store'])->name('project_store');
     Route::get('project/delete/{id}', [ProjectController::class, 'destroy'])->name('project_delete');
+
+    Route::get('skill/delete/{id}', [SkillController::class, 'destroy'])->name('skill_delete');
+    Route::get('skill/post/', [SkillController::class, 'store'])->name('skill_store');
 
     Route::get('apply/{id}', [ProfessionController::class, 'buyService'])->name('buy_service');
     Route::get('confirm/{id}', [NotificationController::class, 'confirm'])->name('confirm');

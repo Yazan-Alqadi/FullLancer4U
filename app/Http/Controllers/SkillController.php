@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SkillController extends Controller
 {
@@ -34,7 +36,15 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs = $request->validate([
+            'title'=>'required'
+        ]);
+        Skill::create([
+            'title'=>$request->title,
+            'user_id'=>Auth::id(),
+        ]);
+
+        return back()->with('message','Your skill have been added');
     }
 
     /**
@@ -79,6 +89,9 @@ class SkillController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $skill = Skill::find($id);
+        $skill->delete();
+
+        return back()->with('message','skill have been deleted');
     }
 }

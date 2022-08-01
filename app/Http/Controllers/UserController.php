@@ -52,10 +52,9 @@ class UserController extends Controller
     public function show()
     {
         //
-        $freelancer = DB::table('freelancers')->where('user_id', Auth::id())->first();
         $services = null;
-        if ($freelancer != null)
-            $services = DB::table('professions')->where('freelancer_id', $freelancer->id)->get();
+        if (Auth::user()->is_freelancer)
+            $services = DB::table('professions')->where('freelancer_id', Auth::user()->freelancer->id)->get();
         return view('auth.profile_page', compact('services'));
     }
 

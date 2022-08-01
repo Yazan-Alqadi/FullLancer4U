@@ -53,6 +53,10 @@ class User extends Authenticatable
 public function freelancer(){
     return $this->hasOne(Freelancer::class);
 }
+public function skills(){
+    return $this->hasMany(Skill::class);
+}
+
 
 public function projects(){
     return $this->hasMany(Project::class);

@@ -174,7 +174,7 @@
                 {{-- if work is in timeline --}}
                 <div class="text-start">
 
-                    <form action="{{ route('work_update',$service->id) }}" class="my-3">
+                    <form action="" class="my-3">
                         <span> change state into: </span>
                         <input type="radio" class="btn-check" name="options-outline" id="danger-outlined"
                             autocomplete="off">

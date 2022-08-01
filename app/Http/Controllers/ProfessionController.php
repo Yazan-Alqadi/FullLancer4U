@@ -45,35 +45,33 @@ class ProfessionController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate( [
+        $request->validate([
             'title' => 'required',
             'price' => 'required|integer',
             'description' => 'required|min:5',
-            'category'=>'required|not_in:0,something else'
+            'category' => 'required|not_in:0,something else'
         ]);
         $inputs = $request->all();
 
 
-        if (!Auth::user()->is_freelancer)
-        {
+        if (!Auth::user()->is_freelancer) {
             $user = User::find(Auth::id());
             $user->is_freelancer = true;
             $user->save();
             $freelancer = Freelancer::create([
-                'user_id'=>Auth::id(),
+                'user_id' => Auth::id(),
             ]);
         }
 
         Profession::create([
-            'title'=>$inputs['title'],
-            'price'=>$inputs['price'],
-            'description'=>$inputs['description'],
-            'category_id'=>$inputs['category'],
-            'freelancer_id'=>$freelancer->id,
+            'title' => $inputs['title'],
+            'price' => $inputs['price'],
+            'description' => $inputs['description'],
+            'category_id' => $inputs['category'],
+            'freelancer_id' => Auth::user()->freelancer->id,
         ]);
         session()->flash('message', 'Your service has been submited and will be reviewed by admin');
         return back();
-
     }
 
     /**
@@ -87,7 +85,7 @@ class ProfessionController extends Controller
         //
         $profession = Profession::find($id);
         $professions = Profession::where('category_id', $profession->category_id)->get();
-        return view('profile_freelancer_for_client', ['professions' => $professions,'profession'=> $profession]);
+        return view('profile_freelancer_for_client', ['professions' => $professions, 'profession' => $profession]);
     }
 
     /**
@@ -101,7 +99,7 @@ class ProfessionController extends Controller
         //
         $service =  Profession::find($id);
         $categories = Category::all();
-        return view('edit_service',['service'=>$service,'categories'=>$categories]);
+        return view('edit_service', ['service' => $service, 'categories' => $categories]);
     }
 
     /**
@@ -115,18 +113,16 @@ class ProfessionController extends Controller
     {
         //
         $service = Profession::find($id);
-        $request->validate( [
+        $inputs = $request->validate([
             'title' => 'required',
             'price' => 'required|integer',
             'description' => 'required|min:5',
-            'category_id'=>'required|not_in:0,something else'
+            'category_id' => 'required|not_in:0,something else'
         ]);
-        $inputs = $request->all();
         $service->update($inputs);
 
         session()->flash('message', 'Your service has been updated ');
         return back();
-
     }
 
     /**
@@ -137,31 +133,42 @@ class ProfessionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $service = Profession::find($id);
+
+        $services = Profession::where('freelancer_id', $service->freelancer_id)->get();
+
+        if (count($services) < 2) {
+            $freelancer = Freelancer::find($service->freelancer_id);
+            $user = User::find($freelancer->user_id);
+            $user->is_freelancer = false;
+            $user->save();
+            $freelancer->delete();
+        }
+
+        $service->delete();
+
+        return back()->with('message', 'Service have been deleted');
     }
 
-    public function buyService($id){
+    public function buyService($id)
+    {
 
         $service = Profession::findOrFail($id);
 
-        $user_id=$service->freelancer->user->id;
+        $user_id = $service->freelancer->user->id;
 
 
         Notification::create([
-            'title'=>'Message from '. Auth::user()->full_name,
-            'content'=>'New Apply for your Service '. $service->title,
-            'user_id'=>$user_id,
-            'reciver_id'=>Auth::id(),
-            'type'=>'service',
-            're_id'=>$service->id,
+            'title' => 'Message from ' . Auth::user()->full_name,
+            'content' => 'New Apply for your Service ' . $service->title,
+            'user_id' => $user_id,
+            'reciver_id' => Auth::id(),
+            'type' => 'service',
+            're_id' => $service->id,
         ]);
 
-        event(new NewMessage($user_id,Auth::user()->full_name,'New Apply for your Service'));
+        event(new NewMessage($user_id, Auth::user()->full_name, 'New Apply for your Service'));
         session()->flash('message', 'You Apply for this service has been sent to client');
         return back();
-
-
     }
-
-
 }

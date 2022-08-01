@@ -43,14 +43,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate( [
+        $inputs =$request->validate( [
             'title' => 'required',
             'price' => 'required|integer',
             'description' => 'required|min:5',
             'category'=>'required|not_in:0,something else',
             'deadline'=>'required|date',
         ]);
-        $inputs = $request->all();
         Project::create([
             'title'=>$inputs['title'],
             'price'=>$inputs['price'],
@@ -86,7 +85,10 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+        $categories = Category::all();
+
+        return view('edit_project',compact('project','categories'));
     }
 
     /**
@@ -98,7 +100,18 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project=Project::find($id);
+        $inputs =$request->validate( [
+            'title' => 'required',
+            'price' => 'required|integer',
+            'description' => 'required|min:5',
+            'category_id'=>'required|not_in:0,something else',
+            'deadline'=>'required|date',
+        ]);
+        $project->update($inputs);
+        $project->save();
+
+        return back()->with('message','Your project have been updated');
     }
 
     /**
@@ -112,7 +125,7 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $this->authorize('delete',$project);
         $project->delete();
-        return back();
+        return back()->with('message','Your project have been deleted');;
     }
 
     public function apply($id)

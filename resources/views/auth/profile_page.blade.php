@@ -92,7 +92,7 @@
                                         <span class="mt-1">{{ $service->title }}</span>
                                         <span> <a class="btn btn-info p-1"
                                                 href="{{ route('edit_service', $service->id) }}">Edit</a>
-                                            <span> <button class="btn btn-danger p-1">Delete</button> </span>
+                                            <span> <a href="{{ route('service_delete',$service->id) }}" class="btn btn-danger p-1">Delete</a> </span>
                                         </span>
 
 
@@ -130,8 +130,8 @@
                                     {{-- here is the title of the service --}}
                                     <span class="mt-1">{{ $project->title }}</span>
                                     <span>
-                                        <a class="btn btn-info p-1" href="{{ route('edit_service', 5) }}">Edit</a>
-                                        <span> <button class="btn btn-danger p-1">Delete</button> </span>
+                                        <a class="btn btn-info p-1" href="{{ route('edit_project', $project->id) }}">Edit</a>
+                                        <span> <a href="{{ route('project_delete',$project->id) }}" class="btn btn-danger p-1">Delete</a> </span>
                                     </span>
                                 </div>
                             @empty
@@ -154,18 +154,20 @@
 
                             {{-- if user has skills --}}
                             @if (Auth::user()->is_freelancer)
-                                @foreach ($services as $service)
+                                @forelse (Auth::user()->skills as $skill)
                                     <div class="d-flex mb-1 border-bottom border-secondary pb-1"
                                         style="justify-content: space-between;">
                                         {{-- here is the title of the service --}}
-                                        <span class="mt-1">{{ $service->title }}</span>
-                                        <span> <button class="btn btn-danger p-1">Delete</button> </span>
+                                        <span class="mt-1">{{ $skill->title }}</span>
+                                        <span> <a  href="{{ route('skill_delete',$skill->id) }}" class="btn btn-danger p-1">Delete</a> </span>
 
                                     </div>
-                                @endforeach
+                                    @empty
+                                    <div class="text-center fw-bold h5 text-dark">No Skills Yet</div>
+                                @endforelse
                                 {{-- if not --}}
                             @else
-                                <div class="text-center fw-bold h5 text-dark">No Skills Yet</div>
+                            <div class="text-center fw-bold h5 text-dark">You are not freelancer</div>
                             @endif
                         </div>
                     </div>
@@ -184,10 +186,10 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="offcanvas-body">
-                                    <form action="">
+                                    <form action="{{ route('skill_store') }}">
                                         <div class="input-group mb-3 w-50">
                                             <span class="input-group-text" id="basic-addon1">skill</span>
-                                            <input type="text" class="form-control" placeholder="Type skill"
+                                            <input type="text" name="title" class="form-control" placeholder="Type skill"
                                                 aria-label="text" aria-describedby="basic-addon1">
                                         </div>
                                         <div class="text-start mx-auto">

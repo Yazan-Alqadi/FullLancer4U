@@ -36,7 +36,7 @@
         </div>
 
         <div>
-            <form class="form-login-1" method="POST" action="{{ route('register.store') }}">
+            <form class="form-login-1" autocomplete="on" method="POST" action="{{ route('register.store') }}">
                 @csrf
                 <div>
                     @error('email')
@@ -47,7 +47,7 @@
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="text" name="full_name" required
-                                placeholder="Name..." id="floatingTextarea"></input>
+                                placeholder="Name..." id="floatingTextarea" autocomplete="on"></input>
                             <label for="floatingTextarea">Full Name</label>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="text" name="user_name" required
-                                placeholder="Username..." id="floatingTextarea"></input>
+                                placeholder="Username..." id="floatingTextarea" value="" autocomplete="on"></input>
                             <label for="floatingTextarea">Username</label>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                         <div class="form-floating">
                             <input class="form-control w-100" type="email" name="email" required
                                 placeholder="Email address..." id="floatingTextarea"
-                                @if (session('user')) value="{{ session('user')->email }}" @endif></input>
+                                autocomplete="on"></input>
                             <label for="floatingTextarea">Email</label>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="password" name="password" minlength="8" required
-                                placeholder="*************" id="floatingTextarea"></input>
+                                placeholder="*************" id="floatingTextarea" autocomplete="on"></input>
                             <label for="floatingTextarea">Password</label>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="password" name="password_confirmation"
-                                minlength="8" required placeholder="*************" id="floatingTextarea"></input>
+                                minlength="8" required placeholder="*************" id="floatingTextarea" autocomplete="on"></input>
                             <label for="floatingTextarea">Repeat Password</label>
                         </div>
                     </div>
@@ -203,8 +203,8 @@
                 </div>
 
                 <div class="container-asq">
-                    <span class="asq">Don't have account ?</span>
-                    <a href="{{ route('register.show') }}" class="btn btn-link">
+                    <span class="asq">Already have account ?</span>
+                    <a href="{{ route('login') }}" class="btn btn-link">
                         Login
                     </a>
                 </div>
