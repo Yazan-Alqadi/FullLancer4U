@@ -96,12 +96,14 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="card-body text-center" style="display: flex !important; align-items: center; justify-content: center;">
+                            <div class="card-body text-center"
+                                style="display: flex !important; align-items: center; justify-content: center;">
                                 <!-- descreption of the user info -->
                                 <div class="card-text">
                                     <div class="container">
                                         <div class="col" style="color: #f5ff9f;">
-                                            <div class="row justify-content-center">Projects have done: {{ $freelancer->number_of_projects }}</div>
+                                            <div class="row justify-content-center">Projects have done:
+                                                {{ $freelancer->number_of_projects }}</div>
                                             <div class="row justify-content-center">Number of professions:
                                                 {{ $freelancer->number_of_professions }}</div>
                                             <div class="row justify-content-center">
@@ -155,8 +157,15 @@
 
                                                 </div>
                                             </div>
+                                            
+                                            {{-- skills --}}
+                                            <div class="row justify-content-center">
+                                                Skills:
+                                                {{ $freelancer->number_of_projects }}</div>
+
                                             <!-- email of the user -->
-                                            <a href="{{ route('contact_me',$freelancer->user->id) }}" class="btn btn-info mt-2 btn-font-size">
+                                            <a href="{{ route('contact_me', $freelancer->user->id) }}"
+                                                class="btn btn-info mt-2 btn-font-size">
                                                 Contact
                                                 {{ $freelancer->user->full_name }}
                                             </a>

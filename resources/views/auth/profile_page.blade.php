@@ -387,8 +387,8 @@
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked">
-                                            <label class="form-check-label" for="flexCheckChecked">
+                                                id="flexCheckChecked2">
+                                            <label class="form-check-label" for="flexCheckChecked2">
                                                 Design & Creative
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-palette-fill"
@@ -400,8 +400,8 @@
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked">
-                                            <label class="form-check-label" for="flexCheckChecked">
+                                                id="flexCheckChecked3">
+                                            <label class="form-check-label" for="flexCheckChecked3">
                                                 Writing & Translation
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
@@ -412,8 +412,8 @@
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked">
-                                            <label class="form-check-label" for="flexCheckChecked">
+                                                id="flexCheckChecked4">
+                                            <label class="form-check-label" for="flexCheckChecked4">
                                                 Engineering & Architecture
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
@@ -424,8 +424,8 @@
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked">
-                                            <label class="form-check-label" for="flexCheckChecked">
+                                                id="flexCheckChecked5">
+                                            <label class="form-check-label" for="flexCheckChecked5">
                                                 Sales & Marketing
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-bag-check-fill"
@@ -437,8 +437,8 @@
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked">
-                                            <label class="form-check-label" for="flexCheckChecked">
+                                                id="flexCheckChecked6">
+                                            <label class="form-check-label" for="flexCheckChecked6">
                                                 Self employees
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-person-check-fill"

@@ -1,54 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color: lightgrey;">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/main_login.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap"
-            rel="stylesheet">
-        <title>Log-in</title>
-    </head>
+<head>
 
-    <body>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap"
+        rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-        <div class="pic"></div>
+    <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
+    <!-- CSS only -->
+    <link href="{{ asset('../css/bootstrap.min.css') }}" rel="stylesheet">
+    <title>Log-in</title>
+</head>
 
-        @if (session('status'))
+<body style="background-color: lightgrey;">
+
+    @include('layouts.nav-bar')
+
+    @if (session('status'))
         <div class="alert-error-state">
             {{ session('status') }}
         </div>
-        @endif
+    @endif
 
-        <div class="form-login-div">
-            <form class="form-login-1" method="POST" action="{{ route('login.store') }}">
+
+    <section class="container bg-light text-dark p-3 mgg w-25 rounded">
+        <div class="border-bottom border-dark ps-3 h5 py-1">
+            Login
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
+                <path
+                    d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
+            </svg>
+        </div>
+
+        <div>
+            <form class="form-login-1 fs-6" method="POST" action="{{ route('login.store') }}">
                 @csrf
-                <div class="form-login-title">Sign in</div>
-                <div class="wrap-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <span class="label-input">Email</span>
-                    <input class="input1" type="email" name="email" required placeholder="Email address..."  >
+                <div>
                     @error('email')
-                    <span class="alert-error" role="alert">
-                        <strong> {{ $message }} </strong>
-                    </span>
+                        <div class="alert alert-danger fs-5" role="alert">
+                            A simple danger alert—check it out!
+                        </div>
                     @enderror
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input class="form-control w-100" type="email" name="email" required
+                                placeholder="Email address..." id="floatingTextarea"></input>
+                            <label for="floatingTextarea">Email</label>
+                        </div>
+                    </div>
                 </div>
-                <div class="wrap-input" data-validate="Password is required">
-                    <span class="label-input">Password</span>
-                    <input class="input1" type="password" name="password" minlength="8" required
-                        placeholder="*************">
+
+                <div>
                     @error('password')
-                    <span class="alert-error" role="alert">
-                        <strong> {{ $message }} </strong>
-                    </span>
+                        <div class="alert alert-danger fs-5" role="alert">
+                            A simple danger alert—check it out!
+                        </div>
                     @enderror
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input class="form-control w-100" type="password" name="password" minlength="8" required
+                                placeholder="*************" id="floatingTextarea"></input>
+                            <label for="floatingTextarea">Password</label>
+                        </div>
+                    </div>
                 </div>
+
                 <!-- Remember Me -->
                 <div class="txt1">
                     <label for="remember_me" class="inline-flex items-center">
@@ -58,23 +84,24 @@
                         <span class="ml-2 text-sm text-gray-600">Remember me</span>
                     </label>
                 </div>
-                <div class="container-login-form-btn">
-                    <div class="login-btn-confirm">
-                        <button type="submit" class="login-form-btn">Sign up</button>
-                    </div>
-                    <div class="container-asq">
-                        <span class="asq">Don't have account ?</span>
-                        <a href="{{ route('register.show') }}" class="lin">
-                            Sign up
-                            <i class="fa fa-long-arrow-right m-l-5"></i>
-                        </a>
-                    </div>
+
+                <div class="d-grid gap-2 d-md-block">
+                    <button class="btn btn-primary p-1 my-3 " type="submit">Login</button>
                 </div>
-               
+
+                <div class="container-asq">
+                    <span class="asq">Don't have account ?</span>
+                    <a href="{{ route('register.show') }}" class="btn btn-link">
+                        Sign up
+                    </a>
+                </div>
+
             </form>
         </div>
+    </section>
 
-        </div>
-    </body>
+    <!-- JavaScript Bundle with Popper -->
+    <script src=" /js/bootstrap.bundle.min.js"></script>
+</body>
 
 </html>
