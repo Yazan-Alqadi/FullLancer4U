@@ -101,8 +101,8 @@
                             </a>
                         </li>
                         <li><a class="dropdown-item" href="{{ route('contact') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                                 </svg>
@@ -154,26 +154,18 @@
         <div {{-- style="position: absolute; z-index: 100000; right: 16px; top: -13px;" --}}>
             @auth
                 {{-- Notification --}}
+                @php
+                    $notification = \App\Models\Notification::latest()
+                        ->where('user_id', Auth::id())
+                        ->take(5)
+                        ->get();
+                @endphp
                 <div class="dropdown-notifications" id="navbarNavDarkDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#notifications-panel" class="dropdown-toggle"
                                 data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span
-                                    class="
-                                @php
-                                    $notification = \App\Models\Notification::latest()
-                                        ->where('user_id', Auth::id())
-                                        ->take(5)
-                                        ->get();
-                                @endphp
-                                {{-- @if (count($notification) == 0) --}}
-bg-light
-{{-- @else
-bg-danger
-@endif --}}
-                                    border rounded px-1 notif-count text-dark"
-                                    data-count="0"
+                                <span class="bg-light border rounded px-1 notif-count text-dark" data-count="0"
                                     style="position: absolute; top: 0px; left: -7px; font-size: 10px;">0</span>
                                 <svg style="z-index: 100;color: white;" xmlns="http://www.w3.org/2000/svg" width="16"
                                     height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
@@ -274,8 +266,8 @@ bg-danger
             <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">
                                         {{-- message from who ? --}}
                                         <div class="d-flex" style="justify-content: space-between; align-items: center;">
-                                            <span class="text-danger" style="font-size: 15px">Message from ` +
-            data.username + `</span>
+                                            <span class="text-danger" style="font-size: 15px"> ` +
+                                                data.username + `</span>
                                             <span class="rounded-2 p-1 text-secondary" >1 seconds ago</span>
                                         </div>
                                         <div class="text-dark" style="word-break: break-word;">

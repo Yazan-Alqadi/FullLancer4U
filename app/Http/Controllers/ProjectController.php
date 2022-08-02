@@ -147,16 +147,16 @@ class ProjectController extends Controller
         $user_id = $project->user->id;
 
 
-        Notification::create([
-            'title' => 'Message from ' . Auth::user()->full_name,
-            'content' => 'New Apply for your Project ' . $project->title,
+        $not =Notification::create([
+            'title' => 'New Apply for your Project',
+            'content' => Auth::user()->full_name . ' apply for your Project ' . $project->title,
             'user_id' => $user_id,
             'reciver_id' => Auth::id(),
             'type' => 'project',
             're_id' => $project->id,
         ]);
 
-        event(new NewMessage($user_id, Auth::user()->full_name, 'New Apply for your Project'));
+        event(new NewMessage($user_id, $not->title,$not->content));
         session()->flash('message', 'YourApply for this project has been sent to client');
         return back();
     }

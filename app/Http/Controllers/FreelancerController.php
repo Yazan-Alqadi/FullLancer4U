@@ -95,64 +95,24 @@ class FreelancerController extends Controller
         //
     }
 
-    public function updateWorkService($id)
+    public function updateRate($id)
     {
-        if (request('options_outlined') == 'done') {
-            DB::statement('update client_service set status=? where id= ? ', ['done', $id]);
-            $client_id = DB::table('client_service')->select('user_id')->where('id', $id)->first();
+        $freelancer = Freelancer::find($id);
+        $rate = 0;
+        if (request('rate5') == 'on')
+            $rate += 5;
+        else if (request('rate4') == 'on')
+            $rate += 4;
+        else if (request('rate3') == 'on')
+            $rate += 3;
+        else if (request('rate2') == 'on')
+            $rate += 2;
+        else if (request('rate1') == 'on')
+            $rate += 1;
 
-            Notification::create([
-                'title' => 'Message from ' . Auth::user()->full_name,
-                'content' => 'I am done for your work You can now rate my service',
-                'user_id' => $client_id->user_id,
-                'reciver_id' => Auth::id(),
-            ]);
+        $freelancer->rate = $rate;
+        $freelancer->save();
 
-            event(new NewMessage($client_id->user_id, Auth::user()->full_name, 'I am done for your work You can now rate my service'));
-        } else {
-            DB::statement('update client_service set status=? where id= ? ', ['cancel', $id]);
-            $client_id = DB::table('client_service')->select('user_id')->where('id', $id)->first();
-
-            Notification::create([
-                'title' => 'Message from ' . Auth::user()->full_name,
-                'content' => 'I am cancel Your work',
-                'user_id' => $client_id->user_id,
-                'reciver_id' => Auth::id(),
-            ]);
-
-            event(new NewMessage($client_id->user_id, Auth::user()->full_name, 'I am cancel Your work'));
-        }
-
-        return back();
-    }
-
-    public function updateWorkProject($id)
-    {
-        if (request('options_outlined') == 'done') {
-            DB::statement('update freelancer_project set status=? where id= ? ', ['done', $id]);
-            $project = DB::table('freelancer_project')->select('project_id')->where('id', $id)->first();
-            $project= Project::find($project->project_id);
-
-            Notification::create([
-                'title' => 'Message from ' . Auth::user()->full_name,
-                'content' => 'I am done for your Project You can now rate me',
-                'user_id' =>$project->user->id,
-                'reciver_id' => Auth::id(),
-            ]);
-
-            event(new NewMessage($project->user->id, Auth::user()->full_name, 'I am done for your project You can now rate me'));
-        } else {
-            DB::statement('update freelancer_project set status=? where id= ? ', ['cancel', $id]);
-            $project = DB::table('freelancer_project')->select('project_id')->where('id', $id)->first();
-            $project= Project::find($project->project_id);
-            Notification::create([
-                'title' => 'Message from ' . Auth::user()->full_name,
-                'content' => 'I am cancel Your work',
-                'user_id' => $project->user->id,
-                'reciver_id' => Auth::id(),
-            ]);
-            event(new NewMessage($project->user->id, Auth::user()->full_name, 'I am cancel Your Project'));
-        }
-        return back();
+        return back()->with('message', 'You rate this service');
     }
 }

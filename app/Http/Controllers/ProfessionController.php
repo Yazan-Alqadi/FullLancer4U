@@ -170,16 +170,16 @@ class ProfessionController extends Controller
         $user_id = $service->freelancer->user->id;
 
 
-        Notification::create([
-            'title' => 'Message from ' . Auth::user()->full_name,
-            'content' => 'New Apply for your Service ' . $service->title,
+        $not =Notification::create([
+            'title' => 'New apply for your service',
+            'content' => Auth::user()->full_name .' apply for your Service ' . $service->title,
             'user_id' => $user_id,
             'reciver_id' => Auth::id(),
             'type' => 'service',
             're_id' => $service->id,
         ]);
 
-        event(new NewMessage($user_id, Auth::user()->full_name, 'New Apply for your Service'));
+        event(new NewMessage($user_id, $not->title, $not->content));
         session()->flash('message', 'You Apply for this service has been sent to freelancer');
         return back();
     }

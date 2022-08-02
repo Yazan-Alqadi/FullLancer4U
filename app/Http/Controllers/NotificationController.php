@@ -94,6 +94,8 @@ class NotificationController extends Controller
     public function confirm(Request $request, $id)
     {
         $notification = Notification::find($id);
+        $message = '';
+        $title = '';
         if ($request->options_outlined == "yes") {
             $notification->status = 2;
             $notification->save();
@@ -105,41 +107,71 @@ class NotificationController extends Controller
                 $user->services()->attach($service->id, [
                     'status' => 'in work',
                 ]);
-            }
-            else {
+                $not = Notification::create([
+                    'title' => 'Accept for your apply',
+                    'content' => $service->freelancer->user->full_name . ' Accept your apply for service ' . $service->title,
+                    'user_id' => $notification->reciver_id,
+                    'reciver_id' => Auth::id(),
+                    'type' => 'message',
+                    're_id' => $notification->re_id,
+                ]);
+                $title = $not->title;
+                $message = $not->content;
+            } else {
 
                 $project = Project::find($notification->re_id);
                 $user = User::find($notification->reciver_id);
-                $freelancer = Freelancer::where('user_id',$user->id)->first();
+                $freelancer = Freelancer::where('user_id', $user->id)->first();
                 $freelancer->projects()->attach($project->id, [
                     'status' => 'in work',
                 ]);
+                $not = Notification::create([
+                    'title' => 'Accept for your apply',
+                    'content' => Auth::user()->full_name . ' accept your apply to work project ' . $project->title,
+                    'user_id' => $notification->reciver_id,
+                    'reciver_id' => Auth::id(),
+                    'type' => 'message',
+                    're_id' => $notification->re_id,
+                ]);
+                $title = $not->title;
+                $message = $not->content;
             }
-
-            Notification::create([
-                'title' => 'Message from ' . Auth::user()->full_name,
-                'content' => 'Accept For Your Apply',
-                'user_id' => $notification->reciver_id,
-                'reciver_id' => Auth::id(),
-                'type' => 'message',
-                're_id' => $notification->re_id,
-            ]);
-
-            event(new NewMessage($notification->reciver_id, Auth::user()->full_name, 'Accept For Your Apply'));
+            event(new NewMessage($notification->reciver_id, $title, $message));
         } else {
             $notification->status = 1;
             $notification->save();
 
-            Notification::create([
-                'title' => 'Message from ' . Auth::user()->full_name,
-                'content' => 'Reject For Your Apply',
-                'user_id' => $notification->reciver_id,
-                'reciver_id' => Auth::id(),
-                'type' => 'message',
-                're_id' => $notification->re_id,
-            ]);
+            if ($notification->type == "service") {
 
-            event(new NewMessage($notification->reciver_id, Auth::user()->full_name, 'Reject For Your Apply'));
+                $service = Profession::find($notification->re_id);
+
+               $not = Notification::create([
+                    'title' => 'Reject Your apply ',
+                    'content' => $service->freelancer->user->full_name . ' Reject your apply for service ' . $service->title,
+                    'user_id' => $notification->reciver_id,
+                    'reciver_id' => Auth::id(),
+                    'type' => 'message',
+                    're_id' => $notification->re_id,
+                ]);
+                event(new NewMessage($notification->reciver_id, $not->title, $not->content));
+
+            }
+            else
+            {
+                $project = Project::find($notification->re_id);
+                $user = User::find($notification->reciver_id);
+                $not=Notification::create([
+                    'title' => 'Reject Your apply ',
+                    'content' => Auth::user()->full_name . ' reject your apply to work project ' . $project->title,
+                    'user_id' => $notification->reciver_id,
+                    'reciver_id' => Auth::id(),
+                    'type' => 'message',
+                    're_id' => $notification->re_id,
+                ]);
+                event(new NewMessage($notification->reciver_id,  $not->title, $not->content));
+
+
+            }
         }
         return back();
     }

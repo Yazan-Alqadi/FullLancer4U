@@ -58,11 +58,9 @@ class MessageController extends Controller
             'content' => $message,
             'user_id' => $id,
             'reciver_id'=>Auth::id(),
-
         ]);
 
-        session()->flash('message', 'Message have been sent');
-        event(new NewMessage($id, Auth::user()->full_name, $message));
+        event(new NewMessage($id, 'Message From ' . Auth::user()->full_name, $message));
 
         return back();
     }

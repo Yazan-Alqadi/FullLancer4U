@@ -21,6 +21,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\WorkController;
 use App\Models\Message;
 use App\Nova\Service;
 use Illuminate\Database\Eloquent\Relations\Pivot;
@@ -61,8 +62,8 @@ Route::get('projects', [ProjectController::class, 'index'])->name('projects.inde
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('redToGoogle');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('googleCallBack');
-Route::get('profession/{id}', [ProfessionController::class, 'show'])->name('more_information');
-Route::get('profession/{id}', [HomeController::class, 'show'])->name('more_information');
+Route::get('services/{id}', [ProfessionController::class, 'show'])->name('more_information');
+Route::get('service/{id}', [HomeController::class, 'show'])->name('more_information');
 
 
 
@@ -70,108 +71,47 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('freelancer/sign', [FreelancerController::class, 'create'])->name('become_freelancer');
-    Route::post('profession/store', [ProfessionController::class, 'store'])->name('profession_store');
+    Route::get('rate/update/{id}', [FreelancerController::class, 'updateRate'])->name('rate_me');
+
+
+    Route::post('service/store', [ProfessionController::class, 'store'])->name('profession_store');
     Route::get('service/delete/{id}', [ProfessionController::class, 'destroy'])->name('service_delete');
+    Route::get('service/edit/{id}', [ProfessionController::class, 'edit'])->name('edit_service');
+    Route::get('service/update/{id}', [ProfessionController::class, 'update'])->name('update_service');
+    Route::get('apply/service/{id}', [ProfessionController::class, 'buyService'])->name('buy_service');
+
 
     Route::get('user', [UserController::class, 'show'])->name('profile');
     Route::get('user/update/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::get('profile/{id}',  [UserController::class, 'profile'])->name('profile_user');
+
+
     Route::get('contact', [MessageController::class, 'getContact'])->name('contact');
     Route::get('contact-page/{id}', [MessageController::class, 'contactMe'])->name('contact_me');
-
-
-    Route::get('service/edit/{id}', [ProfessionController::class, 'edit'])->name('edit_service');
-    Route::get('service/update/{id}', [ProfessionController::class, 'update'])->name('update_service');
-
     Route::get('contact-me/{id}', [MessageController::class, 'send'])->name('send_message');
 
+
     Route::get('mynotification', [NotificationController::class, 'index'])->name('my_notification');
+    Route::get('confirm/{id}', [NotificationController::class, 'confirm'])->name('confirm');
+
 
     Route::get('project/{id}', [ProjectController::class, 'show'])->name('get_project');
     Route::get('project/edit/{id}', [ProjectController::class, 'edit'])->name('edit_project');
     Route::post('project/update/{id}', [ProjectController::class, 'update'])->name('update_project');
-
-
     Route::get('projects/create', [ProjectController::class, 'create'])->name('create_project');
     Route::post('project/store', [ProjectController::class, 'store'])->name('project_store');
     Route::get('project/delete/{id}', [ProjectController::class, 'destroy'])->name('project_delete');
+    Route::get('apply/project/{id}', [ProjectController::class, 'buyProject'])->name('buy_project');
+
 
     Route::get('skill/delete/{id}', [SkillController::class, 'destroy'])->name('skill_delete');
     Route::get('skill/post/', [SkillController::class, 'store'])->name('skill_store');
 
-    Route::get('apply/service/{id}', [ProfessionController::class, 'buyService'])->name('buy_service');
-    Route::get('confirm/{id}', [NotificationController::class, 'confirm'])->name('confirm');
-    Route::get('apply/project/{id}', [ProjectController::class, 'buyProject'])->name('buy_project');
-
-
-    Route::view('chat', 'chat_messages');
-    Route::view('My-purchases', 'purchases_page');
-    Route::view('My-works', 'works_page');
-    Route::view('test', 'test');
-
-    Route::get('profile/{id}',  [UserController::class,'profile'])->name('profile_user');
-
-    Route::get('my_purchase', function () {
-
-        $services = DB::table('client_service')->select(['client_service.id', 'status', 'title', 'full_name', 'client_service.updated_at'])
-            ->join('professions', 'client_service.service_id', '=', 'professions.id')
-            ->join('freelancers', 'professions.freelancer_id', '=', 'freelancers.id')
-            ->join('users', 'freelancers.user_id', '=', 'users.id')
-            ->where('client_service.user_id', Auth::id())
-            ->orderByDesc('client_service.updated_at')
-            ->get();
-
-
-        $projects = DB::table('freelancer_project')->select(['freelancer_project.id', 'full_name','freelancer_project.status', 'title', 'freelancer_project.updated_at'])
-            ->join('projects', 'freelancer_project.project_id', '=', 'projects.id')
-            ->join('freelancers', 'freelancer_project.freelancer_id', '=', 'freelancers.id')
-            ->join('users', 'freelancers.user_id', '=', 'users.id')
-            ->where('projects.user_id', Auth::id())
-            ->orderByDesc('freelancer_project.updated_at')
-            ->get();
-        return view('purchases_page',compact('services','projects'));
+    Route::get('my_purchase', [WorkController::class, 'getMyPurchase'])->name('purchase_page');
+    Route::get('my_work/{id}', [WorkController::class, 'getMyWork'])->name('work_page');
+    Route::get('my_work/service/{id}', [WorkController::class, 'updateWorkService'])->name('work_update');
+    Route::get('my_work/project/{id}', [WorkController::class, 'updateWorkProject'])->name('work_project_update');
 
 
 
-    })->name('purchase_page');
-
-
-    Route::get('my_work/{id}', function ($id) {
-        $user = User::find($id);
-        $services = DB::table('client_service')->select(['client_service.id', 'status', 'title', 'full_name', 'client_service.updated_at'])
-            ->join('professions', 'client_service.service_id', '=', 'professions.id')
-            ->join('users', 'client_service.user_id', '=', 'users.id')
-            ->where('freelancer_id', $user->freelancer->id)
-            ->orderByDesc('client_service.updated_at')
-            ->get();
-        $projects = DB::table('freelancer_project')->select(['freelancer_project.id', 'full_name','freelancer_project.status', 'title', 'freelancer_project.updated_at'])
-            ->join('projects', 'freelancer_project.project_id', '=', 'projects.id')
-            ->join('users', 'projects.user_id', '=', 'users.id')
-            ->where('freelancer_id', $user->freelancer->id)
-            ->orderByDesc('freelancer_project.updated_at')
-            ->get();
-
-        return view('works_page', compact('services', 'projects'));
-    })->name('work_page');
-    Route::get('my_work/update/{id}', [FreelancerController::class, 'updateWorkService'])->name('work_update');
-    Route::get('my_work/update/{id}', [FreelancerController::class, 'updateWorkProject'])->name('work_project_update');
-
-    Route::get('rate/update/{id}', function ($id) {
-        $freelancer = Freelancer::find($id);
-        $rate = 0;
-        if (request('rate5') == 'on')
-            $rate += 5;
-        else if (request('rate4') == 'on')
-            $rate += 4;
-        else if (request('rate3') == 'on')
-            $rate += 3;
-        else if (request('rate2') == 'on')
-            $rate += 2;
-        else if (request('rate1') == 'on')
-            $rate += 1;
-
-        $freelancer->rate = $rate;
-        $freelancer->save();
-
-        return back()->with('message', 'You rate this service');
-    })->name('rate_me');
 });
