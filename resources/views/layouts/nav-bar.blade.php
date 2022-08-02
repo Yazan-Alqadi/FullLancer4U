@@ -3,9 +3,9 @@
 
 
 <div class="ps-3 pe-2 navbar container-fluid navbar-expand-lg bg-dark navbar-dark text-light fixed-top h6">
-    <div class="container-fluid justify-content-between" style="align-items: baseline;">
+    <div class="container-fluid justify-content-center" style="align-items: baseline;">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search-par"
-            aria-expanded="true">
+            aria-expanded="true" style="margin-right: auto;">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a href="{{ route('home') }}" class="navbar-brand text-info navbar-title-hover">Fullancer4U</a>
@@ -23,7 +23,7 @@
 
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainmenu"
-            aria-expanded="true">
+            aria-expanded="true" style="margin-left: auto; margin-right: 10px;">
             <span class="navbar-toggler-icon"></span>
         </button>
 
