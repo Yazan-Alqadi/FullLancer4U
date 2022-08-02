@@ -62,6 +62,7 @@ Route::get('projects', [ProjectController::class, 'index'])->name('projects.inde
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('redToGoogle');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('googleCallBack');
 Route::get('profession/{id}', [ProfessionController::class, 'show'])->name('more_information');
+Route::get('profession/{id}', [HomeController::class, 'show'])->name('more_information');
 
 
 

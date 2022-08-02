@@ -56,6 +56,9 @@ class HomeController extends Controller
     public function show($id)
     {
         //
+        $profession = Profession::find($id);
+        $professions = Profession::where('category_id', $profession->category_id)->get();
+        return view('profile_freelancer_for_client', ['professions' => $professions, 'profession' => $profession]);
     }
 
     /**
