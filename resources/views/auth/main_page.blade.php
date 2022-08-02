@@ -311,7 +311,7 @@
 
     </section>
 
-    <!-- Professions Cards -->
+    <!-- Services Cards -->
     <section class="py-5 section-style" style="background-color: #c0faff99 !important;">
 
         <h2 class="text-success ms-3 fw-bold" style="color: blue  !important;">Professions</h2>
@@ -320,7 +320,7 @@
             <div class="row text-center">
                 @foreach ($professions as $profession)
                     <div class="col-md-6 col-lg-4 mb-2">
-                        <div class="card text-light" style="background-color: #001b24;">
+                        <div class="card text-light" style="background-color: #001b24; height: 100%;">
                             <!-- <div class="container">
 
                              <-- add image or icon here ----------
@@ -336,7 +336,7 @@
                                     </span>
                                 </div>
                             </div> -->
-                            <div class="card-body text-center">
+                            <div class="card-body text-center" style="display: flex !important;align-items: center;justify-content: center;">
 
                                 <!-- descreption of the profession -->
 
@@ -444,7 +444,7 @@
             <div class="row text-center">
                 @foreach ($projects as $project)
                     <div class="col-md-6 col-lg-4 mb-2">
-                        <div class="card text-light" style="background-color: #001b24;">
+                        <div class="card text-light" style="background-color: #001b24; height: 100%;">
                             <!-- <div class="container">
 
                              <-- add image or icon here ----------
@@ -461,7 +461,7 @@
                                 </div>
                             </div> -->
 
-                            <div class="card-body text-center">
+                            <div class="card-body text-center" style="background-color: #001b24; height: 100%;">
 
                                 <!-- descreption of the project -->
 

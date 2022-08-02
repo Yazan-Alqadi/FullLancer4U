@@ -60,7 +60,7 @@
         <!--=========================================================-->
         <!-- selected chat -->
         <div class="bg-white ">
-            <div class="p-5" style="height: 500px !important; overflow: auto;">
+            <div class="p-5" style="height: 350px !important; overflow: auto;">
                 <ul class="chat">
                     {{-- messages's Sender --}}
                     @if (!is_null($threads))

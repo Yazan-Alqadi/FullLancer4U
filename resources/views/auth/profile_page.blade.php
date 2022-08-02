@@ -286,7 +286,7 @@
 
                 </div>
 
-                <div class="col-lg-8 col-md-8">
+                <div class="col-lg-8 col-md-8 mb-5">
                     <section class="bg-light text-dark rounded p-3">
                         <div class="border-bottom border-dark ps-3 h5 py-1">
                             My Info
@@ -465,7 +465,7 @@
                             </div>
 
 
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
                                 <button type="submit" class="btn btn-success ">Confirm Edit</button>
                             </div>
                         </form>

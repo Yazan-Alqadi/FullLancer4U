@@ -117,6 +117,7 @@
 
 
                     {{-- if work is in timeline then he can change the state --}}
+                    @if ($service->status == 'in work')
                     <div class="text-start">
 
                         <form action="{{ route('work_update',$service->id) }}" class="my-3">
@@ -134,6 +135,7 @@
                                 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Confirm</button>
                         </form>
                     </div>
+                    @endif
                 </div>
             </div>
         @endforeach
@@ -177,6 +179,7 @@
                 @endif
 
                 {{-- if work is in timeline --}}
+                @if ($project->status == 'in work')
                 <div class="text-start">
 
                     <form action="" class="my-3">
@@ -194,6 +197,7 @@
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Confirm</button>
                     </form>
                 </div>
+                @endif
             </div>
         </div>
         @endforeach

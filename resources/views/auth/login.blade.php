@@ -32,7 +32,7 @@
     @endif
 
 
-    <section class="container bg-light text-dark p-3 mgg w-25 rounded">
+    <section class="container bg-light text-dark p-3 mgg w-50 w-md-50 w-sm-25 rounded">
         <div class="border-bottom border-dark ps-3 h5 py-1">
             Login
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"

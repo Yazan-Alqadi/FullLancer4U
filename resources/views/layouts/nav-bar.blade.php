@@ -110,7 +110,7 @@
                             </a>
                         </li>
                         @if (Auth::check() && Auth::user()->is_freelancer)
-                            <li><a class="dropdown-item" href="{{ route('work_page',Auth::id()) }}">
+                            <li><a class="dropdown-item" href="{{ route('work_page', Auth::id()) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
                                         <path
@@ -167,11 +167,11 @@
                                         ->take(5)
                                         ->get();
                                 @endphp
-                                @if (count($notification) == 0)
+                                {{-- @if (count($notification) == 0) --}}
 bg-light
-@else
+{{-- @else
 bg-danger
-@endif
+@endif --}}
                                     border rounded px-1 notif-count text-dark"
                                     data-count="0"
                                     style="position: absolute; top: 0px; left: -7px; font-size: 10px;">0</span>

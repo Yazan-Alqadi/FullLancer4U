@@ -90,7 +90,7 @@
                                 </span>
                                 <div style="display: inline-grid;">
                                     <span class="card-title">
-                                        <a href="#" class="navbar-brand text-light name-of-user-hover">
+                                        <a href="{{ route('profile_user', $freelancer->user->id) }}" class="navbar-brand text-light name-of-user-hover">
                                             {{ $freelancer->user->full_name }}
                                         </a>
                                     </span>
@@ -157,7 +157,7 @@
 
                                                 </div>
                                             </div>
-                                            
+
                                             {{-- skills --}}
                                             <div class="row justify-content-center">
                                                 Skills:
