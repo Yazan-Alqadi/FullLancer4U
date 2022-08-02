@@ -42,7 +42,8 @@
             </svg>
         </div>
 
-        <div class="text-center h4 p-4 border-bottom border-secondary border-opacity-25 text-secondary fw-bold">Welcome Back</div>
+        <div class="text-center h4 p-4 border-bottom border-secondary border-opacity-25 text-secondary fw-bold">Welcome
+            Back</div>
 
         <div>
             <form class="form-login-1 fs-6" method="POST" action="{{ route('login.store') }}">
@@ -85,10 +86,12 @@
                             name="remember">
                         <span class="ml-2 text-sm text-gray-600">Remember me</span>
                     </label>
+                    <a href="#" class="link-primary ms-4 text-decoration-none">Forgot Your Password?</a>
                 </div>
 
-                <div class="d-grid gap-2 d-md-block">
-                    <button class="btn btn-primary p-1 my-3 " type="submit">Login</button>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary my-3" type="submit">Login</button>
+
                 </div>
 
                 <div class="container-asq">
