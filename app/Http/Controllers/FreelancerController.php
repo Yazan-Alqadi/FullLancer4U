@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Notification;
+use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 
 class FreelancerController extends Controller
@@ -94,7 +95,7 @@ class FreelancerController extends Controller
         //
     }
 
-    public function updateWork($id)
+    public function updateWorkService($id)
     {
         if (request('options_outlined') == 'done') {
             DB::statement('update client_service set status=? where id= ? ', ['done', $id]);
@@ -122,6 +123,36 @@ class FreelancerController extends Controller
             event(new NewMessage($client_id->user_id, Auth::user()->full_name, 'I am cancel Your work'));
         }
 
+        return back();
+    }
+
+    public function updateWorkProject($id)
+    {
+        if (request('options_outlined') == 'done') {
+            DB::statement('update freelancer_project set status=? where id= ? ', ['done', $id]);
+            $project = DB::table('freelancer_project')->select('project_id')->where('id', $id)->first();
+            $project= Project::find($project->project_id);
+
+            Notification::create([
+                'title' => 'Message from ' . Auth::user()->full_name,
+                'content' => 'I am done for your Project You can now rate me',
+                'user_id' =>$project->user->id,
+                'reciver_id' => Auth::id(),
+            ]);
+
+            event(new NewMessage($project->user->id, Auth::user()->full_name, 'I am done for your project You can now rate me'));
+        } else {
+            DB::statement('update freelancer_project set status=? where id= ? ', ['cancel', $id]);
+            $project = DB::table('freelancer_project')->select('project_id')->where('id', $id)->first();
+            $project= Project::find($project->project_id);
+            Notification::create([
+                'title' => 'Message from ' . Auth::user()->full_name,
+                'content' => 'I am cancel Your work',
+                'user_id' => $project->user->id,
+                'reciver_id' => Auth::id(),
+            ]);
+            event(new NewMessage($project->user->id, Auth::user()->full_name, 'I am cancel Your Project'));
+        }
         return back();
     }
 }

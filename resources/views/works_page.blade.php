@@ -42,13 +42,13 @@
     </svg>
 
     <!-- Error alert -->
-    @if (count($errors) > 0)
+    @if (session('errors'))
         <div class="alert alert-primary d-flex align-items-center mgg" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
                 <use xlink:href="#info-fill" />
             </svg>
             <div>
-                {{ $errors->first() }}
+                {{ session('errors') }}
             </div>
         </div>
     @endif
@@ -142,20 +142,21 @@
 
 
         {{-- if the work is Project --}}
-        @foreach ($freelancer->projects as $project)
+        @foreach ($projects as $project)
+
         <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25">
             {{-- message from who ? --}}
             <div class="d-flex " style="justify-content: space-between; align-items: center;">
                 <span class="h4 text-danger">
                     <span>Project:</span>
-                    <span class="ms-1">{{ $project->title }}</span>
+                    <span class="ms-1">{{  $project->title }}</span>
                 </span>
                 <span class="h6 rounded-2 p-1 text-secondary">{{ $project->updated_at }}</span>
             </div>
             <div class="d-flex " style="justify-content: space-between; align-items: center;">
                 <span class="h4 text-danger">
                     <span>Client:</span>
-                    <span class="ms-1">{{ $project->user->full_name }}</span>
+                    <span class="ms-1">{{ $project->full_name }}</span>
                 </span>
             </div>
             <div class="h6 text-dark" style="word-break: break-word;">
@@ -182,16 +183,17 @@
                 @if ($project->status == 'in work')
                 <div class="text-start">
 
-                    <form action="" class="my-3">
+                    <form action="{{ route('work_project_update',$project->id) }}" class="my-3">
+                        @csrf
                         <span> change state into: </span>
-                        <input type="radio" class="btn-check" name="options_outline" id="{{ $project->id }}"
+                        <input type="radio" class="btn-check" value="cancel" name="options_outlined" id="cancel{{ $project->id }}"
                             autocomplete="off">
-                        <label class="btn btn-outline-danger"  id="c{{ $project->id }}" for="c{{ $project->id }}"
+                        <label class="btn btn-outline-danger"  id="cancel{{ $project->id }}" for="cancel{{ $project->id }}"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Canceled</label>
 
-                        <input type="radio" class="btn-check" name="options_outline" id="c{{ $project->id }}"
+                        <input type="radio" class="btn-check" value="done" name="options_outlined" id="done{{ $project->id }}"
                             autocomplete="off">
-                        <label class="btn btn-outline-success" id="c{{ $project->id }}" for="c{{ $project->id }}"
+                        <label class="btn btn-outline-success" id="done{{ $project->id }}" for="done{{ $project->id }}"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Done</label>
                         <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Confirm</button>

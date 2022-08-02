@@ -108,12 +108,30 @@ Route::middleware(['auth'])->group(function () {
     Route::view('My-works', 'works_page');
     Route::view('test', 'test');
 
-    Route::get('profile/{id}', function () {
-        return view('profile_user');
-    })->name('profile_user');
+    Route::get('profile/{id}',  [UserController::class,'profile'])->name('profile_user');
 
     Route::get('my_purchase', function () {
-        return view('purchases_page');
+
+        $services = DB::table('client_service')->select(['client_service.id', 'status', 'title', 'full_name', 'client_service.updated_at'])
+            ->join('professions', 'client_service.service_id', '=', 'professions.id')
+            ->join('freelancers', 'professions.freelancer_id', '=', 'freelancers.id')
+            ->join('users', 'freelancers.user_id', '=', 'users.id')
+            ->where('client_service.user_id', Auth::id())
+            ->orderByDesc('client_service.updated_at')
+            ->get();
+
+
+        $projects = DB::table('freelancer_project')->select(['freelancer_project.id', 'full_name','freelancer_project.status', 'title', 'freelancer_project.updated_at'])
+            ->join('projects', 'freelancer_project.project_id', '=', 'projects.id')
+            ->join('freelancers', 'freelancer_project.freelancer_id', '=', 'freelancers.id')
+            ->join('users', 'freelancers.user_id', '=', 'users.id')
+            ->where('projects.user_id', Auth::id())
+            ->orderByDesc('freelancer_project.updated_at')
+            ->get();
+        return view('purchases_page',compact('services','projects'));
+
+
+
     })->name('purchase_page');
 
 
@@ -123,34 +141,37 @@ Route::middleware(['auth'])->group(function () {
             ->join('professions', 'client_service.service_id', '=', 'professions.id')
             ->join('users', 'client_service.user_id', '=', 'users.id')
             ->where('freelancer_id', $user->freelancer->id)
+            ->orderByDesc('client_service.updated_at')
             ->get();
-        $freelancer = Freelancer::where('user_id',$id)->first();
-        //dd($freelancer->projects);
-        return view('works_page', compact('services','freelancer'));
+        $projects = DB::table('freelancer_project')->select(['freelancer_project.id', 'full_name','freelancer_project.status', 'title', 'freelancer_project.updated_at'])
+            ->join('projects', 'freelancer_project.project_id', '=', 'projects.id')
+            ->join('users', 'projects.user_id', '=', 'users.id')
+            ->where('freelancer_id', $user->freelancer->id)
+            ->orderByDesc('freelancer_project.updated_at')
+            ->get();
+
+        return view('works_page', compact('services', 'projects'));
     })->name('work_page');
-    Route::get('my_work/update/{id}', [FreelancerController::class,'updateWork'])->name('work_update');
+    Route::get('my_work/update/{id}', [FreelancerController::class, 'updateWorkService'])->name('work_update');
+    Route::get('my_work/update/{id}', [FreelancerController::class, 'updateWorkProject'])->name('work_project_update');
 
     Route::get('rate/update/{id}', function ($id) {
-        $freelancer=Freelancer::find($id);
-        $rate=0;
-        if (request('rate5')=='on')
-            $rate+=5;
-        else if (request('rate4')=='on')
-            $rate+=4;
-        else if (request('rate3')=='on')
-            $rate+=3;
-        else if (request('rate2')=='on')
-            $rate+=2;
-        else if (request('rate1')=='on')
-            $rate+=1;
+        $freelancer = Freelancer::find($id);
+        $rate = 0;
+        if (request('rate5') == 'on')
+            $rate += 5;
+        else if (request('rate4') == 'on')
+            $rate += 4;
+        else if (request('rate3') == 'on')
+            $rate += 3;
+        else if (request('rate2') == 'on')
+            $rate += 2;
+        else if (request('rate1') == 'on')
+            $rate += 1;
 
-        $freelancer->rate=$rate;
+        $freelancer->rate = $rate;
         $freelancer->save();
 
-        return back()->with('message','You rate this service');
-
-
-
+        return back()->with('message', 'You rate this service');
     })->name('rate_me');
-
 });

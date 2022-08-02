@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profession;
+use App\Models\Project;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -56,6 +59,16 @@ class UserController extends Controller
         if (Auth::user()->is_freelancer)
             $services = DB::table('professions')->where('freelancer_id', Auth::user()->freelancer->id)->get();
         return view('auth.profile_page', compact('services'));
+    }
+
+    public function profile($id)
+    {
+        //
+        $user=User::find($id);
+        $services = DB::table('professions')->where('freelancer_id',$user->freelancer->id)->get();
+        $projects = DB::table('projects')->where('user_id',$user->id)->get();
+        $skills= DB::table('skills')->where('user_id',$user->id)->get();
+        return view('profile_user', compact('user','services','projects','skills'));
     }
 
     /**

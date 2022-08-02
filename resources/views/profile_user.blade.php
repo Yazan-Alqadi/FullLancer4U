@@ -47,7 +47,7 @@
                                         d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                                 </svg>
                             </div>
-                            <div class="text-center fw-bold"> User name </div>
+                            <div class="text-center fw-bold"> {{ $user->full_name }} </div>
                             <!-- here put the image if user have one already -->
                             <!-- <img src="/files/pic-1.jpg" class="rounded-circle mx-auto d-block m-3" style="width: 30%;"
                         alt="..."> -->
@@ -98,7 +98,7 @@
                             <h5 class="card-title"> Projects </h5>
 
                             {{-- if user has projects --}}
-                            @forelse(Auth::user()->projects as $project)
+                            @forelse($projects as $project)
                                 <div class="d-flex mb-1 border-bottom border-secondary pb-1"
                                     style="justify-content: space-between;">
                                     {{-- here is the title of the service --}}
@@ -119,11 +119,11 @@
 
                             {{-- if user has skills --}}
                             @if (Auth::user()->is_freelancer)
-                                @foreach ($services as $service)
+                                @foreach ($skills as $skill)
                                     <div class="d-flex mb-1 border-bottom border-secondary pb-1"
                                         style="justify-content: space-between;">
                                         {{-- here is the title of the service --}}
-                                        <span class="mt-1">{{ $service->title }}</span>
+                                        <span class="mt-1">{{ $skill->title }}</span>
 
                                     </div>
                                 @endforeach
@@ -145,7 +145,7 @@
                                 <div class="row justify-content-center">
                                     <div style="white-space: nowrap;">
                                         Rating:
-                                        @if (Auth::user()->freelancer->rate > 0)
+                                        @if ($user->freelancer->rate > 0)
                                             <span class="fa fa-star checked"
                                                 style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                             {{-- star one --}}
@@ -154,7 +154,7 @@
                                                 style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                             {{-- star one --}}
                                         @endif
-                                        @if (Auth::user()->freelancer->rate > 1)
+                                        @if ($user->freelancer->rate > 1)
                                             <span class="fa fa-star checked"
                                                 style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                             {{-- star two --}}
@@ -163,7 +163,7 @@
                                                 style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                             {{-- star two --}}
                                         @endif
-                                        @if (Auth::user()->freelancer->rate > 2)
+                                        @if ($user->freelancer->rate > 2)
                                             <span class="fa fa-star checked"
                                                 style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                             {{-- star three --}}
@@ -172,7 +172,7 @@
                                                 style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                             {{-- star three --}}
                                         @endif
-                                        @if (Auth::user()->freelancer->rate > 3)
+                                        @if ($user->freelancer->rate > 3)
                                             <span class="fa fa-star checked"
                                                 style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                             {{-- star four --}}
@@ -181,7 +181,7 @@
                                                 style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                             {{-- star four --}}
                                         @endif
-                                        @if (Auth::user()->freelancer->rate > 4)
+                                        @if ($user->freelancer->rate > 4)
                                             <span class="fa fa-star checked"
                                                 style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                             {{-- star five --}}

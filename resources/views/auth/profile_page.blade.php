@@ -45,17 +45,16 @@
     </svg>
 
     <!-- Error alert -->
-    @if (count($errors) > 0)
+    @if (session('errors'))
         <div class="alert alert-primary d-flex align-items-center mgg" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
                 <use xlink:href="#info-fill" />
             </svg>
             <div>
-                {{ $errors->first() }}
+                {{ session('errors') }}
             </div>
         </div>
     @endif
-
     <!-- successful alert -->
 
     @if (session('message'))
@@ -111,9 +110,8 @@
                                                 data-bs-placement="top" data-bs-title="Edit">
                                                 <a class="text-secondary"
                                                     href="{{ route('edit_service', $service->id) }}">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                                        fill="currentColor" class="bi bi-pencil-square"
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="22"
+                                                        height="22" fill="currentColor" class="bi bi-pencil-square"
                                                         viewBox="0 0 16 16">
                                                         <path
                                                             d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />

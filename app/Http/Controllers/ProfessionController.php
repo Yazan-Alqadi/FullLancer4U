@@ -135,10 +135,22 @@ class ProfessionController extends Controller
     {
         $service = Profession::find($id);
 
+        $workService = DB::table('client_service')->where('service_id', $service->id)->get();
+
+
+        if (count($workService) > 0)
+            return back()->with('errors', 'You can\'t delete this service because it\'s in your work ');
+
+
         $services = Profession::where('freelancer_id', $service->freelancer_id)->get();
 
         if (count($services) < 2) {
             $freelancer = Freelancer::find($service->freelancer_id);
+
+            $workProject = DB::table('freelancer_project')->where('freelancer_id', $freelancer->id)->get();
+            if (count($workProject) > 0)
+                return back()->with('errors', 'You can\'t delete this service because you have projects in your work ');
+
             $user = User::find($freelancer->user_id);
             $user->is_freelancer = false;
             $user->save();
