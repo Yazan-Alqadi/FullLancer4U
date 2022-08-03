@@ -135,6 +135,28 @@
                         </div>
                     </div>
 
+                    {{-- phone number --}}
+                    <br>
+                    <div class="card bg-light text-dark rounded">
+                        <div class="card-body">
+                            <h5 class="card-title"> Phone Number </h5>
+
+                            <div>0984272476</div>
+
+                        </div>
+                    </div>
+
+                    {{-- address --}}
+                    <br>
+                    <div class="card bg-light text-dark rounded">
+                        <div class="card-body">
+                            <h5 class="card-title"> Address </h5>
+
+                            <div>Lorem ipsum dolor sit amet, consectetur .</div>
+
+                        </div>
+                    </div>
+
                     <br>
                     <div class="card bg-light text-dark rounded">
                         <div class="card-body">

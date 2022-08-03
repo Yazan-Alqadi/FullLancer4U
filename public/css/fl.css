@@ -8,7 +8,7 @@ body {
 }
 
 .img-log-in {
-    height: -webkit-fill-available;
+    height: fit-content;
     z-index: 1;
     position: absolute;
     width: 100% !important;

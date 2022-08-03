@@ -28,9 +28,9 @@
     <img src="files/munt-background.jpg" class="img-log-in" alt="...">
 
     <section class="container bg-light text-dark p-3 mgg w-50 rounded mb-5"
-        style="max-width: 25rem; z-index: 2; margin: 0px !important;position: absolute;
-            box-shadow: 0px 20px 65px 10px #2188f399;
-        left: calc(calc(100% - 368px)/2);top: calc(calc(100% - 406px)/2);">
+        style="max-width: 30rem; z-index: 2;margin: 0px !important; position: absolute;
+    box-shadow: 0px 20px 65px 10px #2188f399;
+    left: calc(calc(100% - 448px)/2); top: calc(calc(100% - 406px)/2);">
         <div class="border-bottom border-dark ps-3 h5 py-1">
             Sign up
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
