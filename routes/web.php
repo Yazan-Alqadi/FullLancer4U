@@ -107,7 +107,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('skill/delete/{id}', [SkillController::class, 'destroy'])->name('skill_delete');
     Route::get('skill/post/', [SkillController::class, 'store'])->name('skill_store');
 
-    Route::get('my_purchase', [WorkController::class, 'getMyPurchase'])->name('purchase_page');
+    Route::get('my_purchase/{id}', [WorkController::class, 'getMyPurchase'])->name('purchase_page');
     Route::get('my_work/{id}', [WorkController::class, 'getMyWork'])->name('work_page');
     Route::get('my_work/service/{id}', [WorkController::class, 'updateWorkService'])->name('work_update');
     Route::get('my_work/project/{id}', [WorkController::class, 'updateWorkProject'])->name('work_project_update');
