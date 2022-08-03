@@ -25,7 +25,12 @@
 
     @include('layouts.nav-bar')
 
-    <section class="container bg-light text-dark p-3 mgg w-50 rounded mb-5">
+    <img src="files/munt-background.jpg" class="img-log-in" alt="...">
+
+    <section class="container bg-light text-dark p-3 mgg w-50 rounded mb-5"
+        style="max-width: 25rem; z-index: 2; margin: 0px !important;position: absolute;
+            box-shadow: 0px 20px 65px 10px #2188f399;
+        left: calc(calc(100% - 368px)/2);top: calc(calc(100% - 406px)/2);">
         <div class="border-bottom border-dark ps-3 h5 py-1">
             Sign up
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -61,7 +66,8 @@
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="text" name="user_name" required
-                                placeholder="Username..." id="floatingTextarea" value="" autocomplete="on"></input>
+                                placeholder="Username..." id="floatingTextarea" value=""
+                                autocomplete="on"></input>
                             <label for="floatingTextarea">Username</label>
                         </div>
                     </div>
@@ -75,8 +81,7 @@
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="email" name="email" required
-                                placeholder="Email address..." id="floatingTextarea"
-                                autocomplete="on"></input>
+                                placeholder="Email address..." id="floatingTextarea" autocomplete="on"></input>
                             <label for="floatingTextarea">Email</label>
                         </div>
                     </div>
@@ -103,7 +108,8 @@
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="password" name="password_confirmation"
-                                minlength="8" required placeholder="*************" id="floatingTextarea" autocomplete="on"></input>
+                                minlength="8" required placeholder="*************" id="floatingTextarea"
+                                autocomplete="on"></input>
                             <label for="floatingTextarea">Repeat Password</label>
                         </div>
                     </div>
@@ -118,7 +124,8 @@
                                 </svg>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     IT & Development
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

@@ -7,12 +7,22 @@ body {
     background-color: #eee;
 }
 
+.img-log-in {
+    height: -webkit-fill-available;
+    z-index: 1;
+    position: absolute;
+    width: 100% !important;
+    opacity: 0.6;
+}
+
+.img-log-in::after {
+    background-color: red;
+    z-index: 10000;
+}
+
 div.stars {
-
     width: 270px;
-
     display: inline-block;
-
 }
 
 .mt-200 {
@@ -22,8 +32,6 @@ div.stars {
 input.star {
     display: none;
 }
-
-
 
 label.star {
 
