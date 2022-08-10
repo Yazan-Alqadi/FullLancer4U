@@ -120,7 +120,7 @@
                                 </a>
                             </li>
                         @endif
-                        <li><a class="dropdown-item" href="{{ route('purchase_page',Auth::id(gu)) }}">
+                        <li><a class="dropdown-item" href="{{ route('purchase_page', Auth::id()) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
                                     <path
@@ -267,7 +267,7 @@
                                         {{-- message from who ? --}}
                                         <div class="d-flex" style="justify-content: space-between; align-items: center;">
                                             <span class="text-danger" style="font-size: 15px"> ` +
-                                                data.username + `</span>
+            data.username + `</span>
                                             <span class="rounded-2 p-1 text-secondary" >1 seconds ago</span>
                                         </div>
                                         <div class="text-dark" style="word-break: break-word;">
