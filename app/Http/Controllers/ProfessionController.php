@@ -22,7 +22,7 @@ class ProfessionController extends Controller
     public function index()
     {
         //
-        $professions = Profession::paginate(6);
+        $professions = Profession::where('status','!=','0')->paginate(6);
         $categories = Category::all();
         return view('auth.Professions_cards', compact('professions','categories'));
     }

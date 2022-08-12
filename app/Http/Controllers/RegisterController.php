@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class RegisterController extends Controller
 {
@@ -18,15 +19,27 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        $input = $request->validate( [
-            'full_name' => 'required',
-            'user_name' => 'required|unique:users',
+        $validate =Validator::make($request->all(),[
+            'full_name' => 'required|max:15',
+            'user_name' => 'required|unique:users|max:15',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
         ]);
+        if ($validate->fails()){
+            return back()->withErrors($validate)->withCookie(Cookie::make('email', $request->email,5))
+            ->withCookie(Cookie::make('full_name', $request->full_name,5))
+            ->withCookie(Cookie::make('user_name', $request->user_name,5));
+        }
+
+        $input = $request->except(['_token']);
 
         $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        $user = User::create([
+            'full_name'=>$input['full_name'],
+            'user_name'=>$input['user_name'],
+            'email'=>$input['email'],
+            'password'=>$input['password'],
+        ]);
         Auth::login($user);
         $success['token'] =  $user->createToken('token')->plainTextToken;
         $success['user_name'] =  $user->user_name;

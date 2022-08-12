@@ -54,30 +54,25 @@
             <form class="form-login-1 fs-6" method="POST" action="{{ route('login.store') }}">
                 @csrf
                 <div>
-                    @error('email')
+                    @if(session('error'))
                         <div class="alert alert-danger fs-5" role="alert">
-                            A simple danger alert—check it out!
+                            {{ session('error') }}
                         </div>
-                    @enderror
+                    @endif
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="email" name="email" required
-                                placeholder="Email address..." id="floatingTextarea"></input>
+                                placeholder="Email address..." id="floatingTextarea" value="{{ Cookie::get('email') }}"></input>
                             <label for="floatingTextarea">Email</label>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    @error('password')
-                        <div class="alert alert-danger fs-5" role="alert">
-                            A simple danger alert—check it out!
-                        </div>
-                    @enderror
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="password" name="password" minlength="8" required
-                                placeholder="*************" id="floatingTextarea"></input>
+                                placeholder="*************" id="floatingTextarea" ></input>
                             <label for="floatingTextarea">Password</label>
                         </div>
                     </div>

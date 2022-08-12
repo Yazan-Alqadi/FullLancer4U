@@ -22,6 +22,8 @@ class CreateProfessionsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->bigInteger('freelancer_id')->unsigned()->index();
             $table->foreign('freelancer_id')->references('id')->on('freelancers')->onDelete('cascade');
+            $table->boolean('status')->default('0');
+
             $table->timestamps();
         });
     }
