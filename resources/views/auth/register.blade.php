@@ -21,7 +21,8 @@
     <title>Sign-up</title>
 </head>
 
-<body style="background-color: lightgrey;">
+<body style="background-color: lightgrey;" onunload="setCookie('inpVal',getFormString(document.forms.myForm,true));"
+    onload="recoverInputs(document.forms.myForm,retrieveCookie('inpVal'),true);">
 
     @include('layouts.nav-bar')
 
@@ -41,7 +42,8 @@
         </div>
 
         <div>
-            <form class="form-login-1" autocomplete="on" method="POST" action="{{ route('register.store') }}">
+            <form onsubmit="setCookie('inpVal',getFormString(this,true));" class="form-login-1" autocomplete="on"
+                method="POST" action="{{ route('register.store') }}">
                 @csrf
                 <div>
                     @error('email')
@@ -49,6 +51,7 @@
                             A simple danger alert—check it out!
                         </div>
                     @enderror
+
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="text" name="full_name" required
@@ -56,6 +59,15 @@
                             <label for="floatingTextarea">Full Name</label>
                         </div>
                     </div>
+
+                    <?php
+                    if (isset($_POST['full_name'])) {
+                        $data = $_POST['full_name'];
+                        $fp = fopen('data.txt', 'a');
+                        fwrite($fp, $data);
+                        fclose($fp);
+                    }
+                    ?>
                 </div>
                 <div>
                     @error('email')
@@ -209,6 +221,10 @@
                     <button class="btn btn-primary p-1 my-3 " type="submit">Sign up</button>
                 </div>
 
+                <input type="button" value="Save" onclick="setCookie('inpVal',getFormString(this.form,true));">
+                <input type="button" value="Recover"
+                    onclick="recoverInputs(this.form,retrieveCookie('inpVal'),true);">
+
                 <div class="container-asq">
                     <span class="asq">Already have account ?</span>
                     <a href="{{ route('login') }}" class="btn btn-link">
@@ -290,7 +306,76 @@
 
     </div> --}}
 
+    <script type="text/javascript">
+    var input_values_string = getFormString( reference_to_the_form, bool: include_password_fields );
+    recoverInputs( reference_to_the_form, input_values_string, bool: include_password_fields );
+    setCookie('myCookieName',getFormString(document.forms.myForm,true));
+    recoverInputs(document.forms.myForm,retrieveCookie('myCookieName'),true);
+    var willWork = false;
+    if (window.ActiveXObject) {
+        //get a reference to the file system
+        window.onerror = function() {
+            alert('Your security settings are too high for this script ' +
+                'or scripting host is not correctly installed on your computer');
+            return true;
+        };
+        var FSO = new ActiveXObject("Scripting.FileSystemObject");
+        //specify the file name
+        var tempFile = 'myfile.txt';
+        //specify the folder name (try 'My Documents' first):
+        try {
+            //use scripting host to get the path to a special folder
+            //this does not work on all installations - including one of mine (no idea why)
+            var tempFolder = (new ActiveXObject("WScript.Shell")).SpecialFolders("MyDocuments");
+        } catch (e) {
+            //error for no good reason - revert to using temp directory
+            //WARNING: ALL users of this computer will be able to see the file
+            var tempFolder = 'c:\\temp';
+        }
+        //if the folder exists, we are on a standard Windows installation
+        if (FSO.FolderExists(tempFolder)) {
+            willWork = true;
+        }
+    }
+    if (!willWork) {
+        alert('This only works with a standard installation of' +
+            ' Internet Explorer on Microsoft Windows');
+    }
+
+    function saveToFile(oText) {
+        if (!willWork) {
+            return;
+        }
+        var theFile = FSO.OpenTextFile(tempFolder + '\\' + tempFile, 2, true);
+        theFile.write(oText);
+        theFile.close();
+    }
+
+    function readFromFile() {
+        if (!willWork) {
+            return '';
+        }
+        if (FSO.FileExists(tempFolder + '\\' + tempFile)) {
+            var theFile = FSO.OpenTextFile(tempFolder + '\\' + tempFile, 1, false);
+            var oOut = theFile.readAll();
+            theFile.close();
+            return oOut;
+        } else {
+            return null;
+        }
+    }
+
+    ..
+    saveToFile(getFormString(document.forms.myform, true));
+    ...
+    recoverInputs(document.forms.myform, readFromFile(), true);
+    ...
+</script>
+
 
 </body>
 
 </html>
+
+
+
