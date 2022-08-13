@@ -25,6 +25,7 @@ class User extends Authenticatable
         'google_id',
         'phone',
         'address',
+        'bio',
         'is_freelancer',
     ];
     protected $guarded = [];

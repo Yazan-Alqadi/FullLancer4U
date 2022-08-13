@@ -375,6 +375,8 @@
                         </div>
                     </div>
 
+
+
                 </div>
 
                 <div class="col-lg-8 col-md-8 mb-5">
@@ -512,7 +514,7 @@
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked4" >
+                                                id="flexCheckChecked4">
                                             <label class="form-check-label" for="flexCheckChecked4">
                                                 Engineering & Architecture
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -554,6 +556,21 @@
                                 </div>
 
                             </div>
+
+                            {{-- My BIO --}}
+                    <br>
+                    <div class="card bg-light text-dark rounded">
+                        <div class="card-body">
+                            <h5 class="card-title"> My Bio </h5>
+
+
+                            <textarea name="bio" type="text" class="form-control" style="height: 200px !important;"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput1"
+                                placeholder="Add Bio">{{Auth::user()->bio}}
+                            </textarea>
+
+                        </div>
+                    </div>
 
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
