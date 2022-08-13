@@ -57,10 +57,7 @@
                     <div class="card bg-light text-dark rounded">
                         <div class="card-title p-3 border-bottom border-secondary">Bio</div>
                         <div class="card-body">
-                            <h5 class="card-title"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                                fugiat ad hic in quidem cupiditate, distinctio minima necessitatibus est officiis
-                                exercitationem quam deleniti impedit facere praesentium molestiae voluptate quasi
-                                dolorum. </h5>
+                            <h5 class="card-title">{{ $user->bio }}</h5>
 
 
 
