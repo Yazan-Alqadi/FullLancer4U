@@ -22,8 +22,9 @@ class ProfessionController extends Controller
     public function index()
     {
         //
-        $professions = Profession::paginate(6);;
-        return view('auth.Professions_cards', ['professions' => $professions]);
+        $professions = Profession::where('status','!=','0')->paginate(6);
+        $categories = Category::all();
+        return view('auth.Professions_cards', compact('professions','categories'));
     }
 
     /**
@@ -183,4 +184,26 @@ class ProfessionController extends Controller
         session()->flash('message', 'You Apply for this service has been sent to freelancer');
         return back();
     }
+
+    public function search(Request $request){
+        // Get the search value from the request
+
+        $title = $request->title;
+        $price = $request->price;
+        $freelancer = $request->fName;
+
+        if (is_null( $price))
+            $price='-1000000';
+
+        // Search in the title from the services table
+        $professions = Profession::latest()
+            ->where('title', 'LIKE', "%{$title}%")
+            ->where('price', '>=', $price )
+            ->where('category_id',$request->category)
+            ->paginate(6);
+        $categories = Category::all();
+        // Return the search view with the resluts compacted
+        return view('auth.Professions_cards', compact('professions','categories'));
+    }
+
 }

@@ -46,16 +46,17 @@
                 method="POST" action="{{ route('register.store') }}">
                 @csrf
                 <div>
-                    @error('email')
+                    @error('full_name')
                         <div class="alert alert-danger" role="alert">
-                            A simple danger alert—check it out!
+                            {{ $errors->first('full_name') }}
                         </div>
                     @enderror
 
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="text" name="full_name" required
-                                placeholder="Name..." id="floatingTextarea" autocomplete="on"></input>
+                                placeholder="Name..." id="floatingTextarea" autocomplete="on"
+                                value="{{ Cookie::get('full_name') }}"></input>
                             <label for="floatingTextarea">Full Name</label>
                         </div>
                     </div>
@@ -70,15 +71,15 @@
                     ?>
                 </div>
                 <div>
-                    @error('email')
+                    @error('user_name')
                         <div class="alert alert-danger" role="alert">
-                            A simple danger alert—check it out!
+                            {{ $errors->first('user_name') }}
                         </div>
                     @enderror
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="text" name="user_name" required
-                                placeholder="Username..." id="floatingTextarea" value=""
+                                placeholder="Username..." id="floatingTextarea" value="{{ Cookie::get('user_name') }}"
                                 autocomplete="on"></input>
                             <label for="floatingTextarea">Username</label>
                         </div>
@@ -87,13 +88,14 @@
                 <div>
                     @error('email')
                         <div class="alert alert-danger" role="alert">
-                            A simple danger alert—check it out!
+                            {{ $errors->first('email') }}
                         </div>
                     @enderror
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="email" name="email" required
-                                placeholder="Email address..." id="floatingTextarea" autocomplete="on"></input>
+                                placeholder="Email address..." id="floatingTextarea" autocomplete="on"
+                                value="{{ Cookie::get('email') }}"></input>
                             <label for="floatingTextarea">Email</label>
                         </div>
                     </div>
@@ -101,8 +103,8 @@
 
                 <div>
                     @error('password')
-                        <div class="alert alert-danger fs-5" role="alert">
-                            A simple danger alert—check it out!
+                        <div class="alert alert-danger" role="alert">
+                            {{ $errors->first('password') }}
                         </div>
                     @enderror
                     <div class="mb-3">
@@ -112,11 +114,7 @@
                             <label for="floatingTextarea">Password</label>
                         </div>
                     </div>
-                    @error('password')
-                        <div class="alert alert-danger fs-5" role="alert">
-                            A simple danger alert—check it out!
-                        </div>
-                    @enderror
+
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="password" name="password_confirmation"

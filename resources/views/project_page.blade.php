@@ -33,27 +33,25 @@
     <div class="bg-secondary pb-3 mggg">
         <div class="h3 ms-3 pt-2 text-light"> Filters </div>
 
-        <form class="pt-3" role="search">
+        <form class="pt-3" role="search" action="{{ route('search_project') }}"  >
+            @csrf
             <div class="row justify-content-between">
                 <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="category" class="form-select" aria-label="Default select example">
                         <option selected>Filter category</option>
-                        <option value="1">IT & Development</option>
-                        <option value="2">Design & Creative</option>
-                        <option value="3">Writing & Translation</option>
-                        <option value="4">Engineering & Architecture</option>
-                        <option value="5">Sales & Marketing</option>
-                        <option value="6">Self employees </option>
+                        @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                    <input type="text" class="form-control" id="inputTitle" placeholder="Tilte">
+                    <input name="title" type="text" class="form-control" id="inputTitle" placeholder="Tilte">
                 </div>
                 <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                    <input type="text" class="form-control" id="inputName" placeholder="Client name">
+                    <input name="cName" type="text" class="form-control" id="inputName" placeholder="Client name">
                 </div>
                 <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                    <input type="text" class="form-control" id="inputPrice" placeholder="Price">
+                    <input name="price" type="text" class="form-control" id="inputPrice" placeholder="Price">
                 </div>
             </div>
 

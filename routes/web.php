@@ -111,6 +111,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('my_work/{id}', [WorkController::class, 'getMyWork'])->name('work_page');
     Route::get('my_work/service/{id}', [WorkController::class, 'updateWorkService'])->name('work_update');
     Route::get('my_work/project/{id}', [WorkController::class, 'updateWorkProject'])->name('work_project_update');
+    Route::get('/professions/search', [ProfessionController::class,'search'])->name('search_service');
+    Route::get('/projects/search', [ProjectController::class,'search'])->name('search_project');
 
     Route::view('test', 'test');
 

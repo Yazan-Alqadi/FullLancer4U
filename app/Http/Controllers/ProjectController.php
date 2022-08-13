@@ -21,7 +21,9 @@ class ProjectController extends Controller
     {
         //
         $projects = Project::paginate(6);
-        return view('project_page', ['projects' => $projects]);
+        $categories = Category::all();
+
+        return view('project_page', compact('projects','categories'));
     }
 
     /**
@@ -160,4 +162,27 @@ class ProjectController extends Controller
         session()->flash('message', 'YourApply for this project has been sent to client');
         return back();
     }
+
+
+    public function search(Request $request){
+        // Get the search value from the request
+
+        $title = $request->title;
+        $price = $request->price;
+        $client = $request->CName;
+
+        if (is_null( $price))
+            $price='-1000000';
+
+        // Search in the title from the services table
+        $projects = Project::latest()
+            ->where('title', 'LIKE', "%{$title}%")
+            ->where('price', '>=', $price )
+            ->where('category_id',$request->category)
+            ->paginate(6);
+        $categories = Category::all();
+        // Return the search view with the resluts compacted
+        return view('project_page', compact('projects','categories'));
+    }
+
 }

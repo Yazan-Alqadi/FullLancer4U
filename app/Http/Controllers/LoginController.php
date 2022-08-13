@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
@@ -34,9 +35,10 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->route('home')->with('user', $user);
+            return redirect()->route('home')->withCookie(Cookie::make('email', $request->email,5));
         } else {
-            return redirect()->route('login')->with('status', 'Invalid Login');
+            return redirect()->route('login')->with('error', 'Invalid Login')->withCookie(Cookie::make('email', $request->email,5))
+            ->withCookie(Cookie::make('password', $request->password,5));
         }
     }
 }
