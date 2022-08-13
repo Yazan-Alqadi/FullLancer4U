@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use  HasApiTokens,HasFactory, Notifiable;
+    use  HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +27,7 @@ class User extends Authenticatable
         'address',
         'is_freelancer',
     ];
-    protected $guarded=[];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -50,39 +50,51 @@ class User extends Authenticatable
 
 
 
-public function freelancer(){
-    return $this->hasOne(Freelancer::class);
-}
-public function skills(){
-    return $this->hasMany(Skill::class);
-}
+    public function freelancer()
+    {
+        return $this->hasOne(Freelancer::class);
+    }
+    public function skills()
+    {
+        return $this->hasMany(Skill::class);
+    }
 
 
-public function projects(){
-    return $this->hasMany(Project::class);
-}
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 
-public function sent(){
-    return $this->hasMany(Message::class,'sender_id');
-}
+    public function sent()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
 
-public function received(){
-    return $this->hasMany(Message::class,'receiver_id');
-}
+    public function received()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
 
-public function notification(){
-    return $this->hasMany(Notification::class,'user_id');
-}
-public function notification_re(){
-    return $this->hasMany(Notification::class,'reciver_id');
-}
-public function threads(){
-    return $this->hasMany(Thread::class,'user_id');
-}
+    public function notification()
+    {
+        return $this->hasMany(Notification::class, 'user_id');
+    }
+    public function notification_re()
+    {
+        return $this->hasMany(Notification::class, 'reciver_id');
+    }
+    public function threads()
+    {
+        return $this->hasMany(Thread::class, 'user_id');
+    }
 
-public function services(){
-    return $this->belongsToMany(Profession::class,'client_service','user_id','service_id')->withPivot('status')->withTimestamps();
-}
+    public function services()
+    {
+        return $this->belongsToMany(Profession::class, 'client_service', 'user_id', 'service_id')->withPivot('status')->withTimestamps();
+    }
 
-
+    public function category()
+    {
+        return $this->BelongsToMany(Category::class);
+    }
 }

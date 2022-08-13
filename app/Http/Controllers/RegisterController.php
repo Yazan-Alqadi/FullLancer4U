@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -19,6 +21,9 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+
+
+
         $validate =Validator::make($request->all(),[
             'full_name' => 'required|max:15',
             'user_name' => 'required|unique:users|max:15',
@@ -33,6 +38,8 @@ class RegisterController extends Controller
 
         $input = $request->except(['_token']);
 
+
+
         $input['password'] = bcrypt($input['password']);
         $user = User::create([
             'full_name'=>$input['full_name'],
@@ -43,6 +50,15 @@ class RegisterController extends Controller
         Auth::login($user);
         $success['token'] =  $user->createToken('token')->plainTextToken;
         $success['user_name'] =  $user->user_name;
+
+        // foreach (Category::all() as $category){
+        //     if ($request->category->title=="OK"){
+
+        //         $user->category()->attach($category->id);
+
+        //     }
+        // }
+
 
         return back();
     }
