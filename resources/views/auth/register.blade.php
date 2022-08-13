@@ -135,7 +135,7 @@
                             </div>
                             @foreach (\App\Models\Category::all() as $category)
                                 <div class="form-check">
-                                    <input  name="{{ $category->title }}" class="form-check-input" type="checkbox"
+                                    <input  name="{{ $category->id }}" class="form-check-input" type="checkbox"
                                         value="OK" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault">
                                         {{ $category->title }}

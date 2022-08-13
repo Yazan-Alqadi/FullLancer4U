@@ -51,13 +51,14 @@ class RegisterController extends Controller
         $success['token'] =  $user->createToken('token')->plainTextToken;
         $success['user_name'] =  $user->user_name;
 
-        // foreach (Category::all() as $category){
-        //     if ($request->category->title=="OK"){
+        foreach (Category::all() as $category){
 
-        //         $user->category()->attach($category->id);
+            if (request($category->id)=="OK"){
 
-        //     }
-        // }
+                $user->category()->attach($category->id);
+
+            }
+        }
 
 
         return back();

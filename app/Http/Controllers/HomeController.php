@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Profession;
 use App\Models\Freelancer;
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -18,7 +19,7 @@ class HomeController extends Controller
     {
         // DB::select('CALL topFreelancer()');
         $professions = cache()->remember('prof', 60 + 60 + 24, function () {
-            return Profession::all();
+            return Profession::where('category_id',Auth::user()->category);
         });
         $projects = cache()->remember('proj', 60 + 60 + 24, function () {
             return Project::all();
