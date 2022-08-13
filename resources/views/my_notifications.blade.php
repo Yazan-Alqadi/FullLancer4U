@@ -118,7 +118,7 @@
     </section>
 
     {{-- Footer here --}}
-    @include('layouts.footer')
+    {{-- @include('layouts.footer') --}}
 
 
 
