@@ -512,7 +512,7 @@
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked4">
+                                                id="flexCheckChecked4" >
                                             <label class="form-check-label" for="flexCheckChecked4">
                                                 Engineering & Architecture
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

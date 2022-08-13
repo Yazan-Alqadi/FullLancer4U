@@ -14,5 +14,9 @@ class Category extends Model
     public function professions(){
         return $this->hasMany(Profession::class);
     }
+    
+    public function user(){
+        return $this->belongsToMany(User::class);
+    }
 
 }

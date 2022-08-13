@@ -6,6 +6,8 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+use function PHPUnit\Framework\returnSelf;
+
 class ProjectPolicy
 {
     use HandlesAuthorization;
@@ -19,6 +21,8 @@ class ProjectPolicy
     public function viewAny(User $user)
     {
         //
+        return true;
+
     }
 
     /**
@@ -31,6 +35,7 @@ class ProjectPolicy
     public function view(User $user, Project $project)
     {
         //
+        return true;
     }
 
     /**
@@ -54,6 +59,7 @@ class ProjectPolicy
     public function update(User $user, Project $project)
     {
         //
+        return $user->is_admin==1;
     }
 
     /**
@@ -65,7 +71,7 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        return $user->id==$project->user_id;
+        return $user->id==$project->user_id || $user->is_admin==1;
     }
 
     /**

@@ -22,7 +22,7 @@ class ProjectFactory extends Factory
             'price' => $this->faker->randomFloat,
             'description' =>$this->faker->text,
             'deadline'=>$this->faker->date(),
-            'category_id'=>Category::factory(),
+            'category_id'=>Category::inRandomOrder()->first()->id,
             'user_id'=>User::factory(),
         ];
     }
