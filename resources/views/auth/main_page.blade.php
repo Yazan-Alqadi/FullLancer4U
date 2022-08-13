@@ -90,12 +90,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($freelancers as $freelancer)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Back_end</td>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td><a >{{ $freelancer->full_name }}</a></td>
+                                <td>{}</td>
                                 <td>
-                                    @if (5 > 0)
+                                    @if ($freelancer->rate > 0)
                                         <span class="fa fa-star checked"
                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                         {{-- star one --}}
@@ -104,7 +105,7 @@
                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                         {{-- star one --}}
                                     @endif
-                                    @if (5 > 1)
+                                    @if ($freelancer->rate > 1)
                                         <span class="fa fa-star checked"
                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                         {{-- star two --}}
@@ -113,7 +114,7 @@
                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                         {{-- star two --}}
                                     @endif
-                                    @if (5 > 2)
+                                    @if ($freelancer->rate > 2)
                                         <span class="fa fa-star checked"
                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                         {{-- star three --}}
@@ -122,7 +123,7 @@
                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                         {{-- star three --}}
                                     @endif
-                                    @if (5 > 3)
+                                    @if ($freelancer->rate > 3)
                                         <span class="fa fa-star checked"
                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                         {{-- star four --}}
@@ -131,7 +132,7 @@
                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                         {{-- star four --}}
                                     @endif
-                                    @if (5 > 4)
+                                    @if ($freelancer->rate > 4)
                                         <span class="fa fa-star checked"
                                             style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                         {{-- star five --}}
@@ -143,112 +144,7 @@
 
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Yazan</td>
-                                <td>Back_end ,Front_end ,Teacher ,desiner ,transleater</td>
-                                <td>
-                                    @if (5 > 0)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star one --}}
-                                    @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star one --}}
-                                    @endif
-                                    @if (5 > 1)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star two --}}
-                                    @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star two --}}
-                                    @endif
-                                    @if (5 > 2)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star three --}}
-                                    @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star three --}}
-                                    @endif
-                                    @if (5 > 3)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star four --}}
-                                    @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star four --}}
-                                    @endif
-                                    @if (5 > 4)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star five --}}
-                                    @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star five --}}
-                                    @endif
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>MOMO</td>
-                                <td>Front_end</td>
-                                <td>
-                                    @if (5 > 0)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star one --}}
-                                    @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star one --}}
-                                    @endif
-                                    @if (5 > 1)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star two --}}
-                                    @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star two --}}
-                                    @endif
-                                    @if (5 > 2)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star three --}}
-                                    @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star three --}}
-                                    @endif
-                                    @if (5 > 3)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star four --}}
-                                    @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star four --}}
-                                    @endif
-                                    @if (5 > 4)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star five --}}
-                                    @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                        {{-- star five --}}
-                                    @endif
-
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     {{-- </div> --}}
@@ -319,9 +215,12 @@
         <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
             <div class="row text-center">
                 @foreach ($professions as $profession)
-                    <div class="col-md-6 col-lg-4 mb-2">
-                        <div class="card text-light" style="background-color: #001b24; height: 100%;">
-                            <!-- <div class="container">
+                    @if (Auth::check() && !Auth::user()->category->contains($profession->category_id))
+                    @continue
+                    @endif
+                        <div class="col-md-6 col-lg-4 mb-2">
+                            <div class="card text-light" style="background-color: #001b24; height: 100%;">
+                                <!-- <div class="container">
 
                              <-- add image or icon here ----------
 
@@ -336,99 +235,101 @@
                                     </span>
                                 </div>
                             </div> -->
-                            <div class="card-body text-center"
-                                style="display: flex !important;align-items: center;justify-content: center;">
+                                <div class="card-body text-center"
+                                    style="display: flex !important;align-items: center;justify-content: center;">
 
-                                <!-- descreption of the profession -->
+                                    <!-- descreption of the profession -->
 
-                                <div class="card-text">
-                                    <div class="container">
-                                        <div class="col" style="color: #f5ff9f;">
-                                            <!-- category belong to the profession -->
-                                            <div class="row justify-content-center"
-                                                style="font-size: 18px !important;">
-                                                {{-- <span class="for-size span-number-1 ">Title:</span> --}}
-                                                <span
-                                                    class="for-size span-number-2 title-des">{{ $profession->title }}</span>
-                                            </div>
-                                            <div class="row justify-content-center">
-                                                <span class="for-size span-number-1">Category:</span>
-                                                <span
-                                                    class="for-size span-number-2">{{ "\n" . $profession->category->title }}</span>
-                                            </div>
-                                            <div class="row justify-content-center">
-                                                <span class="for-size span-number-1">professional:</span>
-                                                <span
-                                                    class="for-size span-number-2">{{ $profession->freelancer->user->full_name }}</span>
-                                            </div>
-                                            <div style="white-space: nowrap;">
-                                                <span class="for-size span-number-1">Rating:</span>
-                                                @if ($profession->freelancer->rate > 0)
-                                                    <span class="fa fa-star checked"
-                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                    {{-- star one --}}
-                                                @else
-                                                    <span class="fa fa-star not-checked"
-                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                    {{-- star one --}}
-                                                @endif
-                                                @if ($profession->freelancer->rate > 1)
-                                                    <span class="fa fa-star checked"
-                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                    {{-- star two --}}
-                                                @else
-                                                    <span class="fa fa-star not-checked"
-                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                    {{-- star two --}}
-                                                @endif
-                                                @if ($profession->freelancer->rate > 2)
-                                                    <span class="fa fa-star checked"
-                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                    {{-- star three --}}
-                                                @else
-                                                    <span class="fa fa-star not-checked"
-                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                    {{-- star three --}}
-                                                @endif
-                                                @if ($profession->freelancer->rate > 3)
-                                                    <span class="fa fa-star checked"
-                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                    {{-- star four --}}
-                                                @else
-                                                    <span class="fa fa-star not-checked"
-                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                    {{-- star four --}}
-                                                @endif
-                                                @if ($profession->freelancer->rate > 4)
-                                                    <span class="fa fa-star checked"
-                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                    {{-- star five --}}
-                                                @else
-                                                    <span class="fa fa-star not-checked"
-                                                        style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                    {{-- star five --}}
-                                                @endif
+                                    <div class="card-text">
+                                        <div class="container">
+                                            <div class="col" style="color: #f5ff9f;">
+                                                <!-- category belong to the profession -->
+                                                <div class="row justify-content-center"
+                                                    style="font-size: 18px !important;">
+                                                    {{-- <span class="for-size span-number-1 ">Title:</span> --}}
+                                                    <span
+                                                        class="for-size span-number-2 title-des">{{ $profession->title }}</span>
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <span class="for-size span-number-1">Category:</span>
+                                                    <span
+                                                        class="for-size span-number-2">{{ "\n" . $profession->category->title }}</span>
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <span class="for-size span-number-1">professional:</span>
+                                                    <span
+                                                        class="for-size span-number-2">{{ $profession->freelancer->user->full_name }}</span>
+                                                </div>
+                                                <div style="white-space: nowrap;">
+                                                    <span class="for-size span-number-1">Rating:</span>
+                                                    @if ($profession->freelancer->rate > 0)
+                                                        <span class="fa fa-star checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star one --}}
+                                                    @else
+                                                        <span class="fa fa-star not-checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star one --}}
+                                                    @endif
+                                                    @if ($profession->freelancer->rate > 1)
+                                                        <span class="fa fa-star checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star two --}}
+                                                    @else
+                                                        <span class="fa fa-star not-checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star two --}}
+                                                    @endif
+                                                    @if ($profession->freelancer->rate > 2)
+                                                        <span class="fa fa-star checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star three --}}
+                                                    @else
+                                                        <span class="fa fa-star not-checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star three --}}
+                                                    @endif
+                                                    @if ($profession->freelancer->rate > 3)
+                                                        <span class="fa fa-star checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star four --}}
+                                                    @else
+                                                        <span class="fa fa-star not-checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star four --}}
+                                                    @endif
+                                                    @if ($profession->freelancer->rate > 4)
+                                                        <span class="fa fa-star checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star five --}}
+                                                    @else
+                                                        <span class="fa fa-star not-checked"
+                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                        {{-- star five --}}
+                                                    @endif
 
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <span class="for-size span-number-1">Price:</span>
+                                                    <span
+                                                        class="for-size span-number-2">{{ $profession->price }}</span>
+                                                </div>
+                                                <div class="row justify-content-center mt-3" style="display: block;">
+                                                    <span class="for-size span-number-1">descreption:</span>
+                                                    <span
+                                                        class="for-size span-number-2">{{ $profession->description }}</span>
+                                                </div>
+                                                <!-- Profile of the user -->
+                                                <a href="#" class="btn btn-info mt-2 btn-font-size">
+                                                    See more information
+                                                </a>
                                             </div>
-                                            <div class="row justify-content-center">
-                                                <span class="for-size span-number-1">Price:</span>
-                                                <span class="for-size span-number-2">{{ $profession->price }}</span>
-                                            </div>
-                                            <div class="row justify-content-center mt-3" style="display: block;">
-                                                <span class="for-size span-number-1">descreption:</span>
-                                                <span
-                                                    class="for-size span-number-2">{{ $profession->description }}</span>
-                                            </div>
-                                            <!-- Profile of the user -->
-                                            <a href="#" class="btn btn-info mt-2 btn-font-size">
-                                                See more information
-                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                 @endforeach
             </div>
         </div>
@@ -444,9 +345,12 @@
         <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
             <div class="row text-center">
                 @foreach ($projects as $project)
-                    <div class="col-md-6 col-lg-4 mb-2">
-                        <div class="card text-light" style="background-color: #001b24; height: 100%;">
-                            <!-- <div class="container">
+                    @if (Auth::check()  && !Auth::user()->category->contains($project->category_id))
+                    @continue
+                    @endif
+                        <div class="col-md-6 col-lg-4 mb-2">
+                            <div class="card text-light" style="background-color: #001b24; height: 100%;">
+                                <!-- <div class="container">
 
                              <-- add image or icon here ----------
 
@@ -462,70 +366,70 @@
                                 </div>
                             </div> -->
 
-                            <div class="card-body text-center" style="background-color: #001b24; height: 100%;">
+                                <div class="card-body text-center" style="background-color: #001b24; height: 100%;">
 
-                                <!-- descreption of the project -->
+                                    <!-- descreption of the project -->
 
-                                <div class="card-text">
-                                    <div class="container">
-                                        <div class="col" style="color: #f5ff9f;">
-                                            <!-- category belong to the profession -->
-                                            <div class="row justify-content-center"
-                                                style="font-size: 18px !important;">
-                                                <span class="for-size span-number-2 title-des">
-                                                    {{ $project->title }}
-                                                </span>
-                                            </div>
-                                            <div class="row justify-content-center">
-                                                <span class="for-size span-number-1">Category:</span>
-                                                <span class="for-size span-number-2">
-                                                    {{ "\n" . $project->category->title }}
-                                                </span>
-                                            </div>
-                                            <div class="row justify-content-center">
-                                                <span class="for-size span-number-1">Client:</span>
-                                                <span class="for-size span-number-2">
-                                                    {{ $project->user->full_name }}
-
-                                                </span>
-                                            </div>
-                                            <div class="row justify-content-center mt-3" style="display: block;">
-                                                <span class="for-size span-number-1">descreption:</span>
-                                                <span class="for-size span-number-2">
-                                                    {{ $project->description }}
-
-                                                </span>
-                                            </div>
-
-                                            <div class="mt-2" style="text-align-last: justify">
-                                                {{-- Deadline --}}
-                                                <span>
-                                                    <span class="text-start d-inline-block">
-                                                        {{ $project->deadline }}
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                            height="16" fill="currentColor"
-                                                            class="bi bi-calendar-check" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                                                            <path
-                                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                                        </svg>
+                                    <div class="card-text">
+                                        <div class="container">
+                                            <div class="col" style="color: #f5ff9f;">
+                                                <!-- category belong to the profession -->
+                                                <div class="row justify-content-center"
+                                                    style="font-size: 18px !important;">
+                                                    <span class="for-size span-number-2 title-des">
+                                                        {{ $project->title }}
                                                     </span>
-                                                </span>
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <span class="for-size span-number-1">Category:</span>
+                                                    <span class="for-size span-number-2">
+                                                        {{ "\n" . $project->category->title }}
+                                                    </span>
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <span class="for-size span-number-1">Client:</span>
+                                                    <span class="for-size span-number-2">
+                                                        {{ $project->user->full_name }}
 
-                                                {{-- Price --}}
-                                                <span
-                                                    class="text-end text-dark bg-light rounded px-2 py-1 tooltipssss d-inline-block">
-                                                    {{ $project->price . ' Sp' }}
-                                                    <span class="tooltiptext">Price</span>
-                                                </span>
+                                                    </span>
+                                                </div>
+                                                <div class="row justify-content-center mt-3" style="display: block;">
+                                                    <span class="for-size span-number-1">descreption:</span>
+                                                    <span class="for-size span-number-2">
+                                                        {{ $project->description }}
+
+                                                    </span>
+                                                </div>
+
+                                                <div class="mt-2" style="text-align-last: justify">
+                                                    {{-- Deadline --}}
+                                                    <span>
+                                                        <span class="text-start d-inline-block">
+                                                            {{ $project->deadline }}
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor"
+                                                                class="bi bi-calendar-check" viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                                                <path
+                                                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                                            </svg>
+                                                        </span>
+                                                    </span>
+
+                                                    {{-- Price --}}
+                                                    <span
+                                                        class="text-end text-dark bg-light rounded px-2 py-1 tooltipssss d-inline-block">
+                                                        {{ $project->price . ' Sp' }}
+                                                        <span class="tooltiptext">Price</span>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 @endforeach
             </div>
         </div>

@@ -71,7 +71,7 @@
                         <div class="card-body">
                             <h5 class="card-title"> Services </h5>
 
-                            @if (Auth::user()->is_freelancer)
+                            @if ($user->is_freelancer)
                                 @foreach ($services as $service)
                                     <div class="d-flex mb-1 border-bottom border-secondary pb-1"
                                         style="justify-content: space-between;">
@@ -115,7 +115,7 @@
                             <h5 class="card-title"> Skills </h5>
 
                             {{-- if user has skills --}}
-                            @if (Auth::user()->is_freelancer)
+                            @if ($user->is_freelancer)
                                 @foreach ($skills as $skill)
                                     <div class="d-flex mb-1 border-bottom border-secondary pb-1"
                                         style="justify-content: space-between;">
@@ -138,7 +138,7 @@
                         <div class="card-body">
                             <h5 class="card-title"> Phone Number </h5>
 
-                            <div>0984272476</div>
+                            <div>{{ $user->phone }}</div>
 
                         </div>
                     </div>
@@ -149,7 +149,7 @@
                         <div class="card-body">
                             <h5 class="card-title"> Address </h5>
 
-                            <div>Lorem ipsum dolor sit amet, consectetur .</div>
+                            <div>{{ $user->address }}</div>
 
                         </div>
                     </div>

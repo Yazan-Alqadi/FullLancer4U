@@ -7,6 +7,7 @@ use App\Models\Profession;
 use App\Models\Freelancer;
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -17,14 +18,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // DB::select('CALL topFreelancer()');
+        $freelancers= DB::select('select * from users,freelancers where users.id=freelancers.user_id   order by rate desc limit 10');
         $professions = cache()->remember('prof', 60 + 60 + 24, function () {
-            return Profession::where('category_id',Auth::user()->category);
+            return Profession::all();
         });
         $projects = cache()->remember('proj', 60 + 60 + 24, function () {
             return Project::all();
         });
-        return view('auth.main_page',compact('professions','projects'));
+        return view('auth.main_page', compact('professions', 'projects','freelancers'));
     }
 
     /**
