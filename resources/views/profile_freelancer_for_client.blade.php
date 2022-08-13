@@ -351,19 +351,19 @@
                                                 style="background-color: #001b24; height: 100%;">
                                                 <!-- <div class="container">
 
-                                                 <-- add image or icon here ----------
+                                             <-- add image or icon here ----------
 
-                                                    <div style="display: inline-grid;">
-                                                        <span class="card-title">
-                                                            <a href="#" class="navbar-brand text-light name-of-user-hover">
-                                                                name of user
-                                                            </a>
-                                                        </span>
-                                                        <span class="card-title">
-                                                            user name
-                                                        </span>
-                                                    </div>
-                                                </div> -->
+                                                <div style="display: inline-grid;">
+                                                    <span class="card-title">
+                                                        <a href="#" class="navbar-brand text-light name-of-user-hover">
+                                                            name of user
+                                                        </a>
+                                                    </span>
+                                                    <span class="card-title">
+                                                        user name
+                                                    </span>
+                                                </div>
+                                            </div> -->
                                                 <div class="card-body text-center"
                                                     style="display: flex !important;align-items: center;justify-content: center;">
 
@@ -475,6 +475,9 @@
         </div>
     </div>
 </section>
+
+{{-- Footer here --}}
+@include('layouts.footer')
 
 
 

@@ -68,7 +68,7 @@
 
 
     <!-- card is here -->
-    <section class="py-5 section-style">
+    <section class="py-5 section-style mb-3">
         <div class="container">
             <div class="row text-center">
                 @foreach ($projects as $project)
@@ -163,6 +163,9 @@
         </div>
 
     </section>
+
+    {{-- Footer here --}}
+    @include('layouts.footer')
 
 
     <!-- JavaScript Bundle with Popper -->

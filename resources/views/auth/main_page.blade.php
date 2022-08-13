@@ -60,8 +60,8 @@
                         read the service details and see the seller's information,
                     </p>
                     @auth
-                        @else
-                    <a href="{{ route('register.show') }}" class="btn btn-primary btn-lg">Register now</a>
+                    @else
+                        <a href="{{ route('register.show') }}" class="btn btn-primary btn-lg">Register now</a>
                     @endauth
                 </div>
                 <img class="ms-2 d-none d-sm-block img-fluid" style="width: 20% !important;"
@@ -336,7 +336,8 @@
                                     </span>
                                 </div>
                             </div> -->
-                            <div class="card-body text-center" style="display: flex !important;align-items: center;justify-content: center;">
+                            <div class="card-body text-center"
+                                style="display: flex !important;align-items: center;justify-content: center;">
 
                                 <!-- descreption of the profession -->
 
@@ -530,6 +531,11 @@
         </div>
 
     </section>
+
+
+    {{-- Footer here --}}
+    @include('layouts.footer')
+
 
     <!-- JavaScript Bundle with Popper -->
     <script src="/js/bootstrap.bundle.min.js"></script>

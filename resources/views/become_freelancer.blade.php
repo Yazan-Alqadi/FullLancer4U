@@ -116,6 +116,9 @@
         </form>
     </section>
 
+    {{-- Footer here --}}
+    @include('layouts.footer')
+
 
 
     <!-- JavaScript Bundle with Popper -->
