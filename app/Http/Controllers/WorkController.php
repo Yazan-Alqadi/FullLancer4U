@@ -16,7 +16,7 @@ class WorkController extends Controller
     public function getMyWork($id)
     {
         $user = User::find($id);
-        $services = DB::table('client_service')->select(['client_service.id', 'status', 'title', 'full_name', 'client_service.updated_at'])
+        $services = DB::table('client_service')->select(['client_service.id', 'client_service.status', 'title', 'full_name', 'client_service.updated_at'])
             ->join('professions', 'client_service.service_id', '=', 'professions.id')
             ->join('users', 'client_service.user_id', '=', 'users.id')
             ->where('freelancer_id', $user->freelancer->id)
@@ -105,7 +105,7 @@ class WorkController extends Controller
 
     public function getMyPurchase($id)
     {
-        $services = DB::table('client_service')->select(['client_service.id', 'status', 'title', 'full_name', 'client_service.updated_at'])
+        $services = DB::table('client_service')->select(['client_service.id', 'client_service.status', 'title', 'full_name', 'client_service.updated_at'])
             ->join('professions', 'client_service.service_id', '=', 'professions.id')
             ->join('freelancers', 'professions.freelancer_id', '=', 'freelancers.id')
             ->join('users', 'freelancers.user_id', '=', 'users.id')

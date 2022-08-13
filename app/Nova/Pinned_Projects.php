@@ -3,15 +3,10 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Project extends Resource
+class Pinned_Projects extends Resource
 {
     /**
      * The model the resource corresponds to.
@@ -46,18 +41,6 @@ class Project extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            BelongsTo::make('Client','user',\App\Nova\User::class),
-            Text::make('Title', 'title')
-                ->sortable()
-                ->rules('max:255'),
-            Number::make('Price','price')->sortable(),
-            Textarea::make('Description','description')->sortable()->rules('min:10'),
-            BelongsTo::make('Category','category',\App\Nova\Category::class),
-            Text::make('Status', 'status')
-                ->sortable()
-                ->rules('max:255'),
-            Date::make('Deadline','deadline')->sortable(),
-
         ];
     }
 
