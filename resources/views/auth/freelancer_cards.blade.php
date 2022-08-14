@@ -128,7 +128,10 @@
                                             {{-- skills --}}
                                             <div class="row justify-content-center">
                                                 Skills:
-                                                {{ $freelancer->number_of_projects }}</div>
+                                                @foreach ($freelancer->user->skills as $skill)
+                                                {{ $skill->title }} ,
+                                                @endforeach
+                                                </div>
 
                                             <!-- email of the user -->
                                             <a href="{{ route('contact_me', $freelancer->user->id) }}"
