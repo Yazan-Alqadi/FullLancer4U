@@ -97,7 +97,9 @@ class UserController extends Controller
             'user_name' => 'required|unique:users,user_name,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'required|min:8|confirmed',
-            'bio'=>'max:1000'
+            'bio'=>'max:1000',
+            'phone'=>'max:10',
+            'address'=>'max:50',
         ]);
 
         // if(request('avatar')){
