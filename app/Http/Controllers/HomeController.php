@@ -18,7 +18,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $freelancers= DB::select('select * from users,freelancers where users.id=freelancers.user_id   order by rate desc limit 10');
+        $freelancers= Freelancer::all()->sortByDesc('rate')->take(10);
         $professions = cache()->remember('prof', 60 + 60 + 24, function () {
             return Profession::all();
         });
