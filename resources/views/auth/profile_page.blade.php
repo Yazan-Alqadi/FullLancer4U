@@ -503,13 +503,12 @@
                     <br>
                     <div class="card bg-light text-dark rounded">
                         <div class="card-body">
-                            <h5 class="card-title"> My Bio </h5>
+                            <h5 class="card-title"> <label for="exampleFormControlInput100">My Bio</label> </h5>
 
 
                             <textarea name="bio" type="text" class="form-control" style="height: 200px !important; direction: rtl;"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput1"
-                                placeholder="Add Bio">{{Auth::user()->bio}}
-                            </textarea>
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput100"
+                                placeholder="Add Bio">{{Auth::user()->bio}}</textarea>
 
                         </div>
                     </div>
