@@ -57,10 +57,7 @@
                     <div class="card bg-light text-dark rounded">
                         <div class="card-title p-3 border-bottom border-secondary">Bio</div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ $user->bio }}</h5>
-
-
-
+                            <h5 class="card-title" style="direction: rtl; word-break: break-word;">{{ $user->bio }}</h5>
                         </div>
                     </div>
                 </div>

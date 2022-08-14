@@ -73,11 +73,12 @@
 
     <section id="top-fl" class="bg-light text-center py-5">
         <div class="container">
+            <h2 class="mb-5">Top <span class="text-warning">Freelancers</span></h2>
             <div class="d-flex">
                 <img class="ms-2 d-none d-sm-block img-fluid" style="width: 20% !important;"
                     src={{ 'files/top_fl.svg' }} alt="">
                 <div style="flex-grow: 1;">
-                    <h2>Top <span class="text-warning">Freelancers</span></h2>
+
                     {{-- <div class="table"> --}}
                     <table class="table">
                         {{-- <caption>List of users</caption> --}}

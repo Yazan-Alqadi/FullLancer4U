@@ -189,7 +189,7 @@
                                 </span>
                                 <div style="display: inline-grid;">
                                     <span class="card-title">
-                                        <a href="#" class="navbar-brand text-dark">
+                                        <a href="{{ route('profile_user', Auth::user()->id) }}" class="navbar-brand text-dark">
                                             {{ $profession->freelancer->user->full_name }}
                                         </a>
                                     </span>
