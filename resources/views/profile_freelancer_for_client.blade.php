@@ -200,7 +200,9 @@
                     <div class="card bg-light text-start text-dark rounded">
                         <div class="card-body text-center">
                             <a href="{{ route('contact_me', $profession->freelancer->user->id) }}" type="button"
-                                class="btn btn-info">Contact</a>
+                                class="btn btn-info @if(Auth::user()->is_freelancer &&  $profession->freelancer_id==Auth::user()->freelancer->id)
+                                disabled
+                                @endif">Contact</a>
                         </div>
                     </div>
 
@@ -326,7 +328,10 @@
                         <div class="h5">Buy this service</div>
                         <!-- if the service not buyed yet -->
                         <a href="{{ route('buy_service', $profession->id) }}" type="submit"
-                            class="btn btn-info mt-2" id="buy">Buy,
+
+                            class="btn btn-info mt-2 @if(Auth::user()->is_freelancer &&  $profession->freelancer_id==Auth::user()->freelancer->id)
+                            disabled
+                            @endif" id="buy">Buy,
                             and add to my projects</a>
                         <!-- if the service is required and has not yet been approved -->
                         <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->

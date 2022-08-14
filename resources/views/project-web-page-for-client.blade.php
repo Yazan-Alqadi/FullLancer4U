@@ -99,7 +99,9 @@
                             <a href="
                         {{ route('contact_me', $project->user->id) }}
                         "
-                                type="button" class="btn btn-info">Contact</a>
+                                type="button" class="btn btn-info @if($project->user_id==Auth::id())
+                                disabled
+                                @endif">Contact</a>
                         </div>
                     </div>
                 </div>
@@ -119,7 +121,9 @@
                                 <div class="h5">Apply for this project</div>
                                 <!-- if the service not buyed yet -->
 
-                                <a href="{{ route('buy_project', $project->id) }}" class="btn btn-info mt-2"
+                                <a href="{{ route('buy_project', $project->id) }}" class="btn btn-info mt-2 @if($project->user_id==Auth::id())
+                                    disabled
+                                    @endif"
                                     id="buy">Apply</a>
                                 <!-- if the service is required and has not yet been approved -->
                                 <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->
