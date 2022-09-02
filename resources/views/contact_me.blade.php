@@ -160,7 +160,7 @@
 
 
     <!-- JavaScript Bundle with Popper -->
-    <script src=" /js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 
 </html>

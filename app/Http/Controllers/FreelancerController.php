@@ -21,11 +21,13 @@ class FreelancerController extends Controller
     public function index()
     {
         //
-        $freelancers = Freelancer::paginate(6);
+        $freelancers = cache()->remember('Freelancers' . request('page', 1), 60 + 60 + 24, function () {
+            return Freelancer::with('user', 'user.skills')->paginate(6);
+        });
 
         //dd($freelancers);
 
-        return view('auth.freelancer_cards', ['freelancers' => $freelancers]);
+        return view('auth.freelancer_cards',compact('freelancers'));
     }
 
     /**
@@ -35,7 +37,9 @@ class FreelancerController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = cache()->remember('categories', 60 + 60 + 24, function () {
+            return Category::all();
+        });
         return view('become_freelancer', compact('categories'));
     }
 

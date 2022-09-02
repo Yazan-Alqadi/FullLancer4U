@@ -21,11 +21,11 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link href="../css/fl.css" rel="stylesheet">
+    <link href= "{{asset('css/fl.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- CSS only -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <title>freelancer Profile</title>
 </head>
 
@@ -487,7 +487,7 @@
 
 
 <!-- JavaScript Bundle with Popper -->
-<script src=" /js/bootstrap.bundle.min.js"></script>
+<script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
 
 </body>
 

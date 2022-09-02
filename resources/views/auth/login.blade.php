@@ -25,7 +25,7 @@
 
     @include('layouts.nav-bar')
 
-    <img src="files/munt-background.jpg" class="img-log-in" alt="...">
+    <img src="./public/files/munt-background.jpg" class="img-log-in" alt="...">
 
     @if (session('status'))
         <div class="alert-error-state">
@@ -35,8 +35,8 @@
 
 
     <section class="container bg-light text-dark p-3 mgg mx-auto rounded"
-        style="max-width: 25rem; z-index: 2; margin: 0px !important;position: absolute;
-            box-shadow: 0px 20px 65px 10px #2188f399;
+        style="max-width: 25rem; z-index: 2; margin: 0 !important;position: absolute;
+            box-shadow: 0 20px 65px 10px #2188f399;
         left: calc(calc(100% - 368px)/2);top: calc(calc(100% - 406px)/2);">
         <div class="border-bottom border-dark ps-3 h5 py-1">
             Login
@@ -62,7 +62,7 @@
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="email" name="email" required
-                                placeholder="Email address..." id="floatingTextarea" value="{{ Cookie::get('email') }}"></input>
+                                placeholder="Email address..." id="floatingTextarea" value="{{ Cookie::get('email') }}">
                             <label for="floatingTextarea">Email</label>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="password" name="password" minlength="8" required
-                                placeholder="*************" id="floatingTextarea" ></input>
+                                placeholder="*************" id="floatingTextarea" >
                             <label for="floatingTextarea">Password</label>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
     </section>
 
     <!-- JavaScript Bundle with Popper -->
-    <script src=" /js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 
 </html>

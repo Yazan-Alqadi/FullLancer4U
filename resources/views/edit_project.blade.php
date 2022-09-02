@@ -107,7 +107,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Deadline</span>
                     <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                        <input value="save" value="{{ $project->deadline }}" name="deadline" class="form-control" type="date" min="<?php echo date('Y-m-d'); ?>"
+                        <input  value="{{ $project->deadline }}" name="deadline" class="form-control" type="date" min="<?php echo date('Y-m-d'); ?>"
                             aria-label="Sizing example input" placeholder="Price start at"
                             aria-describedby="inputGroup-sizing-default">
                         <span class="add-on"><i class="icon-th"></i></span>
@@ -130,6 +130,7 @@
                         </svg>
                     </button>
                 </div>
+            </div>
         </form>
     </section>
 
@@ -139,7 +140,7 @@
 
 
     <!-- JavaScript Bundle with Popper -->
-    <script src=" /js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 
 </html>

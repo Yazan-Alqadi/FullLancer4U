@@ -17,7 +17,7 @@
     <link href="{{ asset('css/profession.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- CSS only -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}} " rel="stylesheet">
     <title>Projects card</title>
 </head>
 
@@ -75,7 +75,7 @@
                             <div class="card-text">
                                 <!-- if user set a pic -->
                                 <!-- <img src="/files/pic-1.jpg" class="card-img-top img-user-style" alt="..."> -->
-                                <!-- if does not set a pic yet -->
+                                <!-- if it does not set a pic yet -->
                                 <span class="span-photo ms-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70"
                                         fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -262,7 +262,7 @@
 
 
     <!-- JavaScript Bundle with Popper -->
-    <script src=" /js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 
 </html>

@@ -64,10 +64,19 @@ class UserController extends Controller
     public function profile($id)
     {
         //
-        $user=User::find($id);
-        $services = DB::table('professions')->where('freelancer_id',$user->freelancer->id)->get();
-        $projects = DB::table('projects')->where('user_id',$user->id)->get();
-        $skills= DB::table('skills')->where('user_id',$user->id)->get();
+
+        $user=cache()->remember('user'.$id, 60 + 60 + 24, function () use($id) {
+            return User::find($id);
+        });
+        $services =cache()->remember('hisServices'.$id, 60 + 60 + 24, function () use($user){
+            return DB::table('professions')->where('freelancer_id',$user->freelancer->id)->get();
+        });
+        $projects =cache()->remember('hisProjects'.$id, 60 + 60 + 24, function () use($user){
+            return DB::table('projects')->where('user_id',$user->id)->get();
+        });
+        $skills=cache()->remember('hisSkills'.$id, 60 + 60 + 24, function () use($user){
+            return DB::table('skills')->where('user_id',$user->id)->get();
+        });
         return view('profile_user', compact('user','services','projects','skills'));
     }
 

@@ -62,13 +62,12 @@ Route::get('projects', [ProjectController::class, 'index'])->name('projects.inde
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('redToGoogle');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('googleCallBack');
-Route::get('services/{id}', [ProfessionController::class, 'show'])->name('more_information');
-Route::get('service/{id}', [HomeController::class, 'show'])->name('more_information');
 
 
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('service/{id}', [ProfessionController::class, 'show'])->name('more_information');
 
     Route::get('freelancer/sign', [FreelancerController::class, 'create'])->name('become_freelancer');
     Route::get('rate/update/{id}', [FreelancerController::class, 'updateRate'])->name('rate_me');
@@ -95,7 +94,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('confirm/{id}', [NotificationController::class, 'confirm'])->name('confirm');
 
 
-    Route::get('project/{id}', [ProjectController::class, 'show'])->name('get_project');
+    Route::get('project/{project}', [ProjectController::class, 'show'])->name('get_project');
     Route::get('project/edit/{id}', [ProjectController::class, 'edit'])->name('edit_project');
     Route::post('project/update/{id}', [ProjectController::class, 'update'])->name('update_project');
     Route::get('projects/create', [ProjectController::class, 'create'])->name('create_project');

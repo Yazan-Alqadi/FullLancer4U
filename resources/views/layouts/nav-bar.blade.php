@@ -181,12 +181,7 @@
                                 </div>
                                 <div style="overflow: hidden;max-height: 320px;overflow: auto;">
                                     <ul class="disd" style="display: contents;">
-                                        @php
-                                            $notification = \App\Models\Notification::latest()
-                                                ->where('user_id', Auth::id())
-                                                ->take(5)
-                                                ->get();
-                                        @endphp
+
                                         @foreach ($notification as $otif)
                                             <li>
                                                 <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">

@@ -45,13 +45,13 @@
                     </select>
                 </div>
                 <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                    <input name="title" type="text" class="form-control" id="inputTitle" placeholder="Tilte">
+                    <input label="Title" name="title" type="text" class="form-control" id="inputTitle" placeholder="Tilte">
                 </div>
                 <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                    <input name="cName" type="text" class="form-control" id="inputName" placeholder="Client name">
+                    <input label="kk" name="cName" type="text" class="form-control" id="inputName" placeholder="Client name">
                 </div>
                 <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                    <input name="price" type="text" class="form-control" id="inputPrice" placeholder="Price">
+                    <input label="kk" name="price" type="text" class="form-control" id="inputPrice" placeholder="Price">
                 </div>
             </div>
 
@@ -169,7 +169,7 @@
 
 
     <!-- JavaScript Bundle with Popper -->
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 
 </html>

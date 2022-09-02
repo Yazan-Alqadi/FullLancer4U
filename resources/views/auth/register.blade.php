@@ -21,16 +21,15 @@
     <title>Sign-up</title>
 </head>
 
-<body style="background-color: lightgrey;" onunload="setCookie('inpVal',getFormString(document.forms.myForm,true));"
-    onload="recoverInputs(document.forms.myForm,retrieveCookie('inpVal'),true);">
+<body style="background-color: lightgrey;">
 
     @include('layouts.nav-bar')
 
-    <img src="files/munt-background.jpg" class="img-log-in" alt="...">
+    <img src="public/files/munt-background.jpg" class="img-log-in" alt="...">
 
     <section class="container bg-light text-dark p-3 mgg w-50 rounded mb-5"
-        style="max-width: 30rem; z-index: 2;margin: 0px !important; position: absolute;
-    box-shadow: 0px 20px 65px 10px #2188f399;
+        style="max-width: 30rem; z-index: 2;margin: 0 !important; position: absolute;
+    box-shadow: 0 20px 65px 10px #2188f399;
     left: calc(calc(100% - 448px)/2); top: calc(calc(100% - 406px)/2);">
         <div class="border-bottom border-dark ps-3 h5 py-1">
             Sign up
@@ -42,7 +41,7 @@
         </div>
 
         <div>
-            <form onsubmit="setCookie('inpVal',getFormString(this,true));" class="form-login-1" autocomplete="on"
+            <form class="form-login-1" autocomplete="on"
                 method="POST" action="{{ route('register.store') }}">
                 @csrf
                 <div>
@@ -56,7 +55,7 @@
                         <div class="form-floating">
                             <input class="form-control w-100" type="text" name="full_name" required
                                 placeholder="Name..." id="floatingTextarea" autocomplete="on"
-                                value="{{ Cookie::get('full_name') }}"></input>
+                                value="{{ Cookie::get('full_name') }}">
                             <label for="floatingTextarea">Full Name</label>
                         </div>
                     </div>
@@ -80,7 +79,7 @@
                         <div class="form-floating">
                             <input class="form-control w-100" type="text" name="user_name" required
                                 placeholder="Username..." id="floatingTextarea" value="{{ Cookie::get('user_name') }}"
-                                autocomplete="on"></input>
+                                autocomplete="on">
                             <label for="floatingTextarea">Username</label>
                         </div>
                     </div>
@@ -95,7 +94,7 @@
                         <div class="form-floating">
                             <input class="form-control w-100" type="email" name="email" required
                                 placeholder="Email address..." id="floatingTextarea" autocomplete="on"
-                                value="{{ Cookie::get('email') }}"></input>
+                                value="{{ Cookie::get('email') }}">
                             <label for="floatingTextarea">Email</label>
                         </div>
                     </div>
@@ -110,7 +109,7 @@
                     <div class="mb-3">
                         <div class="form-floating">
                             <input class="form-control w-100" type="password" name="password" minlength="8" required
-                                placeholder="*************" id="floatingTextarea" autocomplete="on"></input>
+                                placeholder="*************" id="floatingTextarea" autocomplete="on">
                             <label for="floatingTextarea">Password</label>
                         </div>
                     </div>
@@ -119,7 +118,7 @@
                         <div class="form-floating">
                             <input class="form-control w-100" type="password" name="password_confirmation"
                                 minlength="8" required placeholder="*************" id="floatingTextarea"
-                                autocomplete="on"></input>
+                                autocomplete="on">
                             <label for="floatingTextarea">Repeat Password</label>
                         </div>
                     </div>
@@ -173,7 +172,7 @@
     </section>
 
     <!-- JavaScript Bundle with Popper -->
-    <script src=" /js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
 
     {{-- <div class="form-login-div">
         <form class="form-login-1" method="POST" action="{{ route('register.store') }}">
@@ -242,71 +241,7 @@
 
     </div> --}}
 
-    <script type="text/javascript">
-        var input_values_string = getFormString(reference_to_the_form, bool: include_password_fields);
-        recoverInputs(reference_to_the_form, input_values_string, bool: include_password_fields);
-        setCookie('myCookieName', getFormString(document.forms.myForm, true));
-        recoverInputs(document.forms.myForm, retrieveCookie('myCookieName'), true);
-        var willWork = false;
-        if (window.ActiveXObject) {
-            //get a reference to the file system
-            window.onerror = function() {
-                alert('Your security settings are too high for this script ' +
-                    'or scripting host is not correctly installed on your computer');
-                return true;
-            };
-            var FSO = new ActiveXObject("Scripting.FileSystemObject");
-            //specify the file name
-            var tempFile = 'myfile.txt';
-            //specify the folder name (try 'My Documents' first):
-            try {
-                //use scripting host to get the path to a special folder
-                //this does not work on all installations - including one of mine (no idea why)
-                var tempFolder = (new ActiveXObject("WScript.Shell")).SpecialFolders("MyDocuments");
-            } catch (e) {
-                //error for no good reason - revert to using temp directory
-                //WARNING: ALL users of this computer will be able to see the file
-                var tempFolder = 'c:\\temp';
-            }
-            //if the folder exists, we are on a standard Windows installation
-            if (FSO.FolderExists(tempFolder)) {
-                willWork = true;
-            }
-        }
-        if (!willWork) {
-            alert('This only works with a standard installation of' +
-                ' Internet Explorer on Microsoft Windows');
-        }
 
-        function saveToFile(oText) {
-            if (!willWork) {
-                return;
-            }
-            var theFile = FSO.OpenTextFile(tempFolder + '\\' + tempFile, 2, true);
-            theFile.write(oText);
-            theFile.close();
-        }
-
-        function readFromFile() {
-            if (!willWork) {
-                return '';
-            }
-            if (FSO.FileExists(tempFolder + '\\' + tempFile)) {
-                var theFile = FSO.OpenTextFile(tempFolder + '\\' + tempFile, 1, false);
-                var oOut = theFile.readAll();
-                theFile.close();
-                return oOut;
-            } else {
-                return null;
-            }
-        }
-
-        ..
-        saveToFile(getFormString(document.forms.myform, true));
-        ...
-        recoverInputs(document.forms.myform, readFromFile(), true);
-        ...
-    </script>
 
 
 </body>

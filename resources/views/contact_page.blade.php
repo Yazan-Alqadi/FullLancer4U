@@ -16,7 +16,7 @@
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>My Contatcs</title>
+    <title>My Contacts</title>
 </head>
 
 <body style="background-color: lightgrey;">
@@ -69,7 +69,7 @@
 
 
     <!-- JavaScript Bundle with Popper -->
-    <script src=" /js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 
 </html>

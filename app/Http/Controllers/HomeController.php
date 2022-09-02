@@ -9,6 +9,8 @@ use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\returnSelf;
+
 class HomeController extends Controller
 {
     /**
@@ -18,12 +20,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $freelancers= Freelancer::all()->sortByDesc('rate')->take(10);
-        $professions = cache()->remember('prof', 60 + 60 + 24, function () {
-            return Profession::all();
+        $freelancers=cache()->remember('topFreelancers', 60 + 60 + 24, function () {
+        return Freelancer::with('user','user.skills')->get()->sortByDesc('rate')->take(10);
         });
-        $projects = cache()->remember('proj', 60 + 60 + 24, function () {
-            return Project::all();
+        $professions =
+        cache()->remember('services', 60 + 60 + 24, function () {
+            return  Profession::with('freelancer','category','freelancer.user')->get();
+        });
+        $projects =
+         cache()->remember('projects', 60 + 60 + 24, function () {
+            return Project::with('user','category')->get();
         });
         return view('auth.main_page', compact('professions', 'projects','freelancers'));
     }

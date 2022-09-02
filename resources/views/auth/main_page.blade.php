@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main_page_css.css">
+    <link rel="stylesheet" href="{{asset('css/main_page_css.css')}}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
         rel="stylesheet">
     <!-- Icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/fl.css">
+    <link rel="stylesheet" href="{{asset('css/fl.css')}}">
     <link href="{{ asset('css/profession.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -64,8 +64,8 @@
                         <a href="{{ route('register.show') }}" class="btn btn-primary btn-lg">Register now</a>
                     @endauth
                 </div>
-                <img class="ms-2 d-none d-sm-block img-fluid" style="width: 20% !important;"
-                    src={{ 'files/img_hero.svg' }} alt="">
+                <img class="ms-2 d-none d-sm-block img-fluid" alt="photo" style="width: 20% !important;"
+                    src={{ 'files/img_hero.svg' }} >
             </div>
         </div>
     </section>
@@ -75,8 +75,8 @@
         <div class="container">
             <h2 class="mb-5">Top <span class="text-warning">Freelancers</span></h2>
             <div class="d-flex">
-                <img class="ms-2 d-none d-sm-block img-fluid" style="width: 20% !important;"
-                    src={{ 'files/top_fl.svg' }} alt="">
+                <img class="ms-2 d-none d-sm-block img-fluid" alt="photo" style="width: 20% !important;"
+                    src={{ 'files/top_fl.svg' }} >
                 <div style="flex-grow: 1;">
 
                     {{-- <div class="table"> --}}
@@ -155,10 +155,11 @@
                     {{-- </div> --}}
                 </div>
             </div>
+        </div>
     </section>
 
     {{-- How works ? --}}
-    <section class="py-5 section-style" style=" background-image: url({{ 'files/bilding.jpg' }});"">
+    <section class="py-5 section-style" style=" background-image: url({{ 'files/bilding.jpg' }});">
 
         <h1 class="text-center" style="color: #560b0b !important;"> How Fullancer4U works</h1>
 
@@ -205,7 +206,7 @@
                                 d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
                         </svg>
                     </h5>
-                    Contact the seller directly within the Our website until receiving your entire order.
+                    Contact the seller directly within the website until receiving your entire order.
                 </div>
             </div>
         </div>
@@ -220,9 +221,9 @@
         <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
             <div class="row text-center">
                 @foreach ($professions as $profession)
-                    @if (Auth::check() && !Auth::user()->category->contains($profession->category_id))
+                    {{-- @if (Auth::check() && !Auth::user()->category->contains($profession->category_id))
                         @continue
-                    @endif
+                    @endif --}}
                     <div class="col-md-6 col-lg-4 mb-2">
                         <div class="card text-light" style="background-color: #001b24; height: 100%;">
                             <!-- <div class="container">
@@ -348,9 +349,9 @@
         <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
             <div class="row text-center">
                 @foreach ($projects as $project)
-                    @if (Auth::check() && !Auth::user()->category->contains($project->category_id))
+                    {{-- @if (Auth::check() && !Auth::user()->category->contains($project->category_id))
                         @continue
-                    @endif
+                    @endif --}}
                     <div class="col-md-6 col-lg-4 mb-2">
                         <div class="card text-light" style="background-color: #001b24; height: 100%;">
                             <!-- <div class="container">
@@ -445,7 +446,7 @@
 
 
     <!-- JavaScript Bundle with Popper -->
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 
 </html>

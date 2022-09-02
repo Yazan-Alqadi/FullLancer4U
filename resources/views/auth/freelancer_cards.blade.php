@@ -46,7 +46,7 @@
                                 <!-- <img src="/files/pic-1.jpg" class="card-img-top"
                                                             style="width: 55px; height: 55px; border-radius: 50%; margin: 12px 2px 0px 2px;"
                                                             alt="..."> -->
-                                <!-- if does not set a pic yet -->
+                                <!-- if it does not set a pic yet -->
                                 <span class="span-photo">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70"
                                         fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -155,7 +155,7 @@
     @include('layouts.footer')
 
     <!-- JavaScript Bundle with Popper -->
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 
 </html>

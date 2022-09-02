@@ -91,7 +91,6 @@
 
 
     </div>
-    </div>
 
 
     {{-- <div class="page-content page-container" id="page-content">
@@ -217,7 +216,7 @@
 
 
     <!-- JavaScript Bundle with Popper -->
-    <script src=" /js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
 
 </body>
 

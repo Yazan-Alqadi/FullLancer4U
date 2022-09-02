@@ -26,17 +26,19 @@ class MessageController extends Controller
 
         $user_id = Auth::id();
 
-        $thread = Thread::where(function ($query) use ($id, $user_id) {
-            $query->where('sender_id', '=', $id)
-                ->where('receiver_id', '=', $user_id);
-        })->orWhere(function ($query) use ($id, $user_id) {
-            $query->where('sender_id', '=', $user_id)
-                ->where('receiver_id', '=', $id);
-        })->first();
-       // dd($thread);
+        $thread = cache()->remember('thread' . $id . $user_id, 60 * 60 + 24, function () use ($id, $user_id) {
+            return Thread::with('messages')->where(function ($query) use ($id, $user_id) {
+                $query->where('sender_id', '=', $id)
+                    ->where('receiver_id', '=', $user_id);
+            })->orWhere(function ($query) use ($id, $user_id) {
+                $query->where('sender_id', '=', $user_id)
+                    ->where('receiver_id', '=', $id);
+            })->first();
+        });
 
-        if ($thread== null) {
-            $thread =Thread::create([
+
+        if ($thread == null) {
+            $thread = Thread::create([
                 'sender_id' => Auth::id(),
                 'receiver_id' => $id,
             ]);
@@ -45,19 +47,19 @@ class MessageController extends Controller
 
         $message = $request->body;
 
-        $thread->updated_at=Carbon::now();
+        $thread->updated_at = Carbon::now();
         $thread->save();
 
         Message::create([
             'body' => $message,
-            'user_id'=>Auth::id(),
+            'user_id' => Auth::id(),
             'thread_id' => $thread->id,
         ]);
         Notification::create([
             'title' => 'Message from ' . Auth::user()->full_name,
             'content' => $message,
             'user_id' => $id,
-            'reciver_id'=>Auth::id(),
+            'reciver_id' => Auth::id(),
         ]);
 
         event(new NewMessage($id, 'Message From ' . Auth::user()->full_name, $message));
@@ -68,23 +70,28 @@ class MessageController extends Controller
     public function getContact()
     {
 
-        $threads = Thread::where(['sender_id' => Auth::id()])->orWhere(['receiver_id' => Auth::id()])->orderByDesc('created_at')->get();
+        $threads = cache()->remember('thread' . Auth::id(), 60 * 60 + 24, function () {
+           return Thread::where(['sender_id' => Auth::id()])->orWhere(['receiver_id' => Auth::id()])->orderByDesc('created_at')->get();
+        });
         return view('chat_messages', compact('threads'));
+
     }
 
     public function contactMe($id)
     {
         $user_id = Auth::id();
 
-        $threads = Thread::where(function ($query) use ($id, $user_id) {
-            $query->where('sender_id', '=', $id)
-                ->where('receiver_id', '=', $user_id);
-        })->orWhere(function ($query) use ($id, $user_id) {
-            $query->where('sender_id', '=', $user_id)
-                ->where('receiver_id', '=', $id);
-        })->first();
+        $threads = cache()->remember('thread' . $id . $user_id, 60 * 60, function () use ($id, $user_id) {
+            return Thread::with('messages')->where(function ($query) use ($id, $user_id) {
+                $query->where('sender_id', '=', $id)
+                    ->where('receiver_id', '=', $user_id);
+            })->orWhere(function ($query) use ($id, $user_id) {
+                $query->where('sender_id', '=', $user_id)
+                    ->where('receiver_id', '=', $id);
+            })->first();
+        });
 
         $user = User::where('id', $id)->first();
-        return view('contact_me', compact('user','threads'));
+        return view('contact_me', compact('user', 'threads'));
     }
 }

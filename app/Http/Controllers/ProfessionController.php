@@ -22,8 +22,12 @@ class ProfessionController extends Controller
     public function index()
     {
         //
-        $professions = Profession::latest()->paginate(6);
-        $categories = Category::all();
+        $professions =cache()->remember('pageServices'. request('page',1), 60 + 60 + 24, function () {
+            return Profession::with('freelancer','category','freelancer.user')->paginate(6);
+        });
+        $categories = cache()->remember('categories', 60 + 60 + 24, function () {
+            return Category::all();
+        });
         return view('auth.Professions_cards', compact('professions','categories'));
     }
 
@@ -84,9 +88,18 @@ class ProfessionController extends Controller
     public function show($id)
     {
         //
-        $profession = Profession::find($id);
-        $professions = Profession::where('category_id', $profession->category_id)->get();
-        return view('profile_freelancer_for_client', ['professions' => $professions, 'profession' => $profession]);
+
+
+        $profession = Profession::with('freelancer','freelancer.user')
+        ->findOrFail($id);
+        $category = Category::findOrFail($profession->category_id);
+
+        $professions = Profession::where('id','!=',$id)
+        ->where('category_id', $category->id)
+        ->with('category','freelancer','freelancer.user')->get();
+
+
+        return view('profile_freelancer_for_client', compact('profession','professions'));
     }
 
     /**
@@ -99,7 +112,9 @@ class ProfessionController extends Controller
     {
         //
         $service =  Profession::find($id);
-        $categories = Category::all();
+        $categories = cache()->remember('categories', 60 + 60 + 24, function () {
+            return Category::all();
+        });
         return view('edit_service', ['service' => $service, 'categories' => $categories]);
     }
 

@@ -97,7 +97,7 @@
                                     style="justify-content: space-between;">
                                     {{-- here is the title of the service --}}
                                     <span class="mt-1">{{ $project->title }}</span>
-                                    </span>
+
                                 </div>
                             @empty
                                 <div class="text-center fw-bold h5 text-dark">No Projects Yet</div>
@@ -157,7 +157,7 @@
                             <h5 class="card-title"> Rate </h5>
 
                             {{-- if user are freelancer --}}
-                            @if (Auth::user()->is_freelancer)
+                            @if ($user->is_freelancer)
                                 <div class="row justify-content-center">
                                     <div style="white-space: nowrap;">
                                         Rating:
@@ -220,13 +220,15 @@
                 </div>
 
             </div>
+        </div>
     </section>
 
     {{-- Footer here --}}
     @include('layouts.footer')
 
     <!-- JavaScript Bundle with Popper -->
-    <script src=" /js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
+
 
 </body>
 
