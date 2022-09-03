@@ -21,7 +21,7 @@ trait PresentsImages
     /**
      * Set the maximum width of the component.
      *
-     * @param  int  $maxWidth
+     * @param int $maxWidth
      * @return $this
      */
     public function maxWidth($maxWidth)
@@ -56,16 +56,6 @@ trait PresentsImages
     }
 
     /**
-     * Determine whether the field should have rounded corners.
-     *
-     * @return bool
-     */
-    public function isRounded()
-    {
-        return $this->rounded == true;
-    }
-
-    /**
      * Determine whether the field should have squared corners.
      *
      * @return bool
@@ -86,5 +76,15 @@ trait PresentsImages
             'maxWidth' => $this->maxWidth,
             'rounded' => $this->isRounded(),
         ];
+    }
+
+    /**
+     * Determine whether the field should have rounded corners.
+     *
+     * @return bool
+     */
+    public function isRounded()
+    {
+        return $this->rounded == true;
     }
 }

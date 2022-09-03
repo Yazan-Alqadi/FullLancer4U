@@ -8,9 +8,9 @@
         >
             <svg
                 class="spin fill-80 mb-6"
-                width="69"
                 height="72"
                 viewBox="0 0 23 24"
+                width="69"
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <path
@@ -37,7 +37,7 @@
 export default {
     metaInfo() {
         return {
-          title: '{{ class }}',
+            title: '{{ class }}',
         }
     },
     mounted() {

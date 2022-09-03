@@ -13,28 +13,6 @@ class Line extends Text
     const BASE = 'large';
     const SUBTITLE = 'medium';
     const SMALL = 'small';
-
-    /**
-     * The type for the line field.
-     *
-     * @var string
-     */
-    public $type = self::BASE;
-
-    /**
-     * Extra CSS classes to apply to the line.
-     *
-     * @var mixed
-     */
-    public $extraClasses = '';
-
-    /**
-     * The line's component.
-     *
-     * @var string
-     */
-    public $component = 'line-field';
-
     /**
      * CSS class lookup table for lines.
      *
@@ -46,13 +24,31 @@ class Line extends Text
         self::SUBTITLE => 'text-xs tracking-loose font-bold uppercase text-80',
         self::SMALL => 'text-xs',
     ];
+    /**
+     * The type for the line field.
+     *
+     * @var string
+     */
+    public $type = self::BASE;
+    /**
+     * Extra CSS classes to apply to the line.
+     *
+     * @var mixed
+     */
+    public $extraClasses = '';
+    /**
+     * The line's component.
+     *
+     * @var string
+     */
+    public $component = 'line-field';
 
     /**
      * Create a new field.
      *
-     * @param  string  $name
-     * @param  string|callable|null  $attribute
-     * @param  callable|null  $resolveCallback
+     * @param string $name
+     * @param string|callable|null $attribute
+     * @param callable|null $resolveCallback
      * @return void
      */
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
@@ -113,7 +109,7 @@ class Line extends Text
     /**
      * Set the extra CSS classes to be applied to the line field.
      *
-     * @param  mixed  $classes
+     * @param mixed $classes
      * @return $this
      */
     public function extraClasses($classes)
@@ -121,6 +117,18 @@ class Line extends Text
         $this->extraClasses = $classes;
 
         return $this;
+    }
+
+    /**
+     * Prepare the line for JSON serialization.
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return array_merge(parent::jsonSerialize(), [
+            'classes' => $this->getClasses(),
+        ]);
     }
 
     /**
@@ -134,17 +142,5 @@ class Line extends Text
             Arr::wrap(self::$classes[$this->type]),
             array_filter(Arr::wrap($this->extraClasses))
         );
-    }
-
-    /**
-     * Prepare the line for JSON serialization.
-     *
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-        return array_merge(parent::jsonSerialize(), [
-            'classes' => $this->getClasses(),
-        ]);
     }
 }

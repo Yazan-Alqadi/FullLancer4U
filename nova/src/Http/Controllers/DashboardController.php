@@ -11,8 +11,8 @@ class DashboardController extends Controller
     /**
      * Return the details for the Dashboard.
      *
-     * @param  \Laravel\Nova\Http\Requests\DashboardCardRequest  $request
-     * @param  string  $dashboard
+     * @param \Laravel\Nova\Http\Requests\DashboardCardRequest $request
+     * @param string $dashboard
      * @return \Illuminate\Http\Response
      */
     public function index(DashboardRequest $request, $dashboard = 'main')
@@ -22,7 +22,7 @@ class DashboardController extends Controller
         abort_if(is_null($instance) && $dashboard !== 'main', 404);
 
         return response()->json([
-            'label' => ! $instance ? __('Dashboard') : $instance->label(),
+            'label' => !$instance ? __('Dashboard') : $instance->label(),
             'cards' => $request->availableCards($dashboard),
         ]);
     }

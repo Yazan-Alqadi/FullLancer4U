@@ -87,9 +87,9 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
     /**
      * Create a new field.
      *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     * @param  string|null  $resource
+     * @param string $name
+     * @param string|null $attribute
+     * @param string|null $resource
      * @return void
      */
     public function __construct($name, $attribute = null, $resource = null)
@@ -117,21 +117,21 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
     /**
      * Determine if the field should be displayed for the given request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return bool
      */
     public function authorize(Request $request)
     {
         return call_user_func(
-            [$this->resourceClass, 'authorizedToViewAny'], $request
-        ) && parent::authorize($request);
+                [$this->resourceClass, 'authorizedToViewAny'], $request
+            ) && parent::authorize($request);
     }
 
     /**
      * Resolve the field's value.
      *
-     * @param  mixed  $resource
-     * @param  string|null  $attribute
+     * @param mixed $resource
+     * @param string|null $attribute
      * @return void
      */
     public function resolve($resource, $attribute = null)
@@ -142,13 +142,13 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
     /**
      * Get the validation rules for this field.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function getRules(NovaRequest $request)
     {
         $query = $this->buildAttachableQuery(
-            $request, $request->{$this->attribute.'_trashed'} === 'true'
+            $request, $request->{$this->attribute . '_trashed'} === 'true'
         )->toBase();
 
         return array_merge_recursive(parent::getRules($request), [
@@ -157,9 +157,64 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
     }
 
     /**
+     * Build an attachable query for the field.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param bool $withTrashed
+     * @return \Laravel\Nova\Contracts\QueryBuilder
+     */
+    public function buildAttachableQuery(NovaRequest $request, $withTrashed = false)
+    {
+        $model = forward_static_call([$resourceClass = $this->resourceClass, 'newModel']);
+
+        $query = app()->make(QueryBuilder::class, [$resourceClass]);
+
+        $request->first === 'true'
+            ? $query->whereKey($model->newQueryWithoutScopes(), $request->current)
+            : $query->search(
+            $request, $model->newQuery(), $request->search,
+            [], [], TrashedStatus::fromBoolean($withTrashed)
+        );
+
+        return $query->tap(function ($query) use ($request, $model) {
+            forward_static_call($this->attachableQueryCallable($request, $model), $request, $query, $this);
+        });
+    }
+
+    /**
+     * Get the attachable query method name.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @return array
+     */
+    protected function attachableQueryCallable(NovaRequest $request, $model)
+    {
+        return ($method = $this->attachableQueryMethod($request, $model))
+            ? [$request->resource(), $method]
+            : [$this->resourceClass, 'relatableQuery'];
+    }
+
+    /**
+     * Get the attachable query method name.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @return string
+     */
+    protected function attachableQueryMethod(NovaRequest $request, $model)
+    {
+        $method = 'relatable' . Str::plural(class_basename($model));
+
+        if (method_exists($request->resource(), $method)) {
+            return $method;
+        }
+    }
+
+    /**
      * Get the creation rules for this field.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function getCreationRules(NovaRequest $request)
@@ -170,65 +225,10 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
     }
 
     /**
-     * Build an attachable query for the field.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  bool  $withTrashed
-     * @return \Laravel\Nova\Contracts\QueryBuilder
-     */
-    public function buildAttachableQuery(NovaRequest $request, $withTrashed = false)
-    {
-        $model = forward_static_call([$resourceClass = $this->resourceClass, 'newModel']);
-
-        $query = app()->make(QueryBuilder::class, [$resourceClass]);
-
-        $request->first === 'true'
-                        ? $query->whereKey($model->newQueryWithoutScopes(), $request->current)
-                        : $query->search(
-                                $request, $model->newQuery(), $request->search,
-                                [], [], TrashedStatus::fromBoolean($withTrashed)
-                          );
-
-        return $query->tap(function ($query) use ($request, $model) {
-            forward_static_call($this->attachableQueryCallable($request, $model), $request, $query, $this);
-        });
-    }
-
-    /**
-     * Get the attachable query method name.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return array
-     */
-    protected function attachableQueryCallable(NovaRequest $request, $model)
-    {
-        return ($method = $this->attachableQueryMethod($request, $model))
-                    ? [$request->resource(), $method]
-                    : [$this->resourceClass, 'relatableQuery'];
-    }
-
-    /**
-     * Get the attachable query method name.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return string
-     */
-    protected function attachableQueryMethod(NovaRequest $request, $model)
-    {
-        $method = 'relatable'.Str::plural(class_basename($model));
-
-        if (method_exists($request->resource(), $method)) {
-            return $method;
-        }
-    }
-
-    /**
      * Format the given attachable resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  mixed  $resource
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param mixed $resource
      * @return array
      */
     public function formatAttachableResource(NovaRequest $request, $resource)
@@ -244,7 +244,7 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
     /**
      * Specify the callback to be executed to retrieve the pivot fields.
      *
-     * @param  callable  $callback
+     * @param callable $callback
      * @return $this
      */
     public function fields($callback)
@@ -257,7 +257,7 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
     /**
      * Specify the callback to be executed to retrieve the pivot actions.
      *
-     * @param  callable  $callback
+     * @param callable $callback
      * @return $this
      */
     public function actions($callback)
@@ -270,7 +270,7 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
     /**
      * Set the displayable name that should be used to refer to the pivot class.
      *
-     * @param  string  $pivotName
+     * @param string $pivotName
      * @return $this
      */
     public function referToPivotAs($pivotName)
@@ -281,15 +281,23 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
     }
 
     /**
-     * Set the displayable singular label of the resource.
+     * Prepare the field for JSON serialization.
      *
-     * @return $this
+     * @return array
      */
-    public function singularLabel($singularLabel)
+    public function jsonSerialize()
     {
-        $this->singularLabel = $singularLabel;
-
-        return $this;
+        return array_merge([
+            'belongsToManyRelationship' => $this->manyToManyRelationship,
+            'debounce' => $this->debounce,
+            'listable' => true,
+            'perPage' => $this->resourceClass::$perPageViaRelationship,
+            'validationKey' => $this->validationKey(),
+            'resourceName' => $this->resourceName,
+            'searchable' => $this->searchable,
+            'withSubtitles' => $this->withSubtitles,
+            'singularLabel' => $this->singularLabel ?? $this->resourceClass::singularLabel(),
+        ], parent::jsonSerialize());
     }
 
     /**
@@ -305,22 +313,14 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
     }
 
     /**
-     * Prepare the field for JSON serialization.
+     * Set the displayable singular label of the resource.
      *
-     * @return array
+     * @return $this
      */
-    public function jsonSerialize()
+    public function singularLabel($singularLabel)
     {
-        return array_merge([
-            'belongsToManyRelationship' => $this->manyToManyRelationship,
-            'debounce' => $this->debounce,
-            'listable' => true,
-            'perPage'=> $this->resourceClass::$perPageViaRelationship,
-            'validationKey' => $this->validationKey(),
-            'resourceName' => $this->resourceName,
-            'searchable' => $this->searchable,
-            'withSubtitles' => $this->withSubtitles,
-            'singularLabel' => $this->singularLabel ?? $this->resourceClass::singularLabel(),
-        ], parent::jsonSerialize());
+        $this->singularLabel = $singularLabel;
+
+        return $this;
     }
 }

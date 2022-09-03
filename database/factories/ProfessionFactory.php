@@ -19,11 +19,9 @@ class ProfessionFactory extends Factory
             //
             'title' => $this->faker->jobTitle(),
             'price' => $this->faker->randomFloat,
-            'description' =>$this->faker->text,
-            'category_id'=>Category::inRandomOrder()->first()->id,
-            'freelancer_id'=>Freelancer::factory(),
-
-
+            'description' => $this->faker->text,
+            'category_id' => Category::inRandomOrder()->first()->id,
+            'freelancer_id' => Freelancer::factory(),
 
 
         ];

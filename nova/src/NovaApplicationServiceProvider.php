@@ -37,8 +37,8 @@ class NovaApplicationServiceProvider extends ServiceProvider
     protected function routes()
     {
         Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes();
+            ->withAuthenticationRoutes()
+            ->withPasswordResetRoutes();
     }
 
     /**
@@ -52,7 +52,7 @@ class NovaApplicationServiceProvider extends ServiceProvider
 
         Nova::auth(function ($request) {
             return app()->environment('local') ||
-                   Gate::check('viewNova', [$request->user()]);
+                Gate::check('viewNova', [$request->user()]);
         });
     }
 
@@ -70,6 +70,26 @@ class NovaApplicationServiceProvider extends ServiceProvider
                 //
             ]);
         });
+    }
+
+    /**
+     * Register Nova's custom exception handler.
+     *
+     * @return void
+     */
+    protected function registerExceptionHandler()
+    {
+        $this->app->bind(ExceptionHandler::class, NovaExceptionHandler::class);
+    }
+
+    /**
+     * Register the application's Nova resources.
+     *
+     * @return void
+     */
+    protected function resources()
+    {
+        Nova::resourcesIn(app_path('Nova'));
     }
 
     /**
@@ -100,26 +120,6 @@ class NovaApplicationServiceProvider extends ServiceProvider
     public function tools()
     {
         return [];
-    }
-
-    /**
-     * Register Nova's custom exception handler.
-     *
-     * @return void
-     */
-    protected function registerExceptionHandler()
-    {
-        $this->app->bind(ExceptionHandler::class, NovaExceptionHandler::class);
-    }
-
-    /**
-     * Register the application's Nova resources.
-     *
-     * @return void
-     */
-    protected function resources()
-    {
-        Nova::resourcesIn(app_path('Nova'));
     }
 
     /**

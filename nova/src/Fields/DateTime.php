@@ -25,15 +25,15 @@ class DateTime extends Field
     /**
      * Create a new field.
      *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     * @param  mixed|null  $resolveCallback
+     * @param string $name
+     * @param string|null $attribute
+     * @param mixed|null $resolveCallback
      * @return void
      */
     public function __construct($name, $attribute = null, $resolveCallback = null)
     {
         parent::__construct($name, $attribute, $resolveCallback ?? function ($value) {
-            if (! is_null($value)) {
+            if (!is_null($value)) {
                 if ($value instanceof DateTimeInterface) {
                     return $value->format($this->dateFormat);
                 }
@@ -44,20 +44,9 @@ class DateTime extends Field
     }
 
     /**
-     * Set the first day of the week.
-     *
-     * @param  int  $day
-     * @return $this
-     */
-    public function firstDayOfWeek($day)
-    {
-        return $this->withMeta([__FUNCTION__ => $day]);
-    }
-
-    /**
      * Set the date format (Moment.js) that should be used to display the date.
      *
-     * @param  string  $format
+     * @param string $format
      * @return $this
      */
     public function format($format)
@@ -66,9 +55,20 @@ class DateTime extends Field
     }
 
     /**
+     * Set the first day of the week.
+     *
+     * @param int $day
+     * @return $this
+     */
+    public function firstDayOfWeek($day)
+    {
+        return $this->withMeta([__FUNCTION__ => $day]);
+    }
+
+    /**
      * Set the date format (flatpickr.js) that should be used in the input field (picker).
      *
-     * @param  string  $format
+     * @param string $format
      * @return $this
      */
     public function pickerFormat($format)
@@ -79,7 +79,7 @@ class DateTime extends Field
     /**
      * Set a readable date format, that should be used to display the date to the user.
      *
-     * @param  string  $format
+     * @param string $format
      * @return $this
      */
     public function pickerDisplayFormat($format)
@@ -90,7 +90,7 @@ class DateTime extends Field
     /**
      * Set picker hour increment.
      *
-     * @param  int  $increment
+     * @param int $increment
      * @return $this
      */
     public function incrementPickerHourBy($increment)
@@ -107,7 +107,7 @@ class DateTime extends Field
     /**
      * Set picker minute increment.
      *
-     * @param  int  $increment
+     * @param int $increment
      * @return $this
      */
     public function incrementPickerMinuteBy($increment)
@@ -124,7 +124,7 @@ class DateTime extends Field
     /**
      * Resolve the default value for the field.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return string
      */
     protected function resolveDefaultValue(NovaRequest $request)

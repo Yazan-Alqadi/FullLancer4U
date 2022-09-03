@@ -16,7 +16,7 @@ class ResourceAttachController extends Controller
     /**
      * Attach a related resource to the given resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Illuminate\Http\Response
      */
     public function handle(NovaRequest $request)
@@ -34,8 +34,8 @@ class ResourceAttachController extends Controller
         DB::transaction(function () use ($request, $resource, $model) {
             [$pivot, $callbacks] = $resource::fillPivot(
                 $request, $model, $this->initializePivot(
-                    $request, $model->{$request->viaRelationship}()
-                )
+                $request, $model->{$request->viaRelationship}()
+            )
             );
 
             Nova::actionEvent()->forAttachedResource($request, $model, $pivot)->save();
@@ -49,9 +49,9 @@ class ResourceAttachController extends Controller
     /**
      * Validate the attachment request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @param  string  $resource
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param string $resource
      * @return void
      */
     protected function validate(NovaRequest $request, $model, $resource)
@@ -69,8 +69,8 @@ class ResourceAttachController extends Controller
      * Return the validation rules used for the request. Correctly aasign the rules used
      * to the main attribute if the user has defined a custom relation key.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  string  $resource
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param string $resource
      * @return mixed
      */
     protected function creationRules(NovaRequest $request, $resource)
@@ -88,8 +88,8 @@ class ResourceAttachController extends Controller
     /**
      * Initialize a fresh pivot model for the relationship.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  \Illuminate\Database\Eloquent\Relations\BelongsToMany  $relationship
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \Illuminate\Database\Eloquent\Relations\BelongsToMany $relationship
      * @return \Illuminate\Database\Eloquent\Relations\Pivot
      *
      * @throws \Exception

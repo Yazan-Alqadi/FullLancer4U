@@ -13,87 +13,24 @@ class ActionRequest extends NovaRequest
     use QueriesResources;
 
     /**
-     * Get the action instance specified by the request.
-     *
-     * @return \Laravel\Nova\Actions\Action
-     */
-    public function action()
-    {
-        return once(function () {
-            $hasResources = ! empty($this->resources);
-
-            return $this->availableActions()
-                        ->filter(function ($action) use ($hasResources) {
-                            return $hasResources ? true : $action->isStandalone();
-                        })->first(function ($action) {
-                            return $action->uriKey() == $this->query('action');
-                        }) ?: abort($this->actionExists() ? 403 : 404);
-        });
-    }
-
-    /**
-     * Get the all actions for the request.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    protected function resolveActions()
-    {
-        return $this->isPivotAction()
-                    ? $this->newResource()->resolvePivotActions($this)
-                    : $this->newResource()->resolveActions($this);
-    }
-
-    /**
-     * Get the possible actions for the request.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    protected function availableActions()
-    {
-        return $this->resolveActions()->filter->authorizedToSee($this)->values();
-    }
-
-    /**
-     * Determine if the specified action exists at all.
-     *
-     * @return bool
-     */
-    protected function actionExists()
-    {
-        return $this->resolveActions()->contains(function ($action) {
-            return $action->uriKey() == $this->query('action');
-        });
-    }
-
-    /**
-     * Determine if the action being executed is a pivot action.
-     *
-     * @return bool
-     */
-    public function isPivotAction()
-    {
-        return $this->pivotAction === 'true';
-    }
-
-    /**
      * Get the selected models for the action in chunks.
      *
-     * @param  int  $count
-     * @param  \Closure  $callback
+     * @param int $count
+     * @param \Closure $callback
      * @return mixed
      */
     public function chunks($count, Closure $callback)
     {
         $output = [];
 
-        $this->toSelectedResourceQuery()->when(! $this->forAllMatchingResources(), function ($query) {
+        $this->toSelectedResourceQuery()->when(!$this->forAllMatchingResources(), function ($query) {
             $query->whereKey(explode(',', $this->resources))
                 ->latest($this->model()->getQualifiedKeyName());
         })->cursor()
-        ->chunk($count)
-        ->each(function ($chunk) use ($callback, &$output) {
-            $output[] = $callback($this->mapChunk($chunk));
-        });
+            ->chunk($count)
+            ->each(function ($chunk) use ($callback, &$output) {
+                $output[] = $callback($this->mapChunk($chunk));
+            });
 
         return $output;
     }
@@ -110,14 +47,24 @@ class ActionRequest extends NovaRequest
         }
 
         return $this->viaRelationship()
-                    ? $this->modelsViaRelationship()
-                    : tap($this->newQueryWithoutScopes(), function ($query) {
-                        $resource = $this->resource();
+            ? $this->modelsViaRelationship()
+            : tap($this->newQueryWithoutScopes(), function ($query) {
+                $resource = $this->resource();
 
-                        $resource::indexQuery(
-                            $this, $query->with($resource::$with)
-                        );
-                    });
+                $resource::indexQuery(
+                    $this, $query->with($resource::$with)
+                );
+            });
+    }
+
+    /**
+     * Determine if the request is for all matching resources.
+     *
+     * @return bool
+     */
+    public function forAllMatchingResources()
+    {
+        return $this->resources === 'all';
     }
 
     /**
@@ -130,21 +77,21 @@ class ActionRequest extends NovaRequest
         return tap($this->findParentResource(), function ($resource) {
             abort_unless($resource->hasRelatableField($this, $this->viaRelationship), 404);
         })->model()->{$this->viaRelationship}()
-                        ->withoutGlobalScopes()
-                        ->whereIn($this->model()->getQualifiedKeyName(), explode(',', $this->resources));
+            ->withoutGlobalScopes()
+            ->whereIn($this->model()->getQualifiedKeyName(), explode(',', $this->resources));
     }
 
     /**
      * Map the chunk of models into an appropriate state.
      *
-     * @param  \Illuminate\Database\Eloquent\Collection  $chunk
+     * @param \Illuminate\Database\Eloquent\Collection $chunk
      * @return \Illuminate\Database\Eloquent\Collection
      */
     protected function mapChunk($chunk)
     {
         return ActionModelCollection::make($this->isPivotAction()
-                    ? $chunk->map->pivot
-                    : $chunk);
+            ? $chunk->map->pivot
+            : $chunk);
     }
 
     /**
@@ -155,6 +102,69 @@ class ActionRequest extends NovaRequest
     public function validateFields()
     {
         $this->action()->validateFields($this);
+    }
+
+    /**
+     * Get the action instance specified by the request.
+     *
+     * @return \Laravel\Nova\Actions\Action
+     */
+    public function action()
+    {
+        return once(function () {
+            $hasResources = !empty($this->resources);
+
+            return $this->availableActions()
+                ->filter(function ($action) use ($hasResources) {
+                    return $hasResources ? true : $action->isStandalone();
+                })->first(function ($action) {
+                    return $action->uriKey() == $this->query('action');
+                }) ?: abort($this->actionExists() ? 403 : 404);
+        });
+    }
+
+    /**
+     * Get the possible actions for the request.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    protected function availableActions()
+    {
+        return $this->resolveActions()->filter->authorizedToSee($this)->values();
+    }
+
+    /**
+     * Get the all actions for the request.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    protected function resolveActions()
+    {
+        return $this->isPivotAction()
+            ? $this->newResource()->resolvePivotActions($this)
+            : $this->newResource()->resolveActions($this);
+    }
+
+    /**
+     * Determine if the action being executed is a pivot action.
+     *
+     * @return bool
+     */
+    public function isPivotAction()
+    {
+        return $this->pivotAction === 'true';
+    }
+
+    /**
+     * Determine if the specified action exists at all.
+     *
+     * @return bool
+     */
+    protected function actionExists()
+    {
+        return $this->resolveActions()->contains(function ($action) {
+            return $action->uriKey() == $this->query('action');
+        });
     }
 
     /**
@@ -194,53 +204,14 @@ class ActionRequest extends NovaRequest
      *
      * When running pivot actions, this is the key of the owning model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model
+     * @param \Illuminate\Database\Eloquent\Model
      * @return int
      */
     public function actionableKey($model)
     {
         return $this->isPivotAction()
-                        ? $model->{$this->pivotRelation()->getForeignPivotKeyName()}
-                        : $model->getKey();
-    }
-
-    /**
-     * Get the model instance that lists the action on its dashboard.
-     *
-     * When running pivot actions, this is the owning model.
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function actionableModel()
-    {
-        return $this->isPivotAction()
-                        ? $this->newViaResource()->model()
-                        : $this->model();
-    }
-
-    /**
-     * Get the key of model that is the target of the action.
-     *
-     * When running pivot actions, this is the key of the target model.
-     *
-     * @param  \Illuminate\Database\Eloquent\Model
-     * @return int
-     */
-    public function targetKey($model)
-    {
-        return $this->isPivotAction()
-                        ? $model->{$this->pivotRelation()->getRelatedPivotKeyName()}
-                        : $model->getKey();
-    }
-
-    /**
-     * Get an instance of the target model of the action.
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function targetModel()
-    {
-        return $this->isPivotAction() ? $this->pivotRelation()->newPivot() : $this->model();
+            ? $model->{$this->pivotRelation()->getForeignPivotKeyName()}
+            : $model->getKey();
     }
 
     /**
@@ -258,12 +229,41 @@ class ActionRequest extends NovaRequest
     }
 
     /**
-     * Determine if the request is for all matching resources.
+     * Get the model instance that lists the action on its dashboard.
      *
-     * @return bool
+     * When running pivot actions, this is the owning model.
+     *
+     * @return \Illuminate\Database\Eloquent\Model
      */
-    public function forAllMatchingResources()
+    public function actionableModel()
     {
-        return $this->resources === 'all';
+        return $this->isPivotAction()
+            ? $this->newViaResource()->model()
+            : $this->model();
+    }
+
+    /**
+     * Get the key of model that is the target of the action.
+     *
+     * When running pivot actions, this is the key of the target model.
+     *
+     * @param \Illuminate\Database\Eloquent\Model
+     * @return int
+     */
+    public function targetKey($model)
+    {
+        return $this->isPivotAction()
+            ? $model->{$this->pivotRelation()->getRelatedPivotKeyName()}
+            : $model->getKey();
+    }
+
+    /**
+     * Get an instance of the target model of the action.
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function targetModel()
+    {
+        return $this->isPivotAction() ? $this->pivotRelation()->newPivot() : $this->model();
     }
 }

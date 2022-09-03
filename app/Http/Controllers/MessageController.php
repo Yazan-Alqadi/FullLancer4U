@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
-use Illuminate\Http\Request;
 use App\Events\NewMessage;
+use App\Models\Message;
 use App\Models\Notification;
 use App\Models\Thread;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -71,9 +70,9 @@ class MessageController extends Controller
     {
 
         $threads = cache()->remember('thread' . Auth::id(), 60 * 60 + 24, function () {
-           return Thread::where(['sender_id' => Auth::id()])->orWhere(['receiver_id' => Auth::id()])->orderByDesc('created_at')->get();
+            return Thread::where(['sender_id' => Auth::id()])->orWhere(['receiver_id' => Auth::id()])->orderByDesc('created_at')->get();
         });
-        return view('chat_messages', compact('threads'));
+        return view('pages.chat.chats_list_page', compact('threads'));
 
     }
 
@@ -92,6 +91,6 @@ class MessageController extends Controller
         });
 
         $user = User::where('id', $id)->first();
-        return view('contact_me', compact('user', 'threads'));
+        return view('pages.chat.chat_page', compact('user', 'threads'));
     }
 }

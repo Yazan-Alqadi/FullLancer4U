@@ -10,26 +10,13 @@ class ResourceCollection extends Collection
     /**
      * Return the authorized resources of the collection.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Laravel\Nova\ResourceCollection
      */
     public function authorized(Request $request)
     {
         return $this->filter(function ($resource) use ($request) {
             return $resource::authorizedToViewAny($request);
-        });
-    }
-
-    /**
-     * Return the resources available to be displayed in the navigation.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Laravel\Nova\ResourceCollection
-     */
-    public function availableForNavigation(Request $request)
-    {
-        return $this->filter(function ($resource) use ($request) {
-            return $resource::availableForNavigation($request);
         });
     }
 
@@ -46,6 +33,17 @@ class ResourceCollection extends Collection
     }
 
     /**
+     * Group the resources for display in navigation.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Laravel\Nova\ResourceCollection
+     */
+    public function groupedForNavigation(Request $request)
+    {
+        return $this->availableForNavigation($request)->grouped();
+    }
+
+    /**
      * Sort the resources by their group property.
      *
      * @return \Laravel\Nova\ResourceCollection
@@ -58,13 +56,15 @@ class ResourceCollection extends Collection
     }
 
     /**
-     * Group the resources for display in navigation.
+     * Return the resources available to be displayed in the navigation.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Laravel\Nova\ResourceCollection
      */
-    public function groupedForNavigation(Request $request)
+    public function availableForNavigation(Request $request)
     {
-        return $this->availableForNavigation($request)->grouped();
+        return $this->filter(function ($resource) use ($request) {
+            return $resource::availableForNavigation($request);
+        });
     }
 }

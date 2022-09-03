@@ -1,6 +1,4 @@
 import Vue from 'vue'
-Vue.config.ignoredElements = ['trix-editor']
-
 import Add from '@/components/Icons/Add'
 import ActionSelector from '@/components/ActionSelector'
 import BasePartitionMetric from '@/components/Metrics/Base/PartitionMetric'
@@ -102,6 +100,8 @@ import DateFilter from '@/components/Filters/DateFilter'
 
 import SelectControl from '@/components/Controls/SelectControl'
 import DateTimePicker from '@/components/DateTimePicker'
+
+Vue.config.ignoredElements = ['trix-editor']
 
 Vue.component('action-selector', ActionSelector)
 Vue.component('boolean-icon', BooleanIcon)

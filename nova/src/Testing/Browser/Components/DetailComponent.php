@@ -13,8 +13,8 @@ class DetailComponent extends BaseComponent
     /**
      * Create a new component instance.
      *
-     * @param  string  $resourceName
-     * @param  int  $resourceId
+     * @param string $resourceName
+     * @param int $resourceId
      * @return void
      */
     public function __construct($resourceName, $resourceId)
@@ -24,19 +24,9 @@ class DetailComponent extends BaseComponent
     }
 
     /**
-     * Get the root selector for the component.
-     *
-     * @return string
-     */
-    public function selector()
-    {
-        return '@'.$this->resourceName.'-detail-component';
-    }
-
-    /**
      * Assert that the browser page contains the component.
      *
-     * @param  \Laravel\Dusk\Browser  $browser
+     * @param \Laravel\Dusk\Browser $browser
      * @return void
      */
     public function assert(Browser $browser)
@@ -44,6 +34,16 @@ class DetailComponent extends BaseComponent
         $browser->pause(500);
 
         $browser->assertVisible($this->selector());
+    }
+
+    /**
+     * Get the root selector for the component.
+     *
+     * @return string
+     */
+    public function selector()
+    {
+        return '@' . $this->resourceName . '-detail-component';
     }
 
     /**

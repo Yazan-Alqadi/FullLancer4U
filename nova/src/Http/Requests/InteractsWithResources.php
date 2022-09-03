@@ -49,7 +49,7 @@ trait InteractsWithResources
     {
         return tap(Nova::resourceForKey($this->route('resource')), function ($resource) {
             abort_if(is_null($resource), 404);
-            abort_if(! $resource::authorizedToViewAny($this), 403);
+            abort_if(!$resource::authorizedToViewAny($this), 403);
         });
     }
 
@@ -66,9 +66,21 @@ trait InteractsWithResources
     }
 
     /**
+     * Get a new instance of the underlying model.
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function model()
+    {
+        $resource = $this->resource();
+
+        return $resource::newModel();
+    }
+
+    /**
      * Find the resource model instance for the request.
      *
-     * @param  mixed|null  $resourceId
+     * @param mixed|null $resourceId
      * @return \Laravel\Nova\Resource
      */
     public function findResourceOrFail($resourceId = null)
@@ -77,9 +89,22 @@ trait InteractsWithResources
     }
 
     /**
+     * Get a new instance of the resource being requested.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @return \Laravel\Nova\Resource
+     */
+    public function newResourceWith($model)
+    {
+        $resource = $this->resource();
+
+        return new $resource($model);
+    }
+
+    /**
      * Find the model instance for the request.
      *
-     * @param  mixed|null  $resourceId
+     * @param mixed|null $resourceId
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function findModelOrFail($resourceId = null)
@@ -96,7 +121,7 @@ trait InteractsWithResources
     /**
      * Get the query to find the model instance for the request.
      *
-     * @param  mixed|null  $resourceId
+     * @param mixed|null $resourceId
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function findModelQuery($resourceId = null)
@@ -104,29 +129,6 @@ trait InteractsWithResources
         return $this->newQueryWithoutScopes()->whereKey(
             $resourceId ?? $this->resourceId
         );
-    }
-
-    /**
-     * Get a new instance of the resource being requested.
-     *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return \Laravel\Nova\Resource
-     */
-    public function newResourceWith($model)
-    {
-        $resource = $this->resource();
-
-        return new $resource($model);
-    }
-
-    /**
-     * Get a new query builder for the underlying model.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function newQuery()
-    {
-        return $this->model()->newQuery();
     }
 
     /**
@@ -140,14 +142,12 @@ trait InteractsWithResources
     }
 
     /**
-     * Get a new instance of the underlying model.
+     * Get a new query builder for the underlying model.
      *
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function model()
+    public function newQuery()
     {
-        $resource = $this->resource();
-
-        return $resource::newModel();
+        return $this->model()->newQuery();
     }
 }

@@ -71,7 +71,7 @@
     text-decoration: none;
 }
 
-.main-title>span>a {
+.main-title > span > a {
     color: inherit;
     text-decoration: inherit;
 }
@@ -151,13 +151,13 @@
 
 .name-top-freelancer {
     display: inline-block;
-    width: calc(85% * calc(2/3));
+    width: calc(85% * calc(2 / 3));
     color: #eaffe8;
     margin-bottom: 3%;
     font-size: 1.4vw;
 }
 
-.name-top-freelancer>a {
+.name-top-freelancer > a {
     text-decoration: inherit;
     color: inherit;
 }
@@ -165,7 +165,7 @@
 .rate-top-freelancer {
     white-space: nowrap;
     display: inline-block;
-    width: calc(85% * calc(1/3));
+    width: calc(85% * calc(1 / 3));
     color: #b9f781;
     font-size: 1.4vw;
 }
@@ -237,9 +237,9 @@
     /* padding: 6px; */
     border-color: #0000004f;
     border-style: solid;
-    width: calc(88%/3);
+    width: calc(88% / 3);
     margin-bottom: 5px;
-    height: calc(95%/2);
+    height: calc(95% / 2);
 }
 
 .container-menu ul {
@@ -290,7 +290,7 @@
 }
 
 
-.menu>li:hover .sub-menu {
+.menu > li:hover .sub-menu {
     position: absolute;
     left: 0;
     top: 25px;

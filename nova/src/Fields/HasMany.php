@@ -46,9 +46,9 @@ class HasMany extends Field implements ListableField, RelatableField
     /**
      * Create a new field.
      *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     * @param  string|null  $resource
+     * @param string $name
+     * @param string|null $attribute
+     * @param string|null $resource
      * @return void
      */
     public function __construct($name, $attribute = null, $resource = null)
@@ -65,38 +65,26 @@ class HasMany extends Field implements ListableField, RelatableField
     /**
      * Determine if the field should be displayed for the given request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return bool
      */
     public function authorize(Request $request)
     {
         return call_user_func(
-            [$this->resourceClass, 'authorizedToViewAny'], $request
-        ) && parent::authorize($request);
+                [$this->resourceClass, 'authorizedToViewAny'], $request
+            ) && parent::authorize($request);
     }
 
     /**
      * Resolve the field's value.
      *
-     * @param  mixed  $resource
-     * @param  string|null  $attribute
+     * @param mixed $resource
+     * @param string|null $attribute
      * @return void
      */
     public function resolve($resource, $attribute = null)
     {
         //
-    }
-
-    /**
-     * Set the displayable singular label of the resource.
-     *
-     * @return $this
-     */
-    public function singularLabel($singularLabel)
-    {
-        $this->singularLabel = $singularLabel;
-
-        return $this;
     }
 
     /**
@@ -109,9 +97,21 @@ class HasMany extends Field implements ListableField, RelatableField
         return array_merge([
             'hasManyRelationship' => $this->hasManyRelationship,
             'listable' => true,
-            'perPage'=> $this->resourceClass::$perPageViaRelationship,
+            'perPage' => $this->resourceClass::$perPageViaRelationship,
             'resourceName' => $this->resourceName,
             'singularLabel' => $this->singularLabel ?? $this->resourceClass::singularLabel(),
         ], parent::jsonSerialize());
+    }
+
+    /**
+     * Set the displayable singular label of the resource.
+     *
+     * @return $this
+     */
+    public function singularLabel($singularLabel)
+    {
+        $this->singularLabel = $singularLabel;
+
+        return $this;
     }
 }

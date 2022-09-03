@@ -7,7 +7,6 @@ use App\Models\Notification;
 use App\Models\Profession;
 use App\Models\Project;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -29,10 +28,8 @@ class WorkController extends Controller
             ->orderByDesc('freelancer_project.updated_at')
             ->get();
 
-        return view('works_page', compact('services', 'projects'));
+        return view('pages.user.works_page', compact('services', 'projects'));
     }
-
-
 
 
     public function updateWorkService($id)
@@ -52,24 +49,23 @@ class WorkController extends Controller
             event(new NewMessage($client_id->user_id, $not->title, $not->content));
         } else {
             DB::statement('update client_service set status=? where id= ? ', ['cancel', $id]);
-            $client_id = DB::table('client_service')->select('user_id','service_id')->where('id', $id)->first();
+            $client_id = DB::table('client_service')->select('user_id', 'service_id')->where('id', $id)->first();
 
             $service = Profession::find($client_id->service_id);
 
 
             $not = Notification::create([
                 'title' => 'The service that you apply for it is cancel',
-                'content' => $service->title . 'has been cancel' ,
+                'content' => $service->title . 'has been cancel',
                 'user_id' => $client_id->user_id,
                 'reciver_id' => Auth::id(),
             ]);
 
-            event(new NewMessage($client_id->user_id,$not->title, $not->content));
+            event(new NewMessage($client_id->user_id, $not->title, $not->content));
         }
 
         return back();
     }
-
 
 
     public function updateWorkProject($id)
@@ -79,9 +75,9 @@ class WorkController extends Controller
             $project = DB::table('freelancer_project')->select('project_id')->where('id', $id)->first();
             $project = Project::find($project->project_id);
 
-            $not =Notification::create([
+            $not = Notification::create([
                 'title' => 'Your project is ready',
-                'content' => 'Your Project '.$project->title .'has been done You can now rate me',
+                'content' => 'Your Project ' . $project->title . 'has been done You can now rate me',
                 'user_id' => $project->user->id,
                 'reciver_id' => Auth::id(),
             ]);
@@ -93,7 +89,7 @@ class WorkController extends Controller
             $project = Project::find($project->project_id);
             $not = Notification::create([
                 'title' => 'Your Project is cancel',
-                'content' => 'Your Project '.$project->title .'has been cancel',
+                'content' => 'Your Project ' . $project->title . 'has been cancel',
                 'user_id' => $project->user->id,
                 'reciver_id' => Auth::id(),
             ]);
@@ -121,6 +117,6 @@ class WorkController extends Controller
             ->where('projects.user_id', Auth::id())
             ->orderByDesc('freelancer_project.updated_at')
             ->get();
-        return view('purchases_page', compact('services', 'projects'));
+        return view('pages.user.purchases_page', compact('services', 'projects'));
     }
 }

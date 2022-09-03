@@ -19,6 +19,25 @@ class SkillController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $inputs = $request->validate([
+            'title' => 'required'
+        ]);
+        Skill::create([
+            'title' => $request->title,
+            'user_id' => Auth::id(),
+        ]);
+
+        return back()->with('message', 'Your skill have been added');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -29,28 +48,9 @@ class SkillController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $inputs = $request->validate([
-            'title'=>'required'
-        ]);
-        Skill::create([
-            'title'=>$request->title,
-            'user_id'=>Auth::id(),
-        ]);
-
-        return back()->with('message','Your skill have been added');
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -61,7 +61,7 @@ class SkillController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -72,8 +72,8 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -84,7 +84,7 @@ class SkillController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -92,6 +92,6 @@ class SkillController extends Controller
         $skill = Skill::find($id);
         $skill->delete();
 
-        return back()->with('message','skill have been deleted');
+        return back()->with('message', 'skill have been deleted');
     }
 }

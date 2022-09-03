@@ -12,8 +12,8 @@ class Lens extends Index
     /**
      * Create a new page instance.
      *
-     * @param  string  $resourceName
-     * @param  string  $lens
+     * @param string $resourceName
+     * @param string $lens
      * @return void
      */
     public function __construct($resourceName, $lens)
@@ -29,13 +29,13 @@ class Lens extends Index
      */
     public function url()
     {
-        return Nova::path().'/resources/'.$this->resourceName.'/lens/'.$this->lens;
+        return Nova::path() . '/resources/' . $this->resourceName . '/lens/' . $this->lens;
     }
 
     /**
      * Assert that the browser is on the page.
      *
-     * @param  \Laravel\Dusk\Browser  $browser
+     * @param \Laravel\Dusk\Browser $browser
      * @return void
      */
     public function assert(Browser $browser)

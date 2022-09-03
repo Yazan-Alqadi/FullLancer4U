@@ -14,43 +14,11 @@ class PivotFieldDestroyRequest extends NovaRequest
      */
     public function authorizeForAttachment()
     {
-        if (! $this->newResourceWith($this->findModelOrFail())->authorizedToAttach(
+        if (!$this->newResourceWith($this->findModelOrFail())->authorizedToAttach(
             $this, $this->findRelatedModel()
         )) {
             abort(403);
         }
-    }
-
-    /**
-     * Get the pivot model for the relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function findPivotModel()
-    {
-        return once(function () {
-            $resource = $this->findResourceOrFail();
-
-            abort_unless($resource->hasRelatableField($this, $this->viaRelationship), 404);
-
-            return $this->findRelatedModel()->{
-                $resource->model()->{$this->viaRelationship}()->getPivotAccessor()
-            };
-        });
-    }
-
-    /**
-     * Find the related resource for the operation.
-     *
-     * @return \Laravel\Nova\Resource
-     */
-    public function findRelatedResource()
-    {
-        $related = $this->findRelatedModel();
-
-        $resource = Nova::resourceForModel($related);
-
-        return new $resource($related);
     }
 
     /**
@@ -66,9 +34,27 @@ class PivotFieldDestroyRequest extends NovaRequest
             abort_unless($resource->hasRelatableField($this, $this->viaRelationship), 404);
 
             return $resource->model()->{$this->viaRelationship}()
-                        ->withoutGlobalScopes()
-                        ->lockForUpdate()
-                        ->findOrFail($this->relatedResourceId);
+                ->withoutGlobalScopes()
+                ->lockForUpdate()
+                ->findOrFail($this->relatedResourceId);
+        });
+    }
+
+    /**
+     * Get the pivot model for the relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function findPivotModel()
+    {
+        return once(function () {
+            $resource = $this->findResourceOrFail();
+
+            abort_unless($resource->hasRelatableField($this, $this->viaRelationship), 404);
+
+            return $this->findRelatedModel()->{
+            $resource->model()->{$this->viaRelationship}()->getPivotAccessor()
+            };
         });
     }
 
@@ -84,5 +70,19 @@ class PivotFieldDestroyRequest extends NovaRequest
             ->findFieldByAttribute($this->field, function () {
                 abort(404);
             });
+    }
+
+    /**
+     * Find the related resource for the operation.
+     *
+     * @return \Laravel\Nova\Resource
+     */
+    public function findRelatedResource()
+    {
+        $related = $this->findRelatedModel();
+
+        $resource = Nova::resourceForModel($related);
+
+        return new $resource($related);
     }
 }

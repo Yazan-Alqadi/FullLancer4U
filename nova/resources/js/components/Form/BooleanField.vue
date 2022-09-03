@@ -1,50 +1,50 @@
 <template>
-  <default-field :field="field" :errors="errors" :show-help-text="showHelpText">
-    <template slot="field">
-      <checkbox
-        class="mt-2"
-        @input="toggle"
-        :id="field.attribute"
-        :name="field.name"
-        :checked="checked"
-        :disabled="isReadonly"
-      />
-    </template>
-  </default-field>
+    <default-field :errors="errors" :field="field" :show-help-text="showHelpText">
+        <template slot="field">
+            <checkbox
+                :id="field.attribute"
+                :checked="checked"
+                :disabled="isReadonly"
+                :name="field.name"
+                class="mt-2"
+                @input="toggle"
+            />
+        </template>
+    </default-field>
 </template>
 
 <script>
-import { FormField, HandlesValidationErrors } from 'laravel-nova'
+import {FormField, HandlesValidationErrors} from 'laravel-nova'
 
 export default {
-  mixins: [HandlesValidationErrors, FormField],
+    mixins: [HandlesValidationErrors, FormField],
 
-  data: () => ({
-    value: false,
-  }),
+    data: () => ({
+        value: false,
+    }),
 
-  mounted() {
-    this.value = this.field.value || false
+    mounted() {
+        this.value = this.field.value || false
 
-    this.field.fill = formData => {
-      formData.append(this.field.attribute, this.trueValue)
-    }
-  },
-
-  methods: {
-    toggle() {
-      this.value = !this.value
-    },
-  },
-
-  computed: {
-    checked() {
-      return Boolean(this.value)
+        this.field.fill = formData => {
+            formData.append(this.field.attribute, this.trueValue)
+        }
     },
 
-    trueValue() {
-      return +this.checked
+    methods: {
+        toggle() {
+            this.value = !this.value
+        },
     },
-  },
+
+    computed: {
+        checked() {
+            return Boolean(this.value)
+        },
+
+        trueValue() {
+            return +this.checked
+        },
+    },
 }
 </script>

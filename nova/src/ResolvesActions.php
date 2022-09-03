@@ -12,7 +12,7 @@ trait ResolvesActions
     /**
      * Get the actions that are available for the given request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Illuminate\Support\Collection
      */
     public function availableActions(NovaRequest $request)
@@ -21,37 +21,9 @@ trait ResolvesActions
     }
 
     /**
-     * Get the actions that are available for the given index request.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @return \Illuminate\Support\Collection
-     */
-    public function availableActionsOnIndex(NovaRequest $request)
-    {
-        return $this->resolveActions($request)
-                    ->filter->shownOnIndex()
-                    ->filter->authorizedToSee($request)
-                    ->values();
-    }
-
-    /**
-     * Get the actions that are available for the given detail request.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @return \Illuminate\Support\Collection
-     */
-    public function availableActionsOnDetail(NovaRequest $request)
-    {
-        return $this->resolveActions($request)
-                    ->filter->shownOnDetail()
-                    ->filter->authorizedToSee($request)
-                    ->values();
-    }
-
-    /**
      * Get the actions for the given request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Illuminate\Support\Collection
      */
     public function resolveActions(NovaRequest $request)
@@ -60,9 +32,48 @@ trait ResolvesActions
     }
 
     /**
+     * Get the actions available on the entity.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function actions(Request $request)
+    {
+        return [];
+    }
+
+    /**
+     * Get the actions that are available for the given index request.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @return \Illuminate\Support\Collection
+     */
+    public function availableActionsOnIndex(NovaRequest $request)
+    {
+        return $this->resolveActions($request)
+            ->filter->shownOnIndex()
+            ->filter->authorizedToSee($request)
+            ->values();
+    }
+
+    /**
+     * Get the actions that are available for the given detail request.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @return \Illuminate\Support\Collection
+     */
+    public function availableActionsOnDetail(NovaRequest $request)
+    {
+        return $this->resolveActions($request)
+            ->filter->shownOnDetail()
+            ->filter->authorizedToSee($request)
+            ->values();
+    }
+
+    /**
      * Get the "pivot" actions that are available for the given request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Illuminate\Support\Collection
      */
     public function availablePivotActions(NovaRequest $request)
@@ -73,7 +84,7 @@ trait ResolvesActions
     /**
      * Get the "pivot" actions for the given request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Illuminate\Support\Collection
      */
     public function resolvePivotActions(NovaRequest $request)
@@ -88,32 +99,21 @@ trait ResolvesActions
     /**
      * Get the "pivot" actions for the given request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     protected function getPivotActions(NovaRequest $request)
     {
         $field = $this->availableFields($request)->first(function ($field) use ($request) {
             return isset($field->resourceName) &&
-                   $field->resourceName == $request->viaResource &&
-                   ($field instanceof BelongsToMany || $field instanceof MorphToMany);
+                $field->resourceName == $request->viaResource &&
+                ($field instanceof BelongsToMany || $field instanceof MorphToMany);
         });
 
         if ($field && isset($field->actionsCallback)) {
             return array_values(call_user_func($field->actionsCallback, $request));
         }
 
-        return [];
-    }
-
-    /**
-     * Get the actions available on the entity.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function actions(Request $request)
-    {
         return [];
     }
 }

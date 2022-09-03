@@ -11,7 +11,7 @@ trait InteractsWithEvents
     /**
      * Register an event listener for the Nova "booted" event.
      *
-     * @param  \Closure|string  $callback
+     * @param \Closure|string $callback
      * @return void
      */
     public static function booted($callback)
@@ -22,7 +22,7 @@ trait InteractsWithEvents
     /**
      * Register an event listener for the Nova "serving" event.
      *
-     * @param  \Closure|string  $callback
+     * @param \Closure|string $callback
      * @return void
      */
     public static function serving($callback)

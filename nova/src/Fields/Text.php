@@ -23,7 +23,7 @@ class Text extends Field
     /**
      * Set the callback or array to be used to determine the field's suggestions list.
      *
-     * @param  array|callable  $suggestions
+     * @param array|callable $suggestions
      * @return $this
      */
     public function suggestions($suggestions)
@@ -31,21 +31,6 @@ class Text extends Field
         $this->suggestions = $suggestions;
 
         return $this;
-    }
-
-    /**
-     * Resolve the display suggestions for the field.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @return array
-     */
-    public function resolveSuggestions(NovaRequest $request)
-    {
-        if (is_callable($this->suggestions)) {
-            return call_user_func($this->suggestions, $request) ?? null;
-        }
-
-        return $this->suggestions;
     }
 
     /**
@@ -77,5 +62,20 @@ class Text extends Field
         }
 
         return parent::jsonSerialize();
+    }
+
+    /**
+     * Resolve the display suggestions for the field.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @return array
+     */
+    public function resolveSuggestions(NovaRequest $request)
+    {
+        if (is_callable($this->suggestions)) {
+            return call_user_func($this->suggestions, $request) ?? null;
+        }
+
+        return $this->suggestions;
     }
 }

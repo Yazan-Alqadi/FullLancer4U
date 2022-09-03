@@ -10,7 +10,7 @@ class MetricController extends Controller
     /**
      * List the metrics for the given resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\MetricRequest  $request
+     * @param \Laravel\Nova\Http\Requests\MetricRequest $request
      * @return \Illuminate\Http\Response
      */
     public function index(MetricRequest $request)
@@ -21,7 +21,7 @@ class MetricController extends Controller
     /**
      * Get the specified metric's value.
      *
-     * @param  \Laravel\Nova\Http\Requests\MetricRequest  $request
+     * @param \Laravel\Nova\Http\Requests\MetricRequest $request
      * @return \Illuminate\Http\Response
      */
     public function show(MetricRequest $request)

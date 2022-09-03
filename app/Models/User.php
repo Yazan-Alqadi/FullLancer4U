@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -50,11 +49,11 @@ class User extends Authenticatable
     ];
 
 
-
     public function freelancer()
     {
         return $this->hasOne(Freelancer::class);
     }
+
     public function skills()
     {
         return $this->hasMany(Skill::class);
@@ -80,10 +79,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Notification::class, 'user_id');
     }
+
     public function notification_re()
     {
         return $this->hasMany(Notification::class, 'reciver_id');
     }
+
     public function threads()
     {
         return $this->hasMany(Thread::class, 'user_id');
@@ -96,6 +97,6 @@ class User extends Authenticatable
 
     public function category()
     {
-        return $this->BelongsToMany(Category::class,'user_category','user_id','category_id');
+        return $this->BelongsToMany(Category::class, 'user_category', 'user_id', 'category_id');
     }
 }

@@ -10,7 +10,7 @@ class UpdateFieldController extends Controller
     /**
      * List the update fields for the given resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Illuminate\Http\Response
      */
     public function index(NovaRequest $request)
@@ -20,7 +20,7 @@ class UpdateFieldController extends Controller
         $resource->authorizeToUpdate($request);
 
         return response()->json([
-            'title' => (string) $resource->title(),
+            'title' => (string)$resource->title(),
             'fields' => $resource->updateFieldsWithinPanels($request, $resource),
             'panels' => $resource->availablePanelsForUpdate($request, $resource),
         ]);

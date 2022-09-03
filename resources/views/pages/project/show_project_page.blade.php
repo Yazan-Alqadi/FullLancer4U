@@ -17,7 +17,7 @@
     <link href="{{ asset('css/profession.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- CSS only -->
-    <link href="{{asset('css/bootstrap.min.css')}} " rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }} " rel="stylesheet">
     <title>Projects card</title>
 </head>
 
@@ -99,9 +99,8 @@
                             <a href="
                         {{ route('contact_me', $project->user->id) }}
                         "
-                                type="button" class="btn btn-info @if($project->user_id==Auth::id())
-                                disabled
-                                @endif">Contact</a>
+                                type="button"
+                                class="btn btn-info @if ($project->user_id == Auth::id()) disabled @endif">Contact</a>
                         </div>
                     </div>
                 </div>
@@ -121,9 +120,8 @@
                                 <div class="h5">Apply for this project</div>
                                 <!-- if the service not buyed yet -->
 
-                                <a href="{{ route('buy_project', $project->id) }}" class="btn btn-info mt-2 @if($project->user_id==Auth::id())
-                                    disabled
-                                    @endif"
+                                <a href="{{ route('buy_project', $project->id) }}"
+                                    class="btn btn-info mt-2 @if ($project->user_id == Auth::id()) disabled @endif"
                                     id="buy">Apply</a>
                                 <!-- if the service is required and has not yet been approved -->
                                 <!-- <button type="button" class="btn btn-secondary" disabled>requested</button> -->
@@ -155,19 +153,19 @@
                                                     style="background-color: #001b24; height: 100%;">
                                                     <!-- <div class="container">
 
-                             <-- add image or icon here ----------
+                         <-- add image or icon here ----------
 
-                                <div style="display: inline-grid;">
-                                    <span class="card-title">
-                                        <a href="#" class="navbar-brand text-light name-of-user-hover">
-                                            name of user
-                                        </a>
-                                    </span>
-                                    <span class="card-title">
-                                        user name
-                                    </span>
-                                </div>
-                            </div> -->
+                            <div style="display: inline-grid;">
+                                <span class="card-title">
+                                    <a href="#" class="navbar-brand text-light name-of-user-hover">
+                                        name of user
+                                    </a>
+                                </span>
+                                <span class="card-title">
+                                    user name
+                                </span>
+                            </div>
+                        </div> -->
 
                                                     <div class="card-body text-center"
                                                         style="display: flex !important; align-items: center; justify-content: center;">
@@ -262,7 +260,7 @@
 
 
     <!-- JavaScript Bundle with Popper -->
-    <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>

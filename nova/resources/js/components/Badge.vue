@@ -1,6 +1,7 @@
 <template>
   <span
-    class="
+      :class="extraClasses"
+      class="
       whitespace-no-wrap
       px-2
       py-1
@@ -9,7 +10,6 @@
       text-xs
       font-bold
     "
-    :class="extraClasses"
   >
     {{ label }}
   </span>
@@ -17,16 +17,16 @@
 
 <script>
 export default {
-  props: {
-    label: {
-      type: String,
-      required: false,
-    },
+    props: {
+        label: {
+            type: String,
+            required: false,
+        },
 
-    extraClasses: {
-      type: [Array, String],
-      required: false,
+        extraClasses: {
+            type: [Array, String],
+            required: false,
+        },
     },
-  },
 }
 </script>

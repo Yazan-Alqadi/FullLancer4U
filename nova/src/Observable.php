@@ -14,8 +14,8 @@ class Observable
     /**
      * Construct a new observable for an Eloquent model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model|string  $eloquent
-     * @param  mixed  $classes
+     * @param \Illuminate\Database\Eloquent\Model|string $eloquent
+     * @param mixed $classes
      */
     public function __construct($eloquent, $classes)
     {
@@ -31,9 +31,9 @@ class Observable
     /**
      * Register a single observer with the model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $eventDispatcher
-     * @param  object|string  $observer
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param \Illuminate\Contracts\Events\Dispatcher $eventDispatcher
+     * @param object|string $observer
      * @return void
      *
      * @throws \RuntimeException
@@ -52,27 +52,9 @@ class Observable
     }
 
     /**
-     * Create a callable for dispatching a listener on Nova request.
-     *
-     * @param  mixed  $listener
-     * @param  string  $method
-     * @return \Closure
-     */
-    protected function createCallbackForListenerOnServingNova($listener, $method)
-    {
-        return function () use ($method, $listener) {
-            $payload = func_get_args();
-
-            return Nova::whenServing(function () use ($listener, $method, $payload) {
-                return app()->make($listener)->$method(...$payload);
-            });
-        };
-    }
-
-    /**
      * Resolve the observer's class name from an object or string.
      *
-     * @param  object|string  $class
+     * @param object|string $class
      * @return string
      *
      * @throws \InvalidArgumentException
@@ -87,6 +69,24 @@ class Observable
             return $class;
         }
 
-        throw new InvalidArgumentException('Unable to find observer: '.$class);
+        throw new InvalidArgumentException('Unable to find observer: ' . $class);
+    }
+
+    /**
+     * Create a callable for dispatching a listener on Nova request.
+     *
+     * @param mixed $listener
+     * @param string $method
+     * @return \Closure
+     */
+    protected function createCallbackForListenerOnServingNova($listener, $method)
+    {
+        return function () use ($method, $listener) {
+            $payload = func_get_args();
+
+            return Nova::whenServing(function () use ($listener, $method, $payload) {
+                return app()->make($listener)->$method(...$payload);
+            });
+        };
     }
 }

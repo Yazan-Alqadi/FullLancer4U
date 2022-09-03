@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewMessage;
-use App\Models\Project;
 use App\Models\Category;
 use App\Models\Notification;
-use App\Models\Profession;
+use App\Models\Project;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
@@ -14,7 +13,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
@@ -35,22 +33,7 @@ class ProjectController extends Controller
         $categories = cache()->remember('categories', 60 + 60 + 24, function () {
             return Category::all();
         });
-        return view('project_page', compact('projects', 'categories'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Application|Factory|View
-     * @throws Exception
-     */
-    public function create()
-    {
-        //
-        $categories = cache()->remember('categories', 60 + 60 + 24, function () {
-            return Category::all();
-        });
-        return view('add_new_project', compact('categories'));
+        return view('pages.main.projects_page', compact('projects', 'categories'));
     }
 
     /**
@@ -81,6 +64,21 @@ class ProjectController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return Application|Factory|View
+     * @throws Exception
+     */
+    public function create()
+    {
+        //
+        $categories = cache()->remember('categories', 60 + 60 + 24, function () {
+            return Category::all();
+        });
+        return view('pages.project.add_project_page', compact('categories'));
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param int $id
@@ -91,18 +89,18 @@ class ProjectController extends Controller
     {
 
 
-        $project = cache()->remember('project'.$id, 60 + 60 + 24, function () use($id) {
-            return Project::with('category','user')
-            ->findOrFail($id);
+        $project = cache()->remember('project' . $id, 60 + 60 + 24, function () use ($id) {
+            return Project::with('category', 'user')
+                ->findOrFail($id);
         });
 
-        $projects = cache()->remember('projects'.$project->id.$project->catrgory_id, 60 + 60 + 24, function () use($project) {
+        $projects = cache()->remember('projects' . $project->id . $project->catrgory_id, 60 + 60 + 24, function () use ($project) {
             return Project::where('id', '!=', $project->id)
-            ->where('category_id', $project->category_id)
-            ->with('category', 'user')->get();
+                ->where('category_id', $project->category_id)
+                ->with('category', 'user')->get();
         });
 
-        return view('project-web-page-for-client', compact('project', 'projects'));
+        return view('pages.project.show_project_page', compact('project', 'projects'));
 
     }
 
@@ -120,7 +118,7 @@ class ProjectController extends Controller
             return Category::all();
         });
 
-        return view('edit_project', compact('project', 'categories'));
+        return view('pages.project.edit_project', compact('project', 'categories'));
     }
 
     /**
@@ -213,6 +211,6 @@ class ProjectController extends Controller
             ->paginate(6);
         $categories = Category::all();
         // Return the search view with the resluts compacted
-        return view('project_page', compact('projects', 'categories'));
+        return view('pages.main.projects_page', compact('projects', 'categories'));
     }
 }

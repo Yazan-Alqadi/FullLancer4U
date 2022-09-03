@@ -46,7 +46,7 @@ class Sparkline extends Field
     /**
      * Set the data for the Spark Line.
      *
-     * @param  array|\Closure|\Laravel\Nova\Metrics\Trend  $data
+     * @param array|\Closure|\Laravel\Nova\Metrics\Trend $data
      * @return $this
      */
     public function data($data)
@@ -57,9 +57,60 @@ class Sparkline extends Field
     }
 
     /**
+     * Format the sparkline as a bar.
+     *
+     * @return $this
+     */
+    public function asBarChart()
+    {
+        $this->chartStyle = 'Bar';
+
+        return $this;
+    }
+
+    /**
+     * Set the component height.
+     *
+     * @param int $height
+     * @return $this
+     */
+    public function height($height)
+    {
+        return $this->withMeta([
+            __FUNCTION__ => $height,
+        ]);
+    }
+
+    /**
+     * Set the component width.
+     *
+     * @param int $width
+     * @return $this
+     */
+    public function width($width)
+    {
+        return $this->withMeta([
+            __FUNCTION__ => $width,
+        ]);
+    }
+
+    /**
+     * Prepare the element for JSON serialization.
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return array_merge(parent::jsonSerialize(), [
+            'chartStyle' => $this->chartStyle,
+            'data' => $this->getData(app(NovaRequest::class)),
+        ]);
+    }
+
+    /**
      * Get field data.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array|mixed
      */
     public function getData(NovaRequest $request)
@@ -81,56 +132,5 @@ class Sparkline extends Field
         }
 
         return $this->data;
-    }
-
-    /**
-     * Format the sparkline as a bar.
-     *
-     * @return $this
-     */
-    public function asBarChart()
-    {
-        $this->chartStyle = 'Bar';
-
-        return $this;
-    }
-
-    /**
-     * Set the component height.
-     *
-     * @param  int  $height
-     * @return $this
-     */
-    public function height($height)
-    {
-        return $this->withMeta([
-            __FUNCTION__ => $height,
-        ]);
-    }
-
-    /**
-     * Set the component width.
-     *
-     * @param  int  $width
-     * @return $this
-     */
-    public function width($width)
-    {
-        return $this->withMeta([
-            __FUNCTION__ => $width,
-        ]);
-    }
-
-    /**
-     * Prepare the element for JSON serialization.
-     *
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-        return array_merge(parent::jsonSerialize(), [
-            'chartStyle' => $this->chartStyle,
-            'data' => $this->getData(app(NovaRequest::class)),
-        ]);
     }
 }

@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\NewMessage;
-use App\Models\Freelancer;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Category;
-use App\Models\Notification;
-use App\Models\Project;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Freelancer;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FreelancerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -27,27 +26,27 @@ class FreelancerController extends Controller
 
         //dd($freelancers);
 
-        return view('auth.freelancer_cards',compact('freelancers'));
+        return view('pages.main.freelancers_page', compact('freelancers'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
         $categories = cache()->remember('categories', 60 + 60 + 24, function () {
             return Category::all();
         });
-        return view('become_freelancer', compact('categories'));
+        return view('pages.service.add_service_page', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -57,8 +56,8 @@ class FreelancerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function show($id)
     {
@@ -68,8 +67,8 @@ class FreelancerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function edit($id)
     {
@@ -79,9 +78,9 @@ class FreelancerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -91,8 +90,8 @@ class FreelancerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {

@@ -58,31 +58,23 @@ class Trix extends Field implements StorableContract, DeletableContract
     public $discardCallback;
 
     /**
-     * Specify the callback that should be used to store file attachments.
+     * Specify that file uploads should be allowed.
      *
-     * @param  callable  $callback
+     * @param string $disk
+     * @param string $path
      * @return $this
      */
-    public function attach(callable $callback)
+    public function withFiles($disk = null, $path = '/')
     {
         $this->withFiles = true;
 
-        $this->attachCallback = $callback;
+        $this->disk($disk)->path($path);
 
-        return $this;
-    }
-
-    /**
-     * Specify the callback that should be used to delete a single, persisted file attachment.
-     *
-     * @param  callable  $callback
-     * @return $this
-     */
-    public function detach(callable $callback)
-    {
-        $this->withFiles = true;
-
-        $this->detachCallback = $callback;
+        $this->attach(new StorePendingAttachment($this))
+            ->detach(new DetachAttachment($this))
+            ->delete(new DeleteAttachments($this))
+            ->discard(new DiscardPendingAttachments($this))
+            ->prunable();
 
         return $this;
     }
@@ -90,7 +82,7 @@ class Trix extends Field implements StorableContract, DeletableContract
     /**
      * Specify the callback that should be used to discard pending file attachments.
      *
-     * @param  callable  $callback
+     * @param callable $callback
      * @return $this
      */
     public function discard(callable $callback)
@@ -105,7 +97,7 @@ class Trix extends Field implements StorableContract, DeletableContract
     /**
      * Specify the callback that should be used to delete the field.
      *
-     * @param  callable  $deleteCallback
+     * @param callable $deleteCallback
      * @return $this
      */
     public function delete(callable $deleteCallback)
@@ -118,60 +110,33 @@ class Trix extends Field implements StorableContract, DeletableContract
     }
 
     /**
-     * Specify that file uploads should be allowed.
+     * Specify the callback that should be used to delete a single, persisted file attachment.
      *
-     * @param  string  $disk
-     * @param  string  $path
+     * @param callable $callback
      * @return $this
      */
-    public function withFiles($disk = null, $path = '/')
+    public function detach(callable $callback)
     {
         $this->withFiles = true;
 
-        $this->disk($disk)->path($path);
-
-        $this->attach(new StorePendingAttachment($this))
-             ->detach(new DetachAttachment($this))
-             ->delete(new DeleteAttachments($this))
-             ->discard(new DiscardPendingAttachments($this))
-             ->prunable();
+        $this->detachCallback = $callback;
 
         return $this;
     }
 
     /**
-     * Hydrate the given attribute on the model based on the incoming request.
+     * Specify the callback that should be used to store file attachments.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  string  $requestAttribute
-     * @param  object  $model
-     * @param  string  $attribute
-     * @return void|\Closure
+     * @param callable $callback
+     * @return $this
      */
-    protected function fillAttribute(NovaRequest $request, $requestAttribute, $model, $attribute)
+    public function attach(callable $callback)
     {
-        $callbacks = [];
+        $this->withFiles = true;
 
-        $maybeCallback = parent::fillAttribute($request, $requestAttribute, $model, $attribute);
-        if (is_callable($maybeCallback)) {
-            $callbacks[] = $maybeCallback;
-        }
+        $this->attachCallback = $callback;
 
-        if ($request->{$this->attribute.'DraftId'} && $this->withFiles) {
-            $callbacks[] = function () use ($request, $model) {
-                PendingAttachment::persistDraft(
-                    $request->{$this->attribute.'DraftId'},
-                    $this,
-                    $model
-                );
-            };
-        }
-
-        if (count($callbacks)) {
-            return function () use ($callbacks) {
-                collect($callbacks)->each->__invoke();
-            };
-        }
+        return $this;
     }
 
     /**
@@ -194,5 +159,40 @@ class Trix extends Field implements StorableContract, DeletableContract
             'shouldShow' => $this->shouldBeExpanded(),
             'withFiles' => $this->withFiles,
         ]);
+    }
+
+    /**
+     * Hydrate the given attribute on the model based on the incoming request.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param string $requestAttribute
+     * @param object $model
+     * @param string $attribute
+     * @return void|\Closure
+     */
+    protected function fillAttribute(NovaRequest $request, $requestAttribute, $model, $attribute)
+    {
+        $callbacks = [];
+
+        $maybeCallback = parent::fillAttribute($request, $requestAttribute, $model, $attribute);
+        if (is_callable($maybeCallback)) {
+            $callbacks[] = $maybeCallback;
+        }
+
+        if ($request->{$this->attribute . 'DraftId'} && $this->withFiles) {
+            $callbacks[] = function () use ($request, $model) {
+                PendingAttachment::persistDraft(
+                    $request->{$this->attribute . 'DraftId'},
+                    $this,
+                    $model
+                );
+            };
+        }
+
+        if (count($callbacks)) {
+            return function () use ($callbacks) {
+                collect($callbacks)->each->__invoke();
+            };
+        }
     }
 }

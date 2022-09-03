@@ -16,7 +16,7 @@ trait DeterminesIfCreateRelationCanBeShown
     /**
      * Set the callback used to determine if the field is required.
      *
-     * @param  Closure|bool  $callback
+     * @param Closure|bool $callback
      * @return $this
      */
     public function showCreateRelationButton($callback = true)
@@ -41,7 +41,7 @@ trait DeterminesIfCreateRelationCanBeShown
     /**
      * Determine if Nova should show the edit pivot relation button.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return bool
      */
     public function createRelationShouldBeShown(NovaRequest $request)

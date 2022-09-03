@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
 class FreelancerFactory extends Factory
 {
     /**
@@ -15,7 +16,7 @@ class FreelancerFactory extends Factory
     {
         return [
             //
-            'user_id'=>User::factory(),
+            'user_id' => User::factory(),
             'rate' => $this->faker->randomNumber(1),
 
         ];

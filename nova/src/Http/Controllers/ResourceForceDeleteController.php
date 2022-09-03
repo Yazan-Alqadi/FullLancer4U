@@ -15,7 +15,7 @@ class ResourceForceDeleteController extends Controller
     /**
      * Force delete the given resource(s).
      *
-     * @param  \Laravel\Nova\Http\Requests\ForceDeleteResourceRequest  $request
+     * @param \Laravel\Nova\Http\Requests\ForceDeleteResourceRequest $request
      * @return \Illuminate\Http\Response
      */
     public function handle(ForceDeleteResourceRequest $request)
@@ -39,7 +39,7 @@ class ResourceForceDeleteController extends Controller
             });
         });
 
-        if ($request->isForSingleResource() && ! is_null($redirect = $request->resource()::redirectAfterDelete($request))) {
+        if ($request->isForSingleResource() && !is_null($redirect = $request->resource()::redirectAfterDelete($request))) {
             return response()->json([
                 'redirect' => $redirect,
             ]);

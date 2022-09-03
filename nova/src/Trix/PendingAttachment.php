@@ -25,9 +25,9 @@ class PendingAttachment extends Model
     /**
      * Persist the given draft's pending attachments.
      *
-     * @param  string  $draftId
-     * @param  \Laravel\Nova\Fields\Trix  $field
-     * @param  mixed  $model
+     * @param string $draftId
+     * @param \Laravel\Nova\Fields\Trix $field
+     * @param mixed $model
      * @return void
      */
     public static function persistDraft($draftId, Trix $field, $model)
@@ -38,8 +38,8 @@ class PendingAttachment extends Model
     /**
      * Persist the pending attachment.
      *
-     * @param  \Laravel\Nova\Fields\Trix  $field
-     * @param  mixed  $model
+     * @param \Laravel\Nova\Fields\Trix $field
+     * @param mixed $model
      * @return void
      */
     public function persist(Trix $field, $model)

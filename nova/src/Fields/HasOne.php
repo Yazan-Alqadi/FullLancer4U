@@ -55,9 +55,9 @@ class HasOne extends Field implements ListableField, RelatableField
     /**
      * Create a new field.
      *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     * @param  string|null  $resource
+     * @param string $name
+     * @param string|null $attribute
+     * @param string|null $resource
      * @return void
      */
     public function __construct($name, $attribute = null, $resource = null)
@@ -87,31 +87,6 @@ class HasOne extends Field implements ListableField, RelatableField
     }
 
     /**
-     * Determine if the field should be displayed for the given request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    public function authorize(Request $request)
-    {
-        return call_user_func(
-            [$this->resourceClass, 'authorizedToViewAny'], $request
-        ) && parent::authorize($request);
-    }
-
-    /**
-     * Resolve the field's value.
-     *
-     * @param  mixed  $resource
-     * @param  string|null  $attribute
-     * @return void
-     */
-    public function resolve($resource, $attribute = null)
-    {
-        //
-    }
-
-    /**
      * Set the displayable singular label of the resource.
      *
      * @return $this
@@ -121,6 +96,31 @@ class HasOne extends Field implements ListableField, RelatableField
         $this->singularLabel = $singularLabel;
 
         return $this;
+    }
+
+    /**
+     * Determine if the field should be displayed for the given request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return bool
+     */
+    public function authorize(Request $request)
+    {
+        return call_user_func(
+                [$this->resourceClass, 'authorizedToViewAny'], $request
+            ) && parent::authorize($request);
+    }
+
+    /**
+     * Resolve the field's value.
+     *
+     * @param mixed $resource
+     * @param string|null $attribute
+     * @return void
+     */
+    public function resolve($resource, $attribute = null)
+    {
+        //
     }
 
     /**
@@ -142,9 +142,20 @@ class HasOne extends Field implements ListableField, RelatableField
     }
 
     /**
+     * Determine if the HasOne field has alreaady been filled.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @return bool
+     */
+    public function alreadyFilled(NovaRequest $request)
+    {
+        return call_user_func($this->filledCallback, $request) ?? false;
+    }
+
+    /**
      * Set the Closure used to determine if the HasOne field has already been filled.
      *
-     * @param  \Closure  $callback
+     * @param \Closure $callback
      * @return $this
      */
     public function alreadyFilledWhen($callback)
@@ -152,16 +163,5 @@ class HasOne extends Field implements ListableField, RelatableField
         $this->filledCallback = $callback;
 
         return $this;
-    }
-
-    /**
-     * Determine if the HasOne field has alreaady been filled.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @return bool
-     */
-    public function alreadyFilled(NovaRequest $request)
-    {
-        return call_user_func($this->filledCallback, $request) ?? false;
     }
 }

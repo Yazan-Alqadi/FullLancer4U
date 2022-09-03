@@ -31,7 +31,7 @@ class ThreadController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreThreadRequest  $request
+     * @param \App\Http\Requests\StoreThreadRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreThreadRequest $request)
@@ -42,7 +42,7 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Thread  $thread
+     * @param \App\Models\Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function show(Thread $thread)
@@ -53,7 +53,7 @@ class ThreadController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Thread  $thread
+     * @param \App\Models\Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function edit(Thread $thread)
@@ -64,8 +64,8 @@ class ThreadController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateThreadRequest  $request
-     * @param  \App\Models\Thread  $thread
+     * @param \App\Http\Requests\UpdateThreadRequest $request
+     * @param \App\Models\Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateThreadRequest $request, Thread $thread)
@@ -76,7 +76,7 @@ class ThreadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Thread  $thread
+     * @param \App\Models\Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function destroy(Thread $thread)

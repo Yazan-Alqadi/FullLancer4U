@@ -21,7 +21,7 @@ class PartitionColors
     /**
      * Create a new instance.
      *
-     * @param  array  $colors
+     * @param array $colors
      * @return void
      */
     public function __construct($colors = [])
@@ -32,7 +32,7 @@ class PartitionColors
     /**
      * Get the color found at the given label key.
      *
-     * @param  string|int  $label
+     * @param string|int $label
      * @return void
      */
     public function get($label)
@@ -48,9 +48,7 @@ class PartitionColors
     protected function next()
     {
         return blank($this->colors) ? null :
-            tap($this->colors[
-                $this->pointer % count($this->colors)
-            ] ?? null, function () {
+            tap($this->colors[$this->pointer % count($this->colors)] ?? null, function () {
                 $this->pointer++;
             });
     }

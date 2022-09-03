@@ -1,33 +1,33 @@
 <template>
-  <button ref="button" v-bind="{ ...$attrs }" v-on="$listeners">
+    <button ref="button" v-bind="{ ...$attrs }" v-on="$listeners">
     <span :class="{ hidden: processing || loading }">
-      <slot />
+      <slot/>
     </span>
 
-    <span v-if="processing || loading">
-      <loader width="32" />
+        <span v-if="processing || loading">
+      <loader width="32"/>
     </span>
-  </button>
+    </button>
 </template>
 
 <script>
 export default {
-  props: {
-    loading: {
-      type: Boolean,
-      default: false,
+    props: {
+        loading: {
+            type: Boolean,
+            default: false,
+        },
+
+        processing: {
+            type: Boolean,
+            default: false,
+        },
     },
 
-    processing: {
-      type: Boolean,
-      default: false,
+    methods: {
+        focus() {
+            this.$refs.button.focus()
+        },
     },
-  },
-
-  methods: {
-    focus() {
-      this.$refs.button.focus()
-    },
-  },
 }
 </script>

@@ -1,9 +1,9 @@
 <template>
   <span>
     <select
-      ref="selectBox"
-      v-if="actions.length > 1"
-      class="
+        v-if="actions.length > 1"
+        ref="selectBox"
+        class="
         rounded-sm
         select-box-sm
         mr-2
@@ -16,54 +16,54 @@
         active:outline-none active:shadow-outline
         focus:outline-none focus:shadow-outline
       "
-      style="max-width: 90px"
-      @change="handleSelectionChange"
-      dusk="inline-action-select"
+        dusk="inline-action-select"
+        style="max-width: 90px"
+        @change="handleSelectionChange"
     >
       <option disabled selected>{{ __('Actions') }}</option>
       <option
-        v-for="action in actions"
-        :key="action.uriKey"
-        :value="action.uriKey"
+          v-for="action in actions"
+          :key="action.uriKey"
+          :value="action.uriKey"
       >
         {{ action.name }}
       </option>
     </select>
 
     <button
-      v-else
-      v-for="action in actions"
-      :key="action.uriKey"
-      @click="executeSingleAction(action)"
-      class="btn btn-xs mr-1"
-      :class="action.class"
-      dusk="run-inline-action-button"
-      :data-testid="action.uriKey"
+        v-for="action in actions"
+        v-else
+        :key="action.uriKey"
+        :class="action.class"
+        :data-testid="action.uriKey"
+        class="btn btn-xs mr-1"
+        dusk="run-inline-action-button"
+        @click="executeSingleAction(action)"
     >
       {{ action.name }}
     </button>
 
-    <!-- Action Confirmation Modal -->
+      <!-- Action Confirmation Modal -->
     <portal to="modals">
       <component
-        v-if="confirmActionModalOpened"
-        class="text-left"
-        :is="selectedAction.component"
-        :working="working"
-        :selected-resources="selectedResources"
-        :resource-name="resourceName"
-        :action="selectedAction"
-        :endpoint="endpoint"
-        :errors="errors"
-        @confirm="executeAction"
-        @close="closeConfirmationModal"
+          :is="selectedAction.component"
+          v-if="confirmActionModalOpened"
+          :action="selectedAction"
+          :endpoint="endpoint"
+          :errors="errors"
+          :resource-name="resourceName"
+          :selected-resources="selectedResources"
+          :working="working"
+          class="text-left"
+          @close="closeConfirmationModal"
+          @confirm="executeAction"
       />
 
       <component
-        :is="actionResponseData.modal"
-        @close="closeActionResponseModal"
-        v-if="showActionResponseModal"
-        :data="actionResponseData"
+          :is="actionResponseData.modal"
+          v-if="showActionResponseModal"
+          :data="actionResponseData"
+          @close="closeActionResponseModal"
       />
     </portal>
   </span>
@@ -73,35 +73,35 @@
 import HandlesActions from '@/mixins/HandlesActions'
 
 export default {
-  mixins: [HandlesActions],
+    mixins: [HandlesActions],
 
-  props: {
-    resource: {},
-    actions: {},
-  },
-
-  data: () => ({
-    showActionResponseModal: false,
-    actionResponseData: {},
-  }),
-
-  methods: {
-    handleSelectionChange(event) {
-      this.selectedActionKey = event.target.value
-      this.determineActionStrategy()
-      this.$refs.selectBox.selectedIndex = 0
+    props: {
+        resource: {},
+        actions: {},
     },
 
-    executeSingleAction(action) {
-      this.selectedActionKey = action.uriKey
-      this.determineActionStrategy()
-    },
-  },
+    data: () => ({
+        showActionResponseModal: false,
+        actionResponseData: {},
+    }),
 
-  computed: {
-    selectedResources() {
-      return [this.resource.id.value]
+    methods: {
+        handleSelectionChange(event) {
+            this.selectedActionKey = event.target.value
+            this.determineActionStrategy()
+            this.$refs.selectBox.selectedIndex = 0
+        },
+
+        executeSingleAction(action) {
+            this.selectedActionKey = action.uriKey
+            this.determineActionStrategy()
+        },
     },
-  },
+
+    computed: {
+        selectedResources() {
+            return [this.resource.id.value]
+        },
+    },
 }
 </script>

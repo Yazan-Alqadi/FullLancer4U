@@ -13,7 +13,7 @@ class StyleController extends Controller
     /**
      * Serve the requested stylesheet.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Illuminate\Http\Response
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
@@ -30,6 +30,6 @@ class StyleController extends Controller
             [
                 'Content-Type' => 'text/css',
             ]
-        )->setLastModified(DateTime::createFromFormat('U', (string) filemtime($path)));
+        )->setLastModified(DateTime::createFromFormat('U', (string)filemtime($path)));
     }
 }

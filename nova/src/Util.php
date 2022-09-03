@@ -9,13 +9,13 @@ class Util
      *
      * https://stackoverflow.com/questions/47188449/json-max-int-number/47188576
      *
-     * @param  mixed  $value
+     * @param mixed $value
      * @return mixed
      */
     public static function safeInt($value)
     {
         if (is_int($value) && $value >= 9007199254740991) {
-            return (string) $value;
+            return (string)$value;
         }
 
         return $value;

@@ -1,6 +1,5 @@
 <?php
 
-use App\Events\NewMessage;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\FreelancerController;
 use App\Http\Controllers\GoogleController;
@@ -11,21 +10,11 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
-use App\Models\Freelancer;
-use App\Models\Profession;
-use App\Models\Project;
-use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use App\Http\Controllers\UserController;
-use App\Models\Category;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
-use App\Models\Message;
-use App\Nova\Service;
-use Illuminate\Database\Eloquent\Relations\Pivot;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +39,6 @@ Route::middleware(['guest'])->group(function () {
 });
 
 
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('logout', [authController::class, 'logout'])->name('logout');
 Route::get('users', [UserController::class, 'index']);
@@ -59,10 +47,8 @@ Route::get('professions', [ProfessionController::class, 'index'])->name('profess
 Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
 
 
-
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('redToGoogle');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('googleCallBack');
-
 
 
 Route::middleware(['auth'])->group(function () {
@@ -82,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('user', [UserController::class, 'show'])->name('profile');
     Route::get('user/update/{id}', [UserController::class, 'update'])->name('user.update');
-    Route::get('profile/{id}',  [UserController::class, 'profile'])->name('profile_user');
+    Route::get('profile/{id}', [UserController::class, 'profile'])->name('profile_user');
 
 
     Route::get('contact', [MessageController::class, 'getContact'])->name('contact');
@@ -110,8 +96,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('my_work/{id}', [WorkController::class, 'getMyWork'])->name('work_page');
     Route::get('my_work/service/{id}', [WorkController::class, 'updateWorkService'])->name('work_update');
     Route::get('my_work/project/{id}', [WorkController::class, 'updateWorkProject'])->name('work_project_update');
-    Route::get('/professions/search', [ProfessionController::class,'search'])->name('search_service');
-    Route::get('/projects/search', [ProjectController::class,'search'])->name('search_project');
+    Route::get('/professions/search', [ProfessionController::class, 'search'])->name('search_service');
+    Route::get('/projects/search', [ProjectController::class, 'search'])->name('search_project');
 
     Route::view('test', 'test');
 

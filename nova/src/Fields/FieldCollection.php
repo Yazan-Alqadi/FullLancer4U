@@ -13,8 +13,8 @@ class FieldCollection extends Collection
     /**
      * Find a given field by its attribute.
      *
-     * @param  string  $attribute
-     * @param  mixed  $default
+     * @param string $attribute
+     * @param mixed $default
      * @return \Laravel\Nova\Fields\Field|null
      */
     public function findFieldByAttribute($attribute, $default = null)
@@ -28,7 +28,7 @@ class FieldCollection extends Collection
     /**
      * Filter elements should be displayed for the given request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Laravel\Nova\Fields\FieldCollection
      */
     public function authorized(Request $request)
@@ -41,7 +41,7 @@ class FieldCollection extends Collection
     /**
      * Filter elements should be displayed for the given request.
      *
-     * @param  mixed  $resource
+     * @param mixed $resource
      * @return \Laravel\Nova\Fields\FieldCollection
      */
     public function resolve($resource)
@@ -56,7 +56,7 @@ class FieldCollection extends Collection
     /**
      * Resolve value of fields for display.
      *
-     * @param  mixed  $resource
+     * @param mixed $resource
      * @return \Laravel\Nova\Fields\FieldCollection
      */
     public function resolveForDisplay($resource)
@@ -71,8 +71,8 @@ class FieldCollection extends Collection
     /**
      * Filter fields for showing on detail.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  mixed  $resource
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param mixed $resource
      * @return \Laravel\Nova\Fields\FieldCollection
      */
     public function filterForDetail(NovaRequest $request, $resource)
@@ -85,8 +85,8 @@ class FieldCollection extends Collection
     /**
      * Filter fields for showing on index.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  mixed  $resource
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param mixed $resource
      * @return \Laravel\Nova\Fields\FieldCollection
      */
     public function filterForIndex(NovaRequest $request, $resource)
@@ -99,7 +99,7 @@ class FieldCollection extends Collection
     /**
      * Reject if the field is readonly.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Laravel\Nova\Fields\FieldCollection
      */
     public function withoutReadonly(NovaRequest $request)

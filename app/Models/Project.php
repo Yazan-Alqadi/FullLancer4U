@@ -19,22 +19,21 @@ class Project extends Model
     protected $guarded = [];
 
 
-
-    protected $casts =[
+    protected $casts = [
         'deadline' => 'date'
     ];
-
-
 
 
     public function freelancer()
     {
         return $this->belongsTo(Freelancer::class);
     }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
+
     public function user()
     {
         return $this->belongsTo(User::class);

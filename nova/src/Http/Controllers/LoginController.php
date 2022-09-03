@@ -31,7 +31,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('nova.guest:'.config('nova.guard'))->except('logout');
+        $this->middleware('nova.guest:' . config('nova.guard'))->except('logout');
     }
 
     /**
@@ -47,7 +47,7 @@ class LoginController extends Controller
     /**
      * Log the user out of the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)
@@ -60,16 +60,6 @@ class LoginController extends Controller
     }
 
     /**
-     * Get the post register / login redirect path.
-     *
-     * @return string
-     */
-    public function redirectPath()
-    {
-        return Nova::path();
-    }
-
-    /**
      * Get the guard to be used during authentication.
      *
      * @return \Illuminate\Contracts\Auth\StatefulGuard
@@ -77,5 +67,15 @@ class LoginController extends Controller
     protected function guard()
     {
         return Auth::guard(config('nova.guard'));
+    }
+
+    /**
+     * Get the post register / login redirect path.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+        return Nova::path();
     }
 }

@@ -3,10 +3,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Exception;
 use App\Models\User;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
@@ -35,16 +34,16 @@ class GoogleController extends Controller
             $finduser = User::where('google_id', $user->id)->first();
 
 
-            if($finduser){
+            if ($finduser) {
 
                 Auth::login($finduser);
 
                 return redirect()->route('home');
 
-            }else{
+            } else {
 
 
-                return redirect()->route('register.show')->with('user',$user);
+                return redirect()->route('register.show')->with('user', $user);
             }
 
         } catch (Exception $e) {

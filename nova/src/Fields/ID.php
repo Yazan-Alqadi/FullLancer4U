@@ -24,9 +24,9 @@ class ID extends Field
     /**
      * Create a new field.
      *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     * @param  mixed|null  $resolveCallback
+     * @param string|null $name
+     * @param string|null $attribute
+     * @param mixed|null $resolveCallback
      * @return void
      */
     public function __construct($name = null, $attribute = null, $resolveCallback = null)
@@ -37,7 +37,7 @@ class ID extends Field
     /**
      * Create a new, resolved ID field for the given resource.
      *
-     * @param  \Laravel\Nova\Resource  $resource
+     * @param \Laravel\Nova\Resource $resource
      * @return static
      */
     public static function forResource($resource)
@@ -51,13 +51,13 @@ class ID extends Field
 
         $field = transform(
             $resource->buildAvailableFields(app(NovaRequest::class), $methods)
-                    ->whereInstanceOf(self::class)
-                    ->first(),
+                ->whereInstanceOf(self::class)
+                ->first(),
             function ($field) use ($model) {
                 return tap($field)->resolve($model);
             },
             function () use ($model) {
-                return ! is_null($model) && $model->exists ? static::forModel($model) : null;
+                return !is_null($model) && $model->exists ? static::forModel($model) : null;
             }
         );
 
@@ -67,7 +67,7 @@ class ID extends Field
     /**
      * Create a new, resolved ID field for the given model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param \Illuminate\Database\Eloquent\Model $model
      * @return static
      */
     public static function forModel($model)
@@ -84,28 +84,6 @@ class ID extends Field
     }
 
     /**
-     * Resolve the given attribute from the given resource.
-     *
-     * @param  mixed  $resource
-     * @param  string  $attribute
-     * @return mixed
-     */
-    protected function resolveAttribute($resource, $attribute)
-    {
-        if (! is_null($resource)) {
-            $pivotValue = optional($resource->pivot)->getKey();
-
-            if (is_int($pivotValue) || is_string($pivotValue)) {
-                $this->pivotValue = $pivotValue;
-            }
-        }
-
-        return Util::safeInt(
-            parent::resolveAttribute($resource, $attribute)
-        );
-    }
-
-    /**
      * Resolve a BIGINT ID field as a string for compatibility with JavaScript.
      *
      * @return $this
@@ -113,7 +91,7 @@ class ID extends Field
     public function asBigInt()
     {
         $this->resolveCallback = function ($id) {
-            return (string) $id;
+            return (string)$id;
         };
 
         return $this;
@@ -144,5 +122,27 @@ class ID extends Field
         return array_merge(parent::jsonSerialize(), array_filter([
             'pivotValue' => $this->pivotValue ?? null,
         ]));
+    }
+
+    /**
+     * Resolve the given attribute from the given resource.
+     *
+     * @param mixed $resource
+     * @param string $attribute
+     * @return mixed
+     */
+    protected function resolveAttribute($resource, $attribute)
+    {
+        if (!is_null($resource)) {
+            $pivotValue = optional($resource->pivot)->getKey();
+
+            if (is_int($pivotValue) || is_string($pivotValue)) {
+                $this->pivotValue = $pivotValue;
+            }
+        }
+
+        return Util::safeInt(
+            parent::resolveAttribute($resource, $attribute)
+        );
     }
 }

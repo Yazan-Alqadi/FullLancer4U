@@ -13,7 +13,7 @@ class BootNova
     /**
      * Handle the event.
      *
-     * @param  mixed  $event
+     * @param mixed $event
      * @return void
      */
     public function handle($event)
@@ -38,18 +38,6 @@ class BootNova
     }
 
     /**
-     * Boot the standard Nova resources.
-     *
-     * @return void
-     */
-    protected function registerResources()
-    {
-        Nova::resources([
-            Nova::actionResource(),
-        ]);
-    }
-
-    /**
      * Boot the standard Nova tools.
      *
      * @return void
@@ -59,6 +47,18 @@ class BootNova
         Nova::tools([
             new Dashboard,
             new ResourceManager,
+        ]);
+    }
+
+    /**
+     * Boot the standard Nova resources.
+     *
+     * @return void
+     */
+    protected function registerResources()
+    {
+        Nova::resources([
+            Nova::actionResource(),
         ]);
     }
 }

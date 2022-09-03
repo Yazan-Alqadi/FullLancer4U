@@ -63,10 +63,10 @@ class InstallCommand extends Command
     {
         $namespace = Str::replaceLast('\\', '', $this->laravel->getNamespace());
 
-        if (! Str::contains($appConfig = file_get_contents(config_path('app.php')), "{$namespace}\\Providers\\NovaServiceProvider::class")) {
+        if (!Str::contains($appConfig = file_get_contents(config_path('app.php')), "{$namespace}\\Providers\\NovaServiceProvider::class")) {
             file_put_contents(config_path('app.php'), str_replace(
-                "{$namespace}\\Providers\EventServiceProvider::class,".PHP_EOL,
-                "{$namespace}\\Providers\EventServiceProvider::class,".PHP_EOL."        {$namespace}\Providers\NovaServiceProvider::class,".PHP_EOL,
+                "{$namespace}\\Providers\EventServiceProvider::class," . PHP_EOL,
+                "{$namespace}\\Providers\EventServiceProvider::class," . PHP_EOL . "        {$namespace}\Providers\NovaServiceProvider::class," . PHP_EOL,
                 $appConfig
             ));
         }
@@ -88,8 +88,8 @@ class InstallCommand extends Command
     /**
      * Set the namespace on the given file.
      *
-     * @param  string  $file
-     * @param  string  $namespace
+     * @param string $file
+     * @param string $namespace
      * @return void
      */
     protected function setAppNamespaceOn($file, $namespace)

@@ -36,16 +36,6 @@ class ResourceTool extends Panel
     }
 
     /**
-     * Create a new resource tool instance.
-     *
-     * @return static
-     */
-    public static function make(...$arguments)
-    {
-        return new static(...$arguments);
-    }
-
-    /**
      * Get the displayable name of the resource tool.
      *
      * @return string
@@ -66,9 +56,19 @@ class ResourceTool extends Panel
     }
 
     /**
+     * Create a new resource tool instance.
+     *
+     * @return static
+     */
+    public static function make(...$arguments)
+    {
+        return new static(...$arguments);
+    }
+
+    /**
      * Set the callback to be run to authorize viewing the card.
      *
-     * @param  \Closure  $callback
+     * @param \Closure $callback
      * @return $this
      */
     public function canSee(Closure $callback)
@@ -79,9 +79,21 @@ class ResourceTool extends Panel
     }
 
     /**
+     * Dynamically proxy method calls to meta information.
+     *
+     * @param string $method
+     * @param array $parameters
+     * @return $this
+     */
+    public function __call($method, $parameters)
+    {
+        return $this->withMeta([$method => ($parameters[0] ?? true)]);
+    }
+
+    /**
      * Set additional meta information for the resource tool.
      *
-     * @param  array  $meta
+     * @param array $meta
      * @return $this
      */
     public function withMeta(array $meta)
@@ -89,17 +101,5 @@ class ResourceTool extends Panel
         $this->element->withMeta($meta);
 
         return $this;
-    }
-
-    /**
-     * Dynamically proxy method calls to meta information.
-     *
-     * @param  string  $method
-     * @param  array  $parameters
-     * @return $this
-     */
-    public function __call($method, $parameters)
-    {
-        return $this->withMeta([$method => ($parameters[0] ?? true)]);
     }
 }

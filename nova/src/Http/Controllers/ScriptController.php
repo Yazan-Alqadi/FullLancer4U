@@ -13,7 +13,7 @@ class ScriptController extends Controller
     /**
      * Serve the requested script.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Illuminate\Http\Response
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
@@ -30,6 +30,6 @@ class ScriptController extends Controller
             [
                 'Content-Type' => 'application/javascript',
             ]
-        )->setLastModified(DateTime::createFromFormat('U', (string) filemtime($path)));
+        )->setLastModified(DateTime::createFromFormat('U', (string)filemtime($path)));
     }
 }

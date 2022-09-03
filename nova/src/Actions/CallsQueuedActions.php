@@ -39,9 +39,19 @@ trait CallsQueuedActions
     public $batchId;
 
     /**
+     * Get the display name for the queued job.
+     *
+     * @return string
+     */
+    public function displayName()
+    {
+        return get_class($this->action);
+    }
+
+    /**
      * Call the action using the given callback.
      *
-     * @param  callable  $callback
+     * @param callable $callback
      * @return void
      */
     protected function callAction($callback)
@@ -52,7 +62,7 @@ trait CallsQueuedActions
 
         $callback($action);
 
-        if (! $this->job->hasFailed() && ! $this->job->isReleased()) {
+        if (!$this->job->hasFailed() && !$this->job->isReleased()) {
             Nova::actionEvent()->markBatchAsFinished($this->batchId);
         }
     }
@@ -60,7 +70,7 @@ trait CallsQueuedActions
     /**
      * Set the job instance of the given class if necessary.
      *
-     * @param  mixed  $instance
+     * @param mixed $instance
      * @return mixed
      */
     protected function setJobInstanceIfNecessary($instance)
@@ -70,15 +80,5 @@ trait CallsQueuedActions
         }
 
         return $instance;
-    }
-
-    /**
-     * Get the display name for the queued job.
-     *
-     * @return string
-     */
-    public function displayName()
-    {
-        return get_class($this->action);
     }
 }

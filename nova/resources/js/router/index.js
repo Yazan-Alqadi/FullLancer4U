@@ -1,29 +1,28 @@
-import _ from 'lodash'
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './routes'
 
 Vue.use(Router)
 
-const router = createRouter({ base: window.config.base })
+const router = createRouter({base: window.config.base})
 
 export default router
 
 /**
  * The router factory
  */
-function createRouter({ base }) {
-  const router = new Router({
-    scrollBehavior,
-    base,
-    mode: 'history',
-    routes,
-  })
+function createRouter({base}) {
+    const router = new Router({
+        scrollBehavior,
+        base,
+        mode: 'history',
+        routes,
+    })
 
-  router.beforeEach(beforeEach)
-  router.afterEach(afterEach)
+    router.beforeEach(beforeEach)
+    router.afterEach(afterEach)
 
-  return router
+    return router
 }
 
 /**
@@ -34,21 +33,21 @@ function createRouter({ base }) {
  * @param {Function} next
  */
 async function beforeEach(to, from, next) {
-  // Get the matched components and resolve them.
-  const components = await resolveComponents(
-    router.getMatchedComponents({ ...to })
-  )
+    // Get the matched components and resolve them.
+    const components = await resolveComponents(
+        router.getMatchedComponents({...to})
+    )
 
-  if (components.length === 0) {
-    return next()
-  }
+    if (components.length === 0) {
+        return next()
+    }
 
-  // Start the loading bar.
-  if (components[components.length - 1].loading !== false) {
-    router.app.$nextTick(() => router.app.$loading.start())
-  }
+    // Start the loading bar.
+    if (components[components.length - 1].loading !== false) {
+        router.app.$nextTick(() => router.app.$loading.start())
+    }
 
-  next()
+    next()
 }
 
 /**
@@ -59,8 +58,8 @@ async function beforeEach(to, from, next) {
  * @param {Function} next
  */
 async function afterEach(to, from, next) {
-  await router.app.$nextTick()
-  router.app.$loading.finish()
+    await router.app.$nextTick()
+    router.app.$loading.finish()
 }
 
 /**
@@ -70,11 +69,11 @@ async function afterEach(to, from, next) {
  * @return {Array}
  */
 function resolveComponents(components) {
-  return Promise.all(
-    components.map(component => {
-      return typeof component === 'function' ? component() : component
-    })
-  )
+    return Promise.all(
+        components.map(component => {
+            return typeof component === 'function' ? component() : component
+        })
+    )
 }
 
 /**
@@ -88,21 +87,21 @@ function resolveComponents(components) {
  * @return {Object}
  */
 function scrollBehavior(to, from, savedPosition) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (savedPosition) {
-        return resolve(savedPosition)
-      }
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (savedPosition) {
+                return resolve(savedPosition)
+            }
 
-      if (from.name !== to.name) {
-        return resolve({ x: 0, y: 0 })
-      }
+            if (from.name !== to.name) {
+                return resolve({x: 0, y: 0})
+            }
 
-      if (from.params.resourceName !== to.params.resourceName) {
-        return resolve({ x: 0, y: 0 })
-      }
+            if (from.params.resourceName !== to.params.resourceName) {
+                return resolve({x: 0, y: 0})
+            }
 
-      return resolve({})
-    }, 250)
-  })
+            return resolve({})
+        }, 250)
+    })
 }

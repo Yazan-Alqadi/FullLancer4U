@@ -65,7 +65,7 @@ class ValueResult implements JsonSerializable
     /**
      * Create a new value result instance.
      *
-     * @param  mixed  $value
+     * @param mixed $value
      * @return void
      */
     public function __construct($value)
@@ -76,8 +76,8 @@ class ValueResult implements JsonSerializable
     /**
      * Set the previous value for the metric.
      *
-     * @param  mixed  $previous
-     * @param  string  $label
+     * @param mixed $previous
+     * @param string $label
      * @return $this
      */
     public function previous($previous, $label = null)
@@ -91,7 +91,7 @@ class ValueResult implements JsonSerializable
     /**
      * Indicate that the metric represents a dollar value.
      *
-     * @param  string  $symbol
+     * @param string $symbol
      * @return $this
      */
     public function dollars($symbol = '$')
@@ -102,7 +102,7 @@ class ValueResult implements JsonSerializable
     /**
      * Indicate that the metric represents a currency value.
      *
-     * @param  string  $symbol
+     * @param string $symbol
      * @return $this
      */
     public function currency($symbol = '$')
@@ -113,7 +113,7 @@ class ValueResult implements JsonSerializable
     /**
      * Set the metric value prefix.
      *
-     * @param  string  $prefix
+     * @param string $prefix
      * @return $this
      */
     public function prefix($prefix)
@@ -126,7 +126,7 @@ class ValueResult implements JsonSerializable
     /**
      * Set the metric value suffix.
      *
-     * @param  string  $suffix
+     * @param string $suffix
      * @return $this
      */
     public function suffix($suffix)
@@ -151,7 +151,7 @@ class ValueResult implements JsonSerializable
     /**
      * Set the metric value formatting.
      *
-     * @param  string  $format
+     * @param string $format
      * @return $this
      */
     public function format($format)
@@ -164,7 +164,7 @@ class ValueResult implements JsonSerializable
     /**
      * Sets the zeroResult value.
      *
-     * @param  bool  $zeroResult
+     * @param bool $zeroResult
      * @return $this
      */
     public function allowZeroResult($zeroResult = true)

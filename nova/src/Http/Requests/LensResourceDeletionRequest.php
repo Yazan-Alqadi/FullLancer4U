@@ -13,14 +13,14 @@ class LensResourceDeletionRequest extends NovaRequest
     /**
      * Get the selected models for the action in chunks.
      *
-     * @param  int  $count
-     * @param  \Closure  $callback
-     * @param  \Closure  $authCallback
+     * @param int $count
+     * @param \Closure $callback
+     * @param \Closure $authCallback
      * @return mixed
      */
     protected function chunkWithAuthorization($count, Closure $callback, Closure $authCallback)
     {
-        $this->toSelectedResourceQuery()->when(! $this->forAllMatchingResources(), function ($query) {
+        $this->toSelectedResourceQuery()->when(!$this->forAllMatchingResources(), function ($query) {
             $query->whereKey($this->resources);
         })->tap(function ($query) {
             $query->getQuery()->orders = [];
@@ -41,22 +41,8 @@ class LensResourceDeletionRequest extends NovaRequest
     protected function toSelectedResourceQuery()
     {
         return $this->forAllMatchingResources()
-                    ? $this->toQuery()
-                    : $this->newQueryWithoutScopes();
-    }
-
-    /**
-     * Transform the request into a query.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function toQuery()
-    {
-        return tap($this->lens()->query(LensRequest::createFrom($this), $this->newQuery()), function ($query) {
-            if (! $query instanceof Builder) {
-                throw new LogicException('Lens must return an Eloquent query instance in order to perform this action.');
-            }
-        });
+            ? $this->toQuery()
+            : $this->newQueryWithoutScopes();
     }
 
     /**
@@ -67,5 +53,19 @@ class LensResourceDeletionRequest extends NovaRequest
     public function forAllMatchingResources()
     {
         return $this->resources === 'all';
+    }
+
+    /**
+     * Transform the request into a query.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function toQuery()
+    {
+        return tap($this->lens()->query(LensRequest::createFrom($this), $this->newQuery()), function ($query) {
+            if (!$query instanceof Builder) {
+                throw new LogicException('Lens must return an Eloquent query instance in order to perform this action.');
+            }
+        });
     }
 }

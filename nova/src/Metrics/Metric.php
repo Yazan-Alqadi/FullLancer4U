@@ -30,15 +30,15 @@ abstract class Metric extends Card
     /**
      * Calculate the metric's value.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return mixed
      */
     public function resolve(NovaRequest $request)
     {
         $resolver = function () use ($request) {
             return $this->onlyOnDetail
-                    ? $this->calculate($request, $request->findModelOrFail())
-                    : $this->calculate($request);
+                ? $this->calculate($request, $request->findModelOrFail())
+                : $this->calculate($request);
         };
 
         if ($cacheFor = $this->cacheFor()) {
@@ -55,9 +55,19 @@ abstract class Metric extends Card
     }
 
     /**
+     * Determine for how many minutes the metric should be cached.
+     *
+     * @return \DateTimeInterface|\DateInterval|float|int
+     */
+    public function cacheFor()
+    {
+        //
+    }
+
+    /**
      * Get the appropriate cache key for the metric.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return string
      */
     protected function getCacheKey(NovaRequest $request)
@@ -73,26 +83,6 @@ abstract class Metric extends Card
     }
 
     /**
-     * Get the displayable name of the metric.
-     *
-     * @return string
-     */
-    public function name()
-    {
-        return $this->name ?: Nova::humanize($this);
-    }
-
-    /**
-     * Determine for how many minutes the metric should be cached.
-     *
-     * @return \DateTimeInterface|\DateInterval|float|int
-     */
-    public function cacheFor()
-    {
-        //
-    }
-
-    /**
      * Get the URI key for the metric.
      *
      * @return string
@@ -103,9 +93,19 @@ abstract class Metric extends Card
     }
 
     /**
+     * Get the displayable name of the metric.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->name ?: Nova::humanize($this);
+    }
+
+    /**
      * Set whether the metric should refresh when actions are run.
      *
-     * @param  bool  $value
+     * @param bool $value
      */
     public function refreshWhenActionRuns($value = true)
     {
@@ -134,12 +134,12 @@ abstract class Metric extends Card
     /**
      * Convert datetime to application timezone.
      *
-     * @param  \Cake\Chronos\ChronosInterface|\Carbon\CarbonInterface  $datetime
+     * @param \Cake\Chronos\ChronosInterface|\Carbon\CarbonInterface $datetime
      * @return \Cake\Chronos\ChronosInterface|\Carbon\CarbonInterface
      */
     protected function asQueryDatetime($datetime)
     {
-        if (! $datetime instanceof \DateTimeImmutable) {
+        if (!$datetime instanceof \DateTimeImmutable) {
             return $datetime->copy()->timezone(config('app.timezone'));
         }
 

@@ -9,7 +9,6 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Project extends Resource
 {
@@ -39,24 +38,24 @@ class Project extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            BelongsTo::make('Client','user',\App\Nova\User::class),
+            BelongsTo::make('Client', 'user', \App\Nova\User::class),
             Text::make('Title', 'title')
                 ->sortable()
                 ->rules('max:255'),
-            Number::make('Price','price')->sortable(),
-            Textarea::make('Description','description')->sortable()->rules('min:10'),
-            BelongsTo::make('Category','category',\App\Nova\Category::class),
+            Number::make('Price', 'price')->sortable(),
+            Textarea::make('Description', 'description')->sortable()->rules('min:10'),
+            BelongsTo::make('Category', 'category', \App\Nova\Category::class),
             Text::make('Status', 'status')
                 ->sortable()
                 ->rules('max:255'),
-            Date::make('Deadline','deadline')->sortable(),
+            Date::make('Deadline', 'deadline')->sortable(),
 
         ];
     }
@@ -64,7 +63,7 @@ class Project extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -75,7 +74,7 @@ class Project extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -86,7 +85,7 @@ class Project extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -97,7 +96,7 @@ class Project extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)

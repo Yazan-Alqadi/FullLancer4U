@@ -30,9 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'google' => [
-        'client_id'     => '971310405414-hs0p3kurhr050fr7rj3bp42s89bb3mef.apps.googleusercontent.com',
+        'client_id' => '971310405414-hs0p3kurhr050fr7rj3bp42s89bb3mef.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect'      => 'http://127.0.0.1:8000/auth/google/callback'
+        'redirect' => 'http://127.0.0.1:8000/auth/google/callback'
     ],
 
 ];

@@ -1,29 +1,29 @@
 <template>
-  <resource-index
-    :field="field"
-    :resource-name="field.resourceName"
-    :via-resource="resourceName"
-    :via-resource-id="resourceId"
-    :via-relationship="field.belongsToManyRelationship"
-    :relationship-type="'belongsToMany'"
-    @actionExecuted="actionExecuted"
-    :load-cards="false"
-    :initialPerPage="field.perPage || 5"
-    :should-override-meta="false"
-  />
+    <resource-index
+        :field="field"
+        :initialPerPage="field.perPage || 5"
+        :load-cards="false"
+        :relationship-type="'belongsToMany'"
+        :resource-name="field.resourceName"
+        :should-override-meta="false"
+        :via-relationship="field.belongsToManyRelationship"
+        :via-resource="resourceName"
+        :via-resource-id="resourceId"
+        @actionExecuted="actionExecuted"
+    />
 </template>
 
 <script>
 export default {
-  props: ['resourceName', 'resourceId', 'resource', 'field'],
+    props: ['resourceName', 'resourceId', 'resource', 'field'],
 
-  methods: {
-    /**
-     * Handle the actionExecuted event and pass it up the chain.
-     */
-    actionExecuted() {
-      this.$emit('actionExecuted')
+    methods: {
+        /**
+         * Handle the actionExecuted event and pass it up the chain.
+         */
+        actionExecuted() {
+            this.$emit('actionExecuted')
+        },
     },
-  },
 }
 </script>
