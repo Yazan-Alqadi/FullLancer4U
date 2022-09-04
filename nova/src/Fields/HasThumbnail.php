@@ -14,7 +14,7 @@ trait HasThumbnail
     /**
      * Specify the callback that should be used to retrieve the thumbnail URL.
      *
-     * @param  callable  $thumbnailUrlCallback
+     * @param callable $thumbnailUrlCallback
      * @return $this
      */
     public function thumbnail(callable $thumbnailUrlCallback)

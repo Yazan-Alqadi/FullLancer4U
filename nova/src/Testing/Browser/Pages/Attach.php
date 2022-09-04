@@ -16,9 +16,9 @@ class Attach extends Page
     /**
      * Create a new page instance.
      *
-     * @param  string  $resourceName
-     * @param  string  $resourceId
-     * @param  string  $relation
+     * @param string $resourceName
+     * @param string $resourceId
+     * @param string $relation
      * @return void
      */
     public function __construct($resourceName, $resourceId, $relation)
@@ -35,14 +35,14 @@ class Attach extends Page
      */
     public function url()
     {
-        return Nova::path().'/resources/'.$this->resourceName.'/'.$this->resourceId.'/attach/'.$this->relation.'?viaRelationship='.$this->relation.'&polymorphic=0';
+        return Nova::path() . '/resources/' . $this->resourceName . '/' . $this->resourceId . '/attach/' . $this->relation . '?viaRelationship=' . $this->relation . '&polymorphic=0';
     }
 
     /**
      * Select the attachable resource with the given ID.
      *
-     * @param  \Laravel\Dusk\Browser  $browser
-     * @param  string|int  $id
+     * @param \Laravel\Dusk\Browser $browser
+     * @param string|int $id
      * @return void
      */
     public function selectAttachable(Browser $browser, $id)
@@ -53,7 +53,7 @@ class Attach extends Page
     /**
      * Click the attach button.
      *
-     * @param  \Laravel\Dusk\Browser  $browser
+     * @param \Laravel\Dusk\Browser $browser
      * @return void
      */
     public function clickAttach(Browser $browser)
@@ -64,13 +64,13 @@ class Attach extends Page
     /**
      * Assert that the browser is on the page.
      *
-     * @param  \Laravel\Dusk\Browser  $browser
+     * @param \Laravel\Dusk\Browser $browser
      * @return void
      */
     public function assert(Browser $browser)
     {
         $browser->pause(500)
-                ->waitFor('#nova .content form', 25);
+            ->waitFor('#nova .content form', 25);
     }
 
     /**

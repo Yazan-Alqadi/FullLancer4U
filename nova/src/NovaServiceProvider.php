@@ -36,27 +36,27 @@ class NovaServiceProvider extends ServiceProvider
     protected function registerPublishing()
     {
         $this->publishes([
-            __DIR__.'/Console/stubs/NovaServiceProvider.stub' => app_path('Providers/NovaServiceProvider.php'),
+            __DIR__ . '/Console/stubs/NovaServiceProvider.stub' => app_path('Providers/NovaServiceProvider.php'),
         ], 'nova-provider');
 
         $this->publishes([
-            __DIR__.'/../config/nova.php' => config_path('nova.php'),
+            __DIR__ . '/../config/nova.php' => config_path('nova.php'),
         ], 'nova-config');
 
         $this->publishes([
-            __DIR__.'/../public' => public_path('vendor/nova'),
+            __DIR__ . '/../public' => public_path('vendor/nova'),
         ], 'nova-assets');
 
         $this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/nova'),
+            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/nova'),
         ], 'nova-lang');
 
         $this->publishes([
-            __DIR__.'/../resources/views/partials' => resource_path('views/vendor/nova/partials'),
+            __DIR__ . '/../resources/views/partials' => resource_path('views/vendor/nova/partials'),
         ], 'nova-views');
 
         $this->publishes([
-            __DIR__.'/../database/migrations' => database_path('migrations'),
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
         ], 'nova-migrations');
     }
 
@@ -67,12 +67,12 @@ class NovaServiceProvider extends ServiceProvider
      */
     protected function registerResources()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'nova');
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'nova');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nova');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'nova');
         $this->loadJsonTranslationsFrom(resource_path('lang/vendor/nova'));
 
         if (Nova::runsMigrations()) {
-            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+            $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         }
 
         $this->registerRoutes();
@@ -86,7 +86,7 @@ class NovaServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+            $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
         });
     }
 
@@ -117,6 +117,13 @@ class NovaServiceProvider extends ServiceProvider
         Carbon::mixin(new Macros\FirstDayOfPreviousQuarter);
     }
 
+    protected function registerCollectionMacros()
+    {
+        Collection::macro('isAssoc', function () {
+            return Arr::isAssoc($this->toBase()->all());
+        });
+    }
+
     /**
      * Register the Nova JSON variables.
      *
@@ -127,7 +134,7 @@ class NovaServiceProvider extends ServiceProvider
         Nova::serving(function (ServingNova $event) {
             // Load the default Nova translations.
             Nova::translations(
-                resource_path('lang/vendor/nova/'.app()->getLocale().'.json')
+                resource_path('lang/vendor/nova/' . app()->getLocale() . '.json')
             );
 
             Nova::provideToScript([
@@ -174,12 +181,5 @@ class NovaServiceProvider extends ServiceProvider
             Console\UserCommand::class,
             Console\ValueCommand::class,
         ]);
-    }
-
-    protected function registerCollectionMacros()
-    {
-        Collection::macro('isAssoc', function () {
-            return Arr::isAssoc($this->toBase()->all());
-        });
     }
 }

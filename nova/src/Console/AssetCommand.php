@@ -33,23 +33,23 @@ class AssetCommand extends Command
      */
     public function handle()
     {
-        if (! $this->hasValidNameArgument()) {
+        if (!$this->hasValidNameArgument()) {
             return;
         }
 
         (new Filesystem)->copyDirectory(
-            __DIR__.'/asset-stubs',
+            __DIR__ . '/asset-stubs',
             $this->assetPath()
         );
 
         // AssetServiceProvider.php replacements...
-        $this->replace('{{ namespace }}', $this->assetNamespace(), $this->assetPath().'/src/AssetServiceProvider.stub');
-        $this->replace('{{ component }}', $this->assetName(), $this->assetPath().'/src/AssetServiceProvider.stub');
-        $this->replace('{{ name }}', $this->assetName(), $this->assetPath().'/src/AssetServiceProvider.stub');
+        $this->replace('{{ namespace }}', $this->assetNamespace(), $this->assetPath() . '/src/AssetServiceProvider.stub');
+        $this->replace('{{ component }}', $this->assetName(), $this->assetPath() . '/src/AssetServiceProvider.stub');
+        $this->replace('{{ name }}', $this->assetName(), $this->assetPath() . '/src/AssetServiceProvider.stub');
 
         // Asset composer.json replacements...
-        $this->replace('{{ name }}', $this->argument('name'), $this->assetPath().'/composer.json');
-        $this->replace('{{ escapedNamespace }}', $this->escapedAssetNamespace(), $this->assetPath().'/composer.json');
+        $this->replace('{{ name }}', $this->argument('name'), $this->assetPath() . '/composer.json');
+        $this->replace('{{ escapedNamespace }}', $this->escapedAssetNamespace(), $this->assetPath() . '/composer.json');
 
         // Rename the stubs with the proper file extensions...
         $this->renameStubs();
@@ -77,15 +77,76 @@ class AssetCommand extends Command
     }
 
     /**
-     * Get the array of stubs that need PHP file extensions.
+     * Get the path to the asset.
      *
-     * @return array
+     * @return string
      */
-    protected function stubsToRename()
+    protected function assetPath()
     {
-        return [
-            $this->assetPath().'/src/AssetServiceProvider.stub',
-        ];
+        return base_path('nova-components/' . $this->assetClass());
+    }
+
+    /**
+     * Get the asset's class name.
+     *
+     * @return string
+     */
+    protected function assetClass()
+    {
+        return Str::studly($this->assetName());
+    }
+
+    /**
+     * Get the asset's base name.
+     *
+     * @return string
+     */
+    protected function assetName()
+    {
+        return explode('/', $this->argument('name'))[1];
+    }
+
+    /**
+     * Replace the given string in the given file.
+     *
+     * @param string $search
+     * @param string $replace
+     * @param string $path
+     * @return void
+     */
+    protected function replace($search, $replace, $path)
+    {
+        file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
+    }
+
+    /**
+     * Get the asset's namespace.
+     *
+     * @return string
+     */
+    protected function assetNamespace()
+    {
+        return Str::studly($this->assetVendor()) . '\\' . $this->assetClass();
+    }
+
+    /**
+     * Get the asset's vendor.
+     *
+     * @return string
+     */
+    protected function assetVendor()
+    {
+        return explode('/', $this->argument('name'))[0];
+    }
+
+    /**
+     * Get the asset's escaped namespace.
+     *
+     * @return string
+     */
+    protected function escapedAssetNamespace()
+    {
+        return str_replace('\\', '\\\\', $this->assetNamespace());
     }
 
     /**
@@ -99,13 +160,23 @@ class AssetCommand extends Command
 
         $composer['repositories'][] = [
             'type' => 'path',
-            'url' => './'.$this->relativeAssetPath(),
+            'url' => './' . $this->relativeAssetPath(),
         ];
 
         file_put_contents(
             base_path('composer.json'),
             json_encode($composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
         );
+    }
+
+    /**
+     * Get the relative path to the asset.
+     *
+     * @return string
+     */
+    protected function relativeAssetPath()
+    {
+        return 'nova-components/' . $this->assetClass();
     }
 
     /**
@@ -134,8 +205,8 @@ class AssetCommand extends Command
     {
         $package = json_decode(file_get_contents(base_path('package.json')), true);
 
-        $package['scripts']['build-'.$this->assetName()] = 'cd '.$this->relativeAssetPath().' && npm run dev';
-        $package['scripts']['build-'.$this->assetName().'-prod'] = 'cd '.$this->relativeAssetPath().' && npm run prod';
+        $package['scripts']['build-' . $this->assetName()] = 'cd ' . $this->relativeAssetPath() . ' && npm run dev';
+        $package['scripts']['build-' . $this->assetName() . '-prod'] = 'cd ' . $this->relativeAssetPath() . ' && npm run prod';
 
         file_put_contents(
             base_path('package.json'),
@@ -151,6 +222,26 @@ class AssetCommand extends Command
     protected function installNpmDependencies()
     {
         $this->executeCommand('npm set progress=false && npm install', $this->assetPath());
+    }
+
+    /**
+     * Run the given command as a process.
+     *
+     * @param string $command
+     * @param string $path
+     * @return void
+     */
+    protected function executeCommand($command, $path)
+    {
+        $process = (Process::fromShellCommandline($command, $path))->setTimeout(null);
+
+        if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
+            $process->setTty(true);
+        }
+
+        $process->run(function ($type, $line) {
+            $this->output->write($line);
+        });
     }
 
     /**
@@ -174,105 +265,14 @@ class AssetCommand extends Command
     }
 
     /**
-     * Run the given command as a process.
+     * Get the array of stubs that need PHP file extensions.
      *
-     * @param  string  $command
-     * @param  string  $path
-     * @return void
+     * @return array
      */
-    protected function executeCommand($command, $path)
+    protected function stubsToRename()
     {
-        $process = (Process::fromShellCommandline($command, $path))->setTimeout(null);
-
-        if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
-            $process->setTty(true);
-        }
-
-        $process->run(function ($type, $line) {
-            $this->output->write($line);
-        });
-    }
-
-    /**
-     * Replace the given string in the given file.
-     *
-     * @param  string  $search
-     * @param  string  $replace
-     * @param  string  $path
-     * @return void
-     */
-    protected function replace($search, $replace, $path)
-    {
-        file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
-    }
-
-    /**
-     * Get the path to the asset.
-     *
-     * @return string
-     */
-    protected function assetPath()
-    {
-        return base_path('nova-components/'.$this->assetClass());
-    }
-
-    /**
-     * Get the relative path to the asset.
-     *
-     * @return string
-     */
-    protected function relativeAssetPath()
-    {
-        return 'nova-components/'.$this->assetClass();
-    }
-
-    /**
-     * Get the asset's namespace.
-     *
-     * @return string
-     */
-    protected function assetNamespace()
-    {
-        return Str::studly($this->assetVendor()).'\\'.$this->assetClass();
-    }
-
-    /**
-     * Get the asset's escaped namespace.
-     *
-     * @return string
-     */
-    protected function escapedAssetNamespace()
-    {
-        return str_replace('\\', '\\\\', $this->assetNamespace());
-    }
-
-    /**
-     * Get the asset's class name.
-     *
-     * @return string
-     */
-    protected function assetClass()
-    {
-        return Str::studly($this->assetName());
-    }
-
-    /**
-     * Get the asset's vendor.
-     *
-     * @return string
-     */
-    protected function assetVendor()
-    {
-        return explode('/', $this->argument('name'))[0];
-    }
-
-    /**
-     * Get the asset's base name.
-     *
-     * @return string
-     */
-    protected function assetName()
-    {
-        return explode('/', $this->argument('name'))[1];
+        return [
+            $this->assetPath() . '/src/AssetServiceProvider.stub',
+        ];
     }
 }

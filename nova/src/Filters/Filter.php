@@ -33,60 +33,12 @@ abstract class Filter implements FilterContract, JsonSerializable
     /**
      * Apply the filter to the given query.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  mixed  $value
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $value
      * @return \Illuminate\Database\Eloquent\Builder
      */
     abstract public function apply(Request $request, $query, $value);
-
-    /**
-     * Get the filter's available options.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    abstract public function options(Request $request);
-
-    /**
-     * Get the component name for the filter.
-     *
-     * @return string
-     */
-    public function component()
-    {
-        return $this->component;
-    }
-
-    /**
-     * Get the displayable name of the filter.
-     *
-     * @return string
-     */
-    public function name()
-    {
-        return $this->name ?: Nova::humanize($this);
-    }
-
-    /**
-     * Get the key for the filter.
-     *
-     * @return string
-     */
-    public function key()
-    {
-        return get_class($this);
-    }
-
-    /**
-     * Set the default options for the filter.
-     *
-     * @return array|mixed
-     */
-    public function default()
-    {
-        return '';
-    }
 
     /**
      * Prepare the filter for JSON serialization.
@@ -106,5 +58,53 @@ abstract class Filter implements FilterContract, JsonSerializable
             })->values()->all(),
             'currentValue' => $this->default() ?? '',
         ], $this->meta());
+    }
+
+    /**
+     * Get the key for the filter.
+     *
+     * @return string
+     */
+    public function key()
+    {
+        return get_class($this);
+    }
+
+    /**
+     * Get the displayable name of the filter.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->name ?: Nova::humanize($this);
+    }
+
+    /**
+     * Get the component name for the filter.
+     *
+     * @return string
+     */
+    public function component()
+    {
+        return $this->component;
+    }
+
+    /**
+     * Get the filter's available options.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    abstract public function options(Request $request);
+
+    /**
+     * Set the default options for the filter.
+     *
+     * @return array|mixed
+     */
+    public function default()
+    {
+        return '';
     }
 }

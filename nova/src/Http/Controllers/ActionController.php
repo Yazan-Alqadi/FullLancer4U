@@ -11,7 +11,7 @@ class ActionController extends Controller
     /**
      * List the actions for the given resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Illuminate\Http\Response
      */
     public function index(NovaRequest $request)
@@ -32,23 +32,10 @@ class ActionController extends Controller
     }
 
     /**
-     * Perform an action on the specified resources.
-     *
-     * @param  \Laravel\Nova\Http\Requests\ActionRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ActionRequest $request)
-    {
-        $request->validateFields();
-
-        return $request->action()->handleRequest($request);
-    }
-
-    /**
      * Get available actions for request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  \Laravel\Nova\Resource  $resource
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \Laravel\Nova\Resource $resource
      * @return \Illuminate\Support\Collection
      */
     protected function availableActions(NovaRequest $request, $resource)
@@ -65,5 +52,18 @@ class ActionController extends Controller
         }
 
         return $resource->{$method}($request);
+    }
+
+    /**
+     * Perform an action on the specified resources.
+     *
+     * @param \Laravel\Nova\Http\Requests\ActionRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(ActionRequest $request)
+    {
+        $request->validateFields();
+
+        return $request->action()->handleRequest($request);
     }
 }

@@ -16,7 +16,7 @@ class PendingRouteRegistration
     /**
      * Register the Nova authentication routes.
      *
-     * @param  array  $middleware
+     * @param array $middleware
      * @return $this
      */
     public function withAuthenticationRoutes($middleware = ['web'])
@@ -44,7 +44,7 @@ class PendingRouteRegistration
     /**
      * Register the Nova password reset routes.
      *
-     * @param  array  $middleware
+     * @param array $middleware
      * @return $this
      */
     public function withPasswordResetRoutes($middleware = ['web'])
@@ -63,6 +63,18 @@ class PendingRouteRegistration
             });
 
         return $this;
+    }
+
+    /**
+     * Handle the object's destruction and register the router route.
+     *
+     * @return void
+     */
+    public function __destruct()
+    {
+        if (!$this->registered) {
+            $this->register();
+        }
     }
 
     /**
@@ -85,25 +97,13 @@ class PendingRouteRegistration
                 ->domain(config('nova.domain', null))
                 ->prefix(Nova::path())
                 ->get('/{view}', 'Laravel\Nova\Http\Controllers\RouterController@show')
-                 ->where('view', '.*');
+                ->where('view', '.*');
         };
 
-        if (app()->runningInConsole() && ! app()->runningUnitTests()) {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
             app()->booted($defineRouterControllerRoutes);
         } else {
             Nova::booted($defineRouterControllerRoutes);
-        }
-    }
-
-    /**
-     * Handle the object's destruction and register the router route.
-     *
-     * @return void
-     */
-    public function __destruct()
-    {
-        if (! $this->registered) {
-            $this->register();
         }
     }
 }

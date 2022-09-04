@@ -1,29 +1,29 @@
 <template>
-  <resource-index
-    :field="field"
-    :resource-name="field.resourceName"
-    :via-resource="resourceName"
-    :via-resource-id="resourceId"
-    :via-relationship="field.hasOneRelationship"
-    :relationship-type="'hasOne'"
-    @actionExecuted="actionExecuted"
-    :load-cards="false"
-    :disable-pagination="true"
-    :should-override-meta="false"
-  />
+    <resource-index
+        :disable-pagination="true"
+        :field="field"
+        :load-cards="false"
+        :relationship-type="'hasOne'"
+        :resource-name="field.resourceName"
+        :should-override-meta="false"
+        :via-relationship="field.hasOneRelationship"
+        :via-resource="resourceName"
+        :via-resource-id="resourceId"
+        @actionExecuted="actionExecuted"
+    />
 </template>
 
 <script>
 export default {
-  props: ['resourceName', 'resourceId', 'resource', 'field'],
+    props: ['resourceName', 'resourceId', 'resource', 'field'],
 
-  methods: {
-    /**
-     * Handle the actionExecuted event and pass it up the chain.
-     */
-    actionExecuted() {
-      this.$emit('actionExecuted')
+    methods: {
+        /**
+         * Handle the actionExecuted event and pass it up the chain.
+         */
+        actionExecuted() {
+            this.$emit('actionExecuted')
+        },
     },
-  },
 }
 </script>

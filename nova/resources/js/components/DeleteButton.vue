@@ -1,10 +1,6 @@
 <template>
-  <button
-    type="button"
-    @keydown.enter.prevent="$emit('click')"
-    @click.prevent="$emit('click')"
-    tabindex="0"
-    class="
+    <button
+        class="
       cursor-pointer
       dim
       btn btn-link
@@ -12,10 +8,14 @@
       inline-flex
       items-center
     "
-  >
-    <icon type="delete" view-box="0 0 20 20" width="16" height="16" />
-    <slot />
-  </button>
+        tabindex="0"
+        type="button"
+        @keydown.enter.prevent="$emit('click')"
+        @click.prevent="$emit('click')"
+    >
+        <icon height="16" type="delete" view-box="0 0 20 20" width="16"/>
+        <slot/>
+    </button>
 </template>
 
 <script>

@@ -162,7 +162,7 @@ class Nova
     public static function version()
     {
         return Cache::driver('array')->rememberForever('nova.version', function () {
-            $manifest = json_decode(File::get(__DIR__.'/../composer.json'), true);
+            $manifest = json_decode(File::get(__DIR__ . '/../composer.json'), true);
 
             return $manifest['version'] ?? '3.x';
         });
@@ -179,19 +179,9 @@ class Nova
     }
 
     /**
-     * Get the URI path prefix utilized by Nova.
-     *
-     * @return string
-     */
-    public static function path()
-    {
-        return config('nova.path', '/nova');
-    }
-
-    /**
      * Run callback when currently serving Nova.
      *
-     * @param  callable  $callback
+     * @param callable $callback
      * @return mixed
      */
     public static function whenServing(callable $callback)
@@ -216,7 +206,7 @@ class Nova
     /**
      * Get meta data information about all resources for client side consumption.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public static function resourceInformation(Request $request)
@@ -253,33 +243,9 @@ class Nova
     }
 
     /**
-     * Return Nova's authorized resources.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Laravel\Nova\ResourceCollection
-     */
-    public static function authorizedResources(Request $request)
-    {
-        return static::resourceCollection()->authorized($request);
-    }
-
-    /**
      * Get the resources available for the given request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public static function availableResources(Request $request)
-    {
-        return static::authorizedResources($request)
-            ->sortBy(static::sortResourcesWith())
-            ->all();
-    }
-
-    /**
-     * Get the resources available for the given request.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public static function globallySearchableResources(Request $request)
@@ -291,9 +257,32 @@ class Nova
     }
 
     /**
+     * Return Nova's authorized resources.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Laravel\Nova\ResourceCollection
+     */
+    public static function authorizedResources(Request $request)
+    {
+        return static::resourceCollection()->authorized($request);
+    }
+
+    /**
+     * Get the sorting strategy to use for Nova resources.
+     *
+     * @return \Closure
+     */
+    public static function sortResourcesWith()
+    {
+        return static::$sortCallback ?? function ($resource) {
+            return $resource::label();
+        };
+    }
+
+    /**
      * Get the resources available for the given request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public static function resourcesForNavigation(Request $request)
@@ -305,24 +294,9 @@ class Nova
     }
 
     /**
-     * Register the given resources.
-     *
-     * @param  array  $resources
-     * @return static
-     */
-    public static function resources(array $resources)
-    {
-        static::$resources = array_unique(
-            array_merge(static::$resources, $resources)
-        );
-
-        return new static;
-    }
-
-    /**
      * Replace the registered resources with the given resources.
      *
-     * @param  array  $resources
+     * @param array $resources
      * @return static
      */
     public static function replaceResources(array $resources)
@@ -335,21 +309,34 @@ class Nova
     /**
      * Get the available resource groups for the given request.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return \Illuminate\Support\Collection
      */
     public static function groups(Request $request)
     {
         return collect(static::availableResources($request))
-                    ->map(function ($item, $key) {
-                        return $item::group();
-                    })->unique()->values();
+            ->map(function ($item, $key) {
+                return $item::group();
+            })->unique()->values();
+    }
+
+    /**
+     * Get the resources available for the given request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public static function availableResources(Request $request)
+    {
+        return static::authorizedResources($request)
+            ->sortBy(static::sortResourcesWith())
+            ->all();
     }
 
     /**
      * Get the grouped resources available for the given request.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return array
      */
     public static function groupedResources(Request $request)
@@ -362,7 +349,7 @@ class Nova
     /**
      * Get the grouped resources available for the given request.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return \Illuminate\Support\Collection
      */
     public static function groupedResourcesForNavigation(Request $request)
@@ -375,7 +362,7 @@ class Nova
     /**
      * Register all of the resource classes in the given directory.
      *
-     * @param  string  $directory
+     * @param string $directory
      * @return void
      */
     public static function resourcesIn($directory)
@@ -385,15 +372,15 @@ class Nova
         $resources = [];
 
         foreach ((new Finder)->in($directory)->files() as $resource) {
-            $resource = $namespace.str_replace(
-                ['/', '.php'],
-                ['\\', ''],
-                Str::after($resource->getPathname(), app_path().DIRECTORY_SEPARATOR)
-            );
+            $resource = $namespace . str_replace(
+                    ['/', '.php'],
+                    ['\\', ''],
+                    Str::after($resource->getPathname(), app_path() . DIRECTORY_SEPARATOR)
+                );
 
             if (is_subclass_of($resource, Resource::class) &&
-                ! (new ReflectionClass($resource))->isAbstract() &&
-                ! (is_subclass_of($resource, ActionResource::class))) {
+                !(new ReflectionClass($resource))->isAbstract() &&
+                !(is_subclass_of($resource, ActionResource::class))) {
                 $resources[] = $resource;
             }
         }
@@ -404,22 +391,24 @@ class Nova
     }
 
     /**
-     * Get the resource class name for a given key.
+     * Register the given resources.
      *
-     * @param  string  $key
-     * @return string
+     * @param array $resources
+     * @return static
      */
-    public static function resourceForKey($key)
+    public static function resources(array $resources)
     {
-        return static::resourceCollection()->first(function ($value) use ($key) {
-            return $value::uriKey() === $key;
-        });
+        static::$resources = array_unique(
+            array_merge(static::$resources, $resources)
+        );
+
+        return new static;
     }
 
     /**
      * Get a new resource instance with the given model instance.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param \Illuminate\Database\Eloquent\Model $model
      * @return \Laravel\Nova\Resource
      */
     public static function newResourceFromModel($model)
@@ -432,7 +421,7 @@ class Nova
     /**
      * Get the resource class name for a given model class.
      *
-     * @param  object|string  $class
+     * @param object|string $class
      * @return string|null
      */
     public static function resourceForModel($class)
@@ -455,7 +444,7 @@ class Nova
     /**
      * Get a resource instance for a given key.
      *
-     * @param  string  $key
+     * @param string $key
      * @return \Laravel\Nova\Resource|null
      */
     public static function resourceInstanceForKey($key)
@@ -466,9 +455,22 @@ class Nova
     }
 
     /**
+     * Get the resource class name for a given key.
+     *
+     * @param string $key
+     * @return string
+     */
+    public static function resourceForKey($key)
+    {
+        return static::resourceCollection()->first(function ($value) use ($key) {
+            return $value::uriKey() === $key;
+        });
+    }
+
+    /**
      * Get a fresh model instance for the resource with the given key.
      *
-     * @param  string  $key
+     * @param string $key
      * @return \Illuminate\Database\Eloquent\Model
      */
     public static function modelInstanceForKey($key)
@@ -481,12 +483,12 @@ class Nova
     /**
      * Create a new user instance.
      *
-     * @param  \Illuminate\Console\Command  $command
+     * @param \Illuminate\Console\Command $command
      * @return mixed
      */
     public static function createUser($command)
     {
-        if (! static::$createUserCallback) {
+        if (!static::$createUserCallback) {
             static::createUserUsing();
         }
 
@@ -499,22 +501,22 @@ class Nova
     /**
      * Register the callbacks used to create a new user via the CLI.
      *
-     * @param  \Closure  $createUserCommandCallback
-     * @param  \Closure  $createUserCallback
+     * @param \Closure $createUserCommandCallback
+     * @param \Closure $createUserCallback
      * @return static
      */
     public static function createUserUsing($createUserCommandCallback = null, $createUserCallback = null)
     {
-        if (! $createUserCallback) {
+        if (!$createUserCallback) {
             $createUserCallback = $createUserCommandCallback;
             $createUserCommandCallback = null;
         }
 
         static::$createUserCommandCallback = $createUserCommandCallback ??
-                  static::defaultCreateUserCommandCallback();
+            static::defaultCreateUserCommandCallback();
 
         static::$createUserCallback = $createUserCallback ??
-                  static::defaultCreateUserCallback();
+            static::defaultCreateUserCallback();
 
         return new static;
     }
@@ -560,7 +562,7 @@ class Nova
     /**
      * Set the callable that resolves the user's preferred timezone.
      *
-     * @param  callable  $userTimezoneCallback
+     * @param callable $userTimezoneCallback
      * @return static
      */
     public static function userTimezone($userTimezoneCallback)
@@ -573,7 +575,7 @@ class Nova
     /**
      * Resolve the user's preferred timezone.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return string|null
      */
     public static function resolveUserTimezone(Request $request)
@@ -586,7 +588,7 @@ class Nova
     /**
      * Register new tools with Nova.
      *
-     * @param  array  $tools
+     * @param array $tools
      * @return static
      */
     public static function tools(array $tools)
@@ -612,7 +614,7 @@ class Nova
     /**
      * Boot the available Nova tools.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return void
      */
     public static function bootTools(Request $request)
@@ -623,28 +625,12 @@ class Nova
     /**
      * Get the tools registered with Nova.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public static function availableTools(Request $request)
     {
         return collect(static::$tools)->filter->authorize($request)->all();
-    }
-
-    /**
-     * Register new dashboard cards with Nova.
-     *
-     * @param  array  $cards
-     * @return static
-     */
-    public static function cards(array $cards)
-    {
-        static::$cards = array_merge(
-            static::$cards,
-            $cards
-        );
-
-        return new static;
     }
 
     /**
@@ -660,7 +646,7 @@ class Nova
     /**
      * Get the cards registered with Nova.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public static function availableCards(Request $request)
@@ -683,7 +669,7 @@ class Nova
     /**
      * Get the dashboards registered with Nova.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public static function availableDashboards(Request $request)
@@ -694,7 +680,7 @@ class Nova
     /**
      * Register the dashboards.
      *
-     * @param  array  $dashboards
+     * @param array $dashboards
      * @return static
      */
     public static function dashboards(array $dashboards)
@@ -707,7 +693,7 @@ class Nova
     /**
      * Get the available dashboard cards for the given request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Illuminate\Support\Collection
      */
     public static function allAvailableDashboardCards(NovaRequest $request)
@@ -725,10 +711,26 @@ class Nova
     }
 
     /**
+     * Register new dashboard cards with Nova.
+     *
+     * @param array $cards
+     * @return static
+     */
+    public static function cards(array $cards)
+    {
+        static::$cards = array_merge(
+            static::$cards,
+            $cards
+        );
+
+        return new static;
+    }
+
+    /**
      * Get the available dashboard for the given request.
      *
-     * @param  string  $dashboard
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param string $dashboard
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return \Illuminate\Support\Collection
      */
     public static function dashboardForKey($dashboard, NovaRequest $request)
@@ -744,8 +746,8 @@ class Nova
     /**
      * Get the available dashboard cards for the given request.
      *
-     * @param  string  $dashboard
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param string $dashboard
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return Collection
      */
     public static function availableDashboardCardsForDashboard($dashboard, NovaRequest $request)
@@ -770,7 +772,7 @@ class Nova
     /**
      * Get all of the available scripts that should be registered.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public static function availableScripts(Request $request)
@@ -791,7 +793,7 @@ class Nova
     /**
      * Get all of the available stylesheets that should be registered.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public static function availableStyles(Request $request)
@@ -810,10 +812,21 @@ class Nova
     }
 
     /**
+     * Register the given remote script file with Nova.
+     *
+     * @param string $path
+     * @return static
+     */
+    public static function remoteScript($path)
+    {
+        return static::script(md5($path), $path);
+    }
+
+    /**
      * Register the given script file with Nova.
      *
-     * @param  string  $name
-     * @param  string  $path
+     * @param string $name
+     * @param string $path
      * @return static
      */
     public static function script($name, $path)
@@ -824,21 +837,21 @@ class Nova
     }
 
     /**
-     * Register the given remote script file with Nova.
+     * Register the given remote CSS file with Nova.
      *
-     * @param  string  $path
+     * @param string $path
      * @return static
      */
-    public static function remoteScript($path)
+    public static function remoteStyle($path)
     {
-        return static::script(md5($path), $path);
+        return static::style(md5($path), $path);
     }
 
     /**
      * Register the given CSS file with Nova.
      *
-     * @param  string  $name
-     * @param  string  $path
+     * @param string $name
+     * @param string $path
      * @return static
      */
     public static function style($name, $path)
@@ -849,20 +862,9 @@ class Nova
     }
 
     /**
-     * Register the given remote CSS file with Nova.
-     *
-     * @param  string  $path
-     * @return static
-     */
-    public static function remoteStyle($path)
-    {
-        return static::style(md5($path), $path);
-    }
-
-    /**
      * Register the given theme CSS file with Nova.
      *
-     * @param  string  $publicPath
+     * @param string $publicPath
      * @return static
      */
     public static function theme($publicPath)
@@ -873,13 +875,13 @@ class Nova
     /**
      * Register the given translations with Nova.
      *
-     * @param  array|string  $translations
+     * @param array|string $translations
      * @return static
      */
     public static function translations($translations)
     {
         if (is_string($translations)) {
-            if (! is_readable($translations)) {
+            if (!is_readable($translations)) {
                 return new static;
             }
 
@@ -904,37 +906,16 @@ class Nova
     /**
      * Get the JSON variables that should be provided to the global Nova JavaScript object.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public static function jsonVariables(Request $request)
     {
         return collect(static::$jsonVariables)->map(function ($variable) use ($request) {
             return is_object($variable) && is_callable($variable)
-                        ? $variable($request)
-                        : $variable;
+                ? $variable($request)
+                : $variable;
         })->all();
-    }
-
-    /**
-     * Provide additional variables to the global Nova JavaScript object.
-     *
-     * @param  array  $variables
-     * @return static
-     */
-    public static function provideToScript(array $variables)
-    {
-        if (empty(static::$jsonVariables)) {
-            static::$jsonVariables = [
-                'debounce' => static::$debounce * 1000,
-                'base' => static::path(),
-                'userId' => Auth::id() ?? null,
-            ];
-        }
-
-        static::$jsonVariables = array_merge(static::$jsonVariables, $variables);
-
-        return new static;
     }
 
     /**
@@ -952,7 +933,7 @@ class Nova
     /**
      * Humanize the given value into a proper name.
      *
-     * @param  string  $value
+     * @param string $value
      * @return string
      */
     public static function humanize($value)
@@ -967,7 +948,7 @@ class Nova
     /**
      * Register the callback used to set a custom Nova error reporter.
      *
-     * @param  \Closure  $callback
+     * @param \Closure $callback
      * @return static
      */
     public static function report($callback)
@@ -990,29 +971,50 @@ class Nova
     }
 
     /**
+     * Provide additional variables to the global Nova JavaScript object.
+     *
+     * @param array $variables
+     * @return static
+     */
+    public static function provideToScript(array $variables)
+    {
+        if (empty(static::$jsonVariables)) {
+            static::$jsonVariables = [
+                'debounce' => static::$debounce * 1000,
+                'base' => static::path(),
+                'userId' => Auth::id() ?? null,
+            ];
+        }
+
+        static::$jsonVariables = array_merge(static::$jsonVariables, $variables);
+
+        return new static;
+    }
+
+    /**
+     * Get the URI path prefix utilized by Nova.
+     *
+     * @return string
+     */
+    public static function path()
+    {
+        return config('nova.path', '/nova');
+    }
+
+    /**
      * Dynamically proxy static method calls.
      *
-     * @param  string  $method
-     * @param  array  $parameters
+     * @param string $method
+     * @param array $parameters
      * @return void
      */
     public static function __callStatic($method, $parameters)
     {
-        if (! property_exists(get_called_class(), $method)) {
+        if (!property_exists(get_called_class(), $method)) {
             throw new BadMethodCallException("Method {$method} does not exist.");
         }
 
         return static::${$method};
-    }
-
-    /**
-     * Return the configured ActionResource class.
-     *
-     * @return \Laravel\Nova\Actions\ActionResource
-     */
-    public static function actionResource()
-    {
-        return config('nova.actions.resource');
     }
 
     /**
@@ -1026,9 +1028,19 @@ class Nova
     }
 
     /**
+     * Return the configured ActionResource class.
+     *
+     * @return \Laravel\Nova\Actions\ActionResource
+     */
+    public static function actionResource()
+    {
+        return config('nova.actions.resource');
+    }
+
+    /**
      * Register the callback used to sort Nova resources in the sidebar.
      *
-     * @param  \Closure  $callback
+     * @param \Closure $callback
      * @return static
      */
     public static function sortResourcesBy($callback)
@@ -1039,21 +1051,9 @@ class Nova
     }
 
     /**
-     * Get the sorting strategy to use for Nova resources.
-     *
-     * @return \Closure
-     */
-    public static function sortResourcesWith()
-    {
-        return static::$sortCallback ?? function ($resource) {
-            return $resource::label();
-        };
-    }
-
-    /**
      * Return the debounce amount to use when using global search.
      *
-     * @param  int  $debounce
+     * @param int $debounce
      * @return static
      */
     public static function globalSearchDebounce($debounce)

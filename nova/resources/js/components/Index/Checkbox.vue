@@ -1,24 +1,24 @@
 <template>
-  <input
-    type="checkbox"
-    class="checkbox"
-    :disabled="disabled"
-    :checked="checked"
-    @change="$emit('input', $event)"
-  />
+    <input
+        :checked="checked"
+        :disabled="disabled"
+        class="checkbox"
+        type="checkbox"
+        @change="$emit('input', $event)"
+    />
 </template>
 
 <script>
 export default {
-  props: {
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
+    props: {
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
 
-    checked: {
-      default: false,
+        checked: {
+            default: false,
+        },
     },
-  },
 }
 </script>

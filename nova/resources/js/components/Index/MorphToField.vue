@@ -1,16 +1,16 @@
 <template>
-  <div :class="`text-${field.textAlign}`">
+    <div :class="`text-${field.textAlign}`">
     <span>
       <span v-if="field.viewable && field.value">
         <router-link
-          :to="{
+            :to="{
             name: 'detail',
             params: {
               resourceName: field.resourceName,
               resourceId: field.morphToId,
             },
           }"
-          class="no-underline dim text-primary font-bold"
+            class="no-underline dim text-primary font-bold"
         >
           {{ field.resourceLabel }}: {{ field.value }}
         </router-link>
@@ -20,11 +20,11 @@
       </span>
       <span v-else>-</span>
     </span>
-  </div>
+    </div>
 </template>
 
 <script>
 export default {
-  props: ['resourceName', 'field'],
+    props: ['resourceName', 'field'],
 }
 </script>

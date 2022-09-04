@@ -18,9 +18,9 @@ class VaporImage extends VaporFile
     /**
      * Create a new field.
      *
-     * @param  string  $name
-     * @param  string  $attribute
-     * @param  callable|null  $storageCallback
+     * @param string $name
+     * @param string $attribute
+     * @param callable|null $storageCallback
      * @return void
      */
     public function __construct($name, $attribute = null, $storageCallback = null)

@@ -7,11 +7,11 @@
         <div class="p-2">
             <select
                 :dusk="filter.name + '-filter-select'"
-                class="block w-full form-control-sm form-select"
                 :value="value"
+                class="block w-full form-control-sm form-select"
                 @change="handleChange"
             >
-                <option value="" selected>&mdash;</option>
+                <option selected value="">&mdash;</option>
 
                 <option v-for="option in filter.options" :value="option.value">
                     {{ option.name }}

@@ -29,7 +29,7 @@ abstract class Element implements JsonSerializable
     /**
      * Create a new element.
      *
-     * @param  string|null  $component
+     * @param string|null $component
      * @return void
      */
     public function __construct($component = null)
@@ -40,22 +40,12 @@ abstract class Element implements JsonSerializable
     /**
      * Determine if the element should be displayed for the given request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return bool
      */
     public function authorize(Request $request)
     {
         return $this->authorizedToSee($request);
-    }
-
-    /**
-     * Get the component name for the element.
-     *
-     * @return string
-     */
-    public function component()
-    {
-        return $this->component;
     }
 
     /**
@@ -82,5 +72,15 @@ abstract class Element implements JsonSerializable
             'prefixComponent' => false,
             'onlyOnDetail' => $this->onlyOnDetail,
         ], $this->meta());
+    }
+
+    /**
+     * Get the component name for the element.
+     *
+     * @return string
+     */
+    public function component()
+    {
+        return $this->component;
     }
 }

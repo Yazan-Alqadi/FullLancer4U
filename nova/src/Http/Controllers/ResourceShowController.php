@@ -10,7 +10,7 @@ class ResourceShowController extends Controller
     /**
      * Display the resource for administration.
      *
-     * @param  \Laravel\Nova\Http\Requests\ResourceDetailRequest  $request
+     * @param \Laravel\Nova\Http\Requests\ResourceDetailRequest $request
      * @return \Illuminate\Http\Response
      */
     public function handle(ResourceDetailRequest $request)
@@ -23,7 +23,7 @@ class ResourceShowController extends Controller
         $resource->authorizeToView($request);
 
         return response()->json([
-            'title' => (string) $resource->title(),
+            'title' => (string)$resource->title(),
             'panels' => $resource->availablePanelsForDetail($request, $resource),
             'resource' => $resource->serializeForDetail($request, $resource),
         ]);

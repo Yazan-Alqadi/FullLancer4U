@@ -24,8 +24,8 @@ class GlobalSearch
     /**
      * Create a new global search instance.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  array  $resources
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param array $resources
      * @return void
      */
     public function __construct(NovaRequest $request, $resources)
@@ -69,8 +69,8 @@ class GlobalSearch
     /**
      * Transform the result from resource.
      *
-     * @param  string  $resourceClass
-     * @param  \Laravel\Nova\Resource  $resource
+     * @param string $resourceClass
+     * @param \Laravel\Nova\Resource $resource
      * @return array
      */
     protected function transformResult($resourceClass, Resource $resource)
@@ -80,12 +80,12 @@ class GlobalSearch
         return [
             'resourceName' => $resourceClass::uriKey(),
             'resourceTitle' => $resourceClass::label(),
-            'title' => (string) $resource->title(),
+            'title' => (string)$resource->title(),
             'subTitle' => transform($resource->subtitle(), function ($subtitle) {
-                return (string) $subtitle;
+                return (string)$subtitle;
             }),
             'resourceId' => $model->getKey(),
-            'url' => url(Nova::path().'/resources/'.$resourceClass::uriKey().'/'.$model->getKey()),
+            'url' => url(Nova::path() . '/resources/' . $resourceClass::uriKey() . '/' . $model->getKey()),
             'avatar' => $resource->resolveAvatarUrl($this->request),
             'rounded' => $resource->resolveIfAvatarShouldBeRounded($this->request),
             'linksTo' => $resource->globalSearchLink($this->request),

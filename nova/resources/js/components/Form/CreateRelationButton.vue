@@ -1,8 +1,6 @@
 <template>
-  <button
-    @click="$emit('click')"
-    type="button"
-    class="
+    <button
+        class="
       rounded
       dim
       font-bold
@@ -16,14 +14,16 @@
       pl-1
       pr-2
     "
-  >
-    <icon type="add" width="24" height="24" view-box="0 0 24 24" />
-    <span>{{ __('Create') }}</span>
-  </button>
+        type="button"
+        @click="$emit('click')"
+    >
+        <icon height="24" type="add" view-box="0 0 24 24" width="24"/>
+        <span>{{ __('Create') }}</span>
+    </button>
 </template>
 
 <script>
 export default {
-  //
+    //
 }
 </script>

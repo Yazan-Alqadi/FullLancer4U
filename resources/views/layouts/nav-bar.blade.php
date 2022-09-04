@@ -1,7 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
 
 
-
 <div class="ps-3 pe-2 navbar container-fluid navbar-expand-lg bg-dark navbar-dark text-light fixed-top h6">
     <div class="container-fluid justify-content-center" style="align-items: baseline;">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search-par"
@@ -13,13 +12,14 @@
 
         <form class="form-inline collapse navbar-collapse" id="search-par">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
-                    width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-search" viewBox="0 0 16 16">
                     <path
                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                </svg></button>
+                </svg>
+            </button>
         </form>
-
 
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainmenu"
@@ -42,13 +42,10 @@
 
 
                 @if (Auth::check() && !Auth::user()->is_freelancer)
-                    <li> <a href="{{ route('become_freelancer') }}"
+                    <li><a href="{{ route('become_freelancer') }}"
                             class="nav-link in-hover-t text-warning fw-bold">Become Freelancer</a>
                     </li>
                 @endif
-
-
-
 
 
             </ul>
@@ -181,12 +178,7 @@
                                 </div>
                                 <div style="overflow: hidden;max-height: 320px;overflow: auto;">
                                     <ul class="disd" style="display: contents;">
-                                        @php
-                                            $notification = \App\Models\Notification::latest()
-                                                ->where('user_id', Auth::id())
-                                                ->take(5)
-                                                ->get();
-                                        @endphp
+
                                         @foreach ($notification as $otif)
                                             <li>
                                                 <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">
@@ -265,8 +257,8 @@
             <li>
             <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">
                                         {{-- message from who ? --}}
-                                        <div class="d-flex" style="justify-content: space-between; align-items: center;">
-                                            <span class="text-danger" style="font-size: 15px"> ` +
+            <div class="d-flex" style="justify-content: space-between; align-items: center;">
+                <span class="text-danger" style="font-size: 15px"> ` +
             data.username + `</span>
                                             <span class="rounded-2 p-1 text-secondary" >1 seconds ago</span>
                                         </div>

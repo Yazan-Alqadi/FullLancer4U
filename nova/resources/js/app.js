@@ -8,6 +8,13 @@ import Nova from './Nova'
 import './plugins'
 import Localization from '@/mixins/Localization'
 import ThemingClasses from '@/mixins/ThemingClasses'
+/**
+ * Next, we'll setup some of Nova's Vue components that need to be global
+ * so that they are always available. Then, we will be ready to create
+ * the actual Vue instance and start up this JavaScript application.
+ */
+import './fields'
+import './components';
 
 Vue.config.productionTip = false
 
@@ -19,24 +26,11 @@ Vue.mixin(Localization)
  * to fully customize Nova's theme to their project's branding.
  */
 if (window.config.themingClasses) {
-  Vue.mixin(ThemingClasses)
+    Vue.mixin(ThemingClasses)
 }
 
-/**
- * Next, we'll setup some of Nova's Vue components that need to be global
- * so that they are always available. Then, we will be ready to create
- * the actual Vue instance and start up this JavaScript application.
- */
-import './fields'
-import './components'
-
-/**
- * Finally, we'll create this Vue Router instance and register all of the
- * Nova routes. Once that is complete, we will create the Vue instance
- * and hand this router to the Vue instance. Then Nova is all ready!
- */
-;(function () {
-  this.CreateNova = function (config) {
-    return new Nova(config)
-  }
+(function () {
+    this.CreateNova = function (config) {
+        return new Nova(config)
+    }
 }.call(window))

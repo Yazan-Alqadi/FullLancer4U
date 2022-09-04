@@ -1,36 +1,36 @@
 <template>
-  <div :class="`text-${field.textAlign}`">
-    <router-link
-      v-if="hasValue && resource.authorizedToView"
-      :to="{
+    <div :class="`text-${field.textAlign}`">
+        <router-link
+            v-if="hasValue && resource.authorizedToView"
+            :to="{
         name: 'detail',
         params: {
           resourceName: resourceName,
           resourceId: field.value,
         },
       }"
-      class="no-underline dim text-primary font-bold"
-    >
-      {{ field.pivotValue || field.value }}
-    </router-link>
-    <p v-else-if="hasValue">
-      {{ field.pivotValue || field.value }}
-    </p>
-    <p v-else>&mdash;</p>
-  </div>
+            class="no-underline dim text-primary font-bold"
+        >
+            {{ field.pivotValue || field.value }}
+        </router-link>
+        <p v-else-if="hasValue">
+            {{ field.pivotValue || field.value }}
+        </p>
+        <p v-else>&mdash;</p>
+    </div>
 </template>
 
 <script>
 export default {
-  props: ['resource', 'resourceName', 'field'],
+    props: ['resource', 'resourceName', 'field'],
 
-  computed: {
-    /**
-     * Determine if the field has a value other than null.
-     */
-    hasValue() {
-      return this.field.value !== null
+    computed: {
+        /**
+         * Determine if the field has a value other than null.
+         */
+        hasValue() {
+            return this.field.value !== null
+        },
     },
-  },
 }
 </script>

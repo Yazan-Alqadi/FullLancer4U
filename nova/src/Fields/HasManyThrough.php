@@ -24,9 +24,9 @@ class HasManyThrough extends HasMany implements ListableField, RelatableField
     /**
      * Create a new field.
      *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     * @param  string|null  $resource
+     * @param string $name
+     * @param string|null $attribute
+     * @param string|null $resource
      * @return void
      */
     public function __construct($name, $attribute = null, $resource = null)
@@ -46,7 +46,7 @@ class HasManyThrough extends HasMany implements ListableField, RelatableField
         return array_merge([
             'hasManyThroughRelationship' => $this->hasManyThroughRelationship,
             'listable' => true,
-            'perPage'=> $this->resourceClass::$perPageViaRelationship,
+            'perPage' => $this->resourceClass::$perPageViaRelationship,
             'resourceName' => $this->resourceName,
             'singularLabel' => $this->singularLabel ?? $this->resourceClass::singularLabel(),
         ], parent::jsonSerialize());

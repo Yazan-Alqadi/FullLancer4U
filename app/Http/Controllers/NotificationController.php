@@ -8,8 +8,11 @@ use App\Models\Notification;
 use App\Models\Profession;
 use App\Models\Project;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
@@ -17,30 +20,20 @@ class NotificationController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
         $notifications = Notification::latest()->where('user_id', Auth::id())->get();
 
-        return view('my_notifications', compact('notifications'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('pages.user.notifications_page', compact('notifications'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
     public function store(Request $request)
     {
@@ -50,8 +43,8 @@ class NotificationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function show($id)
     {
@@ -61,8 +54,8 @@ class NotificationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function edit($id)
     {
@@ -72,9 +65,9 @@ class NotificationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -84,13 +77,14 @@ class NotificationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {
         //
     }
+
     public function confirm(Request $request, $id)
     {
         $notification = Notification::find($id);
@@ -145,7 +139,7 @@ class NotificationController extends Controller
 
                 $service = Profession::find($notification->re_id);
 
-               $not = Notification::create([
+                $not = Notification::create([
                     'title' => 'Reject Your apply ',
                     'content' => $service->freelancer->user->full_name . ' Reject your apply for service ' . $service->title,
                     'user_id' => $notification->reciver_id,
@@ -155,12 +149,10 @@ class NotificationController extends Controller
                 ]);
                 event(new NewMessage($notification->reciver_id, $not->title, $not->content));
 
-            }
-            else
-            {
+            } else {
                 $project = Project::find($notification->re_id);
                 $user = User::find($notification->reciver_id);
-                $not=Notification::create([
+                $not = Notification::create([
                     'title' => 'Reject Your apply ',
                     'content' => Auth::user()->full_name . ' reject your apply to work project ' . $project->title,
                     'user_id' => $notification->reciver_id,
@@ -168,11 +160,21 @@ class NotificationController extends Controller
                     'type' => 'message',
                     're_id' => $notification->re_id,
                 ]);
-                event(new NewMessage($notification->reciver_id,  $not->title, $not->content));
+                event(new NewMessage($notification->reciver_id, $not->title, $not->content));
 
 
             }
         }
         return back();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        //
     }
 }

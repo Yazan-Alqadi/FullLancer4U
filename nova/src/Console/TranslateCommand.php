@@ -34,8 +34,8 @@ class TranslateCommand extends Command
 
         $jsonLanguageFile = resource_path("lang/vendor/nova/{$language}.json");
 
-        if (! File::exists($jsonLanguageFile) || $this->option('force')) {
-            File::copy(__DIR__.'/../../resources/lang/en.json', $jsonLanguageFile);
+        if (!File::exists($jsonLanguageFile) || $this->option('force')) {
+            File::copy(__DIR__ . '/../../resources/lang/en.json', $jsonLanguageFile);
         }
     }
 }

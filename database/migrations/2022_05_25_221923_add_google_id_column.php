@@ -14,7 +14,7 @@ class AddGoogleIdColumn extends Migration
     public function up()
     {
         //
-        Schema::table ('users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->string('google_id')->nullable();
         });
     }

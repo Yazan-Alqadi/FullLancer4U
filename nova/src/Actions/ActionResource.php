@@ -39,7 +39,7 @@ class ActionResource extends Resource
     /**
      * Determine if the current user can create new resources.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return bool
      */
     public static function authorizedToCreate(Request $request)
@@ -48,70 +48,10 @@ class ActionResource extends Resource
     }
 
     /**
-     * Determine if the current user can edit resources.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    public function authorizedToUpdate(Request $request)
-    {
-        return false;
-    }
-
-    /**
-     * Determine if the current user can delete resources.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    public function authorizedToDelete(Request $request)
-    {
-        return false;
-    }
-
-    /**
-     * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function fields(Request $request)
-    {
-        return [
-            ID::make('ID', 'id'),
-            Text::make(__('Action Name'), 'name', function ($value) {
-                return __($value);
-            }),
-
-            Text::make(__('Action Initiated By'), function () {
-                return $this->user->name ?? $this->user->email ?? __('Nova User');
-            }),
-
-            MorphToActionTarget::make(__('Action Target'), 'target'),
-
-            Status::make(__('Action Status'), 'status', function ($value) {
-                return __(ucfirst($value));
-            })->loadingWhen([__('Waiting'), __('Running')])->failedWhen([__('Failed')]),
-
-            $this->when(isset($this->original), function () {
-                return KeyValue::make(__('Original'), 'original');
-            }),
-
-            $this->when(isset($this->changes), function () {
-                return KeyValue::make(__('Changes'), 'changes');
-            }),
-
-            Textarea::make(__('Exception'), 'exception'),
-
-            DateTime::make(__('Action Happened At'), 'created_at')->exceptOnForms(),
-        ];
-    }
-
-    /**
      * Build an "index" query for the given resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function indexQuery(NovaRequest $request, $query)
@@ -122,7 +62,7 @@ class ActionResource extends Resource
     /**
      * Determine if this resource is available for navigation.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return bool
      */
     public static function availableForNavigation(Request $request)
@@ -168,5 +108,65 @@ class ActionResource extends Resource
     public static function uriKey()
     {
         return 'action-events';
+    }
+
+    /**
+     * Determine if the current user can edit resources.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return bool
+     */
+    public function authorizedToUpdate(Request $request)
+    {
+        return false;
+    }
+
+    /**
+     * Determine if the current user can delete resources.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return bool
+     */
+    public function authorizedToDelete(Request $request)
+    {
+        return false;
+    }
+
+    /**
+     * Get the fields displayed by the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function fields(Request $request)
+    {
+        return [
+            ID::make('ID', 'id'),
+            Text::make(__('Action Name'), 'name', function ($value) {
+                return __($value);
+            }),
+
+            Text::make(__('Action Initiated By'), function () {
+                return $this->user->name ?? $this->user->email ?? __('Nova User');
+            }),
+
+            MorphToActionTarget::make(__('Action Target'), 'target'),
+
+            Status::make(__('Action Status'), 'status', function ($value) {
+                return __(ucfirst($value));
+            })->loadingWhen([__('Waiting'), __('Running')])->failedWhen([__('Failed')]),
+
+            $this->when(isset($this->original), function () {
+                return KeyValue::make(__('Original'), 'original');
+            }),
+
+            $this->when(isset($this->changes), function () {
+                return KeyValue::make(__('Changes'), 'changes');
+            }),
+
+            Textarea::make(__('Exception'), 'exception'),
+
+            DateTime::make(__('Action Happened At'), 'created_at')->exceptOnForms(),
+        ];
     }
 }

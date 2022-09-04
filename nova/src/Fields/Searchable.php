@@ -28,7 +28,7 @@ trait Searchable
     /**
      * Specify if the relationship should be searchable.
      *
-     * @param  bool|\Closure  $searchable
+     * @param bool|\Closure $searchable
      * @return $this
      */
     public function searchable($searchable = true)
@@ -53,7 +53,7 @@ trait Searchable
     /**
      * Set the debounce period for use in searchable select inputs.
      *
-     * @param  int  $amount
+     * @param int $amount
      * @return $this
      */
     public function debounce($amount)

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
     //
     protected $redirectTo = RouteServiceProvider::HOME;
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -18,7 +19,7 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('auth.login');
+        return view('pages.auth.login_page');
     }
 
     public function store(Request $request)
@@ -35,10 +36,10 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->route('home')->withCookie(Cookie::make('email', $request->email,5));
+            return redirect()->route('home')->withCookie(Cookie::make('email', $request->email, 5));
         } else {
-            return redirect()->route('login')->with('error', 'Invalid Login')->withCookie(Cookie::make('email', $request->email,5))
-            ->withCookie(Cookie::make('password', $request->password,5));
+            return redirect()->route('login')->with('error', 'Invalid Login')->withCookie(Cookie::make('email', $request->email, 5))
+                ->withCookie(Cookie::make('password', $request->password, 5));
         }
     }
 }

@@ -39,13 +39,14 @@ class Pinned_Services extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->where('status','!=','1');
+        return $query->where('status', '!=', '1');
     }
+
     public function fields(Request $request)
     {
 
@@ -54,11 +55,11 @@ class Pinned_Services extends Resource
             Text::make('Title', 'title')
                 ->sortable()
                 ->rules('max:255'),
-            Number::make('Price','price')->sortable(),
-            Textarea::make('Description','description')->sortable()->rules('min:10'),
-            BelongsTo::make('Category','category',\App\Nova\Category::class),
-            BelongsTo::make('Freelancer','freelancer',\App\Nova\Freelancer::class ),
-            Boolean::make('status','status')->sortable(),
+            Number::make('Price', 'price')->sortable(),
+            Textarea::make('Description', 'description')->sortable()->rules('min:10'),
+            BelongsTo::make('Category', 'category', \App\Nova\Category::class),
+            BelongsTo::make('Freelancer', 'freelancer', \App\Nova\Freelancer::class),
+            Boolean::make('status', 'status')->sortable(),
 
         ];
     }
@@ -66,7 +67,7 @@ class Pinned_Services extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -77,7 +78,7 @@ class Pinned_Services extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -88,7 +89,7 @@ class Pinned_Services extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -99,7 +100,7 @@ class Pinned_Services extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)

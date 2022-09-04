@@ -19,19 +19,9 @@ abstract class RangedMetric extends Metric
     public $selectedRangeKey;
 
     /**
-     * Get the ranges available for the metric.
-     *
-     * @return \Illuminate\Support\Collection|array
-     */
-    public function ranges()
-    {
-        return $this->ranges;
-    }
-
-    /**
      * Set the default range.
      *
-     * @param  string  $key
+     * @param string $key
      * @return $this
      */
     public function defaultRange($key)
@@ -54,5 +44,15 @@ abstract class RangedMetric extends Metric
                 return ['label' => $range, 'value' => $key];
             })->values()->all(),
         ]);
+    }
+
+    /**
+     * Get the ranges available for the metric.
+     *
+     * @return \Illuminate\Support\Collection|array
+     */
+    public function ranges()
+    {
+        return $this->ranges;
     }
 }

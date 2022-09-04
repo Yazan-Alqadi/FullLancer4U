@@ -18,209 +18,209 @@ Vue.use(AsyncComputed)
 Vue.use(VTooltip)
 
 Vue.use(Toasted, {
-  router,
-  theme: 'nova',
-  position: 'bottom-right',
-  duration: 6000,
+    router,
+    theme: 'nova',
+    position: 'bottom-right',
+    duration: 6000,
 })
 
 export default class Nova {
-  constructor(config) {
-    this.bus = new Vue()
-    this.bootingCallbacks = []
-    this.config = config
-    this.useShortcuts = true
-  }
-
-  /**
-   * Register a callback to be called before Nova starts. This is used to bootstrap
-   * addons, tools, custom fields, or anything else Nova needs
-   */
-  booting(callback) {
-    this.bootingCallbacks.push(callback)
-  }
-
-  /**
-   * Execute all of the booting callbacks.
-   */
-  boot() {
-    this.bootingCallbacks.forEach(callback => callback(Vue, router, store))
-    this.bootingCallbacks = []
-  }
-
-  /**
-   * Register the built-in Vuex modules for each resource
-   */
-  registerStoreModules() {
-    this.config.resources.forEach(resource => {
-      store.registerModule(resource.uriKey, resources)
-    })
-  }
-
-  /**
-   * Start the Nova app by calling each of the tool's callbacks and then creating
-   * the underlying Vue instance.
-   */
-  liftOff() {
-    let _this = this
-
-    let mousetrapDefaultStopCallback = Mousetrap.prototype.stopCallback
-
-    Mousetrap.prototype.stopCallback = function (e, element, combo) {
-      if (!_this.useShortcuts) {
-        return true
-      }
-
-      return mousetrapDefaultStopCallback.call(this, e, element, combo)
+    constructor(config) {
+        this.bus = new Vue()
+        this.bootingCallbacks = []
+        this.config = config
+        this.useShortcuts = true
     }
 
-    Mousetrap.init()
+    /**
+     * Register a callback to be called before Nova starts. This is used to bootstrap
+     * addons, tools, custom fields, or anything else Nova needs
+     */
+    booting(callback) {
+        this.bootingCallbacks.push(callback)
+    }
 
-    this.boot()
-    this.registerStoreModules()
+    /**
+     * Execute all of the booting callbacks.
+     */
+    boot() {
+        this.bootingCallbacks.forEach(callback => callback(Vue, router, store))
+        this.bootingCallbacks = []
+    }
 
-    this.app = new Vue({
-      el: '#nova',
-      name: 'Nova',
-      router,
-      store,
-      components: { Loading },
-      metaInfo: {
-        titleTemplate: `%s | ${window.config.appName}`,
-      },
-      mounted: function () {
-        this.$loading = this.$refs.loading
-
-        _this.$on('error', message => {
-          this.$toasted.show(message, { type: 'error' })
+    /**
+     * Register the built-in Vuex modules for each resource
+     */
+    registerStoreModules() {
+        this.config.resources.forEach(resource => {
+            store.registerModule(resource.uriKey, resources)
         })
+    }
 
-        _this.$on('token-expired', () => {
-          this.$toasted.show(this.__('Sorry, your session has expired.'), {
-            action: {
-              onClick: () => location.reload(),
-              text: this.__('Reload'),
+    /**
+     * Start the Nova app by calling each of the tool's callbacks and then creating
+     * the underlying Vue instance.
+     */
+    liftOff() {
+        let _this = this
+
+        let mousetrapDefaultStopCallback = Mousetrap.prototype.stopCallback
+
+        Mousetrap.prototype.stopCallback = function (e, element, combo) {
+            if (!_this.useShortcuts) {
+                return true
+            }
+
+            return mousetrapDefaultStopCallback.call(this, e, element, combo)
+        }
+
+        Mousetrap.init()
+
+        this.boot()
+        this.registerStoreModules()
+
+        this.app = new Vue({
+            el: '#nova',
+            name: 'Nova',
+            router,
+            store,
+            components: {Loading},
+            metaInfo: {
+                titleTemplate: `%s | ${window.config.appName}`,
             },
-            duration: null,
-            type: 'error',
-          })
+            mounted: function () {
+                this.$loading = this.$refs.loading
+
+                _this.$on('error', message => {
+                    this.$toasted.show(message, {type: 'error'})
+                })
+
+                _this.$on('token-expired', () => {
+                    this.$toasted.show(this.__('Sorry, your session has expired.'), {
+                        action: {
+                            onClick: () => location.reload(),
+                            text: this.__('Reload'),
+                        },
+                        duration: null,
+                        type: 'error',
+                    })
+                })
+            },
         })
-      },
-    })
-  }
-
-  /**
-   * Return an axios instance configured to make requests to Nova's API
-   * and handle certain response codes.
-   */
-  request(options) {
-    if (options !== undefined) {
-      return axios(options)
     }
 
-    return axios
-  }
+    /**
+     * Return an axios instance configured to make requests to Nova's API
+     * and handle certain response codes.
+     */
+    request(options) {
+        if (options !== undefined) {
+            return axios(options)
+        }
 
-  /**
-   * Format a number using numbro.js for consistent number formatting.
-   */
-  formatNumber(number, format) {
-    const num = numbro(number)
-
-    if (format !== undefined) {
-      return num.format(format)
+        return axios
     }
 
-    return num.format()
-  }
+    /**
+     * Format a number using numbro.js for consistent number formatting.
+     */
+    formatNumber(number, format) {
+        const num = numbro(number)
 
-  /**
-   * Register a listener on Nova's built-in event bus
-   */
-  $on(...args) {
-    this.bus.$on(...args)
-  }
+        if (format !== undefined) {
+            return num.format(format)
+        }
 
-  /**
-   * Register a one-time listener on the event bus
-   */
-  $once(...args) {
-    this.bus.$once(...args)
-  }
+        return num.format()
+    }
 
-  /**
-   * Unregister an listener on the event bus
-   */
-  $off(...args) {
-    this.bus.$off(...args)
-  }
+    /**
+     * Register a listener on Nova's built-in event bus
+     */
+    $on(...args) {
+        this.bus.$on(...args)
+    }
 
-  /**
-   * Emit an event on the event bus
-   */
-  $emit(...args) {
-    this.bus.$emit(...args)
-  }
+    /**
+     * Register a one-time listener on the event bus
+     */
+    $once(...args) {
+        this.bus.$once(...args)
+    }
 
-  /**
-   * Determine if Nova is missing the requested resource with the given uri key
-   */
-  missingResource(uriKey) {
-    return _.find(this.config.resources, r => r.uriKey == uriKey) == undefined
-  }
+    /**
+     * Unregister an listener on the event bus
+     */
+    $off(...args) {
+        this.bus.$off(...args)
+    }
 
-  /**
-   * Show an error message to the user.
-   *
-   * @param {string} message
-   */
-  error(message) {
-    Vue.toasted.show(message, { type: 'error' })
-  }
+    /**
+     * Emit an event on the event bus
+     */
+    $emit(...args) {
+        this.bus.$emit(...args)
+    }
 
-  /**
-   * Show a success message to the user.
-   *
-   * @param {string} message
-   */
-  success(message) {
-    Vue.toasted.show(message, { type: 'success' })
-  }
+    /**
+     * Determine if Nova is missing the requested resource with the given uri key
+     */
+    missingResource(uriKey) {
+        return _.find(this.config.resources, r => r.uriKey == uriKey) == undefined
+    }
 
-  /**
-   * Show a warning message to the user.
-   *
-   * @param {string} message
-   */
-  warning(message) {
-    Vue.toasted.show(message, { type: 'warning' })
-  }
+    /**
+     * Show an error message to the user.
+     *
+     * @param {string} message
+     */
+    error(message) {
+        Vue.toasted.show(message, {type: 'error'})
+    }
 
-  /**
-   * Register a keyboard shortcut.
-   */
-  addShortcut(keys, callback) {
-    Mousetrap.bind(keys, callback)
-  }
+    /**
+     * Show a success message to the user.
+     *
+     * @param {string} message
+     */
+    success(message) {
+        Vue.toasted.show(message, {type: 'success'})
+    }
 
-  /**
-   * Unbind a keyboard shortcut.
-   */
-  disableShortcut(keys) {
-    Mousetrap.unbind(keys)
-  }
+    /**
+     * Show a warning message to the user.
+     *
+     * @param {string} message
+     */
+    warning(message) {
+        Vue.toasted.show(message, {type: 'warning'})
+    }
 
-  /**
-   * Pause all keyboard shortcuts.
-   */
-  pauseShortcuts() {
-    this.useShortcuts = false
-  }
+    /**
+     * Register a keyboard shortcut.
+     */
+    addShortcut(keys, callback) {
+        Mousetrap.bind(keys, callback)
+    }
 
-  /**
-   * Resume all keyboard shortcuts.
-   */
-  resumeShortcuts() {
-    this.useShortcuts = true
-  }
+    /**
+     * Unbind a keyboard shortcut.
+     */
+    disableShortcut(keys) {
+        Mousetrap.unbind(keys)
+    }
+
+    /**
+     * Pause all keyboard shortcuts.
+     */
+    pauseShortcuts() {
+        this.useShortcuts = false
+    }
+
+    /**
+     * Resume all keyboard shortcuts.
+     */
+    resumeShortcuts() {
+        this.useShortcuts = true
+    }
 }

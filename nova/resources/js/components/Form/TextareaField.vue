@@ -1,46 +1,46 @@
 <template>
-  <default-field
-    :field="field"
-    :errors="errors"
-    :full-width-content="true"
-    :show-help-text="showHelpText"
-  >
-    <template slot="field">
+    <default-field
+        :errors="errors"
+        :field="field"
+        :full-width-content="true"
+        :show-help-text="showHelpText"
+    >
+        <template slot="field">
       <textarea
-        class="w-full form-control form-input form-input-bordered py-3 h-auto"
-        :id="field.attribute"
-        :dusk="field.attribute"
-        v-bind="extraAttributes"
-        :value="value"
-        @input="handleChange"
+          :id="field.attribute"
+          :dusk="field.attribute"
+          :value="value"
+          class="w-full form-control form-input form-input-bordered py-3 h-auto"
+          v-bind="extraAttributes"
+          @input="handleChange"
       />
-    </template>
-  </default-field>
+        </template>
+    </default-field>
 </template>
 
 <script>
-import { FormField, HandlesValidationErrors } from 'laravel-nova'
+import {FormField, HandlesValidationErrors} from 'laravel-nova'
 
 export default {
-  mixins: [FormField, HandlesValidationErrors],
+    mixins: [FormField, HandlesValidationErrors],
 
-  computed: {
-    defaultAttributes() {
-      return {
-        rows: this.field.rows,
-        class: this.errorClasses,
-        placeholder: this.field.name,
-      }
+    computed: {
+        defaultAttributes() {
+            return {
+                rows: this.field.rows,
+                class: this.errorClasses,
+                placeholder: this.field.name,
+            }
+        },
+
+        extraAttributes() {
+            const attrs = this.field.extraAttributes
+
+            return {
+                ...this.defaultAttributes,
+                ...attrs,
+            }
+        },
     },
-
-    extraAttributes() {
-      const attrs = this.field.extraAttributes
-
-      return {
-        ...this.defaultAttributes,
-        ...attrs,
-      }
-    },
-  },
 }
 </script>

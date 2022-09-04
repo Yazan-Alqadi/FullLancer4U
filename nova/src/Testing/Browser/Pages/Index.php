@@ -12,7 +12,7 @@ class Index extends Page
     /**
      * Create a new page instance.
      *
-     * @param  string  $resourceName
+     * @param string $resourceName
      * @return void
      */
     public function __construct($resourceName)
@@ -27,13 +27,13 @@ class Index extends Page
      */
     public function url()
     {
-        return Nova::path().'/resources/'.$this->resourceName;
+        return Nova::path() . '/resources/' . $this->resourceName;
     }
 
     /**
      * Assert that the browser is on the page.
      *
-     * @param  \Laravel\Dusk\Browser  $browser
+     * @param \Laravel\Dusk\Browser $browser
      * @return void
      */
     public function assert(Browser $browser)

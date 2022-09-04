@@ -12,16 +12,18 @@ class Freelancer extends Model
     protected $guarded = [];
 
 
-
-
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function professions(){
+    public function professions()
+    {
         return $this->hasMany(Profession::class);
     }
-    public function projects(){
+
+    public function projects()
+    {
         return $this->belongsToMany(Project::class)->withTimestamps();
     }
 }

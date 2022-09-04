@@ -63,25 +63,9 @@ class KeyValue extends Field
     public $canDeleteRow = true;
 
     /**
-     * Hydrate the given attribute on the model based on the incoming request.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  string  $requestAttribute
-     * @param  object  $model
-     * @param  string  $attribute
-     * @return void
-     */
-    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
-    {
-        if ($request->exists($requestAttribute)) {
-            $model->{$attribute} = json_decode($request[$requestAttribute], true);
-        }
-    }
-
-    /**
      * The label that should be used for the key table heading.
      *
-     * @param  string  $label
+     * @param string $label
      * @return $this
      */
     public function keyLabel($label)
@@ -94,7 +78,7 @@ class KeyValue extends Field
     /**
      * The label that should be used for the value table heading.
      *
-     * @param  string  $label
+     * @param string $label
      * @return $this
      */
     public function valueLabel($label)
@@ -107,7 +91,7 @@ class KeyValue extends Field
     /**
      * The label that should be used for the add row button.
      *
-     * @param  string  $label
+     * @param string $label
      * @return $this
      */
     public function actionText($label)
@@ -120,7 +104,7 @@ class KeyValue extends Field
     /**
      * Set the callback used to determine if the keys are readonly.
      *
-     * @param  \Closure|bool  $callback
+     * @param \Closure|bool $callback
      * @return $this
      */
     public function disableEditingKeys($callback = true)
@@ -128,19 +112,6 @@ class KeyValue extends Field
         $this->readonlyKeysCallback = $callback;
 
         return $this;
-    }
-
-    /**
-     * Determine if the keys are readonly.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @return bool
-     */
-    public function readonlyKeys(NovaRequest $request)
-    {
-        return with($this->readonlyKeysCallback, function ($callback) use ($request) {
-            return is_callable($callback) ? call_user_func($callback, $request) : ($callback === true);
-        });
     }
 
     /**
@@ -182,5 +153,34 @@ class KeyValue extends Field
             'canAddRow' => $this->canAddRow,
             'canDeleteRow' => $this->canDeleteRow,
         ]);
+    }
+
+    /**
+     * Determine if the keys are readonly.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @return bool
+     */
+    public function readonlyKeys(NovaRequest $request)
+    {
+        return with($this->readonlyKeysCallback, function ($callback) use ($request) {
+            return is_callable($callback) ? call_user_func($callback, $request) : ($callback === true);
+        });
+    }
+
+    /**
+     * Hydrate the given attribute on the model based on the incoming request.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param string $requestAttribute
+     * @param object $model
+     * @param string $attribute
+     * @return void
+     */
+    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
+    {
+        if ($request->exists($requestAttribute)) {
+            $model->{$attribute} = json_decode($request[$requestAttribute], true);
+        }
     }
 }

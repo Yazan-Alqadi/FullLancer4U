@@ -1,15 +1,17 @@
 <template>
-  <div><badge :label="field.label" :extra-classes="field.typeClass" /></div>
+    <div>
+        <badge :extra-classes="field.typeClass" :label="field.label"/>
+    </div>
 </template>
 
 <script>
 import Badge from '../Badge'
 
 export default {
-  components: {
-    Badge,
-  },
+    components: {
+        Badge,
+    },
 
-  props: ['resourceName', 'viaResource', 'viaResourceId', 'field'],
+    props: ['resourceName', 'viaResource', 'viaResourceId', 'field'],
 }
 </script>

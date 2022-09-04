@@ -10,7 +10,7 @@ class ResourceIndexController extends Controller
     /**
      * List the resources for administration.
      *
-     * @param  \Laravel\Nova\Http\Requests\ResourceIndexRequest  $request
+     * @param \Laravel\Nova\Http\Requests\ResourceIndexRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function handle(ResourceIndexRequest $request)

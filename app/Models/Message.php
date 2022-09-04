@@ -9,12 +9,12 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
+    protected $guarded = [];
 
-    public function thread(){
-        return $this->belongsTo(Thread::class,'thread_id');
+    public function thread()
+    {
+        return $this->belongsTo(Thread::class, 'thread_id');
     }
-
 
 
 }

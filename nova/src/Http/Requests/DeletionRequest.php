@@ -11,16 +11,16 @@ class DeletionRequest extends NovaRequest
     /**
      * Get the selected models for the action in chunks.
      *
-     * @param  int  $count
-     * @param  \Closure  $callback
-     * @param  \Closure  $authCallback
+     * @param int $count
+     * @param \Closure $callback
+     * @param \Closure $authCallback
      * @return mixed
      */
     protected function chunkWithAuthorization($count, Closure $callback, Closure $authCallback)
     {
         $model = $this->model();
 
-        $this->toSelectedResourceQuery()->when(! $this->forAllMatchingResources(), function ($query) {
+        $this->toSelectedResourceQuery()->when(!$this->forAllMatchingResources(), function ($query) {
             $query->whereKey($this->resources);
         })->tap(function ($query) {
             $query->getQuery()->orders = [];

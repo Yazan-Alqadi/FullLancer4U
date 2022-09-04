@@ -7,20 +7,21 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 trait HandlesCustomRelationKeys
 {
     /**
-     * Determine if the user has set a custom relation key for the field.
+     * Get the custom field attributes names for validation.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @return bool
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param string $attribute
+     * @return array
      */
-    protected function usingCustomRelationKey(NovaRequest $request)
+    protected function customRulesKeys(NovaRequest $request, $attribute)
     {
-        return $request->relatedResource !== $request->viaRelationship;
+        return [$this->getRuleKey($request) => $attribute];
     }
 
     /**
      * Get the rule key used for fetching the field's validation rules.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return mixed
      */
     protected function getRuleKey(NovaRequest $request)
@@ -31,14 +32,13 @@ trait HandlesCustomRelationKeys
     }
 
     /**
-     * Get the custom field attributes names for validation.
+     * Determine if the user has set a custom relation key for the field.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  string  $attribute
-     * @return array
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @return bool
      */
-    protected function customRulesKeys(NovaRequest $request, $attribute)
+    protected function usingCustomRelationKey(NovaRequest $request)
     {
-        return [$this->getRuleKey($request) => $attribute];
+        return $request->relatedResource !== $request->viaRelationship;
     }
 }

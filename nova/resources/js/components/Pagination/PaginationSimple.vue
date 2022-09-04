@@ -1,108 +1,108 @@
 <template>
-  <div class="bg-20 rounded-b-lg">
-    <nav class="flex justify-between items-center">
-      <!-- Previous Link -->
-      <button
-        :disabled="!hasPreviousPages || linksDisabled"
-        class="btn btn-link py-3 px-4"
-        :class="{
+    <div class="bg-20 rounded-b-lg">
+        <nav class="flex justify-between items-center">
+            <!-- Previous Link -->
+            <button
+                :class="{
           'text-primary dim': hasPreviousPages,
           'text-80 opacity-50': !hasPreviousPages || linksDisabled,
         }"
-        rel="prev"
-        @click.prevent="selectPreviousPage"
-        dusk="previous"
-      >
-        {{ __('Previous') }}
-      </button>
+                :disabled="!hasPreviousPages || linksDisabled"
+                class="btn btn-link py-3 px-4"
+                dusk="previous"
+                rel="prev"
+                @click.prevent="selectPreviousPage"
+            >
+                {{ __('Previous') }}
+            </button>
 
-      <slot />
+            <slot/>
 
-      <!-- Next Link -->
-      <button
-        :disabled="!hasMorePages || linksDisabled"
-        class="btn btn-link py-3 px-4"
-        :class="{
+            <!-- Next Link -->
+            <button
+                :class="{
           'text-primary dim': hasMorePages,
           'text-80 opacity-50': !hasMorePages || linksDisabled,
         }"
-        rel="next"
-        @click.prevent="selectNextPage"
-        dusk="next"
-      >
-        {{ __('Next') }}
-      </button>
-    </nav>
-  </div>
+                :disabled="!hasMorePages || linksDisabled"
+                class="btn btn-link py-3 px-4"
+                dusk="next"
+                rel="next"
+                @click.prevent="selectNextPage"
+            >
+                {{ __('Next') }}
+            </button>
+        </nav>
+    </div>
 </template>
 
 <script>
 export default {
-  props: {
-    page: {
-      type: Number,
-      required: true,
-    },
-    pages: {
-      type: Number,
-      default: 0,
-    },
-    next: {
-      type: Boolean,
-      default: false,
-    },
-    previous: {
-      type: Boolean,
-      default: false,
-    },
-  },
-
-  data: () => ({ linksDisabled: false }),
-
-  mounted() {
-    Nova.$on('resources-loaded', () => {
-      this.linksDisabled = false
-    })
-  },
-
-  methods: {
-    /**
-     * Select the previous page.
-     */
-    selectPreviousPage() {
-      this.selectPage(this.page - 1)
+    props: {
+        page: {
+            type: Number,
+            required: true,
+        },
+        pages: {
+            type: Number,
+            default: 0,
+        },
+        next: {
+            type: Boolean,
+            default: false,
+        },
+        previous: {
+            type: Boolean,
+            default: false,
+        },
     },
 
-    /**
-     * Select the next page.
-     */
-    selectNextPage() {
-      this.selectPage(this.page + 1)
+    data: () => ({linksDisabled: false}),
+
+    mounted() {
+        Nova.$on('resources-loaded', () => {
+            this.linksDisabled = false
+        })
     },
 
-    /**
-     * Select the page.
-     */
-    selectPage(page) {
-      this.linksDisabled = true
-      this.$emit('page', page)
-    },
-  },
+    methods: {
+        /**
+         * Select the previous page.
+         */
+        selectPreviousPage() {
+            this.selectPage(this.page - 1)
+        },
 
-  computed: {
-    /**
-     * Determine if prior pages are available.
-     */
-    hasPreviousPages: function () {
-      return this.previous
+        /**
+         * Select the next page.
+         */
+        selectNextPage() {
+            this.selectPage(this.page + 1)
+        },
+
+        /**
+         * Select the page.
+         */
+        selectPage(page) {
+            this.linksDisabled = true
+            this.$emit('page', page)
+        },
     },
 
-    /**
-     * Determine if more pages are available.
-     */
-    hasMorePages: function () {
-      return this.next
+    computed: {
+        /**
+         * Determine if prior pages are available.
+         */
+        hasPreviousPages: function () {
+            return this.previous
+        },
+
+        /**
+         * Determine if more pages are available.
+         */
+        hasMorePages: function () {
+            return this.next
+        },
     },
-  },
 }
 </script>

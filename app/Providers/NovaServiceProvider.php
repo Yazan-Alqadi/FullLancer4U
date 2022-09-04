@@ -4,10 +4,10 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use Illuminate\Support\Facades\Hash;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -32,9 +32,19 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 'email' => $email,
                 'password' => Hash::make($password),            // My custom fields
                 'email_verified_at' => now(),
-                'is_admin'=>true
+                'is_admin' => true
             ])->save();
         });
+    }
+
+    /**
+     * Get the tools that should be listed in the Nova sidebar.
+     *
+     * @return array
+     */
+    public function tools()
+    {
+        return [];
     }
 
     /**
@@ -48,6 +58,16 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             ->withAuthenticationRoutes()
             ->withPasswordResetRoutes()
             ->register();
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
     }
 
     /**
@@ -84,25 +104,5 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function dashboards()
     {
         return [];
-    }
-
-    /**
-     * Get the tools that should be listed in the Nova sidebar.
-     *
-     * @return array
-     */
-    public function tools()
-    {
-        return [];
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
     }
 }

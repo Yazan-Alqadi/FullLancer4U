@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         Model::preventLazyLoading();
         Model::handleLazyLoadingViolationUsing(
 
-            fn($model,$relation)=>logger("lazy")
+            fn($model, $relation) => logger("lazy")
 
         );
     }

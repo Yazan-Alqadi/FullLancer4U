@@ -1,89 +1,89 @@
 <template>
-  <BasePartitionMetric
-    :title="card.name"
-    :help-text="card.helpText"
-    :help-width="card.helpWidth"
-    :chart-data="chartData"
-    :loading="loading"
-  />
+    <BasePartitionMetric
+        :chart-data="chartData"
+        :help-text="card.helpText"
+        :help-width="card.helpWidth"
+        :loading="loading"
+        :title="card.name"
+    />
 </template>
 
 <script>
-import { Minimum } from 'laravel-nova'
+import {Minimum} from 'laravel-nova'
 import BasePartitionMetric from './Base/PartitionMetric'
 import MetricBehavior from './MetricBehavior'
 
 export default {
-  mixins: [MetricBehavior],
+    mixins: [MetricBehavior],
 
-  components: {
-    BasePartitionMetric,
-  },
-
-  props: {
-    card: {
-      type: Object,
-      required: true,
+    components: {
+        BasePartitionMetric,
     },
 
-    resourceName: {
-      type: String,
-      default: '',
+    props: {
+        card: {
+            type: Object,
+            required: true,
+        },
+
+        resourceName: {
+            type: String,
+            default: '',
+        },
+
+        resourceId: {
+            type: [Number, String],
+            default: '',
+        },
+
+        lens: {
+            type: String,
+            default: '',
+        },
     },
 
-    resourceId: {
-      type: [Number, String],
-      default: '',
+    data: () => ({
+        loading: true,
+        chartData: [],
+    }),
+
+    watch: {
+        resourceId() {
+            this.fetch()
+        },
     },
 
-    lens: {
-      type: String,
-      default: '',
+    created() {
+        this.fetch()
     },
-  },
 
-  data: () => ({
-    loading: true,
-    chartData: [],
-  }),
+    methods: {
+        fetch() {
+            this.loading = true
 
-  watch: {
-    resourceId() {
-      this.fetch()
+            Minimum(Nova.request(this.metricEndpoint)).then(
+                ({
+                     data: {
+                         value: {value},
+                     },
+                 }) => {
+                    this.chartData = value
+                    this.loading = false
+                }
+            )
+        },
     },
-  },
-
-  created() {
-    this.fetch()
-  },
-
-  methods: {
-    fetch() {
-      this.loading = true
-
-      Minimum(Nova.request(this.metricEndpoint)).then(
-        ({
-          data: {
-            value: { value },
-          },
-        }) => {
-          this.chartData = value
-          this.loading = false
-        }
-      )
+    computed: {
+        metricEndpoint() {
+            const lens = this.lens !== '' ? `/lens/${this.lens}` : ''
+            if (this.resourceName && this.resourceId) {
+                return `/nova-api/${this.resourceName}${lens}/${this.resourceId}/metrics/${this.card.uriKey}`
+            } else if (this.resourceName) {
+                return `/nova-api/${this.resourceName}${lens}/metrics/${this.card.uriKey}`
+            } else {
+                return `/nova-api/metrics/${this.card.uriKey}`
+            }
+        },
     },
-  },
-  computed: {
-    metricEndpoint() {
-      const lens = this.lens !== '' ? `/lens/${this.lens}` : ''
-      if (this.resourceName && this.resourceId) {
-        return `/nova-api/${this.resourceName}${lens}/${this.resourceId}/metrics/${this.card.uriKey}`
-      } else if (this.resourceName) {
-        return `/nova-api/${this.resourceName}${lens}/metrics/${this.card.uriKey}`
-      } else {
-        return `/nova-api/metrics/${this.card.uriKey}`
-      }
-    },
-  },
 }
 </script>

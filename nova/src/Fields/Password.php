@@ -15,22 +15,6 @@ class Password extends Field
     public $component = 'password-field';
 
     /**
-     * Hydrate the given attribute on the model based on the incoming request.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  string  $requestAttribute
-     * @param  object  $model
-     * @param  string  $attribute
-     * @return mixed
-     */
-    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
-    {
-        if (! empty($request[$requestAttribute])) {
-            $model->{$attribute} = Hash::make($request[$requestAttribute]);
-        }
-    }
-
-    /**
      * Prepare the field for JSON serialization.
      *
      * @return array
@@ -41,5 +25,21 @@ class Password extends Field
             parent::jsonSerialize(),
             ['value' => '']
         );
+    }
+
+    /**
+     * Hydrate the given attribute on the model based on the incoming request.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param string $requestAttribute
+     * @param object $model
+     * @param string $attribute
+     * @return mixed
+     */
+    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
+    {
+        if (!empty($request[$requestAttribute])) {
+            $model->{$attribute} = Hash::make($request[$requestAttribute]);
+        }
     }
 }

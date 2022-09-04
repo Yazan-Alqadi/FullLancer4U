@@ -1,10 +1,10 @@
 <template>
-  <default-field :field="field" :errors="errors" :show-help-text="showHelpText">
-    <template slot="field">
-      <div class="flex flex-wrap items-stretch w-full relative">
-        <div class="flex -mr-px">
+    <default-field :errors="errors" :field="field" :show-help-text="showHelpText">
+        <template slot="field">
+            <div class="flex flex-wrap items-stretch w-full relative">
+                <div class="flex -mr-px">
           <span
-            class="
+              class="
               flex
               items-center
               leading-normal
@@ -19,10 +19,14 @@
           >
             {{ field.currency }}
           </span>
-        </div>
+                </div>
 
-        <input
-          class="
+                <input
+                    :id="field.attribute"
+                    :disabled="isReadonly"
+                    :dusk="field.attribute"
+                    :value="value"
+                    class="
             flex-shrink flex-grow flex-auto
             leading-normal
             w-px
@@ -30,49 +34,45 @@
             rounded-l-none
             form-control form-input form-input-bordered
           "
-          :id="field.attribute"
-          :dusk="field.attribute"
-          v-bind="extraAttributes"
-          :disabled="isReadonly"
-          @input="handleChange"
-          :value="value"
-        />
-      </div>
-    </template>
-  </default-field>
+                    v-bind="extraAttributes"
+                    @input="handleChange"
+                />
+            </div>
+        </template>
+    </default-field>
 </template>
 
 <script>
-import { FormField, HandlesValidationErrors } from 'laravel-nova'
+import {FormField, HandlesValidationErrors} from 'laravel-nova'
 
 export default {
-  mixins: [FormField, HandlesValidationErrors],
+    mixins: [FormField, HandlesValidationErrors],
 
-  props: ['resourceName', 'resourceId', 'field'],
+    props: ['resourceName', 'resourceId', 'field'],
 
-  computed: {
-    defaultAttributes() {
-      return {
-        type: 'number',
-        min: this.field.min,
-        max: this.field.max,
-        step: this.field.step,
-        pattern: this.field.pattern,
-        placeholder: this.field.placeholder || this.field.name,
-        class: this.errorClasses,
-      }
+    computed: {
+        defaultAttributes() {
+            return {
+                type: 'number',
+                min: this.field.min,
+                max: this.field.max,
+                step: this.field.step,
+                pattern: this.field.pattern,
+                placeholder: this.field.placeholder || this.field.name,
+                class: this.errorClasses,
+            }
+        },
+        extraAttributes() {
+            const attrs = this.field.extraAttributes
+
+            return {
+                // Leave the default attributes even though we can now specify
+                // whatever attributes we like because the old number field still
+                // uses the old field attributes
+                ...this.defaultAttributes,
+                ...attrs,
+            }
+        },
     },
-    extraAttributes() {
-      const attrs = this.field.extraAttributes
-
-      return {
-        // Leave the default attributes even though we can now specify
-        // whatever attributes we like because the old number field still
-        // uses the old field attributes
-        ...this.defaultAttributes,
-        ...attrs,
-      }
-    },
-  },
 }
 </script>

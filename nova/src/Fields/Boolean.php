@@ -35,54 +35,10 @@ class Boolean extends Field
     public $textAlign = 'center';
 
     /**
-     * Resolve the given attribute from the given resource.
-     *
-     * @param  mixed  $resource
-     * @param  string  $attribute
-     * @return bool|null
-     */
-    protected function resolveAttribute($resource, $attribute)
-    {
-        $value = parent::resolveAttribute($resource, $attribute);
-
-        return ! is_null($value)
-                    ? $value == $this->trueValue ? true : false
-                    : null;
-    }
-
-    /**
-     * Resolve the default value for the field.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @return bool
-     */
-    protected function resolveDefaultValue(NovaRequest $request)
-    {
-        return parent::resolveDefaultValue($request) ?? false;
-    }
-
-    /**
-     * Hydrate the given attribute on the model based on the incoming request.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  string  $requestAttribute
-     * @param  object  $model
-     * @param  string  $attribute
-     * @return void
-     */
-    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
-    {
-        if (isset($request[$requestAttribute])) {
-            $model->{$attribute} = $request[$requestAttribute] == 1
-                    ? $this->trueValue : $this->falseValue;
-        }
-    }
-
-    /**
      * Specify the values to store for the field.
      *
-     * @param  mixed  $trueValue
-     * @param  mixed  $falseValue
+     * @param mixed $trueValue
+     * @param mixed $falseValue
      * @return $this
      */
     public function values($trueValue, $falseValue)
@@ -91,9 +47,22 @@ class Boolean extends Field
     }
 
     /**
+     * Specify the value to store when the field is "false".
+     *
+     * @param mixed $value
+     * @return $this
+     */
+    public function falseValue($value)
+    {
+        $this->falseValue = $value;
+
+        return $this;
+    }
+
+    /**
      * Specify the value to store when the field is "true".
      *
-     * @param  mixed  $value
+     * @param mixed $value
      * @return $this
      */
     public function trueValue($value)
@@ -104,15 +73,46 @@ class Boolean extends Field
     }
 
     /**
-     * Specify the value to store when the field is "false".
+     * Resolve the given attribute from the given resource.
      *
-     * @param  mixed  $value
-     * @return $this
+     * @param mixed $resource
+     * @param string $attribute
+     * @return bool|null
      */
-    public function falseValue($value)
+    protected function resolveAttribute($resource, $attribute)
     {
-        $this->falseValue = $value;
+        $value = parent::resolveAttribute($resource, $attribute);
 
-        return $this;
+        return !is_null($value)
+            ? $value == $this->trueValue ? true : false
+            : null;
+    }
+
+    /**
+     * Resolve the default value for the field.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @return bool
+     */
+    protected function resolveDefaultValue(NovaRequest $request)
+    {
+        return parent::resolveDefaultValue($request) ?? false;
+    }
+
+    /**
+     * Hydrate the given attribute on the model based on the incoming request.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param string $requestAttribute
+     * @param object $model
+     * @param string $attribute
+     * @return void
+     */
+    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
+    {
+        if (isset($request[$requestAttribute])) {
+            $model->{$attribute} = $request[$requestAttribute] == 1
+                ? $this->trueValue : $this->falseValue;
+        }
     }
 }

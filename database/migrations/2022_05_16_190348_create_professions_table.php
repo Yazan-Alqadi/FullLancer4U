@@ -35,7 +35,7 @@ class CreateProfessionsTable extends Migration
      */
     public function down()
     {
-       // $table->dropForeign('lists_user_id_foreign');
+        // $table->dropForeign('lists_user_id_foreign');
         //$table->dropIndex('lists_user_id_index');
         Schema::dropIfExists('professions');
     }

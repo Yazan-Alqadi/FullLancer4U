@@ -10,14 +10,14 @@ class ResourceRelationshipGuesser
     /**
      * Guess the resource class name from the displayable name.
      *
-     * @param  string  $name
+     * @param string $name
      * @return string
      */
     public static function guessResource($name)
     {
         $singular = Str::studly(Str::singular($name));
 
-        if (class_exists($appResource = Application::getInstance()->getNamespace().'Nova\\'.$singular)) {
+        if (class_exists($appResource = Application::getInstance()->getNamespace() . 'Nova\\' . $singular)) {
             return $appResource;
         }
 

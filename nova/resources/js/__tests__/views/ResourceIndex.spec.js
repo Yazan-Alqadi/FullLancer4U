@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
-import { createRenderer } from 'vue-server-renderer'
+import {shallowMount} from '@vue/test-utils'
+import {createRenderer} from 'vue-server-renderer'
 import Index from '@/views/Index.vue'
 
 // Create a renderer for snapshot testing
@@ -21,46 +21,46 @@ const renderer = createRenderer()
 // global.Nova = new Nova()
 
 describe('Index.vue', () => {
-  it('renders', () => {
-    const wrapper = shallowMount(Index, {
-      stubs: ['loading-view', 'cards'],
-      propsData: {
-        resourceName: 'posts',
-      },
-    })
-    renderer.renderToString(wrapper.vm, (err, str) => {
-      if (err) throw new Error(err)
-      expect(str).toMatchSnapshot()
-    })
-  })
-
-  it('renders after loading', () => {
-    const wrapper = shallowMount(Index, {
-      stubs: ['loading-view', 'cards'],
-      propsData: {
-        resourceName: 'posts',
-      },
+    it('renders', () => {
+        const wrapper = shallowMount(Index, {
+            stubs: ['loading-view', 'cards'],
+            propsData: {
+                resourceName: 'posts',
+            },
+        })
+        renderer.renderToString(wrapper.vm, (err, str) => {
+            if (err) throw new Error(err)
+            expect(str).toMatchSnapshot()
+        })
     })
 
-    expect(wrapper.vm.initialLoading).toEqual(false)
-  })
+    it('renders after loading', () => {
+        const wrapper = shallowMount(Index, {
+            stubs: ['loading-view', 'cards'],
+            propsData: {
+                resourceName: 'posts',
+            },
+        })
 
-  it('should show its cards', () => {
-    const $route = { params: { resourceName: 'posts' } }
-    const wrapper = shallowMount(Index, {
-      stubs: ['loading-view', 'cards'],
-      mocks: {
-        $route,
-      },
-      propsData: {
-        resourceName: 'posts',
-      },
+        expect(wrapper.vm.initialLoading).toEqual(false)
     })
 
-    // wrapper.setData({
-    //     cards: [{}],
-    // })
+    it('should show its cards', () => {
+        const $route = {params: {resourceName: 'posts'}}
+        const wrapper = shallowMount(Index, {
+            stubs: ['loading-view', 'cards'],
+            mocks: {
+                $route,
+            },
+            propsData: {
+                resourceName: 'posts',
+            },
+        })
 
-    expect(wrapper.vm.shouldShowCards).toEqual(true)
-  })
+        // wrapper.setData({
+        //     cards: [{}],
+        // })
+
+        expect(wrapper.vm.shouldShowCards).toEqual(true)
+    })
 })

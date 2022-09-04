@@ -92,10 +92,10 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
     /**
      * Create a new field.
      *
-     * @param  string  $name
-     * @param  string  $attribute
-     * @param  string|null  $disk
-     * @param  callable|null  $storageCallback
+     * @param string $name
+     * @param string $attribute
+     * @param string|null $disk
+     * @param callable|null $storageCallback
      * @return void
      */
     public function __construct($name, $attribute = null, $disk = 'public', $storageCallback = null)
@@ -126,7 +126,7 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
     /**
      * Prepare the storage callback.
      *
-     * @param  callable|null  $storageCallback
+     * @param callable|null $storageCallback
      * @return void
      */
     protected function prepareStorageCallback($storageCallback)
@@ -139,28 +139,10 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
     }
 
     /**
-     * Store the file on disk.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $requestAttribute
-     * @return string
-     */
-    protected function storeFile($request, $requestAttribute)
-    {
-        if (! $this->storeAsCallback) {
-            return $request->file($requestAttribute)->store($this->getStorageDir(), $this->getStorageDisk());
-        }
-
-        return $request->file($requestAttribute)->storeAs(
-            $this->getStorageDir(), call_user_func($this->storeAsCallback, $request), $this->getStorageDisk()
-        );
-    }
-
-    /**
      * Merge the specified extra file information columns into the storable attributes.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  array  $attributes
+     * @param \Illuminate\Http\Request $request
+     * @param array $attributes
      * @return array
      */
     protected function mergeExtraStorageColumns($request, array $attributes)
@@ -176,6 +158,76 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
         }
 
         return $attributes;
+    }
+
+    /**
+     * Store the file on disk.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param string $requestAttribute
+     * @return string
+     */
+    protected function storeFile($request, $requestAttribute)
+    {
+        if (!$this->storeAsCallback) {
+            return $request->file($requestAttribute)->store($this->getStorageDir(), $this->getStorageDisk());
+        }
+
+        return $request->file($requestAttribute)->storeAs(
+            $this->getStorageDir(), call_user_func($this->storeAsCallback, $request), $this->getStorageDisk()
+        );
+    }
+
+    /**
+     * Specify the callback that should be used to store the file.
+     *
+     * @param callable $storageCallback
+     * @return $this
+     */
+    public function store(callable $storageCallback)
+    {
+        $this->storageCallback = $storageCallback;
+
+        return $this;
+    }
+
+    /**
+     * Specify the callback that should be used to determine the file's storage name.
+     *
+     * @param callable $storeAsCallback
+     * @return $this
+     */
+    public function storeAs(callable $storeAsCallback)
+    {
+        $this->storeAsCallback = $storeAsCallback;
+
+        return $this;
+    }
+
+    /**
+     * Specify the callback that should be used to retrieve the preview URL.
+     *
+     * @param callable $previewUrlCallback
+     * @return $this
+     */
+    public function preview(callable $previewUrlCallback)
+    {
+        $this->previewUrlCallback = $previewUrlCallback;
+
+        return $this;
+    }
+
+    /**
+     * Specify the callback that should be used to retrieve the thumbnail URL.
+     *
+     * @param callable $thumbnailUrlCallback
+     * @return $this
+     */
+    public function thumbnail(callable $thumbnailUrlCallback)
+    {
+        $this->thumbnailUrlCallback = $thumbnailUrlCallback;
+
+        return $this;
     }
 
     /**
@@ -199,61 +251,9 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
     }
 
     /**
-     * Specify the callback that should be used to store the file.
-     *
-     * @param  callable  $storageCallback
-     * @return $this
-     */
-    public function store(callable $storageCallback)
-    {
-        $this->storageCallback = $storageCallback;
-
-        return $this;
-    }
-
-    /**
-     * Specify the callback that should be used to determine the file's storage name.
-     *
-     * @param  callable  $storeAsCallback
-     * @return $this
-     */
-    public function storeAs(callable $storeAsCallback)
-    {
-        $this->storeAsCallback = $storeAsCallback;
-
-        return $this;
-    }
-
-    /**
-     * Specify the callback that should be used to retrieve the thumbnail URL.
-     *
-     * @param  callable  $thumbnailUrlCallback
-     * @return $this
-     */
-    public function thumbnail(callable $thumbnailUrlCallback)
-    {
-        $this->thumbnailUrlCallback = $thumbnailUrlCallback;
-
-        return $this;
-    }
-
-    /**
-     * Specify the callback that should be used to retrieve the preview URL.
-     *
-     * @param  callable  $previewUrlCallback
-     * @return $this
-     */
-    public function preview(callable $previewUrlCallback)
-    {
-        $this->previewUrlCallback = $previewUrlCallback;
-
-        return $this;
-    }
-
-    /**
      * Specify the column where the file's original name should be stored.
      *
-     * @param  string  $column
+     * @param string $column
      * @return $this
      */
     public function storeOriginalName($column)
@@ -266,7 +266,7 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
     /**
      * Specify the column where the file size should be stored.
      *
-     * @param  string  $column
+     * @param string $column
      * @return $this
      */
     public function storeSize($column)
@@ -279,8 +279,8 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
     /**
      * Hydrate the given attribute on the model based on the incoming request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  object  $model
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param object $model
      * @return void
      */
     public function fillForAction(NovaRequest $request, $model)
@@ -291,21 +291,37 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
     }
 
     /**
+     * Prepare the field for JSON serialization.
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return array_merge(parent::jsonSerialize(), [
+            'thumbnailUrl' => $this->resolveThumbnailUrl(),
+            'previewUrl' => $this->resolvePreviewUrl(),
+            'downloadable' => $this->downloadsAreEnabled && isset($this->downloadResponseCallback) && !empty($this->value),
+            'deletable' => isset($this->deleteCallback) && $this->deletable,
+            'acceptedTypes' => $this->acceptedTypes,
+        ]);
+    }
+
+    /**
      * Hydrate the given attribute on the model based on the incoming request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  string  $requestAttribute
-     * @param  object  $model
-     * @param  string  $attribute
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param string $requestAttribute
+     * @param object $model
+     * @param string $attribute
      * @return mixed
      */
     protected function fillAttribute(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
-        if (is_null($file = $request->file($requestAttribute)) || ! $file->isValid()) {
+        if (is_null($file = $request->file($requestAttribute)) || !$file->isValid()) {
             return;
         }
 
-        $hasExistingFile = ! is_null($this->getStoragePath());
+        $hasExistingFile = !is_null($this->getStoragePath());
 
         $result = call_user_func(
             $this->storageCallback,
@@ -325,7 +341,7 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
             return $result;
         }
 
-        if (! is_array($result)) {
+        if (!is_array($result)) {
             return $model->{$attribute} = $result;
         }
 
@@ -354,21 +370,5 @@ class File extends Field implements StorableContract, DeletableContract, Downloa
     public function getStoragePath()
     {
         return $this->value;
-    }
-
-    /**
-     * Prepare the field for JSON serialization.
-     *
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-        return array_merge(parent::jsonSerialize(), [
-            'thumbnailUrl' => $this->resolveThumbnailUrl(),
-            'previewUrl' => $this->resolvePreviewUrl(),
-            'downloadable' => $this->downloadsAreEnabled && isset($this->downloadResponseCallback) && ! empty($this->value),
-            'deletable' => isset($this->deleteCallback) && $this->deletable,
-            'acceptedTypes' => $this->acceptedTypes,
-        ]);
     }
 }

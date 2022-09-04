@@ -21,11 +21,11 @@ class CallQueuedAction
     /**
      * Create a new job instance.
      *
-     * @param  \Laravel\Nova\Actions\Action  $action
-     * @param  string  $method
-     * @param  \Laravel\Nova\Fields\ActionFields  $fields
-     * @param  \Illuminate\Support\Collection  $models
-     * @param  string  $batchId
+     * @param \Laravel\Nova\Actions\Action $action
+     * @param string $method
+     * @param \Laravel\Nova\Fields\ActionFields $fields
+     * @param \Illuminate\Support\Collection $models
+     * @param string $batchId
      * @return void
      */
     public function __construct(Action $action, $method, ActionFields $fields, Collection $models, $batchId)
@@ -52,7 +52,7 @@ class CallQueuedAction
     /**
      * Call the failed method on the job instance.
      *
-     * @param  \Exception  $e
+     * @param \Exception $e
      * @return void
      */
     public function failed($e)
@@ -77,7 +77,7 @@ class CallQueuedAction
         }
 
         return method_exists($this->action, 'failed')
-                    ? 'failed' : null;
+            ? 'failed' : null;
     }
 
     /**
@@ -88,7 +88,7 @@ class CallQueuedAction
     protected function failedMethodForModel()
     {
         if ($this->models->isNotEmpty()) {
-            return 'failedFor'.Str::plural(class_basename($this->models->first()));
+            return 'failedFor' . Str::plural(class_basename($this->models->first()));
         }
     }
 }

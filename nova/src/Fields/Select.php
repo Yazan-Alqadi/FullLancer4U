@@ -18,7 +18,7 @@ class Select extends Field
     /**
      * Set the options for the select menu.
      *
-     * @param  array|\Closure|\Illuminate\Support\Collection
+     * @param array|\Closure|\Illuminate\Support\Collection
      * @return $this
      */
     public function options($options)
@@ -31,7 +31,7 @@ class Select extends Field
             'options' => collect($options ?? [])->map(function ($label, $value) {
                 if ($this->searchable && isset($label['group'])) {
                     return [
-                        'label' => $label['group'].' - '.$label['label'],
+                        'label' => $label['group'] . ' - ' . $label['label'],
                         'value' => $value,
                     ];
                 }
@@ -50,8 +50,8 @@ class Select extends Field
     {
         return $this->displayUsing(function ($value) {
             return collect($this->meta['options'])
-                    ->where('value', $value)
-                    ->first()['label'] ?? $value;
+                ->where('value', $value)
+                ->first()['label'] ?? $value;
         });
     }
 

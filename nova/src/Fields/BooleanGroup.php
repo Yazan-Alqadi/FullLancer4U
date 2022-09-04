@@ -47,7 +47,7 @@ class BooleanGroup extends Field
     /**
      * Set the options for the field.
      *
-     * @param  array|\Closure|\Illuminate\Support\Collection
+     * @param array|\Closure|\Illuminate\Support\Collection
      * @return $this
      */
     public function options($options)
@@ -96,7 +96,7 @@ class BooleanGroup extends Field
     /**
      * Set the text to be used when there are no booleans to show.
      *
-     * @param  string  $text
+     * @param string $text
      * @return $this
      */
     public function noValueText($text)
@@ -104,22 +104,6 @@ class BooleanGroup extends Field
         $this->noValueText = $text;
 
         return $this;
-    }
-
-    /**
-     * Hydrate the given attribute on the model based on the incoming request.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  string  $requestAttribute
-     * @param  object  $model
-     * @param  string  $attribute
-     * @return void
-     */
-    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
-    {
-        if ($request->exists($requestAttribute)) {
-            $model->{$attribute} = json_decode($request[$requestAttribute], true);
-        }
     }
 
     /**
@@ -135,5 +119,21 @@ class BooleanGroup extends Field
             'options' => $this->options,
             'noValueText' => __($this->noValueText),
         ]);
+    }
+
+    /**
+     * Hydrate the given attribute on the model based on the incoming request.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param string $requestAttribute
+     * @param object $model
+     * @param string $attribute
+     * @return void
+     */
+    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
+    {
+        if ($request->exists($requestAttribute)) {
+            $model->{$attribute} = json_decode($request[$requestAttribute], true);
+        }
     }
 }

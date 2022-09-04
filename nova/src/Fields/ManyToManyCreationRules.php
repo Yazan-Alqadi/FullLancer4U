@@ -17,19 +17,6 @@ trait ManyToManyCreationRules
     public $creationRulesCallback;
 
     /**
-     * Set creation rules callback for this relation.
-     *
-     * @param  \Closure|null  $callback
-     * @return $this
-     */
-    public function creationRules($callback = null)
-    {
-        $this->creationRulesCallback = $callback;
-
-        return $this;
-    }
-
-    /**
      * Set allow same relation rules.
      *
      * @return $this
@@ -41,6 +28,19 @@ trait ManyToManyCreationRules
                 new NotExactlyAttached($request, $request->findModelOrFail()),
             ];
         });
+    }
+
+    /**
+     * Set creation rules callback for this relation.
+     *
+     * @param \Closure|null $callback
+     * @return $this
+     */
+    public function creationRules($callback = null)
+    {
+        $this->creationRulesCallback = $callback;
+
+        return $this;
     }
 
     /**
@@ -60,7 +60,7 @@ trait ManyToManyCreationRules
     /**
      * Get the creation rules for this field.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function getManyToManyCreationRules(NovaRequest $request)

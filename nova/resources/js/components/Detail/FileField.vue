@@ -1,29 +1,26 @@
 <template>
-  <panel-item :field="field">
-    <div slot="value">
-      <template v-if="shouldShowLoader">
-        <ImageLoader
-          :src="imageUrl"
-          :maxWidth="maxWidth"
-          :rounded="rounded"
-          @missing="value => (missing = value)"
-        />
-      </template>
+    <panel-item :field="field">
+        <div slot="value">
+            <template v-if="shouldShowLoader">
+                <ImageLoader
+                    :maxWidth="maxWidth"
+                    :rounded="rounded"
+                    :src="imageUrl"
+                    @missing="value => (missing = value)"
+                />
+            </template>
 
-      <template v-if="field.value && !imageUrl">
-        <span class="break-words">{{ field.value }}</span>
-      </template>
+            <template v-if="field.value && !imageUrl">
+                <span class="break-words">{{ field.value }}</span>
+            </template>
 
-      <span v-if="!field.value && !imageUrl">&mdash;</span>
+            <span v-if="!field.value && !imageUrl">&mdash;</span>
 
-      <p v-if="shouldShowToolbar" class="flex items-center text-sm mt-3">
-        <a
-          v-if="field.downloadable"
-          :dusk="field.attribute + '-download-link'"
-          @keydown.enter.prevent="download"
-          @click.prevent="download"
-          tabindex="0"
-          class="
+            <p v-if="shouldShowToolbar" class="flex items-center text-sm mt-3">
+                <a
+                    v-if="field.downloadable"
+                    :dusk="field.attribute + '-download-link'"
+                    class="
             cursor-pointer
             dim
             btn btn-link
@@ -31,78 +28,81 @@
             inline-flex
             items-center
           "
-        >
-          <icon
-            class="mr-2"
-            type="download"
-            view-box="0 0 24 24"
-            width="16"
-            height="16"
-          />
-          <span class="class mt-1">{{ __('Download') }}</span>
-        </a>
-      </p>
-    </div>
-  </panel-item>
+                    tabindex="0"
+                    @keydown.enter.prevent="download"
+                    @click.prevent="download"
+                >
+                    <icon
+                        class="mr-2"
+                        height="16"
+                        type="download"
+                        view-box="0 0 24 24"
+                        width="16"
+                    />
+                    <span class="class mt-1">{{ __('Download') }}</span>
+                </a>
+            </p>
+        </div>
+    </panel-item>
 </template>
 
 <script>
 import ImageLoader from '@/components/ImageLoader'
 
 export default {
-  props: ['resource', 'resourceName', 'resourceId', 'field'],
+    props: ['resource', 'resourceName', 'resourceId', 'field'],
 
-  components: { ImageLoader },
+    components: {ImageLoader},
 
-  data: () => ({ missing: false }),
+    data: () => ({missing: false}),
 
-  methods: {
-    /**
-     * Download the linked file
-     */
-    download() {
-      const { resourceName, resourceId } = this
-      const attribute = this.field.attribute
+    methods: {
+        /**
+         * Download the linked file
+         */
+        download() {
+            const {resourceName, resourceId} = this
+            const attribute = this.field.attribute
 
-      let link = document.createElement('a')
-      link.href = `/nova-api/${resourceName}/${resourceId}/download/${attribute}`
-      link.download = 'download'
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-    },
-  },
-
-  computed: {
-    hasValue() {
-      return (
-        Boolean(this.field.value || this.imageUrl) && !Boolean(this.missing)
-      )
+            let link = document.createElement('a')
+            link.href = `/nova-api/${resourceName}/${resourceId}/download/${attribute}`
+            link.download = 'download'
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+        },
     },
 
-    shouldShowLoader() {
-      return Boolean(this.imageUrl)
-    },
+    computed: {
+        hasValue() {
+            return (
+                Boolean(this.field.value || this.imageUrl) && !Boolean(this.missing)
+            )
+        },
 
-    shouldShowToolbar() {
-      return Boolean(this.field.downloadable && this.hasValue)
-    },
+        shouldShowLoader() {
+            return Boolean(this.imageUrl)
+        },
 
-    imageUrl() {
-      return this.field.previewUrl || this.field.thumbnailUrl
-    },
+        shouldShowToolbar() {
+            return Boolean(this.field.downloadable && this.hasValue)
+        },
 
-    rounded() {
-      return this.field.rounded
-    },
+        imageUrl() {
+            return this.field.previewUrl || this.field.thumbnailUrl
+        },
 
-    maxWidth() {
-      return this.field.maxWidth || 320
-    },
+        rounded() {
+            return this.field.rounded
+        },
 
-    isVaporField() {
-      return this.field.component == 'vapor-file-field'
+        maxWidth() {
+            return this.field.maxWidth || 320
+        },
+
+        isVaporField() {
+            return this.field.component == 'vapor-file-field'
+        },
     },
-  },
 }
 </script>

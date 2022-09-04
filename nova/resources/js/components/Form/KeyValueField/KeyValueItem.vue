@@ -1,17 +1,20 @@
 <template>
-  <div v-if="isNotObject" class="flex items-center key-value-item">
-    <div class="flex flex-grow border-b border-50 key-value-fields">
-      <div
-        class="w-48 cursor-text"
-        :class="{ 'bg-30': readOnlyKeys || !isEditable }"
-      >
+    <div v-if="isNotObject" class="flex items-center key-value-item">
+        <div class="flex flex-grow border-b border-50 key-value-fields">
+            <div
+                :class="{ 'bg-30': readOnlyKeys || !isEditable }"
+                class="w-48 cursor-text"
+            >
         <textarea
-          :dusk="`key-value-key-${index}`"
-          v-model="item.key"
-          @focus="handleKeyFieldFocus"
-          ref="keyField"
-          type="text"
-          class="
+            ref="keyField"
+            v-model="item.key"
+            :class="{
+            'bg-white': !isEditable || readOnlyKeys,
+            'hover:bg-20 focus:bg-white': isEditable && !readOnlyKeys,
+          }"
+            :disabled="!isEditable || readOnlyKeys"
+            :dusk="`key-value-key-${index}`"
+            class="
             font-mono
             text-sm
             resize-none
@@ -22,23 +25,23 @@
             py-4
             text-90
           "
-          :disabled="!isEditable || readOnlyKeys"
-          style="background-clip: border-box"
-          :class="{
-            'bg-white': !isEditable || readOnlyKeys,
-            'hover:bg-20 focus:bg-white': isEditable && !readOnlyKeys,
-          }"
+            style="background-clip: border-box"
+            type="text"
+            @focus="handleKeyFieldFocus"
         />
-      </div>
+            </div>
 
-      <div @click="handleValueFieldFocus" class="flex-grow border-l border-50">
+            <div class="flex-grow border-l border-50" @click="handleValueFieldFocus">
         <textarea
-          :dusk="`key-value-value-${index}`"
-          v-model="item.value"
-          @focus="handleValueFieldFocus"
-          ref="valueField"
-          type="text"
-          class="
+            ref="valueField"
+            v-model="item.value"
+            :class="{
+            'bg-white': !isEditable,
+            'hover:bg-20 focus:bg-white': isEditable,
+          }"
+            :disabled="!isEditable"
+            :dusk="`key-value-value-${index}`"
+            class="
             font-mono
             text-sm
             block
@@ -48,26 +51,20 @@
             py-4
             text-90
           "
-          :disabled="!isEditable"
-          :class="{
-            'bg-white': !isEditable,
-            'hover:bg-20 focus:bg-white': isEditable,
-          }"
+            type="text"
+            @focus="handleValueFieldFocus"
         />
-      </div>
-    </div>
+            </div>
+        </div>
 
-    <div
-      v-if="isEditable && canDeleteRow"
-      class="flex justify-center h-11 w-11 absolute"
-      style="right: -50px"
-    >
-      <button
-        @click="$emit('remove-row', item.id)"
-        :dusk="`remove-key-value-${index}`"
-        type="button"
-        tabindex="-1"
-        class="
+        <div
+            v-if="isEditable && canDeleteRow"
+            class="flex justify-center h-11 w-11 absolute"
+            style="right: -50px"
+        >
+            <button
+                :dusk="`remove-key-value-${index}`"
+                class="
           flex
           appearance-none
           cursor-pointer
@@ -76,61 +73,64 @@
           active:outline-none active:shadow-outline
           focus:outline-none focus:shadow-outline
         "
-        title="Delete"
-      >
-        <icon />
-      </button>
+                tabindex="-1"
+                title="Delete"
+                type="button"
+                @click="$emit('remove-row', item.id)"
+            >
+                <icon/>
+            </button>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 import autosize from 'autosize'
 
 export default {
-  props: {
-    index: Number,
-    item: Object,
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    readOnly: {
-      type: Boolean,
-      default: false,
-    },
-    readOnlyKeys: {
-      type: Boolean,
-      default: false,
-    },
-    canDeleteRow: {
-      type: Boolean,
-      default: true,
-    },
-  },
-
-  mounted() {
-    autosize(this.$refs.keyField)
-    autosize(this.$refs.valueField)
-  },
-
-  methods: {
-    handleKeyFieldFocus() {
-      this.$refs.keyField.select()
+    props: {
+        index: Number,
+        item: Object,
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+        readOnly: {
+            type: Boolean,
+            default: false,
+        },
+        readOnlyKeys: {
+            type: Boolean,
+            default: false,
+        },
+        canDeleteRow: {
+            type: Boolean,
+            default: true,
+        },
     },
 
-    handleValueFieldFocus() {
-      this.$refs.valueField.select()
+    mounted() {
+        autosize(this.$refs.keyField)
+        autosize(this.$refs.valueField)
     },
-  },
 
-  computed: {
-    isNotObject() {
-      return !(this.item.value instanceof Object)
+    methods: {
+        handleKeyFieldFocus() {
+            this.$refs.keyField.select()
+        },
+
+        handleValueFieldFocus() {
+            this.$refs.valueField.select()
+        },
     },
-    isEditable() {
-      return !this.readOnly && !this.disabled
+
+    computed: {
+        isNotObject() {
+            return !(this.item.value instanceof Object)
+        },
+        isEditable() {
+            return !this.readOnly && !this.disabled
+        },
     },
-  },
 }
 </script>

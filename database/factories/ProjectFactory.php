@@ -20,10 +20,10 @@ class ProjectFactory extends Factory
             //
             'title' => $this->faker->jobTitle(),
             'price' => $this->faker->randomFloat,
-            'description' =>$this->faker->text,
-            'deadline'=>$this->faker->date(),
-            'category_id'=>Category::inRandomOrder()->first()->id,
-            'user_id'=>User::factory(),
+            'description' => $this->faker->text,
+            'deadline' => $this->faker->date(),
+            'category_id' => Category::inRandomOrder()->first()->id,
+            'user_id' => User::factory(),
         ];
     }
 }

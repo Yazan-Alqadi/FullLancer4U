@@ -2,46 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Freelancer;
-use App\Models\Profession;
-use App\Models\Category;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use App\Events\NewMessage;
+use App\Models\Category;
+use App\Models\Freelancer;
 use App\Models\Notification;
+use App\Models\Profession;
+use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProfessionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
         //
-        $professions = Profession::latest()->paginate(6);
-        $categories = Category::all();
-        return view('auth.Professions_cards', compact('professions','categories'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $professions = cache()->remember('pageServices' . request('page', 1), 60 + 60 + 24, function () {
+            return Profession::with('freelancer', 'category', 'freelancer.user')->paginate(6);
+        });
+        $categories = cache()->remember('categories', 60 + 60 + 24, function () {
+            return Category::all();
+        });
+        return view('pages.main.services_page', compact('professions', 'categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -76,39 +75,60 @@ class ProfessionController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Application|Factory|View|Response
      */
     public function show($id)
     {
         //
-        $profession = Profession::find($id);
-        $professions = Profession::where('category_id', $profession->category_id)->get();
-        return view('profile_freelancer_for_client', ['professions' => $professions, 'profession' => $profession]);
+
+
+        $profession = Profession::with('freelancer', 'freelancer.user')
+            ->findOrFail($id);
+        $category = Category::findOrFail($profession->category_id);
+
+        $professions = Profession::where('id', '!=', $id)
+            ->where('category_id', $category->id)
+            ->with('category', 'freelancer', 'freelancer.user')->get();
+
+
+        return view('pages.service.show_service_page', compact('profession', 'professions'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Application|Factory|View
      */
     public function edit($id)
     {
         //
-        $service =  Profession::find($id);
-        $categories = Category::all();
-        return view('edit_service', ['service' => $service, 'categories' => $categories]);
+        $service = Profession::find($id);
+        $categories = cache()->remember('categories', 60 + 60 + 24, function () {
+            return Category::all();
+        });
+        return view('pages.service.edit_service_page', ['service' => $service, 'categories' => $categories]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -129,8 +149,8 @@ class ProfessionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {
@@ -171,9 +191,9 @@ class ProfessionController extends Controller
         $user_id = $service->freelancer->user->id;
 
 
-        $not =Notification::create([
+        $not = Notification::create([
             'title' => 'New apply for your service',
-            'content' => Auth::user()->full_name .' apply for your Service ' . $service->title,
+            'content' => Auth::user()->full_name . ' apply for your Service ' . $service->title,
             'user_id' => $user_id,
             'reciver_id' => Auth::id(),
             'type' => 'service',
@@ -185,25 +205,26 @@ class ProfessionController extends Controller
         return back();
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         // Get the search value from the request
 
         $title = $request->title;
         $price = $request->price;
         $freelancer = $request->fName;
 
-        if (is_null( $price))
-            $price='-1000000';
+        if (is_null($price))
+            $price = '-1000000';
 
         // Search in the title from the services table
         $professions = Profession::latest()
             ->where('title', 'LIKE', "%{$title}%")
-            ->where('price', '>=', $price )
-            ->where('category_id',$request->category)
+            ->where('price', '>=', $price)
+            ->where('category_id', $request->category)
             ->paginate(6);
         $categories = Category::all();
         // Return the search view with the resluts compacted
-        return view('auth.Professions_cards', compact('professions','categories'));
+        return view('pages.main.services_page', compact('professions', 'categories'));
     }
 
 }

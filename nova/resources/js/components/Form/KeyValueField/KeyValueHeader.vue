@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-30 rounded-t-lg flex border-b border-50">
-    <div
-      class="
+    <div class="bg-30 rounded-t-lg flex border-b border-50">
+        <div
+            class="
         bg-clip
         w-48
         uppercase
@@ -11,12 +11,12 @@
         px-3
         py-3
       "
-    >
-      {{ keyLabel }}
-    </div>
+        >
+            {{ keyLabel }}
+        </div>
 
-    <div
-      class="
+        <div
+            class="
         bg-clip
         flex-grow
         uppercase
@@ -27,21 +27,21 @@
         py-3
         border-l border-50
       "
-    >
-      {{ valueLabel }}
+        >
+            {{ valueLabel }}
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  props: {
-    keyLabel: {
-      type: String,
+    props: {
+        keyLabel: {
+            type: String,
+        },
+        valueLabel: {
+            type: String,
+        },
     },
-    valueLabel: {
-      type: String,
-    },
-  },
 }
 </script>
