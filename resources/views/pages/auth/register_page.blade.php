@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color: lightgrey;">
+<html lang="en" style="background-color: lightgrey; height: 1000px;">
 
 <head>
 
@@ -27,10 +27,10 @@
 
 <img src="../../../../public/files/munt-background.jpg" class="img-log-in" alt="...">
 
-<section class="container bg-light text-dark p-3 mgg w-50 rounded mb-5"
-         style="max-width: 30rem; z-index: 2;margin: 0 !important; position: absolute;
+<section class="container bg-light text-dark p-3 rounded"
+         style="max-width: 30rem; z-index: 2; position: absolute;
     box-shadow: 0 20px 65px 10px #2188f399;
-    left: calc(calc(100% - 448px)/2); top: calc(calc(100% - 406px)/2);">
+    left: calc(calc(100% - 448px)/2); top: calc(calc(100% - 406px)/2); width: 450px;">
     <div class="border-bottom border-dark ps-3 h5 py-1">
         Sign up
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
