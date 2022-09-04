@@ -148,6 +148,7 @@
 
 
         </div>
+
         <div {{-- style="position: absolute; z-index: 100000; right: 16px; top: -13px;" --}}>
             @auth
                 {{-- Notification --}}
@@ -216,6 +217,16 @@
                 </div>
             @endauth
         </div>
+
+        {{-- Choose a language --}}
+        <button type="submit" class="btn btn-outline-secondary p-1">
+            {{-- if language is English --}}
+            En
+            {{-- if language is Arabic --}}
+            {{-- Ar --}}
+        </button>
+
+
     </div>
 
 </div>

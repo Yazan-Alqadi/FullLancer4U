@@ -18,6 +18,9 @@
     <link href="{{ asset('css/profession.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
+    {{-- if Arabic --}}
+    <link href="{{ asset('css/main_page_Ar.css') }}" rel="stylesheet">
     <title>Main_Page</title>
 </head>
 
@@ -30,8 +33,8 @@
 @include('layouts.nav-bar')
 
 
-<section id="hero" class="bg-dark text-light text-lg-center text-md-center text-sm-start pt-5 mt-5 pb-2">
-    <div class="container">
+<section id="hero" class="bg-dark text-light text-lg-center text-md-center text-sm-start pt-5 mt-5 pb-2 ar">
+    <div class="container-fluid">
         <div class="d-flex">
             <div>
                 <h2>How to make this site <span class="text-info">useful to you</span>
@@ -69,13 +72,13 @@
 </section>
 
 
-<section id="top-fl" class="bg-light text-center py-5">
-    <div class="container">
+<section id="top-fl" class="bg-light text-center py-5 ar">
+    <div class="container-fluid">
         <h2 class="mb-5">Top <span class="text-warning">Freelancers</span></h2>
         <div class="d-flex">
             <img class="ms-2 d-none d-sm-block img-fluid" alt="photo" style="width: 20% !important;"
                  src={{ 'files/top_fl.svg' }} >
-            <div style="flex-grow: 1;">
+            <div style="flex-grow: 1;" class="table-responsive">
 
                 {{-- <div class="table"> --}}
                 <table class="table">
@@ -157,7 +160,7 @@
 </section>
 
 {{-- How works ? --}}
-<section class="py-5 section-style" style=" background-image: url({{ 'files/bilding.jpg' }});">
+<section class="py-5 section-style ar" style=" background-image: url({{ 'files/bilding.jpg' }});">
 
     <h1 class="text-center" style="color: #560b0b !important;"> How Fullancer4U works</h1>
 
@@ -212,7 +215,7 @@
 </section>
 
 <!-- Services Cards -->
-<section class="py-5 section-style" style="background-color: #c0faff99 !important;">
+<section class="py-5 section-style ar" style="background-color: #c0faff99 !important;">
 
     <h2 class="text-success ms-3 fw-bold" style="color: blue  !important;">Professions</h2>
 
@@ -231,7 +234,7 @@
 
 
 <!-- Project Cards -->
-<section class="py-5 section-style" style="background-color: #c0faff99 !important;">
+<section class="py-5 section-style ar" style="background-color: #c0faff99 !important;">
 
     <h2 class="text-success ms-3 fw-bold" style="color: blue  !important;">Projects</h2>
 
