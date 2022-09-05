@@ -30,12 +30,12 @@
         <div class="collapse navbar-collapse" id="mainmenu">
             <ul class="navbar-nav ms-1 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
                 <li class="nav-item h6"><a href="{{ route('professions.index') }}"
-                        class="nav-link in-hover">Services</a>
+                        class="nav-link in-hover">{{ __('home.services_title') }}</a>
                 </li>
                 <li class="nav-item h6"><a href="{{ route('freelancers.index') }}"
-                        class="nav-link in-hover">Freealncers</a>
+                        class="nav-link in-hover">{{ __('home.freelancers_title') }}</a>
                 </li>
-                <li class="nav-item h6"><a href="{{ route('projects.index') }}" class="nav-link in-hover">Projects</a>
+                <li class="nav-item h6"><a href="{{ route('projects.index') }}" class="nav-link in-hover">{{ __('home.projects_title') }}</a>
                 </li>
                 {{-- Bacome freelancer --}}
 

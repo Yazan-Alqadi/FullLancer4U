@@ -19,8 +19,8 @@ return[
 
 
     'services_title'=>'الخدمات',
-
     'projects_title'=>'المشاريع',
+    'freelancers_title'=>'الفريلانسرز',
 
     'title1'=> 'كيف تجعل هذا الموقع',
     'title2'=>'مفيد لك',

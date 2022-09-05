@@ -19,7 +19,7 @@ return[
     read the service details and see the seller\'s information,',
 
     'services_title'=>'Services',
-
+    'freelancers_title'=>'Freelancers',
     'projects_title'=>'Projects',
     'title1'=> 'How to make this site',
     'title2'=>'useful to you',
