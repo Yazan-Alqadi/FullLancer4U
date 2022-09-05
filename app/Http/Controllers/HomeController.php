@@ -9,6 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $freelancers = cache()->remember('topFreelancers', 60 + 60 + 24, function () {
             return Freelancer::with('user', 'user.skills')->get()->sortByDesc('rate')->take(10);
         });

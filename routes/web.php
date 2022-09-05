@@ -14,6 +14,7 @@ use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +50,13 @@ Route::get('projects', [ProjectController::class, 'index'])->name('projects.inde
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('redToGoogle');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('googleCallBack');
+Route::get('locale/{locale}',function($locale){
 
+    Session::put('locale',$locale);
+
+       return redirect()->back();
+
+    })->name('switchLan');  //add name to router
 
 Route::middleware(['auth'])->group(function () {
 

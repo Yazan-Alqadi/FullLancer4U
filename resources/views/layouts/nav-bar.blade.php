@@ -150,92 +150,87 @@
         </div>
 
         {{-- <ul> --}}
-            {{-- <li> --}}
-                <div {{-- style="position: absolute; z-index: 100000; right: 16px; top: -13px;" --}}>
-                    @auth
-                        {{-- Notification --}}
-                        @php
-                            $notification = \App\Models\Notification::latest()
-                                ->where('user_id', Auth::id())
-                                ->take(5)
-                                ->get();
-                        @endphp
-                        <div class="dropdown-notifications" id="navbarNavDarkDropdown">
-                            <ul class="navbar-nav">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link" href="#notifications-panel" class="dropdown-toggle"
-                                        data-toggle="dropdown" role="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <span class="bg-light border rounded px-1 notif-count text-dark" data-count="0"
-                                            style="position: absolute; top: 0px; left: -7px; font-size: 10px;">0</span>
-                                        <svg style="z-index: 100;color: white;" xmlns="http://www.w3.org/2000/svg"
-                                            width="16" height="16" fill="currentColor" class="bi bi-bell-fill"
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                                        </svg>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light p-2">
-                                        <div
-                                            style="min-width: 400px !important; display: flex; justify-content: space-between;align-items: center;">
-                                            <span>Notifications (<span class="notif-count">0</span>)</span>
-                                            <span><button class="btn btn-link px-0">mark all as read</button></span>
-                                        </div>
-                                        <div style="overflow: hidden;max-height: 320px;overflow: auto;">
-                                            <ul class="disd" style="display: contents;">
+        {{-- <li> --}}
+        <div {{-- style="position: absolute; z-index: 100000; right: 16px; top: -13px;" --}}>
+            @auth
+                {{-- Notification --}}
+                @php
+                    $notification = \App\Models\Notification::latest()
+                        ->where('user_id', Auth::id())
+                        ->take(5)
+                        ->get();
+                @endphp
+                <div class="dropdown-notifications" id="navbarNavDarkDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#notifications-panel" class="dropdown-toggle"
+                                data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="bg-light border rounded px-1 notif-count text-dark" data-count="0"
+                                    style="position: absolute; top: 0px; left: -7px; font-size: 10px;">0</span>
+                                <svg style="z-index: 100;color: white;" xmlns="http://www.w3.org/2000/svg" width="16"
+                                    height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                                </svg>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light p-2">
+                                <div
+                                    style="min-width: 400px !important; display: flex; justify-content: space-between;align-items: center;">
+                                    <span>Notifications (<span class="notif-count">0</span>)</span>
+                                    <span><button class="btn btn-link px-0">mark all as read</button></span>
+                                </div>
+                                <div style="overflow: hidden;max-height: 320px;overflow: auto;">
+                                    <ul class="disd" style="display: contents;">
 
-                                                @foreach ($notification as $otif)
-                                                    <li>
-                                                        <div class="px-3 pt-1 p-2 mb-2"
-                                                            style="font-size: 13px !important;">
-                                                            <a class="text-decoration-none"
-                                                                href="{{ route('my_notification') }}">
-                                                                {{-- message from who ? --}}
-                                                                <div class="d-flex"
-                                                                    style="justify-content: space-between; align-items: center;">
-                                                                    <span class="text-danger" style="font-size: 15px">
-                                                                        {{ $otif->title }} </span>
-                                                                    <span
-                                                                        class="rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($otif->created_at)->diffForHumans() }}</span>
-                                                                </div>
-                                                                <div class="text-dark" style="word-break: break-word;">
-                                                                    {{ $otif->content }}
-                                                                </div>
-                                                            </a>
+                                        @foreach ($notification as $otif)
+                                            <li>
+                                                <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">
+                                                    <a class="text-decoration-none"
+                                                        href="{{ route('my_notification') }}">
+                                                        {{-- message from who ? --}}
+                                                        <div class="d-flex"
+                                                            style="justify-content: space-between; align-items: center;">
+                                                            <span class="text-danger" style="font-size: 15px">
+                                                                {{ $otif->title }} </span>
+                                                            <span
+                                                                class="rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($otif->created_at)->diffForHumans() }}</span>
                                                         </div>
-                                                    </li>
-                                                @endforeach
+                                                        <div class="text-dark" style="word-break: break-word;">
+                                                            {{ $otif->content }}
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        @endforeach
 
-                                            </ul>
-                                        </div>
-                                        <br>
-                                        <div class="text-center">
-                                            <a href="{{ route('my_notification') }}"
-                                                class="bg-light text-primary text-decoration-none">View
-                                                all</a>
-                                        </div>
                                     </ul>
-
-
-                                </li>
+                                </div>
+                                <br>
+                                <div class="text-center">
+                                    <a href="{{ route('my_notification') }}"
+                                        class="bg-light text-primary text-decoration-none">View
+                                        all</a>
+                                </div>
                             </ul>
-                        </div>
-                    @endauth
+
+
+                        </li>
+                    </ul>
                 </div>
-            {{-- </li> --}}
+            @endauth
+        </div>
 
-            {{-- <li> --}}
-                {{-- Choose a language --}}
-                <button type="submit" class="btn btn-outline-secondary p-1">
-                    {{-- if language is English --}}
-                    En
-                    {{-- if language is Arabic --}}
-                    {{-- Ar --}}
-                </button>
-            {{-- </li> --}}
-        {{-- </ul> --}}
+        <a @if (app()->getLocale() == 'ar') href="{{ route('switchLan', 'en') }}"
+        @else
+        href="{{ route('switchLan', 'ar') }}" @endif
+            class="btn btn-outline-secondary p-1">
 
-
+            @if (app()->getLocale() == 'ar')
+                Ar
+            @else
+                En
+            @endif
+        </a>
     </div>
 
 </div>
