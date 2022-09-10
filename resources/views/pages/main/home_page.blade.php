@@ -51,7 +51,7 @@
                     </p>
                     @auth
                     @else
-                        <a href="{{ route('register.show') }}" class="btn btn-primary btn-lg">Register now</a>
+                        <a href="{{ route('register.show') }}" class="btn btn-primary btn-lg">{{ __('home.registernow') }}</a>
                     @endauth
                 </div>
                 <img class="ms-2 d-none d-sm-block img-fluid" alt="photo" style="width: 20% !important;"

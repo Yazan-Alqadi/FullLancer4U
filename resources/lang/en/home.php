@@ -33,4 +33,18 @@ return[
     'how2Text'=>'Review the service description and buyers\' reviews and then ask to open a connection with the seller.',
     'how3Text'=>'Contact the seller directly within the website until receiving your entire order.',
 
+    'profile'=>'My Profile',
+    'addService'=>'Add new Service',
+    'addProject'=>'Add new Project',
+    'myChat'=>'My Chats',
+    'myWork'=>'MY Work',
+    'myPurchase'=>'My Purchases',
+    'logout'=>'LogOut',
+    'signUp'=>'Log in',
+    'register'=>'Register',
+    'registernow'=>'Register Now',
+    'become'=>'Become Freelancer',
+
+
+
 ];
