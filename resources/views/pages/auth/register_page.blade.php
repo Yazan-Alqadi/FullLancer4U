@@ -25,7 +25,7 @@
 
 @include('layouts.nav-bar')
 
-<img src="../../../../public/files/munt-background.jpg" class="img-log-in" alt="...">
+<img src='files/munt-background.jpg' class="img-log-in" alt="...">
 
 <section class="container bg-light text-dark p-3 rounded"
          style="max-width: 30rem; z-index: 2; position: absolute;

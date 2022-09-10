@@ -25,7 +25,7 @@
 
 @include('layouts.nav-bar')
 
-<img src="../../../../public/files/munt-background.jpg" class="img-log-in" alt="...">
+<img src='files/munt-background.jpg' class="img-log-in" alt="...">
 
 @if (session('status'))
     <div class="alert-error-state">
