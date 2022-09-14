@@ -113,12 +113,17 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
+
+
         $project = Project::find($id);
         $categories = cache()->remember('categories', 60 + 60 + 24, function () {
             return Category::all();
         });
 
-        return view('pages.project.edit_project', compact('project', 'categories'));
+        $this->authorize('edit',$project);
+
+
+        return view('pages.project.edit_project_page', compact('project', 'categories'));
     }
 
     /**
@@ -130,7 +135,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, int $id): RedirectResponse
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         $inputs = $request->validate([
             'title' => 'required',
             'price' => 'required|integer',
@@ -138,6 +143,9 @@ class ProjectController extends Controller
             'category_id' => 'required|not_in:0,something else',
             'deadline' => 'required|date',
         ]);
+
+        $this->authorize('update',$project);
+
         $project->update($inputs);
         $project->save();
 

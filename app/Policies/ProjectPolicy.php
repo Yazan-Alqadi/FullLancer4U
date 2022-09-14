@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class ProjectPolicy
 {
@@ -42,9 +43,10 @@ class ProjectPolicy
      * @param \App\Models\User $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function edit(User $user,Project $project)
     {
-        //
+        return $user->id===$project->user->id? Response::allow()
+        : Response::deny('You do not own this project.');;
     }
 
     /**
@@ -57,7 +59,8 @@ class ProjectPolicy
     public function update(User $user, Project $project)
     {
         //
-        return $user->is_admin == 1;
+        return $user->id===$project->user->id? Response::allow()
+        : Response::deny('You do not own this project.');;
     }
 
     /**
@@ -69,7 +72,8 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        return $user->id == $project->user_id || $user->is_admin == 1;
+        return $user->id == $project->user_id ? Response::allow()
+        : Response::deny('You do not own this project.');
     }
 
     /**

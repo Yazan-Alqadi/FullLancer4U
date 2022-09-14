@@ -55,7 +55,7 @@ class ProfessionController extends Controller
 
 
         if (!Auth::user()->is_freelancer) {
-            $user = User::find(Auth::id());
+            $user = User::findOrFail(Auth::id());
             $user->is_freelancer = true;
             $user->save();
             $freelancer = Freelancer::create([
@@ -116,10 +116,12 @@ class ProfessionController extends Controller
     public function edit($id)
     {
         //
-        $service = Profession::find($id);
+        $service = Profession::findOrFail($id);
         $categories = cache()->remember('categories', 60 + 60 + 24, function () {
             return Category::all();
         });
+
+        $this->authorize('edit',$service);
         return view('pages.service.edit_service_page', ['service' => $service, 'categories' => $categories]);
     }
 
@@ -133,13 +135,15 @@ class ProfessionController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $service = Profession::find($id);
+        $service = Profession::findOrFail($id);
         $inputs = $request->validate([
             'title' => 'required',
             'price' => 'required|integer',
             'description' => 'required|min:5',
             'category_id' => 'required|not_in:0,something else'
         ]);
+
+        $this->authorize('update',$service);
         $service->update($inputs);
 
         session()->flash('message', 'Your service has been updated ');
@@ -154,7 +158,9 @@ class ProfessionController extends Controller
      */
     public function destroy($id)
     {
-        $service = Profession::find($id);
+        $service = Profession::findOrFail($id);
+
+        $this->authorize('delete',$service);
 
         $workService = DB::table('client_service')->where('service_id', $service->id)->get();
 
@@ -166,13 +172,13 @@ class ProfessionController extends Controller
         $services = Profession::where('freelancer_id', $service->freelancer_id)->get();
 
         if (count($services) < 2) {
-            $freelancer = Freelancer::find($service->freelancer_id);
+            $freelancer = Freelancer::findOrFail($service->freelancer_id);
 
             $workProject = DB::table('freelancer_project')->where('freelancer_id', $freelancer->id)->get();
             if (count($workProject) > 0)
                 return back()->with('errors', 'You can\'t delete this service because you have projects in your work ');
 
-            $user = User::find($freelancer->user_id);
+            $user = User::findOrFail($freelancer->user_id);
             $user->is_freelancer = false;
             $user->save();
             $freelancer->delete();
