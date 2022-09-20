@@ -28,13 +28,9 @@
 
 @include('layouts.nav-bar')
 
-<div class="bg-secondary pb-3 mggg">
-
-
-</div>
 
 <!-- card is here -->
-<section class="py-5 section-style">
+<section class="py-5 section-style mggg">
     <div class="container">
         <div class="row text-center">
             @foreach ($freelancers as $freelancer)

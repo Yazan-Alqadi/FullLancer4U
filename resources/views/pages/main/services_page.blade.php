@@ -22,7 +22,7 @@
     <link href="{{ asset('css/profession.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>Professions</title>
+    <title>Services</title>
 </head>
 
 <body>

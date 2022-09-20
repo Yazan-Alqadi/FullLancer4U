@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/main_page_css.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/main_page_css.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,16 +14,16 @@
         rel="stylesheet">
     <!-- Icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/fl.css') }}">
-    <link href="{{ asset('css/profession.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ mix('css/fl.css') }}">
+    <link href="{{ mix('/css/profession.css') }}" rel="stylesheet">
     <!-- CSS only -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/bootstrap.min.css') }}" rel="stylesheet">
 
     {{-- if Arabic --}}
     @if (app()->getLocale() == 'ar')
-    <link href="{{ asset('css/main_page_Ar.css') }}" rel="stylesheet">
+    <link href="{{mix('/css/main_page_Ar.css') }}" rel="stylesheet">
     @endif
-    <title>Main_Page</title>
+    <title>Home</title>
 </head>
 
 <body>
@@ -245,7 +245,7 @@
 
 
     <!-- JavaScript Bundle with Popper -->
-    <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+    <script src='/js/bootstrap.bundle.min.js'></script>
 </body>
 
 </html>

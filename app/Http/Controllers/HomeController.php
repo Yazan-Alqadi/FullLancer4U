@@ -9,6 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
@@ -32,6 +33,7 @@ class HomeController extends Controller
             cache()->remember('projects', 60 + 60 + 24, function () {
                 return Project::with('user', 'category')->get();
             });
+
         return view('pages.main.home_page', compact('professions', 'projects', 'freelancers'));
     }
 

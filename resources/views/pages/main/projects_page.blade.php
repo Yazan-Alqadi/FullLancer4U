@@ -30,29 +30,22 @@
 @include('layouts.nav-bar')
 
 
-<div class="bg-secondary pb-3 mggg">
-    <div class="h3 ms-3 pt-2 text-light"> Filters</div>
+<div class=" mggg">
+    <div class="h3 ms-3 pt-2 text-light"></div>
 
     <form class="pt-3" role="search" action="{{ route('search_project') }}">
         @csrf
         <div class="row justify-content-between">
             <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
                 <select name="category" class="form-select" aria-label="Default select example">
-                    <option selected>Filter category</option>
+                    <option selected>Choose Category</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->title }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                <input label="Title" name="title" type="text" class="form-control" id="inputTitle" placeholder="Tilte">
-            </div>
-            <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                <input label="kk" name="cName" type="text" class="form-control" id="inputName"
-                       placeholder="Client name">
-            </div>
-            <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                <input label="kk" name="price" type="text" class="form-control" id="inputPrice" placeholder="Price">
+                <input label="Title" name="title" type="text" class="form-control" id="inputTitle" placeholder="Search by title or price or client name ">
             </div>
         </div>
 

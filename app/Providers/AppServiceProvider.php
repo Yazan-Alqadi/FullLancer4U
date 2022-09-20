@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,12 +28,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+
+        URL::forceScheme('https');
+
+
         Model::unguard();
         Paginator::useBootstrap();
         Model::preventLazyLoading();
         Model::handleLazyLoadingViolationUsing(
 
-            fn($model, $relation) => logger("lazy")
+            fn ($model, $relation) => logger("lazy")
 
         );
     }

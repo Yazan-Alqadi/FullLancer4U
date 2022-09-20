@@ -20,7 +20,7 @@
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>Profile</title>
+    <title>User Profile</title>
 </head>
 
 <body style="background-color: lightgrey;">
