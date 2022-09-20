@@ -5,24 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/main_page_css.css') }}">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap"
         rel="stylesheet">
-    <!-- Icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/fl.css') }}">
-    <link href="{{ asset('/css/profession.css') }}" rel="stylesheet">
-    <!-- CSS only -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-
     {{-- if Arabic --}}
     @if (app()->getLocale() == 'ar')
-    <link href="{{asset('/css/main_page_Ar.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/main_page_Ar.css') }}" rel="stylesheet">
     @endif
+
+    {{-- arabic font --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Noto+Sans+Arabic:wght@300;500&display=swap" rel="stylesheet">
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="{{ asset('css/fl.css') }}">
+    <link href="{{ asset('/css/profession.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/main_page_css.css') }}">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
     <title>Home</title>
 </head>
 
@@ -35,26 +41,27 @@
     @include('layouts.nav-bar')
 
 
-    <section id="hero" class="bg-dark text-light text-lg-center text-md-center text-sm-start pt-5 mt-5 pb-2 ar">
+    <section id="hero" class="bg-dark text-light text-lg-center text-md-center text-sm-start pt-5 mt-5 pb-2 ar" >
         <div class="container-fluid">
             <div class="d-flex">
                 <div>
-                    <h2>{{ __('home.title1') }} <span class="text-info">{{ __('home.title2') }}</span>
+                    <h2 class="font-ar">{{ __('home.title1') }} <span class="text-info font-ar">{{ __('home.title2') }}</span>
                         <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                             </svg></span>
                     </h2>
-                    <p>
+                    <p class="font-ar">
                         {{ __('home.text') }}
                     </p>
                     @auth
                     @else
-                        <a href="{{ route('register.show') }}" class="btn btn-primary btn-lg">{{ __('home.registernow') }}</a>
+                        <a href="{{ route('register.show') }}"
+                            class="btn btn-primary btn-lg font-ar">{{ __('home.registernow') }}</a>
                     @endauth
                 </div>
-                <img class="ms-2 d-none d-sm-block img-fluid" alt="photo" style="width: 20% !important;"
+                <img class="ms-2 d-none d-sm-block img-fluid font-ar" alt="photo" style="width: 15% !important;"
                     src={{ 'files/img_hero.svg' }}>
             </div>
         </div>
@@ -63,9 +70,9 @@
 
     <section id="top-fl" class="bg-light text-center py-5 ar">
         <div class="container-fluid">
-            <h2 class="mb-5">{{ __('home.top1') }} <span class="text-warning">{{ __('home.top2') }}</span></h2>
+            <h2 class="mb-5 font-ar">{{ __('home.top1') }} <span class="text-warning font-ar">{{ __('home.top2') }}</span></h2>
             <div class="d-flex">
-                <img class="ms-2 d-none d-sm-block img-fluid" alt="photo" style="width: 20% !important;"
+                <img class="ms-2 d-none d-sm-block img-fluid font-ar" alt="photo" style="width: 20% !important;"
                     src={{ 'files/top_fl.svg' }}>
                 <div style="flex-grow: 1;" class="table-responsive">
 
@@ -149,15 +156,15 @@
     </section>
 
     {{-- How works ? --}}
-    <section class="py-5 section-style ar" style=" background-image: url({{ 'files/bilding.jpg' }});">
+    <section class="py-5 section-style ar font-ar" style=" background-image: url({{ 'files/bilding.jpg' }});">
 
-        <h1 class="text-center" style="color: #560b0b !important;">{{ __('home.how') }}</h1>
+        <h1 class="text-center font-ar" style="color: #560b0b !important;">{{ __('home.how') }}</h1>
 
         <div class="container text-white">
             <div class="card bg-success mb-3">
-                <div class="card-text p-3" style="background-color: cadetblue;">
-                    <h5 class="">
-                        <span class="bg-light text-dark rounded-5 d-inline-block p-1 m-1">1</span>
+                <div class="card-text p-3 font-ar" style="background-color: cadetblue;">
+                    <h5 class="font-ar">
+                        <span class="bg-light text-dark rounded-5 d-inline-block p-1 m-1 font-ar">1</span>
                         {{ __('home.how1') }}
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -171,8 +178,8 @@
             </div>
 
             <div class="card bg-success mb-3">
-                <div class="card-text p-3" style="background-color: darkcyan;">
-                    <h5 class=""><span class="bg-light text-dark rounded-5 d-inline-block p-1 m-1">2</span>
+                <div class="card-text p-3 font-ar" style="background-color: darkcyan;">
+                    <h5 class="font-ar"><span class="bg-light text-dark rounded-5 d-inline-block p-1 m-1">2</span>
                         {{ __('home.how2') }}
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
@@ -185,9 +192,9 @@
             </div>
 
             <div class="card bg-success mb-3">
-                <div class="card-text p-3">
-                    <h5 class="">
-                        <span class="bg-light text-dark rounded-5 d-inline-block p-1 m-1">3</span>
+                <div class="card-text p-3 font-ar">
+                    <h5 class="font-ar">
+                        <span class="bg-light text-dark rounded-5 d-inline-block p-1 m-1 font-ar">3</span>
                         {{ __('home.how3') }}
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-check-square-fill" viewBox="0 0 16 16">
@@ -205,7 +212,7 @@
     <!-- Services Cards -->
     <section class="py-5 section-style ar" style="background-color: #c0faff99 !important;">
 
-        <h2 class="text-success ms-3 fw-bold" style="color: blue  !important;">{{ __('home.services_title') }}</h2>
+        <h2 class="text-success ms-3 fw-bold font-ar" style="color: blue  !important;">{{ __('home.services_title') }}</h2>
 
         <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
             <div class="row text-center">
@@ -224,7 +231,7 @@
     <!-- Project Cards -->
     <section class="py-5 section-style ar" style="background-color: #c0faff99 !important;">
 
-        <h2 class="text-success ms-3 fw-bold" style="color: blue  !important;">{{ __('home.projects_title') }}</h2>
+        <h2 class="text-success ms-3 fw-bold font-ar" style="color: blue  !important;">{{ __('home.projects_title') }}</h2>
 
         <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
             <div class="row text-center">
