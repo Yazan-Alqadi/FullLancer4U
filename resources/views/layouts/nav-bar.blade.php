@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="{{ mix('/css/bootstrap-notifications.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-notifications.min.css') }}">
 
 
 <div class="ps-3 pe-2 navbar container-fluid navbar-expand-lg bg-dark navbar-dark text-light fixed-top h6">
