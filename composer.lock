@@ -1747,7 +1747,7 @@
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "16e1b68b0cd5131db3e6c3c967b254ff5750eee0"
+                "reference": "40cde9e9a8329a3d8a7b5d7aed530753c83fd621"
             },
             "require": {
                 "brick/money": "^0.5.0",
@@ -2024,16 +2024,16 @@
         },
         {
             "name": "laravel/telescope",
-            "version": "v4.9.1",
+            "version": "v4.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/telescope.git",
-                "reference": "93d6a2f7b7e39407389a505abdfeceda09709f71"
+                "reference": "c41476272bc03e470d3be1d718885a947adb7c49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/telescope/zipball/93d6a2f7b7e39407389a505abdfeceda09709f71",
-                "reference": "93d6a2f7b7e39407389a505abdfeceda09709f71",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/c41476272bc03e470d3be1d718885a947adb7c49",
+                "reference": "c41476272bc03e470d3be1d718885a947adb7c49",
                 "shasum": ""
             },
             "require": {
@@ -2086,9 +2086,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/telescope/issues",
-                "source": "https://github.com/laravel/telescope/tree/v4.9.1"
+                "source": "https://github.com/laravel/telescope/tree/v4.9.3"
             },
-            "time": "2022-07-18T14:49:11+00:00"
+            "time": "2022-09-12T13:47:59+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -9747,5 +9747,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
