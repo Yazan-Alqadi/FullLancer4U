@@ -50,13 +50,159 @@
 @include('components.successful')
 
 
-<div class="h3 text-dark ms-3 mgg">
+<div class="h3 text-dark ms-3 me-3 mgg">
     My Account
 </div>
 
 <section class="py-2">
     <div class="mx-3">
         <div class="row">
+            {{-- Info --}}
+            <div class="col-lg-8 col-md-8 mb-5">
+                <section class="bg-light text-dark rounded p-3">
+                    <div class="border-bottom border-dark ps-3 h5 py-1">
+                        My Info
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 20 20">
+                            <path
+                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd"
+                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                    </div>
+                    <form action="{{ route('user.update', Auth::user()) }}">
+                        @csrf
+                        <div class="container">
+
+                            <!-- if user does not have photo display icon -->
+
+                            <div class="container my-5" style="text-align: center;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"
+                                     fill="currentColor" class="bi bi-person-circle" viewBox="3 3 10 10">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                </svg>
+                            </div>
+                            <!-- here put the image if user have one already -->
+                            <!-- <img src="/files/pic-1.jpg" class="rounded-circle mx-auto d-block m-3" style="width: 30%;"
+                    alt="..."> -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Full Name</span>
+                                <input name="full_name" type="text" class="form-control"
+                                       aria-label="Sizing example input" placeholder="Full Name"
+                                       aria-label="Fullname" aria-describedby="inputGroup-sizing-default"
+                                       value="{{ Auth::user()->full_name }}">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">User Name</span>
+                                <input name="user_name" type="text" class="form-control"
+                                       aria-label="Sizing example input" placeholder="User Name"
+                                       aria-label="Username" aria-describedby="inputGroup-sizing-default"
+                                       value="{{ Auth::user()->user_name }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                                <input name="email" type="email" class="form-control"
+                                       id="exampleFormControlInput1" placeholder="name@example.com"
+                                       value="{{ Auth::user()->email }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput2" class="form-label">Password</label>
+                                <input name="password" type="password" class="form-control"
+                                       id="exampleFormControlInput2" placeholder="**************">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput3" class="form-label">Confirm Password</label>
+                                <input name="password_confirmation" type="password" class="form-control"
+                                       id="exampleFormControlInput3" placeholder="**************">
+                            </div>
+
+                            <div class="mb-3 form-floating">
+                                <input name="phone" type="text" class="form-control"
+                                       id="exampleFormControlInput4" placeholder="Phone Number"
+                                       value="{{ Auth::user()->phone }}">
+                                <label for="exampleFormControlInput4" class="form-label">Phone Number</label>
+                            </div>
+
+                            <div class="mb-3 form-floating">
+                                <input name="address" type="text" class="form-control"
+                                       id="exampleFormControlInput5" placeholder="Address"
+                                       value="{{ Auth::user()->address }}">
+                                <label for="exampleFormControlInput5" class="form-label">Address</label>
+
+                            </div>
+
+                            <p>
+                                <button class="btn btn-primary text-dark bg-light border border-opacity-10"
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                                        aria-expanded="false" aria-controls="collapseExample">
+                                    my interests
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                         fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                </button>
+                            </p>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    @foreach (Category::all() as $category)
+                                        <div class="form-check">
+                                            <input name="{{ $category->id }}" class="form-check-input"
+                                                   type="checkbox" value=""
+                                                   @if (Auth::user()->category->contains($category)) checked @endif
+                                                   id="{{ $category->id }}">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                {{ $category->title }}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                     height="16" fill="currentColor" class="bi bi-qr-code"
+                                                     viewBox="0 0 16 16">
+                                                    <path d="M2 2h2v2H2V2Z"/>
+                                                    <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z"/>
+                                                    <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z"/>
+                                                    <path
+                                                        d="M10 0v6h6V0h-6Zm5 1v4h-4V1h4ZM8 1V0h1v2H8v2H7V1h1Zm0 5V4h1v2H8ZM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8H6Zm0 0v1H2V8H1v1H0V7h3v1h3Zm10 1h-1V7h1v2Zm-1 0h-1v2h2v-1h-1V9Zm-4 0h2v1h-1v1h-1V9Zm2 3v-1h-1v1h-1v1H9v1h3v-2h1Zm0 0h3v1h-2v1h-1v-2Zm-4-1v1h1v-2H7v1h2Z"/>
+                                                    <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z"/>
+                                                </svg>
+                                            </label>
+                                        </div>
+                                    @endforeach
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {{-- My BIO --}}
+                        <br>
+                        <div class="card bg-light text-dark rounded">
+                            <div class="card-body">
+                                <h5 class="card-title"><label for="exampleFormControlInput100">My Bio</label></h5>
+
+
+                                <textarea name="bio" type="text" class="form-control"
+                                          style="height: 200px !important; direction: rtl;"
+                                          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                                          id="exampleFormControlInput100"
+                                          placeholder="Add Bio">{{Auth::user()->bio}}</textarea>
+
+                            </div>
+                        </div>
+
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md mt-3">
+                            <button type="submit" class="btn btn-info ">Confirm Edit</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
             {{-- services section --}}
             <div class="col-lg-4 col-md-4 mb-4">
                 <div class="card bg-light text-dark rounded">
@@ -358,151 +504,6 @@
                 </div>
 
 
-            </div>
-
-            <div class="col-lg-8 col-md-8 mb-5">
-                <section class="bg-light text-dark rounded p-3">
-                    <div class="border-bottom border-dark ps-3 h5 py-1">
-                        My Info
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 20 20">
-                            <path
-                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd"
-                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>
-                    </div>
-                    <form action="{{ route('user.update', Auth::user()) }}">
-                        @csrf
-                        <div class="container">
-
-                            <!-- if user does not have photo display icon -->
-
-                            <div class="container my-5" style="text-align: center;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"
-                                     fill="currentColor" class="bi bi-person-circle" viewBox="3 3 10 10">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                    <path fill-rule="evenodd"
-                                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                </svg>
-                            </div>
-                            <!-- here put the image if user have one already -->
-                            <!-- <img src="/files/pic-1.jpg" class="rounded-circle mx-auto d-block m-3" style="width: 30%;"
-                    alt="..."> -->
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Full Name</span>
-                                <input name="full_name" type="text" class="form-control"
-                                       aria-label="Sizing example input" placeholder="Full Name"
-                                       aria-label="Fullname" aria-describedby="inputGroup-sizing-default"
-                                       value="{{ Auth::user()->full_name }}">
-                            </div>
-
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default">User Name</span>
-                                <input name="user_name" type="text" class="form-control"
-                                       aria-label="Sizing example input" placeholder="User Name"
-                                       aria-label="Username" aria-describedby="inputGroup-sizing-default"
-                                       value="{{ Auth::user()->user_name }}">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                <input name="email" type="email" class="form-control"
-                                       id="exampleFormControlInput1" placeholder="name@example.com"
-                                       value="{{ Auth::user()->email }}">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput2" class="form-label">Password</label>
-                                <input name="password" type="password" class="form-control"
-                                       id="exampleFormControlInput2" placeholder="**************">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput3" class="form-label">Confirm Password</label>
-                                <input name="password_confirmation" type="password" class="form-control"
-                                       id="exampleFormControlInput3" placeholder="**************">
-                            </div>
-
-                            <div class="mb-3 form-floating">
-                                <input name="phone" type="text" class="form-control"
-                                       id="exampleFormControlInput4" placeholder="Phone Number"
-                                       value="{{ Auth::user()->phone }}">
-                                <label for="exampleFormControlInput4" class="form-label">Phone Number</label>
-                            </div>
-
-                            <div class="mb-3 form-floating">
-                                <input name="address" type="text" class="form-control"
-                                       id="exampleFormControlInput5" placeholder="Address"
-                                       value="{{ Auth::user()->address }}">
-                                <label for="exampleFormControlInput5" class="form-label">Address</label>
-
-                            </div>
-
-                            <p>
-                                <button class="btn btn-primary text-dark bg-light border border-opacity-10"
-                                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                                        aria-expanded="false" aria-controls="collapseExample">
-                                    my interests
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                         fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                    </svg>
-                                </button>
-                            </p>
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-body">
-                                    @foreach (Category::all() as $category)
-                                        <div class="form-check">
-                                            <input name="{{ $category->id }}" class="form-check-input"
-                                                   type="checkbox" value=""
-                                                   @if (Auth::user()->category->contains($category)) checked @endif
-                                                   id="{{ $category->id }}">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                {{ $category->title }}
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                     height="16" fill="currentColor" class="bi bi-qr-code"
-                                                     viewBox="0 0 16 16">
-                                                    <path d="M2 2h2v2H2V2Z"/>
-                                                    <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z"/>
-                                                    <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z"/>
-                                                    <path
-                                                        d="M10 0v6h6V0h-6Zm5 1v4h-4V1h4ZM8 1V0h1v2H8v2H7V1h1Zm0 5V4h1v2H8ZM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8H6Zm0 0v1H2V8H1v1H0V7h3v1h3Zm10 1h-1V7h1v2Zm-1 0h-1v2h2v-1h-1V9Zm-4 0h2v1h-1v1h-1V9Zm2 3v-1h-1v1h-1v1H9v1h3v-2h1Zm0 0h3v1h-2v1h-1v-2Zm-4-1v1h1v-2H7v1h2Z"/>
-                                                    <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z"/>
-                                                </svg>
-                                            </label>
-                                        </div>
-                                    @endforeach
-
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        {{-- My BIO --}}
-                        <br>
-                        <div class="card bg-light text-dark rounded">
-                            <div class="card-body">
-                                <h5 class="card-title"><label for="exampleFormControlInput100">My Bio</label></h5>
-
-
-                                <textarea name="bio" type="text" class="form-control"
-                                          style="height: 200px !important; direction: rtl;"
-                                          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                                          id="exampleFormControlInput100"
-                                          placeholder="Add Bio">{{Auth::user()->bio}}</textarea>
-
-                            </div>
-                        </div>
-
-
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-                            <button type="submit" class="btn btn-success ">Confirm Edit</button>
-                        </div>
-                    </form>
-                </section>
             </div>
         </div>
     </div>
