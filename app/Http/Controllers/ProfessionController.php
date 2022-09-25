@@ -27,13 +27,13 @@ class ProfessionController extends Controller
     public function index()
     {
         //
-        $professions = cache()->remember('pageServices' . request('page', 1), 60 + 60 + 24, function () {
+        $services = cache()->remember('pageServices' . request('page', 1), 60 + 60 + 24, function () {
             return Profession::with('freelancer', 'category', 'freelancer.user')->paginate(6);
         });
-        $categories = cache()->remember('categories', 60 + 60 + 24, function () {
+        $categories = cache()->remember('categories', 60 * 60 + 24, function () {
             return Category::all();
         });
-        return view('pages.main.services_page', compact('professions', 'categories'));
+        return view('pages.main.services_page', compact('services', 'categories'));
     }
 
     /**

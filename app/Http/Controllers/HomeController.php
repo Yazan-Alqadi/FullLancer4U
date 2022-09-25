@@ -25,7 +25,7 @@ class HomeController extends Controller
         $freelancers = cache()->remember('topFreelancers', 60 + 60 + 24, function () {
             return Freelancer::with('user', 'user.skills')->get()->sortByDesc('rate')->take(10);
         });
-        $professions =
+        $services =
             cache()->remember('services', 60 + 60 + 24, function () {
                 return Profession::with('freelancer', 'category', 'freelancer.user')->get();
             });
@@ -34,7 +34,7 @@ class HomeController extends Controller
                 return Project::with('user', 'category')->get();
             });
 
-        return view('pages.main.home_page', compact('professions', 'projects', 'freelancers'));
+        return view('pages.main.home_page', compact('services', 'projects', 'freelancers'));
     }
 
     /**
