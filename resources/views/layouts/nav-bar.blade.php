@@ -2,7 +2,7 @@
 
 
 <div class="ps-3 pe-2 navbar container-fluid navbar-expand-lg bg-dark navbar-dark text-light fixed-top h6">
-    <div class="container" style="align-items: baseline;">
+    <div class="container">
         {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search-par"
             aria-expanded="true" style="margin-right: auto;">
             <span class="navbar-toggler-icon"></span>
@@ -28,13 +28,13 @@
         <div class="collapse navbar-collapse" id="mainmenu">
             <ul class="navbar-nav ms-1 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
                 <li class="nav-item h6"><a href="{{ route('professions.index') }}"
-                        class="nav-link in-hover">{{ __('home.services_title') }}</a>
+                        class="nav-link in-hover font-ar">{{ __('home.services_title') }}</a>
                 </li>
                 <li class="nav-item h6"><a href="{{ route('freelancers.index') }}"
-                        class="nav-link in-hover">{{ __('home.freelancers_title') }}</a>
+                        class="nav-link in-hover font-ar">{{ __('home.freelancers_title') }}</a>
                 </li>
                 <li class="nav-item h6"><a href="{{ route('projects.index') }}"
-                        class="nav-link in-hover">{{ __('home.projects_title') }}</a>
+                        class="nav-link in-hover font-ar">{{ __('home.projects_title') }}</a>
                 </li>
                 {{-- Bacome freelancer --}}
 
@@ -42,7 +42,7 @@
 
                 @if (Auth::check() && !Auth::user()->is_freelancer)
                     <li><a href="{{ route('become_freelancer') }}"
-                            class="nav-link in-hover-t text-warning fw-bold">{{ __('home.become') }}</a>
+                            class="nav-link in-hover-t text-warning fw-bold font-ar">{{ __('home.become') }}</a>
                     </li>
                 @endif
 
@@ -65,7 +65,7 @@
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-end" id="navbarDropdownMenuLink1">
-                        <li><a class="dropdown-item" href="{{ route('profile') }}">
+                        <li><a class="dropdown-item font-ar" href="{{ route('profile') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-person-badge" viewBox="0 0 16 16">
                                     <path
@@ -77,7 +77,7 @@
                             </a>
                         </li>
                         @if (Auth::check() && Auth::user()->is_freelancer)
-                            <li><a class="dropdown-item" href="{{ route('become_freelancer') }}">
+                            <li><a class="dropdown-item font-ar" href="{{ route('become_freelancer') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
                                         <path
@@ -87,7 +87,7 @@
                                 </a>
                             </li>
                         @endif
-                        <li><a class="dropdown-item" href="{{ route('create_project') }}">
+                        <li><a class="dropdown-item font-ar" href="{{ route('create_project') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
                                     <path
@@ -96,7 +96,7 @@
                                 {{ __('home.addProject') }}
                             </a>
                         </li>
-                        <li><a class="dropdown-item" href="{{ route('contact') }}">
+                        <li><a class="dropdown-item font-ar" href="{{ route('contact') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
                                     <path
@@ -106,7 +106,7 @@
                             </a>
                         </li>
                         @if (Auth::check() && Auth::user()->is_freelancer)
-                            <li><a class="dropdown-item" href="{{ route('work_page', Auth::id()) }}">
+                            <li><a class="dropdown-item font-ar" href="{{ route('work_page', Auth::id()) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
                                         <path
@@ -116,7 +116,7 @@
                                 </a>
                             </li>
                         @endif
-                        <li><a class="dropdown-item" href="{{ route('purchase_page', Auth::id()) }}">
+                        <li><a class="dropdown-item font-ar" href="{{ route('purchase_page', Auth::id()) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
                                     <path
@@ -125,7 +125,7 @@
                                 {{ __('home.myPurchase') }}
                             </a>
                         </li>
-                        <li><a class="dropdown-item" href="{{ route('logout') }}">
+                        <li><a class="dropdown-item font-ar" href="{{ route('logout') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                                     <path
@@ -139,8 +139,8 @@
             @else
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="{{ route('register.show') }}"
-                            class="nav-link">{{ __('home.register') }}</a></li>
-                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">{{ __('home.signUp') }}</a>
+                            class="nav-link font-ar">{{ __('home.register') }}</a></li>
+                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link font-ar">{{ __('home.signUp') }}</a>
                     </li>
                 </ul>
             @endauth
