@@ -23,6 +23,9 @@
     <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <title>Services</title>
+
+    @livewireStyles
+
 </head>
 
 <body>
@@ -30,63 +33,18 @@
 @include('layouts.nav-bar')
 
 
-<div class="bg-secondary pb-3 mggg">
-    <div class="h3 ms-3 pt-2 text-light"> Filters</div>
 
-    <form class="pt-3" method="GET" action="{{ route('search_service') }}">
-        @csrf
-        <div class="row justify-content-between">
-            <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                <select name="category" class="form-select" aria-label="Default select example">
-                    <option selected>Filter category</option>
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->title }}</option>
-                    @endforeach
-
-                </select>
-            </div>
-            <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                <input name="title" type="text" class="form-control" id="inputTitle" placeholder="Title">
-            </div>
-            <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                <input name="fName" type="text" class="form-control" id="inputName" placeholder="Freelancer name">
-            </div>
-            <div class="col-lg-2 col-md-5 mb-3 me-4 ms-4">
-                <input name="price" type="text" class="form-control" id="inputPrice" placeholder="Price">
-            </div>
-        </div>
-
-        <div class="text-center">
-            <button type="submit" class="btn btn-info">Search
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path
-                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
-            </button>
-        </div>
-
-    </form>
-</div>
 
 <!-- card is here -->
-<section class="py-5 section-style">
-    <div class="container">
-        <div class="row text-center">
-            @foreach ($professions as $profession)
-                   @include('components.service_card')
-            @endforeach
+@livewire('service-cards', ['services' => $services, 'categories' => $categories]);
 
-        </div>
-        {{ $professions->links('vendor.pagination.bootstrap-4') }}
-
-    </div>
-
-
-</section>
 
 {{-- Footer here --}}
 @include('layouts.footer')
+
+
+
+@livewireScripts
 
 <!-- JavaScript Bundle with Popper -->
 <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>

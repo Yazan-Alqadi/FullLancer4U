@@ -229,9 +229,9 @@
                 class="btn btn-outline-secondary p-1 mx-1">
 
                 @if (app()->getLocale() == 'ar')
-                    Ar
-                @else
                     En
+                @else
+                    Ar
                 @endif
             </a>
             {{-- toggler button --}}

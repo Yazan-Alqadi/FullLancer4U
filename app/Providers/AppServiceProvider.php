@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Message;
+use App\Observers\MessagesObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Routing\UrlGenerator;
@@ -29,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
 
-       // URL::forceScheme('https');
+       //URL::forceScheme('https');
 
 
         Model::unguard();
@@ -40,5 +42,6 @@ class AppServiceProvider extends ServiceProvider
             fn ($model, $relation) => logger("lazy")
 
         );
+        Message::observe(MessagesObserver::class);
     }
 }

@@ -17,27 +17,27 @@
         </div> -->
         <div class="card-body text-center" style="display: flex !important;align-items: center;justify-content: center;">
 
-            <!-- descreption of the profession -->
+            <!-- descreption of the service -->
 
             <div class="card-text">
                 <div class="container">
                     <div class="col" style="color: #f5ff9f;">
-                        <!-- category belong to the profession -->
+                        <!-- category belong to the service -->
                         <div class="row justify-content-center" style="font-size: 18px !important;">
                             {{-- <span class="for-size span-number-1 ">Title:</span> --}}
-                            <span class="for-size span-number-2 title-des">{{ $profession->title }}</span>
+                            <span class="for-size span-number-2 title-des">{{ $service->title }}</span>
                         </div>
                         <div class="row justify-content-center">
                             <span class="for-size span-number-1">Category:</span>
-                            <span class="for-size span-number-2">{{ "\n" . $profession->category->title }}</span>
+                            <span class="for-size span-number-2">{{ "\n" . $service->category->title }}</span>
                         </div>
                         <div class="row justify-content-center">
-                            <span class="for-size span-number-1">professional:</span>
-                            <span class="for-size span-number-2">{{ $profession->freelancer->user->full_name }}</span>
+                            <span class="for-size span-number-1">freelancer:</span>
+                            <span class="for-size span-number-2">{{ $service->freelancer->user->full_name }}</span>
                         </div>
                         <div style="white-space: nowrap;">
                             <span class="for-size span-number-1">Rating:</span>
-                            @if ($profession->freelancer->rate > 0)
+                            @if ($service->freelancer->rate > 0)
                                 <span class="fa fa-star checked"
                                     style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                 {{-- star one --}}
@@ -46,7 +46,7 @@
                                     style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                 {{-- star one --}}
                             @endif
-                            @if ($profession->freelancer->rate > 1)
+                            @if ($service->freelancer->rate > 1)
                                 <span class="fa fa-star checked"
                                     style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                 {{-- star two --}}
@@ -55,7 +55,7 @@
                                     style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                 {{-- star two --}}
                             @endif
-                            @if ($profession->freelancer->rate > 2)
+                            @if ($service->freelancer->rate > 2)
                                 <span class="fa fa-star checked"
                                     style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                 {{-- star three --}}
@@ -64,7 +64,7 @@
                                     style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                 {{-- star three --}}
                             @endif
-                            @if ($profession->freelancer->rate > 3)
+                            @if ($service->freelancer->rate > 3)
                                 <span class="fa fa-star checked"
                                     style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                 {{-- star four --}}
@@ -73,7 +73,7 @@
                                     style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                 {{-- star four --}}
                             @endif
-                            @if ($profession->freelancer->rate > 4)
+                            @if ($service->freelancer->rate > 4)
                                 <span class="fa fa-star checked"
                                     style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
                                 {{-- star five --}}
@@ -86,14 +86,14 @@
                         </div>
                         <div class="row justify-content-center">
                             <span class="for-size span-number-1">Price:</span>
-                            <span class="for-size span-number-2">{{ $profession->price }}</span>
+                            <span class="for-size span-number-2">{{ $service->price }}</span>
                         </div>
                         <div class="row justify-content-center mt-3" style="display: block;">
                             <span class="for-size span-number-1">descreption:</span>
-                            <span class="for-size span-number-2">{{ $profession->description }}</span>
+                            <span class="for-size span-number-2">{{ $service->description }}</span>
                         </div>
                         <!-- Profile of the user -->
-                        <a href="{{ route('more_information', $profession) }}" class="btn btn-info mt-2 btn-font-size">
+                        <a href="{{ route('more_information', $service) }}" class="btn btn-info mt-2 btn-font-size">
                             See more information
                         </a>
                     </div>

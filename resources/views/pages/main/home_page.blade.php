@@ -216,7 +216,7 @@
 
         <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
             <div class="row text-center">
-                @foreach ($professions as $profession)
+                @foreach ($services as $service)
                     {{-- @if (Auth::check() && !Auth::user()->category->contains($profession->category_id))
                     @continue
                 @endif --}}

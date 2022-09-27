@@ -25,15 +25,16 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
-        $projects =
-            cache()->remember('pageProjects' . request('page', 1), 60 + 60 + 24, function () {
-                return Project::with('user', 'category')->paginate(6);
-            });
-        $categories = cache()->remember('categories', 60 + 60 + 24, function () {
+         $projects = cache()->remember('pageProjects', 60 + 60 + 24, function () {
+             return Project::with('user', 'category')->paginate(6);
+         });
+
+
+        $categories = cache()->remember('categories', 60*60+24, function () {
             return Category::all();
         });
-        return view('pages.main.projects_page', compact('projects', 'categories'));
+
+        return view('pages.main.projects_page',compact('projects','categories'));
     }
 
     /**
@@ -208,9 +209,6 @@ class ProjectController extends Controller
         $price = $request->price;
         $client = $request->CName;
 
-        if (is_null($price))
-            $price = '-1000000';
-
         // Search in the title from the services table
         $projects = Project::latest()
             ->where('title', 'LIKE', "%{$title}%")
@@ -220,5 +218,7 @@ class ProjectController extends Controller
         $categories = Category::all();
         // Return the search view with the resluts compacted
         return view('pages.main.projects_page', compact('projects', 'categories'));
+
+
     }
 }
