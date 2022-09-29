@@ -10,7 +10,7 @@
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <title>My Profile</title>
+    <title>Profile</title>
 
 </head>
 
@@ -40,18 +40,18 @@
     @include('components.successful')
 
 
-    <div class="h3 text-dark ms-3 me-3 mgg">
-        My Account
+    <div class="h3 text-dark ms-3 me-3 mgg ar font-ar">
+        {{ __('profile_page.account') }}
     </div>
 
     <section class="py-2">
         <div class="mx-3">
-            <div class="row">
+            <div class="row ar">
                 {{-- Info --}}
-                <div class="col-lg-8 col-md-8 mb-5">
+                <div class="col-lg-8 col-md-8 mb-5 en">
                     <section class="bg-light text-dark rounded p-3">
-                        <div class="border-bottom border-dark ps-3 h5 py-1">
-                            My Info
+                        <div class="border-bottom border-dark ps-3 h5 py-1 font-ar">
+                            {{ __('profile_page.info') }}
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-pencil-square" viewBox="0 0 20 20">
                                 <path
@@ -78,7 +78,8 @@
                                 <!-- <img src="/files/pic-1.jpg" class="rounded-circle mx-auto d-block m-3" style="width: 30%;"
                     alt="..."> -->
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Full Name</span>
+                                    <span class="input-group-text font-ar"
+                                        id="inputGroup-sizing-default">{{ __('profile_page.fu-name') }}</span>
                                     <input name="full_name" type="text" class="form-control"
                                         aria-label="Sizing example input" placeholder="Full Name" aria-label="Fullname"
                                         aria-describedby="inputGroup-sizing-default"
@@ -86,7 +87,8 @@
                                 </div>
 
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">User Name</span>
+                                    <span class="input-group-text font-ar"
+                                        id="inputGroup-sizing-default">{{ __('profile_page.us-name') }}</span>
                                     <input name="user_name" type="text" class="form-control"
                                         aria-label="Sizing example input" placeholder="User Name" aria-label="Username"
                                         aria-describedby="inputGroup-sizing-default"
@@ -94,20 +96,23 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                                    <label for="exampleFormControlInput1"
+                                        class="form-label font-ar">{{ __('profile_page.E-mail') }}</label>
                                     <input name="email" type="email" class="form-control"
                                         id="exampleFormControlInput1" placeholder="name@example.com"
                                         value="{{ Auth::user()->email }}">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="exampleFormControlInput2" class="form-label">Password</label>
+                                    <label for="exampleFormControlInput2"
+                                        class="form-label font-ar">{{ __('profile_page.pass') }}</label>
                                     <input name="password" type="password" class="form-control"
                                         id="exampleFormControlInput2" placeholder="**************">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="exampleFormControlInput3" class="form-label">Confirm Password</label>
+                                    <label for="exampleFormControlInput3"
+                                        class="form-label font-ar">{{ __('profile_page.con-pass') }}</label>
                                     <input name="password_confirmation" type="password" class="form-control"
                                         id="exampleFormControlInput3" placeholder="**************">
                                 </div>
@@ -116,22 +121,24 @@
                                     <input name="phone" type="text" class="form-control"
                                         id="exampleFormControlInput4" placeholder="Phone Number"
                                         value="{{ Auth::user()->phone }}">
-                                    <label for="exampleFormControlInput4" class="form-label">Phone Number</label>
+                                    <label for="exampleFormControlInput4"
+                                        class="form-label font-ar">{{ __('profile_page.phone') }}</label>
                                 </div>
 
                                 <div class="mb-3 form-floating">
                                     <input name="address" type="text" class="form-control"
                                         id="exampleFormControlInput5" placeholder="Address"
                                         value="{{ Auth::user()->address }}">
-                                    <label for="exampleFormControlInput5" class="form-label">Address</label>
+                                    <label for="exampleFormControlInput5"
+                                        class="form-label font-ar">{{ __('profile_page.address') }}</label>
 
                                 </div>
 
                                 <p>
-                                    <button class="btn btn-primary text-dark bg-light border border-opacity-10"
+                                    <button class="btn btn-primary text-dark bg-light border border-opacity-10 font-ar"
                                         type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                                         aria-expanded="false" aria-controls="collapseExample">
-                                        my interests
+                                        {{ __('profile_page.interests') }}
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                                             <path
@@ -173,19 +180,21 @@
                             <br>
                             <div class="card bg-light text-dark rounded">
                                 <div class="card-body">
-                                    <h5 class="card-title"><label for="exampleFormControlInput100">My Bio</label></h5>
+                                    <h5 class="card-title"><label for="exampleFormControlInput100"
+                                            class="font-ar">{{ __('profile_page.bio') }}</label></h5>
 
 
-                                    <textarea name="bio" type="text" class="form-control" style="height: 200px !important; direction: rtl;"
+                                    <textarea name="bio" type="text" class="form-control font-ar" style="height: 200px !important; direction: rtl;"
                                         aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput100"
-                                        placeholder="Add Bio">{{ Auth::user()->bio }}</textarea>
+                                        placeholder="{{ __('profile_page.add-bio') }}">{{ Auth::user()->bio }}</textarea>
 
                                 </div>
                             </div>
 
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md mt-3">
-                                <button type="submit" class="btn btn-info ">Confirm Edit</button>
+                                <button type="submit"
+                                    class="btn btn-info font-ar">{{ __('profile_page.con-edit') }}</button>
                             </div>
                         </form>
                     </section>
@@ -195,7 +204,7 @@
                 <div class="col-lg-4 col-md-4 mb-4">
                     <div class="card bg-light text-dark rounded">
                         <div class="card-body">
-                            <h5 class="card-title"> My services </h5>
+                            <h5 class="card-title font-ar"> {{ __('profile_page.services') }} </h5>
 
                             {{-- if user is freelancer --}}
                             @if (Auth::user()->is_freelancer)
@@ -206,8 +215,8 @@
                                         <span class="mt-1">{{ $service->title }}</span>
                                         <span>
                                             {{-- View Service --}}
-                                            <button class="p-1 border border-0 bg-light" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" data-bs-title="View">
+                                            <button class="p-1 border border-0 bg-light font-ar" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-title="{{ __('profile_page.view') }}">
                                                 <a class="text-secondary"
                                                     href="{{ route('more_information', $service->id) }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="22"
@@ -221,8 +230,8 @@
                                                 </a>
                                             </button>
                                             {{-- Edit Service --}}
-                                            <button class="p-1 border border-0 bg-light" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" data-bs-title="Edit">
+                                            <button class="p-1 border border-0 bg-light font-ar" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-title="{{ __('profile_page.edit') }}">
                                                 <a class="text-secondary"
                                                     href="{{ route('edit_service', $service->id) }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="22"
@@ -236,8 +245,8 @@
                                                 </a>
                                             </button>
                                             {{-- Delete Service --}}
-                                            <button class="p-1 border border-0 bg-light" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" data-bs-title="Delete">
+                                            <button class="p-1 border border-0 bg-light font-ar" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-title="{{ __('profile_page.delete') }}">
                                                 <a href="{{ route('service_delete', $service->id) }}"
                                                     class="text-danger">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="22"
@@ -255,7 +264,8 @@
                                 @endforeach
                                 {{-- if not --}}
                             @else
-                                <div class="text-center fw-bold h5 text-dark">You are not freelancer yet</div>
+                                <div class="text-center fw-bold h5 text-dark font-ar">
+                                    {{ __('profile_page.not-freelancer') }}</div>
                             @endif
                         </div>
                     </div>
@@ -263,11 +273,13 @@
                         <div class="card-body">
                             {{-- if user is freelancer --}}
                             @if (Auth::user()->is_freelancer)
-                                <a class="btn btn-primary" href="{{ route('become_freelancer') }}"> Add new service
+                                <a class="btn btn-primary font-ar" href="{{ route('become_freelancer') }}">
+                                    {{ __('profile_page.add-service') }}
                                 </a>
                             @else
                                 {{-- if not --}}
-                                <a class="btn btn-primary" href="{{ route('become_freelancer') }}"> Become Freelancer
+                                <a class="btn btn-primary font-ar" href="{{ route('become_freelancer') }}">
+                                    {{ __('home.become') }}
                                 </a>
                             @endif
 
@@ -276,7 +288,7 @@
                     <br>
                     <div class="card bg-light text-dark rounded">
                         <div class="card-body">
-                            <h5 class="card-title"> My Projects </h5>
+                            <h5 class="card-title font-ar"> {{ __('profile_page.projects') }} </h5>
 
                             {{-- if user has projects --}}
                             @forelse(Auth::user()->projects as $project)
@@ -286,8 +298,8 @@
                                     <span class="mt-1">{{ $project->title }}</span>
                                     <span>
                                         {{-- View project --}}
-                                        <button class="p-1 border border-0 bg-light" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-title="View">
+                                        <button class="p-1 border border-0 bg-light font-ar" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" data-bs-title="{{ __('profile_page.view') }}">
                                             <a class="text-secondary"
                                                 href="{{ route('get_project', $project->id) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
@@ -300,8 +312,8 @@
                                             </a>
                                         </button>
                                         {{-- Edit project --}}
-                                        <button class="p-1 border border-0 bg-light" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-title="Edit">
+                                        <button class="p-1 border border-0 bg-light font-ar" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" data-bs-title="{{ __('profile_page.edit') }}">
                                             <a class="text-secondary"
                                                 href="{{ route('edit_project', $project->id) }}"><svg
                                                     xmlns="http://www.w3.org/2000/svg" width="22" height="22"
@@ -315,8 +327,8 @@
                                             </a>
                                         </button>
                                         {{-- Delete project --}}
-                                        <button class="p-1 border border-0 bg-light" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-title="Delete">
+                                        <button class="p-1 border border-0 bg-light font-ar" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" data-bs-title="{{ __('profile_page.delete') }}">
                                             <a href="{{ route('project_delete', $project->id) }}"
                                                 class="text-danger">
 
@@ -331,22 +343,22 @@
 
                                 </div>
                             @empty
-                                <div class="text-center fw-bold h5 text-dark">No Projects Yet</div>
+                                <div class="text-center fw-bold h5 text-dark font-ar">{{ __('profile_page.no-project') }}</div>
                             @endforelse
 
                         </div>
                     </div>
                     <div class="card bg-light text-dark rounded text-center">
                         <div class="card-body">
-                            <a class="btn btn-primary" href="{{ route('create_project') }}"> Add new Project
+                            <a class="btn btn-primary font-ar" href="{{ route('create_project') }}">
+                                {{ __('profile_page.add-project') }}
                             </a>
-
                         </div>
                     </div>
                     <br>
                     <div class="card bg-light text-dark rounded">
                         <div class="card-body">
-                            <h5 class="card-title"> My Skills </h5>
+                            <h5 class="card-title font-ar"> {{ __('profile_page.skills') }} </h5>
 
                             {{-- if user has skills --}}
                             @if (Auth::user()->is_freelancer)
@@ -356,8 +368,8 @@
                                         {{-- here is the title of the service --}}
                                         <span class="mt-1">{{ $skill->title }}</span>
                                         <span>
-                                            <button class="p-1 border border-0 bg-light" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" data-bs-title="Delete">
+                                            <button class="p-1 border border-0 bg-light font-ar" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-title="{{ __('profile_page.delete') }}">
                                                 <a href="{{ route('skill_delete', $skill->id) }}"
                                                     class="text-danger">
 
@@ -373,11 +385,11 @@
 
                                     </div>
                                 @empty
-                                    <div class="text-center fw-bold h5 text-dark">No Skills Yet</div>
+                                    <div class="text-center fw-bold h5 text-dark font-ar">{{ __('profile_page.no-skill') }}</div>
                                 @endforelse
                                 {{-- if not --}}
                             @else
-                                <div class="text-center fw-bold h5 text-dark">You are not freelancer</div>
+                                <div class="text-center fw-bold h5 text-dark font-ar">{{ __('profile_page.not-freelancer') }}</div>
                             @endif
                         </div>
                     </div>
@@ -386,29 +398,30 @@
                         <div class="card-body">
 
                             @if (Auth::user()->is_freelancer)
-                                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                                    data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Add new skill
+                                <button class="btn btn-primary font-ar" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+                                    {{ __('profile_page.add-skill')}}
                                 </button>
                             @endif
 
-                            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop"
+                            <div class="offcanvas offcanvas-top en" tabindex="-1" id="offcanvasTop"
                                 aria-labelledby="offcanvasTopLabel">
                                 <div class="offcanvas-header">
-                                    <h5 class="offcanvas-title" id="offcanvasTopLabel">New skill</h5>
+                                    <h5 class="offcanvas-title font-ar" id="offcanvasTopLabel">{{ __('profile_page.new-skill')}}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="offcanvas-body">
                                     <form action="{{ route('skill_store') }}">
                                         <div class="input-group mb-3 w-50">
-                                            <span class="input-group-text" id="basic-addon1">skill</span>
-                                            <input type="text" name="title" class="form-control"
-                                                placeholder="Type skill" aria-label="text"
+                                            <span class="input-group-text font-ar" id="basic-addon1">{{ __('profile_page.skill')}}</span>
+                                            <input type="text" name="title" class="form-control font-ar"
+                                                placeholder="{{ __('profile_page.type-skill')}}" aria-label="text"
                                                 aria-describedby="basic-addon1">
                                         </div>
                                         <div class="text-start mx-auto">
-                                            <button class="btn btn-primary" type="submit">
-                                                Add
+                                            <button class="btn btn-primary font-ar" type="submit">
+                                                {{ __('profile_page.add')}}
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-plus-circle"
                                                     viewBox="0 0 16 16">
@@ -429,13 +442,13 @@
                     <br>
                     <div class="card bg-light text-dark rounded">
                         <div class="card-body">
-                            <h5 class="card-title"> My Rate </h5>
+                            <h5 class="card-title font-ar"> {{ __('profile_page.rate')}} </h5>
 
                             {{-- if user are freelancer --}}
                             @if (Auth::user()->is_freelancer)
                                 <div class="row justify-content-center">
-                                    <div style="white-space: nowrap;">
-                                        Rating:
+                                    <div style="white-space: nowrap;" class="font-ar">
+                                        {{ __('profile_page.rating')}}
                                         @if (Auth::user()->freelancer->rate > 0)
                                             <span class="fa fa-star checked"
                                                 style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
@@ -486,7 +499,7 @@
                                 </div>
                                 {{-- if not --}}
                             @else
-                                <div class="text-center fw-bold h5 text-dark">You are not freelancer yet</div>
+                                <div class="text-center fw-bold h5 text-dark font-ar">{{ __('profile_page.not-freelancer') }}</div>
                             @endif
                         </div>
                     </div>
