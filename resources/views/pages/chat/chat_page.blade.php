@@ -48,6 +48,7 @@
 
     <!-- JavaScript Bundle with Popper -->
 
+    @livewireScripts
     <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
 
 
