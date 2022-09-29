@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color: rgb(186, 195, 195);">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="background-color: rgb(186, 195, 195);">
 
 <head>
 
@@ -9,7 +9,7 @@
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profession.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    
+
     <title>Projects</title>
 
     @livewireStyles

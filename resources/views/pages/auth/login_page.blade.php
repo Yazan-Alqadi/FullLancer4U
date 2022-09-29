@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color: lightgrey;">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="background-color: lightgrey;">
 
 <head>
 
@@ -10,7 +10,7 @@
     <link href="{{ asset('../css/bootstrap.min.css') }}" rel="stylesheet">
 
     <title>Log-in</title>
-    
+
 </head>
 
 <body style="background-color: lightgrey;">
