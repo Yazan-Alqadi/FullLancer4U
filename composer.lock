@@ -1752,7 +1752,7 @@
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "3ce867dd123ebe77accc6d177a22cf7f87c69734"
+                "reference": "40cde9e9a8329a3d8a7b5d7aed530753c83fd621"
             },
             "require": {
                 "brick/money": "^0.5.0",
@@ -9603,5 +9603,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

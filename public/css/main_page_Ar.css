@@ -2,6 +2,10 @@
     direction: rtl;
 }
 
+.en {
+    direction: ltr;
+}
+
 .font-ar {
     font-family: 'Comfortaa', cursive !important;
     font-family: 'Noto Sans Arabic', sans-serif !important;

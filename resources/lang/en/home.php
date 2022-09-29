@@ -51,6 +51,7 @@ return[
     'register'=>'Register',
     'registernow'=>'Register Now',
     'become'=>'Become Freelancer',
+    'menu'=>'Menu',
 
 
 

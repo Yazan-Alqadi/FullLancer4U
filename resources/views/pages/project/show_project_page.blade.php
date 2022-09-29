@@ -3,22 +3,15 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap"
-        rel="stylesheet">
+    @include('layouts.head')
+
+    <!-- CSS only -->
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profession.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- CSS only -->
     <link href="{{ asset('css/bootstrap.min.css') }} " rel="stylesheet">
+
     <title>Projects card</title>
+
 </head>
 
 <body style="background-color: rgb(235, 235, 235);">

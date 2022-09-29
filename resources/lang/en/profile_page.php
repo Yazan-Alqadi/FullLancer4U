@@ -1,0 +1,38 @@
+<?php
+
+return[
+
+    'account'=>'My Account',
+    'info'=>'My Info',
+    'fu-name'=>'Full Name',
+    'us-name'=>'User Name',
+    'E-mail'=>'Email Address',
+    'pass'=>'Password',
+    'con-pass'=>'Confirm Password',
+    'phone'=>'Phone Number',
+    'address'=>'Address',
+    'interests'=>'My Interests',
+    'bio'=>'My Bio',
+    'add-bio'=>'Add Bio',
+    'con-edit'=>'Confirm Edit',
+    'services'=>'My Services',
+    'projects'=>'My Projects',
+    'skills'=>'My Skills',
+    'rate'=>'My Rate',
+    'rating'=>'Rating:',
+    'add-service'=>'Add new service',
+    'add-project'=>'Add new project',
+    'add-skill'=>'Add new skill',
+    'new-skill'=>'New Skill',
+    'skill'=>'Skill',
+    'type-skill'=>'Type Skill',
+    'add'=>'Add',
+    'not-freelancer'=>'You are not freelancer yet',
+    'no-project'=>'No projects yet',
+    'no-skill'=>'No Skills yet',
+    'new-skill'=>'New Skill',
+    'edit'=>'Edit',
+    'delete'=>'Delete',
+    'view'=>'View',
+
+];
