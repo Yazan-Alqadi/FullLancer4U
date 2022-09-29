@@ -212,7 +212,7 @@
     <!-- Services Cards -->
     <section class="py-5 section-style ar" style="background-color: #c0faff99 !important;">
 
-        <h2 class="text-success ms-3 fw-bold font-ar me-3" style="color: blue  !important;">{{ __('home.services_title') }}</h2>
+        <h2 class="text-success ms-3 fw-bold font-ar me-3" style="color: blue  !important;">{{ __('home.services_title1') }}</h2>
 
         <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
             <div class="row text-center">
@@ -231,7 +231,7 @@
     <!-- Project Cards -->
     <section class="py-5 section-style ar" style="background-color: #c0faff99 !important;">
 
-        <h2 class="text-success ms-3 fw-bold font-ar me-3" style="color: blue  !important;">{{ __('home.projects_title') }}</h2>
+        <h2 class="text-success ms-3 fw-bold font-ar me-3" style="color: blue  !important;">{{ __('home.projects_title1') }}</h2>
 
         <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
             <div class="row text-center">

@@ -211,26 +211,5 @@ class ProfessionController extends Controller
         return back();
     }
 
-    public function search(Request $request)
-    {
-        // Get the search value from the request
-
-        $title = $request->title;
-        $price = $request->price;
-        $freelancer = $request->fName;
-
-        if (is_null($price))
-            $price = '-1000000';
-
-        // Search in the title from the services table
-        $professions = Profession::latest()
-            ->where('title', 'LIKE', "%{$title}%")
-            ->where('price', '>=', $price)
-            ->where('category_id', $request->category)
-            ->paginate(6);
-        $categories = Category::all();
-        // Return the search view with the resluts compacted
-        return view('pages.main.services_page', compact('professions', 'categories'));
-    }
-
+   
 }

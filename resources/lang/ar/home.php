@@ -22,6 +22,9 @@ return[
     'projects_title'=>'المشاريع',
     'freelancers_title'=>'الفريلانسرز',
 
+    'services_title1'=>'خدمات مقترحة',
+    'projects_title1'=>'مشاريع مقترحة',
+
     'title1'=> 'كيف تجعل هذا الموقع',
     'title2'=>'مفيد لك',
     'top1'=>'أفضل',

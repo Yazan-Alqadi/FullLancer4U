@@ -21,6 +21,13 @@ return[
     'services_title'=>'Services',
     'freelancers_title'=>'Freelancers',
     'projects_title'=>'Projects',
+
+
+
+    'services_title1'=>'Sugessted Services',
+    'projects_title1'=>'Sugessted Projects',
+
+
     'title1'=> 'How to make this site',
     'title2'=>'useful to you',
     'top1'=>'Top',
