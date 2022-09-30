@@ -58,10 +58,10 @@
         </div>
     @endif
 
-    <div class="row">
+    <div class="row mx-1">
         <div class="container col-lg-9 col-md-10">
             <section class="bg-light text-dark p-3 rounded mgg">
-                <div class="border-bottom border-dark ps-3 h5 py-1">
+                <div class="border-bottom border-dark px-3 h5 py-1">
                     New Service
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-patch-plus-fill" viewBox="0 0 16 16">

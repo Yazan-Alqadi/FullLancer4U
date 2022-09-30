@@ -61,7 +61,7 @@
         </div>
     @endif
 
-    <div class="row">
+    <div class="row mx-1">
         <div class="container col-lg-9 col-md-10">
             <section class="bg-light text-dark p-3 rounded mgg mb-4">
                 <div class="border-bottom border-dark ps-3 h5 py-1">

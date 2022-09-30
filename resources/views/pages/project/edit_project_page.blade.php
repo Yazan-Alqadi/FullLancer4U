@@ -61,75 +61,80 @@
         </div>
     @endif
 
-    <section class="bg-light text-dark mg w-75 p-3 rounded mgg">
-        <div class="border-bottom border-dark ps-3 h5 py-1">
-            Edit Project
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
-                <path
-                    d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
-            </svg>
-        </div>
-        <form method="POST" action="{{ route('update_project', $project->id) }}">
-            @csrf
-            <div class="container mt-4">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
-                    <select class="form-select" name="category_id" aria-label="Default select example">
-                        <option value="0" selected>Choose Category</option>
-                        @foreach ($categories as $category)
-                            @if ($category->id == $project->category_id)
-                                <option value="{{ $category->id }}" selected>{{ $category->title }}</option>
-                            @else
-                                <option value="{{ $category->id }}">{{ $category->title }}</option>
-                            @endif
-                        @endforeach
-                    </select>
+    <div class="row mx-1">
+        <div class="container col-lg-9 col-md-10">
+            <section class="bg-light text-dark p-3 rounded mgg">
+                <div class="border-bottom border-dark px-3 h5 py-1">
+                    Edit Project
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
+                    </svg>
                 </div>
+                <form method="POST" action="{{ route('update_project', $project->id) }}">
+                    @csrf
+                    <div class="container mt-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
+                            <select class="form-select" name="category_id" aria-label="Default select example">
+                                <option value="0" selected>Choose Category</option>
+                                @foreach ($categories as $category)
+                                    @if ($category->id == $project->category_id)
+                                        <option value="{{ $category->id }}" selected>{{ $category->title }}</option>
+                                    @else
+                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
-                    <input name="title" type="text" class="form-control" value="{{ $project->title }}"
-                        aria-label="Sizing example input" placeholder="Type Title"
-                        aria-describedby="inputGroup-sizing-default">
-                </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+                            <input name="title" type="text" class="form-control" value="{{ $project->title }}"
+                                aria-label="Sizing example input" placeholder="Type Title"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
-                    <input name="price" type="text" value="{{ $project->price }}" class="form-control"
-                        aria-label="Sizing example input" placeholder="Price start at"
-                        aria-describedby="inputGroup-sizing-default">
-                </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+                            <input name="price" type="text" value="{{ $project->price }}" class="form-control"
+                                aria-label="Sizing example input" placeholder="Price start at"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Deadline</span>
-                    <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                        <input value="{{ $project->deadline }}" name="deadline" class="form-control" type="date"
-                            min="<?php echo date('Y-m-d'); ?>" aria-label="Sizing example input" placeholder="Price start at"
-                            aria-describedby="inputGroup-sizing-default">
-                        <span class="add-on"><i class="icon-th"></i></span>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Deadline</span>
+                            <div class="input-append date" id="dp3" data-date="12-02-2012"
+                                data-date-format="dd-mm-yyyy">
+                                <input value="{{ $project->deadline }}" name="deadline" class="form-control"
+                                    type="date" min="<?php echo date('Y-m-d'); ?>" aria-label="Sizing example input"
+                                    placeholder="Price start at" aria-describedby="inputGroup-sizing-default">
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Description</label>
+                            <textarea name="description" type="text" class="form-control" style="height: 200px !important;"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput1"
+                                placeholder="Type at least 2 lines">{{ $project->description }}</textarea>
+                        </div>
+
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button class="btn btn-primary" type="submit">Submit
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Description</label>
-                    <textarea name="description" type="text" class="form-control" style="height: 200px !important;"
-                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput1"
-                        placeholder="Type at least 2 lines">{{ $project->description }}</textarea>
-                </div>
-
-                <div class="d-grid gap-2 col-6 mx-auto">
-                    <button class="btn btn-primary" type="submit">Submit
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-send-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </section>
+                </form>
+            </section>
+        </div>
+    </div>
 
     {{-- Footer here --}}
     @include('layouts.footer')

@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body style="background-color: rgb(186, 195, 195);">
 
 @include('layouts.nav-bar')
 
