@@ -61,11 +61,11 @@
         </div>
     @endif
 
-    <div class="row mx-1">
+    <div class="row mx-1 ar">
         <div class="container col-lg-9 col-md-10">
             <section class="bg-light text-dark p-3 rounded mgg">
-                <div class="border-bottom border-dark ps-3 h5 py-1">
-                    My Works
+                <div class="border-bottom border-dark ps-3 h5 py-1 font-ar">
+                    {{ __('work.my-work') }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-tools" viewBox="0 0 16 16">
                         <path
@@ -79,60 +79,60 @@
                         {{-- message from who ? --}}
                         <div class="d-flex " style="justify-content: space-between; align-items: center;">
                             <span class="h4 text-danger">
-                                <span>Service:</span>
+                                <span class="font-ar">{{ __('work.service') }}</span>
                                 <span class="ms-1">{{ $service->title }}</span>
                             </span>
                             <span class="h6 rounded-2 p-1 text-secondary">{{ $service->updated_at }}</span>
                         </div>
                         <div class="d-flex " style="justify-content: space-between; align-items: center;">
                             <span class="h4 text-danger">
-                                <span>Client:</span>
+                                <span class="font-ar">{{ __('work.client') }}</span>
                                 <span class="ms-1">{{ $service->full_name }}</span>
                             </span>
                         </div>
                         <div class="h6 text-dark" style="word-break: break-word;">
-                            <span>state:</span>
+                            <span class="font-ar">{{ __('work.state') }}</span>
                             {{-- if work is in timeline --}}
                             @if ($service->status == 'in work')
-                                <span class="ms-1 disabled btn btn-warning"
+                                <span class="ms-1 disabled btn btn-warning font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    In Work
+                                    {{ __('work.in-work') }}
                                 </span>
                                 {{-- if work Done --}}
                             @elseif($service->status == 'done')
-                                <span class="ms-1 disabled btn btn-success"
+                                <span class="ms-1 disabled btn btn-success font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    Done
+                                    {{ __('work.done') }}
                                 </span>
                                 {{-- if work canceled --}}
                             @else
-                                <span class="ms-1 disabled btn btn-danger"
+                                <span class="ms-1 disabled btn btn-danger font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    Canceled
+                                    {{ __('work.canceled') }}
                                 </span>
                             @endif
 
 
                             {{-- if work is in timeline then he can change the state --}}
                             @if ($service->status == 'in work')
-                                <div class="text-start">
+                                <div class="ar">
 
                                     <form action="{{ route('work_update', $service->id) }}" class="my-3">
-                                        <span> change state into: </span>
+                                        <span class="font-ar"> {{ __('work.change-state') }} </span>
                                         <input type="radio" class="btn-check" value="cancel" name="options_outlined"
                                             id="can{{ $service->id }}" autocomplete="off">
-                                        <label class="btn btn-outline-danger" id="can{{ $service->id }}"
+                                        <label class="btn btn-outline-danger font-ar" id="can{{ $service->id }}"
                                             for="can{{ $service->id }}"
-                                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Canceled</label>
+                                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">{{ __('work.change-canceled') }}</label>
 
                                         <input type="radio" class="btn-check" value="done" name="options_outlined"
                                             id="done{{ $service->id }}" autocomplete="off">
-                                        <label class="btn btn-outline-success" id="done{{ $service->id }}"
+                                        <label class="btn btn-outline-success font-ar" id="done{{ $service->id }}"
                                             for="done{{ $service->id }}"
-                                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Done</label>
-                                        <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger"
+                                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">{{ __('work.change-done') }}</label>
+                                        <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger font-ar"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                            Confirm
+                                            {{ __('work.confirm') }}
                                         </button>
                                     </form>
                                 </div>
@@ -148,61 +148,61 @@
                         {{-- message from who ? --}}
                         <div class="d-flex " style="justify-content: space-between; align-items: center;">
                             <span class="h4 text-danger">
-                                <span>Project:</span>
+                                <span class="font-ar">{{ __('work.project') }}</span>
                                 <span class="ms-1">{{ $project->title }}</span>
                             </span>
                             <span class="h6 rounded-2 p-1 text-secondary">{{ $project->updated_at }}</span>
                         </div>
-                        <div class="d-flex " style="justify-content: space-between; align-items: center;">
+                        <div class="d-flex" style="justify-content: space-between; align-items: center;">
                             <span class="h4 text-danger">
-                                <span>Client:</span>
+                                <span class="font-ar">{{ __('work.client') }}</span>
                                 <span class="ms-1">{{ $project->full_name }}</span>
                             </span>
                         </div>
                         <div class="h6 text-dark" style="word-break: break-word;">
-                            <span>state:</span>
+                            <span class="font-ar">{{ __('work.state') }}</span>
                             {{-- if work is in timeline --}}
                             @if ($project->status == 'in work')
-                                <span class="ms-1 disabled btn btn-warning"
+                                <span class="ms-1 disabled btn btn-warning font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    In Work
+                                    {{ __('work.in-work') }}
                                 </span>
                                 {{-- if work Done --}}
                             @elseif ($project->status == 'done')
-                                <span class="ms-1 disabled btn btn-success"
+                                <span class="ms-1 disabled btn btn-success font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    Done
+                                    {{ __('work.done') }}
                                 </span>
                                 {{-- if work canceled --}}
                             @else
-                                <span class="ms-1 disabled btn btn-danger"
+                                <span class="ms-1 disabled btn btn-danger font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    Canceled
+                                    {{ __('work.canceled') }}
                                 </span>
                             @endif
 
                             {{-- if work is in timeline --}}
                             @if ($project->status == 'in work')
-                                <div class="text-start">
+                                <div class="ar">
 
                                     <form action="{{ route('work_project_update', $project->id) }}" class="my-3">
                                         @csrf
-                                        <span> change state into: </span>
+                                        <span class="font-ar"> {{ __('work.change-state') }} </span>
                                         <input type="radio" class="btn-check" value="cancel"
                                             name="options_outlined" id="cancel{{ $project->id }}"
                                             autocomplete="off">
-                                        <label class="btn btn-outline-danger" id="cancel{{ $project->id }}"
+                                        <label class="btn btn-outline-danger font-ar" id="cancel{{ $project->id }}"
                                             for="cancel{{ $project->id }}"
-                                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Canceled</label>
+                                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">{{ __('work.change-canceled') }}</label>
 
                                         <input type="radio" class="btn-check" value="done"
                                             name="options_outlined" id="done{{ $project->id }}" autocomplete="off">
-                                        <label class="btn btn-outline-success" id="done{{ $project->id }}"
+                                        <label class="btn btn-outline-success font-ar" id="done{{ $project->id }}"
                                             for="done{{ $project->id }}"
-                                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Done</label>
-                                        <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger"
+                                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">{{ __('work.change-done') }}</label>
+                                        <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger font-ar"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                            Confirm
+                                            {{ __('work.confirm') }}
                                         </button>
                                     </form>
                                 </div>
