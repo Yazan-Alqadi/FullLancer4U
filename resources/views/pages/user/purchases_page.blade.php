@@ -61,11 +61,11 @@
         </div>
     @endif
 
-    <div class="row mx-1">
+    <div class="row mx-1 ar">
         <div class="container col-lg-9 col-md-10">
             <section class="bg-light text-dark p-3 rounded mgg mb-4">
-                <div class="border-bottom border-dark ps-3 h5 py-1">
-                    My Purchases
+                <div class="border-bottom border-dark ps-3 h5 py-1 font-ar">
+                    {{ __('work.my-purchases') }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
                         <path
@@ -79,36 +79,36 @@
                         {{-- message from who ? --}}
                         <div class="d-flex " style="justify-content: space-between; align-items: center;">
                             <span class="h4 text-danger">
-                                <span>Service:</span>
+                                <span class="font-ar">{{ __('work.service') }}</span>
                                 <span class="ms-1">{{ $service->title }}</span>
                             </span>
                             <span class="h6 rounded-2 p-1 text-secondary">{{ $service->updated_at }}</span>
                         </div>
                         <div class="d-flex " style="justify-content: space-between; align-items: center;">
                             <span class="h4 text-danger">
-                                <span>Freelancer:</span>
+                                <span class="font-ar">{{ __('work.freelancer') }}</span>
                                 <span class="ms-1">{{ $service->full_name }}</span>
                             </span>
                         </div>
-                        <div class="h6 text-dark" style="word-break: break-word;">
-                            <span>state:</span>
+                        <div class="h6 text-dark font-ar" style="word-break: break-word;">
+                            <span>{{ __('work.state') }}</span>
                             {{-- if work is in timeline --}}
                             @if ($service->status == 'in work')
-                                <span class="ms-1 disabled btn btn-warning"
+                                <span class="ms-1 disabled btn btn-warning font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    In Work
+                                    {{ __('work.in-work') }}
                                 </span>
                                 {{-- if work Done --}}
                             @elseif($service->status == 'done')
-                                <span class="ms-1 disabled btn btn-success"
+                                <span class="ms-1 disabled btn btn-success font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    Done
+                                    {{ __('work.done') }}
                                 </span>
                                 {{-- if work canceled --}}
                             @else
-                                <span class="ms-1 disabled btn btn-danger"
+                                <span class="ms-1 disabled btn btn-danger font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    Canceled
+                                    {{ __('work.canceled') }}
                                 </span>
                             @endif
 
@@ -123,36 +123,36 @@
                     <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25">
                         <div class="d-flex " style="justify-content: space-between; align-items: center;">
                             <span class="h4 text-danger">
-                                <span>Project:</span>
+                                <span class="font-ar">{{ __('work.project') }}</span>
                                 <span class="ms-1">{{ $project->title }}</span>
                             </span>
                             <span class="h6 rounded-2 p-1 text-secondary">{{ $project->updated_at }}</span>
                         </div>
                         <div class="d-flex " style="justify-content: space-between; align-items: center;">
                             <span class="h4 text-danger">
-                                <span>Freelancer:</span>
+                                <span class="font-ar">{{ __('work.freelancer') }}</span>
                                 <span class="ms-1">{{ $project->full_name }}</span>
                             </span>
                         </div>
                         <div class="h6 text-dark" style="word-break: break-word;">
-                            <span>state:</span>
+                            <span class="font-ar">{{ __('work.state') }}</span>
                             {{-- if work is in timeline --}}
                             @if ($project->status == 'in work')
-                                <span class="ms-1 disabled btn btn-warning"
+                                <span class="ms-1 disabled btn btn-warning font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    In Work
+                                    {{ __('work.in-work') }}
                                 </span>
                                 {{-- if work Done --}}
                             @elseif($project->status == 'done')
-                                <span class="ms-1 disabled btn btn-success"
+                                <span class="ms-1 disabled btn btn-success font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    Done
+                                    {{ __('work.done') }}
                                 </span>
                                 {{-- if work canceled --}}
                             @else
-                                <span class="ms-1 disabled btn btn-danger"
+                                <span class="ms-1 disabled btn btn-danger font-ar"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                    Canceled
+                                    {{ __('work.canceled') }}
                                 </span>
                             @endif
 

@@ -15,4 +15,7 @@ return[
     'change-canceled'=>'Cancele',
     'change-done'=>'Done',
 
+    'my-purchases'=>'My Purchases',
+    'freelancer'=>'Freelancer:',
+
 ];

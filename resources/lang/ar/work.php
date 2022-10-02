@@ -15,5 +15,8 @@ return[
     'change-canceled'=>'إلغاء',
     'change-done'=>'إنهاء',
 
+    'my-purchases'=>'مشترياتي',
+    'freelancer'=>'الفريلانسر:',
+
 ];
 
