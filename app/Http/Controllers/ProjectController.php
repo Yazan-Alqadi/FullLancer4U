@@ -14,6 +14,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -162,8 +163,14 @@ class ProjectController extends Controller
      */
     public function destroy(int $id): RedirectResponse
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         $this->authorize('delete', $project);
+
+        $workProject = DB::table('freelancer_project')->where('project_id', $project->id)->get();
+
+
+        if (count($workProject) >1 )
+
         $project->delete();
         return back()->with('message', 'Your project have been deleted');
     }
@@ -201,24 +208,5 @@ class ProjectController extends Controller
     }
 
 
-    public function search(Request $request)
-    {
-        // Get the search value from the request
 
-        $title = $request->title;
-        $price = $request->price;
-        $client = $request->CName;
-
-        // Search in the title from the services table
-        $projects = Project::latest()
-            ->where('title', 'LIKE', "%{$title}%")
-            ->where('price', '>=', $price)
-            ->where('category_id', $request->category)
-            ->paginate(6);
-        $categories = Category::all();
-        // Return the search view with the resluts compacted
-        return view('pages.main.projects_page', compact('projects', 'categories'));
-
-
-    }
 }
