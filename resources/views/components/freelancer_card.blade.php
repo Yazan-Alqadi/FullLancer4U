@@ -1,4 +1,4 @@
-<div class="col-md-6 col-lg-4 mb-2">
+<div class="col-md-6 col-lg-4 mb-2 ar">
     <div class="card text-light" style="background-color: #031232; height: 100%;">
 
         <div class="container">
@@ -18,7 +18,7 @@
             <div style="display: inline-grid;">
                 <span class="card-title">
                     <a href="{{ route('profile_user', $freelancer->user->id) }}"
-                        class="navbar-brand text-light name-of-user-hover">
+                        class="navbar-brand text-light name-of-user-hover me-4">
                         {{ $freelancer->user->full_name }}
                     </a>
                 </span>
@@ -30,13 +30,13 @@
             <div class="card-text">
                 <div class="container">
                     <div class="col" style="color: #f5ff9f;">
-                        <div class="row justify-content-center">Projects have done:
+                        <div class="row justify-content-center font-ar">{{ __('main_pages.projects-done') }}
                             {{ $freelancer->number_of_projects }}</div>
-                        <div class="row justify-content-center">Number of professions:
+                        <div class="row justify-content-center font-ar">{{ __('main_pages.number-of-professions') }}
                             {{ $freelancer->number_of_professions }}</div>
                         <div class="row justify-content-center">
-                            <div style="white-space: nowrap;">
-                                Rating:
+                            <div class="font-ar" style="white-space: nowrap;">
+                                {{ __('main_pages.rating') }}
                                 @if ($freelancer->rate > 0)
                                     <span class="fa fa-star checked"
                                         style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
@@ -87,8 +87,8 @@
                         </div>
 
                         {{-- skills --}}
-                        <div class="row justify-content-center">
-                            Skills:
+                        <div class="row justify-content-center font-ar">
+                            {{ __('main_pages.skills') }}
                             @foreach ($freelancer->user->skills as $skill)
                                 {{ $skill->title }} ,
                             @endforeach
@@ -96,8 +96,8 @@
 
                         <!-- email of the user -->
                         <a href="{{ route('contact_me', $freelancer->user->id) }}"
-                            class="btn btn-info mt-2 btn-font-size">
-                            Contact
+                            class="btn btn-info mt-2 btn-font-size font-ar">
+                            {{ __('main_pages.contact') }}
                             {{ $freelancer->user->full_name }}
                         </a>
                     </div>

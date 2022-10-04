@@ -31,20 +31,20 @@
                             </span>
                         </div>
                         <div class="row justify-content-center">
-                            <span class="for-size span-number-1">Category:</span>
+                            <span class="for-size span-number-1 font-ar">{{ __('main_pages.category') }}</span>
                             <span class="for-size span-number-2">
                                 {{ "\n" . $project->category->title }}
                             </span>
                         </div>
                         <div class="row justify-content-center">
-                            <span class="for-size span-number-1">Client:</span>
+                            <span class="for-size span-number-1 font-ar">{{ __('main_pages.client') }}</span>
                             <span class="for-size span-number-2">
                                 {{ $project->user->full_name }}
 
                             </span>
                         </div>
                         <div class="row justify-content-center mt-3" style="display: block;">
-                            <span class="for-size span-number-1">descreption:</span>
+                            <span class="for-size span-number-1 font-ar">{{ __('main_pages.description') }}</span>
                             <span class="for-size span-number-2">
                                 {{ $project->description }}
 
@@ -69,11 +69,11 @@
                             {{-- Price --}}
                             <span class="text-end text-dark bg-light rounded px-2 py-1 tooltipssss d-inline-block">
                                 {{ $project->price . ' Sp' }}
-                                <span class="tooltiptext">Price</span>
+                                <span class="tooltiptext font-ar">{{ __('main_pages.price-1') }}</span>
                             </span>
                         </div>
                         <a href="{{ route('get_project', $project->id) }}"
-                            class="text-center mt-4 bg-light btn text-dark h6">see more</a>
+                            class="text-center mt-4 bg-light btn text-dark h6 font-ar">{{ __('main_pages.see-more') }}</a>
                     </div>
                 </div>
             </div>

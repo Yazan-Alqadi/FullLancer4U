@@ -28,15 +28,15 @@
                             <span class="for-size span-number-2 title-des">{{ $service->title }}</span>
                         </div>
                         <div class="row justify-content-center">
-                            <span class="for-size span-number-1">Category:</span>
+                            <span class="for-size span-number-1 font-ar">{{ __('main_pages.category') }} </span>
                             <span class="for-size span-number-2">{{ "\n" . $service->category->title }}</span>
                         </div>
                         <div class="row justify-content-center">
-                            <span class="for-size span-number-1">freelancer:</span>
+                            <span class="for-size span-number-1 font-ar">{{ __('main_pages.freelancer') }}</span>
                             <span class="for-size span-number-2">{{ $service->freelancer->user->full_name }}</span>
                         </div>
                         <div style="white-space: nowrap;">
-                            <span class="for-size span-number-1">Rating:</span>
+                            <span class="for-size span-number-1 font-ar">{{ __('main_pages.rating') }}</span>
                             @if ($service->freelancer->rate > 0)
                                 <span class="fa fa-star checked"
                                     style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
@@ -85,16 +85,16 @@
 
                         </div>
                         <div class="row justify-content-center">
-                            <span class="for-size span-number-1">Price:</span>
+                            <span class="for-size span-number-1 font-ar font-ar">{{ __('main_pages.price') }}</span>
                             <span class="for-size span-number-2">{{ $service->price }}</span>
                         </div>
                         <div class="row justify-content-center mt-3" style="display: block;">
-                            <span class="for-size span-number-1">descreption:</span>
+                            <span class="for-size span-number-1 font-ar">{{ __('main_pages.description') }}</span>
                             <span class="for-size span-number-2">{{ $service->description }}</span>
                         </div>
                         <!-- Profile of the user -->
-                        <a href="{{ route('more_information', $service) }}" class="btn btn-info mt-2 btn-font-size">
-                            See more information
+                        <a href="{{ route('more_information', $service) }}" class="btn btn-info mt-2 btn-font-size font-ar">
+                            {{ __('main_pages.see-more') }}
                         </a>
                     </div>
                 </div>
