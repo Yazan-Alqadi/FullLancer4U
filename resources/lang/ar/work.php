@@ -18,5 +18,12 @@ return[
     'my-purchases'=>'مشترياتي',
     'freelancer'=>'الفريلانسر:',
 
+    'confirming'=>'عملية تأكيد',
+    'no'=>'لا',
+    'sure-done'=>'انهاء',
+    'sure-cancel'=>'إلغاء',
+    'are-sure-1'=>'هل انت متأكد من انك تريد',
+    'are-sure-2'=>'العمل؟',
+
 ];
 

@@ -119,21 +119,83 @@
 
                                     <form action="{{ route('work_update', $service->id) }}" class="my-3">
                                         <span class="font-ar"> {{ __('work.change-state') }} </span>
+
+                                        <!-- Button trigger modal cancel -->
                                         <input type="radio" class="btn-check" value="cancel" name="options_outlined"
+                                            data-bs-toggle="modal" data-bs-target="#model-service-cancel"
                                             id="can{{ $service->id }}" autocomplete="off">
                                         <label class="btn btn-outline-danger font-ar" id="can{{ $service->id }}"
                                             for="can{{ $service->id }}"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">{{ __('work.change-canceled') }}</label>
 
+                                        <!-- Button trigger modal done -->
                                         <input type="radio" class="btn-check" value="done" name="options_outlined"
+                                            data-bs-toggle="modal" data-bs-target="#model-service-done"
                                             id="done{{ $service->id }}" autocomplete="off">
                                         <label class="btn btn-outline-success font-ar" id="done{{ $service->id }}"
                                             for="done{{ $service->id }}"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">{{ __('work.change-done') }}</label>
-                                        <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger font-ar"
+
+                                        <!-- Modal for confirming cancel -->
+                                        <div class="modal fade" id="model-service-cancel" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5 font-ar" id="exampleModalLabel">
+                                                            {{ __('work.confirming') }}</h1>
+                                                        <button type="button" class="btn-close m-0"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body font-ar">
+                                                        {{ __('work.are-sure-1') }} <span
+                                                            class="text-danger fw-bold font-ar">{{ __('work.sure-cancel') }}</span>
+                                                        {{ __('work.are-sure-2') }}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary font-ar"
+                                                            data-bs-dismiss="modal">{{ __('work.no') }}</button>
+                                                        <button type="submit" class="btn btn-primary font-ar">
+                                                            {{ __('work.confirm') }}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Modal for confirming done -->
+                                        <div class="modal fade" id="model-service-done" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5 font-ar" id="exampleModalLabel">
+                                                            {{ __('work.confirming') }}
+                                                        </h1>
+                                                        <button type="button" class="btn-close m-0"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body font-ar">
+                                                        {{ __('work.are-sure-1') }} <span
+                                                            class="text-success fw-bold font-ar">{{ __('work.sure-done') }}</span>
+                                                        {{ __('work.are-sure-2') }}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary font-ar"
+                                                            data-bs-dismiss="modal">{{ __('work.no') }}</button>
+                                                        <button type="submit" class="btn btn-primary font-ar">
+                                                            {{ __('work.confirm') }}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger font-ar"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                             {{ __('work.confirm') }}
-                                        </button>
+                                        </button> --}}
                                     </form>
                                 </div>
                             @endif
@@ -188,22 +250,84 @@
                                     <form action="{{ route('work_project_update', $project->id) }}" class="my-3">
                                         @csrf
                                         <span class="font-ar"> {{ __('work.change-state') }} </span>
+
+                                        <!-- Button trigger modal cancel -->
                                         <input type="radio" class="btn-check" value="cancel"
+                                            data-bs-toggle="modal" data-bs-target="#model-project-cancel"
                                             name="options_outlined" id="cancel{{ $project->id }}"
                                             autocomplete="off">
                                         <label class="btn btn-outline-danger font-ar" id="cancel{{ $project->id }}"
                                             for="cancel{{ $project->id }}"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">{{ __('work.change-canceled') }}</label>
 
+                                        <!-- Button trigger modal done -->
                                         <input type="radio" class="btn-check" value="done"
+                                            data-bs-toggle="modal" data-bs-target="#model-project-done"
                                             name="options_outlined" id="done{{ $project->id }}" autocomplete="off">
                                         <label class="btn btn-outline-success font-ar" id="done{{ $project->id }}"
                                             for="done{{ $project->id }}"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">{{ __('work.change-done') }}</label>
-                                        <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger font-ar"
+
+                                        <!-- Modal for confirming cancel -->
+                                        <div class="modal fade" id="model-project-cancel" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5 font-ar" id="exampleModalLabel">
+                                                            {{ __('work.confirming') }}</h1>
+                                                        <button type="button" class="btn-close m-0"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body font-ar">
+                                                        {{ __('work.are-sure-1') }} <span
+                                                            class="text-danger fw-bold font-ar">{{ __('work.sure-cancel') }}</span>
+                                                        {{ __('work.are-sure-2') }}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary font-ar"
+                                                            data-bs-dismiss="modal">{{ __('work.no') }}</button>
+                                                        <button type="submit" class="btn btn-primary font-ar">
+                                                            {{ __('work.confirm') }}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Modal for confirming done -->
+                                        <div class="modal fade" id="model-project-done" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5 font-ar" id="exampleModalLabel">
+                                                            {{ __('work.confirming') }}
+                                                        </h1>
+                                                        <button type="button" class="btn-close m-0"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body font-ar">
+                                                        {{ __('work.are-sure-1') }} <span
+                                                            class="text-success fw-bold font-ar">{{ __('work.sure-done') }}</span>
+                                                        {{ __('work.are-sure-2') }}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary font-ar"
+                                                            data-bs-dismiss="modal">{{ __('work.no') }}</button>
+                                                        <button type="submit" class="btn btn-primary font-ar">
+                                                            {{ __('work.confirm') }}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- <button type="submit" class="px-4 mx-2 mt-2 btn btn-danger font-ar"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                             {{ __('work.confirm') }}
-                                        </button>
+                                        </button> --}}
                                     </form>
                                 </div>
                             @endif

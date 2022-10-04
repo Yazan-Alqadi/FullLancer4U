@@ -18,4 +18,11 @@ return[
     'my-purchases'=>'My Purchases',
     'freelancer'=>'Freelancer:',
 
+    'confirming'=>'Confirming',
+    'no'=>'No',
+    'sure-done'=>'done',
+    'sure-cancel'=>'cancel',
+    'are-sure-1'=>'Are you sure you want to',
+    'are-sure-2'=>'the work?',
+
 ];
