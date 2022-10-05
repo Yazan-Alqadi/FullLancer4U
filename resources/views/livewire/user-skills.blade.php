@@ -45,21 +45,31 @@
                 </button>
             @endif
 
-            <div class="offcanvas offcanvas-top en" tabindex="-1" id="offcanvasTop"
-                aria-labelledby="offcanvasTopLabel">
+            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title font-ar" id="offcanvasTopLabel">
                         {{ __('profile_page.new-skill') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <div class="input-group mb-3 w-50">
-                        <span class="input-group-text font-ar" id="basic-addon1">{{ __('profile_page.skill') }}</span>
-                        <input  wire:model.defer="input" type="text" name="title" class="form-control font-ar"
-                            placeholder="{{ __('profile_page.type-skill') }}" aria-label="text"
-                            aria-describedby="basic-addon1">
-                    </div>
-                    <div class="text-start mx-auto">
+                    @if (app()->getLocale() == 'ar')
+                        <div class="input-group mb-3 w-75 en">
+                            <input wire:model.defer="input" type="text" name="title" class="form-control font-ar text-end"
+                                placeholder="{{ __('profile_page.type-skill') }}" aria-label="text"
+                                aria-describedby="basic-addon1">
+                            <span class="input-group-text font-ar"
+                                id="basic-addon1">{{ __('profile_page.skill') }}</span>
+                        </div>
+                    @else
+                        <div class="input-group mb-3 w-75">
+                            <span class="input-group-text font-ar"
+                                id="basic-addon1">{{ __('profile_page.skill') }}</span>
+                            <input wire:model.defer="input" type="text" name="title" class="form-control font-ar"
+                                placeholder="{{ __('profile_page.type-skill') }}" aria-label="text"
+                                aria-describedby="basic-addon1">
+                        </div>
+                    @endif
+                    <div class="mx-auto @if (app()->getLocale() == 'ar') text-end @else text-start @endif">
                         <button class="btn btn-primary font-ar" wire:click="addSkill">
                             {{ __('profile_page.add') }}
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

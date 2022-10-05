@@ -22,13 +22,14 @@
 
 
     @include('layouts.nav-bar')
+    
 
-
-    <section id="hero" class="bg-dark text-light text-lg-center text-md-center text-sm-start pt-5 mt-5 pb-2 ar" >
+    <section id="hero" class="bg-dark text-light text-lg-center text-md-center text-sm-start pt-5 mt-5 pb-2 ar">
         <div class="container-fluid">
             <div class="d-flex">
                 <div>
-                    <h2 class="font-ar">{{ __('home.title1') }} <span class="text-info font-ar">{{ __('home.title2') }}</span>
+                    <h2 class="font-ar">{{ __('home.title1') }} <span
+                            class="text-info font-ar">{{ __('home.title2') }}</span>
                         <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path
@@ -53,7 +54,8 @@
 
     <section id="top-fl" class="bg-light text-center py-5 ar">
         <div class="container-fluid">
-            <h2 class="mb-5 font-ar">{{ __('home.top1') }} <span class="text-warning font-ar">{{ __('home.top2') }}</span></h2>
+            <h2 class="mb-5 font-ar">{{ __('home.top1') }} <span
+                    class="text-warning font-ar">{{ __('home.top2') }}</span></h2>
             <div class="d-flex">
                 <img class="ms-2 d-none d-sm-block img-fluid font-ar" alt="photo" style="width: 20% !important;"
                     src={{ 'files/top_fl.svg' }}>
@@ -195,7 +197,8 @@
     <!-- Services Cards -->
     <section class="py-5 section-style ar" style="background-color: #c0faff99 !important;">
 
-        <h2 class="text-success ms-3 fw-bold font-ar me-3" style="color: blue  !important;">{{ __('home.services_title1') }}</h2>
+        <h2 class="text-success ms-3 fw-bold font-ar me-3" style="color: blue  !important;">
+            {{ __('home.services_title1') }}</h2>
 
         <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
             <div class="row text-center">
@@ -214,7 +217,8 @@
     <!-- Project Cards -->
     <section class="py-5 section-style ar" style="background-color: #c0faff99 !important;">
 
-        <h2 class="text-success ms-3 fw-bold font-ar me-3" style="color: blue  !important;">{{ __('home.projects_title1') }}</h2>
+        <h2 class="text-success ms-3 fw-bold font-ar me-3" style="color: blue  !important;">
+            {{ __('home.projects_title1') }}</h2>
 
         <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
             <div class="row text-center">

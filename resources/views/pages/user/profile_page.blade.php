@@ -50,7 +50,7 @@
         <div class="mx-3">
             <div class="row ar">
                 {{-- Info --}}
-                <div class="col-lg-8 col-md-8 mb-5 en">
+                <div class="col-lg-8 col-md-8 mb-5">
                     <section class="bg-light text-dark rounded p-3">
                         <div class="border-bottom border-dark ps-3 h5 py-1 font-ar">
                             {{ __('profile_page.info') }}
@@ -79,23 +79,50 @@
                                 <!-- here put the image if user have one already -->
                                 <!-- <img src="/files/pic-1.jpg" class="rounded-circle mx-auto d-block m-3" style="width: 30%;"
                     alt="..."> -->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text font-ar"
-                                        id="inputGroup-sizing-default">{{ __('profile_page.fu-name') }}</span>
-                                    <input name="full_name" type="text" class="form-control"
-                                        aria-label="Sizing example input" placeholder="Full Name" aria-label="Fullname"
-                                        aria-describedby="inputGroup-sizing-default"
-                                        value="{{ Auth::user()->full_name }}">
-                                </div>
 
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text font-ar"
-                                        id="inputGroup-sizing-default">{{ __('profile_page.us-name') }}</span>
-                                    <input name="user_name" type="text" class="form-control"
-                                        aria-label="Sizing example input" placeholder="User Name" aria-label="Username"
-                                        aria-describedby="inputGroup-sizing-default"
-                                        value="{{ Auth::user()->user_name }}">
-                                </div>
+                                {{-- Full Name --}}
+                                @if (app()->getLocale() == 'ar')
+                                    <div class="input-group mb-3 en">
+                                        <input name="full_name" type="text" class="form-control text-end"
+                                        aria-label="Sizing example input"
+                                            placeholder="Full Name" aria-label="Fullname"
+                                            aria-describedby="inputGroup-sizing-default"
+                                            value="{{ Auth::user()->full_name }}">
+                                        <span class="input-group-text font-ar"
+                                            id="inputGroup-sizing-default">{{ __('profile_page.fu-name') }}</span>
+                                    </div>
+                                @else
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text font-ar"
+                                            id="inputGroup-sizing-default">{{ __('profile_page.fu-name') }}</span>
+                                        <input name="full_name" type="text" class="form-control"
+                                            aria-label="Sizing example input" placeholder="Full Name"
+                                            aria-label="Fullname" aria-describedby="inputGroup-sizing-default"
+                                            value="{{ Auth::user()->full_name }}">
+                                    </div>
+                                @endif
+
+                                {{-- User Name --}}
+                                @if (app()->getLocale() == 'ar')
+                                    <div class="input-group mb-3 en">
+                                        <input name="user_name" type="text" class="form-control text-end"
+                                            aria-label="Sizing example input" placeholder="User Name"
+                                            aria-label="Username" aria-describedby="inputGroup-sizing-default"
+                                            value="{{ Auth::user()->user_name }}">
+                                        <span class="input-group-text font-ar"
+                                            id="inputGroup-sizing-default">{{ __('profile_page.us-name') }}</span>
+                                    </div>
+                                @else
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text font-ar"
+                                            id="inputGroup-sizing-default">{{ __('profile_page.us-name') }}</span>
+                                        <input name="user_name" type="text" class="form-control"
+                                            aria-label="Sizing example input" placeholder="User Name"
+                                            aria-label="Username" aria-describedby="inputGroup-sizing-default"
+                                            value="{{ Auth::user()->user_name }}">
+                                    </div>
+                                @endif
+
 
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1"
@@ -211,10 +238,10 @@
 
                     <br>
 
-                    @livewire('user-projects',['projects'=>$projects])
+                    @livewire('user-projects', ['projects' => $projects])
                     <br>
 
-                    @livewire('user-skills',['skills'=>$skills])
+                    @livewire('user-skills', ['skills' => $skills])
 
                     <br>
                     <div class="card bg-light text-dark rounded">
@@ -317,6 +344,7 @@
                 }
             })
         }
+
         function deleteP(id) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -332,6 +360,7 @@
                 }
             })
         }
+
         function deleteS(id) {
             Swal.fire({
                 title: 'Are you sure?',
