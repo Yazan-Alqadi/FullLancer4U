@@ -76,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('user', [UserController::class, 'show'])->name('profile');
     Route::get('user/update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::get('profile/{id}', [UserController::class, 'profile'])->name('profile_user');
+    Route::get('gallery', [UserController::class, 'gallery'])->name('gallery');
 
 
     Route::get('contact', [MessageController::class, 'getContact'])->name('contact');

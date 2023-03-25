@@ -49,6 +49,11 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
+
+         public function gallery(){
+            return view('pages.user.gallery');
+         }
+
     public function show()
     {
         //
