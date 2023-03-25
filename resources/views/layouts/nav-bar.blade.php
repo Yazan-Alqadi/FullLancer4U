@@ -140,7 +140,8 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="{{ route('register.show') }}"
                             class="nav-link font-ar">{{ __('home.register') }}</a></li>
-                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link font-ar">{{ __('home.signUp') }}</a>
+                    <li class="nav-item"><a href="{{ route('login') }}"
+                            class="nav-link font-ar">{{ __('home.signUp') }}</a>
                     </li>
                 </ul>
             @endauth
@@ -251,7 +252,8 @@
             {{-- offcanvas head --}}
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title text-light" id="offcanvasRightLabel font-ar">{{ __('home.menu') }}</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
             </div>
 
             {{-- offcanvas body --}}
