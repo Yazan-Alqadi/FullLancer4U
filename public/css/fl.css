@@ -225,7 +225,7 @@ input::placeholder {
     background-attachment: unset;
     background-position: 50% 50%;
     background-size: cover;
-    background-image: url("/files/Freelancer-1-2.png");
+    background-image: url("/files/Freelancer-1.png");
 }
 
 .profile-image-post {
@@ -236,7 +236,7 @@ input::placeholder {
     background-attachment: unset;
     background-position: 50% 50%;
     background-size: cover;
-    background-image: url("/files/Freelancer-1-2.png");
+    background-image: url("/files/Freelancer-1.png");
 }
 
 .user-name-post {
