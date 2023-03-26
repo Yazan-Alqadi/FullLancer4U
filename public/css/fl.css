@@ -48,7 +48,7 @@ label.star {
 }
 
 
-input.star:checked ~ label.star:before {
+input.star:checked~label.star:before {
 
     content: '\f005';
 
@@ -59,7 +59,7 @@ input.star:checked ~ label.star:before {
 }
 
 
-input.star-5:checked ~ label.star:before {
+input.star-5:checked~label.star:before {
 
     color: #FE7;
 
@@ -68,7 +68,7 @@ input.star-5:checked ~ label.star:before {
 }
 
 
-input.star-1:checked ~ label.star:before {
+input.star-1:checked~label.star:before {
     color: #F62;
 }
 
@@ -208,4 +208,49 @@ input::placeholder {
     min-height: 30px;
     border: 1px solid black;
     position: absolute;
+}
+
+/* .div-profile-image {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}*/
+
+.profile-image {
+    border-radius: 50%;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background-attachment: unset;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-image: url("/files/Freelancer-1-2.png");
+}
+
+.profile-image-post {
+    border-radius: 50%;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-attachment: unset;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-image: url("/files/Freelancer-1-2.png");
+}
+
+.user-name-post {
+    position: relative;
+    top: 0%;
+    left: 100%;
+    white-space: nowrap;
+    font-size: 15px;
+}
+
+.time-post {
+    position: relative;
+    top: -15%;
+    left: 115%;
+    white-space: nowrap;
+    font-size: 10px;
 }
