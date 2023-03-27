@@ -239,6 +239,14 @@ input::placeholder {
     background-image: url("/files/Freelancer-1.png");
 }
 
+.profile-icon-post {
+    border-radius: 50%;
+    display: block;
+    width: 50px;
+    text-align: center;
+    height: 50px;
+}
+
 .user-name-post {
     position: relative;
     top: 0%;
@@ -254,3 +262,16 @@ input::placeholder {
     white-space: nowrap;
     font-size: 10px;
 }
+
+.menu-post {
+    position: relative;
+    top: 0%;
+    left: 0%;
+}
+
+/* .dr-do-b::before {
+    content: "" !important;
+    border-top: .3em solid transparent !important;
+    border-right: .3em solid !important;
+    border-bottom: .3em solid transparent !important;
+} */

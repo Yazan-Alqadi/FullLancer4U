@@ -54,6 +54,10 @@ class UserController extends Controller
             return view('pages.user.gallery');
          }
 
+    public function edit_gallery_info(){
+        return view('pages.user.edit-gallery-info');
+    }
+
     public function show()
     {
         //
