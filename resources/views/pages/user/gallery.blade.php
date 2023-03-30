@@ -70,7 +70,7 @@
 
                     <!-- here put the image if user have one already -->
 
-                    <div class="profile-image rounded-circle mx-auto d-block m-3">
+                    <div class="profile-image rounded-circle mx-auto d-block m-3" style="background-image: url({{ Auth::user()->image }});">
                         <label class="btn" for="file-upload"
                             style="position: relative; top: 75%; left: 70%; border-color: #ffdead00;">
                             <input type="file" id="file-upload" class="d-none">
@@ -87,9 +87,9 @@
                     </div>
 
                     {{-- name of the user --}}
-                    <div class="text-center">Full name</div>
+                    <div class="text-center">{{ Auth::user()->full_name }}</div>
                     {{-- BIO --}}
-                    <div class="text-center py-1">Bio</div>
+                    <div class="text-center py-1">{{ Auth::user()->bio }}</div>
 
                     <div class="border-bottom border-dark px-3"></div>
 

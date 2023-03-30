@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_freelancer')->default(false);
             $table->longText('bio')->index()->nullable();
+            $table->string('image')->default(null);
             $table->rememberToken();
             $table->timestamps();
         });

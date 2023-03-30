@@ -57,6 +57,7 @@ Route::get('locale/{locale}', function ($locale) {
     App::setLocale($locale);
     return redirect()->back();
 })->name('switchLan');  //add name to router
+Route::post('addImage', [UserController::class, 'addImage'])->name('addImage');
 
 Route::middleware(['auth'])->group(function () {
 

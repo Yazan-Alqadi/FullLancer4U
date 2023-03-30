@@ -50,11 +50,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-         public function gallery(){
-            return view('pages.user.gallery');
-         }
+    public function gallery()
+    {
+        return view('pages.user.gallery');
+    }
 
-    public function edit_gallery_info(){
+    public function edit_gallery_info()
+    {
         return view('pages.user.edit-gallery-info');
     }
 
@@ -65,9 +67,9 @@ class UserController extends Controller
         if (Auth::user()->is_freelancer)
             $services = DB::table('professions')->where('freelancer_id', Auth::user()->freelancer->id)->get();
 
-        $projects = DB::table('projects')->where('user_id',Auth::id())->get();
+        $projects = DB::table('projects')->where('user_id', Auth::id())->get();
         $skills = DB::table('skills')->where('user_id',  Auth::id())->get();
-        return view('pages.user.profile_page', compact('services','projects','skills'));
+        return view('pages.user.profile_page', compact('services', 'projects', 'skills'));
     }
 
     public function profile($id)
@@ -147,5 +149,31 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json(['message' => 'success']);
+    }
+
+
+    public function addImage(Request $request)
+    {
+
+
+        $request->validate([
+            'image' => 'required|image',
+        ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+
+        $request->image->move(public_path('images'), $imageName);
+
+        $user = User::find($request->user_id);
+
+        $user['image'] ='/images/'. $imageName;
+
+        $user->save();
+
+
+
+        return back()
+            ->with('success', 'You have successfully upload image.')
+            ->with('image', $imageName);
     }
 }
