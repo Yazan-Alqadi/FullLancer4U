@@ -84,9 +84,8 @@
                                 @if (app()->getLocale() == 'ar')
                                     <div class="input-group mb-3 en">
                                         <input name="full_name" type="text" class="form-control text-end"
-                                        aria-label="Sizing example input"
-                                            placeholder="Full Name" aria-label="Fullname"
-                                            aria-describedby="inputGroup-sizing-default"
+                                            aria-label="Sizing example input" placeholder="Full Name"
+                                            aria-label="Fullname" aria-describedby="inputGroup-sizing-default"
                                             value="{{ Auth::user()->full_name }}">
                                         <span class="input-group-text font-ar"
                                             id="inputGroup-sizing-default">{{ __('profile_page.fu-name') }}</span>

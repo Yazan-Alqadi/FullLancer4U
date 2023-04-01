@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\authController;
 use App\Http\Controllers\FreelancerController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -40,6 +41,9 @@ Route::middleware(['guest'])->group(function () {
     Route::post('login', [LoginController::class, 'store'])->name('login.store');
 });
 
+Route::post('addacc', [GalleryController::class, 'storeAccounts'])->name('add_account');
+Route::get('getacc', [GalleryController::class, 'getAccounts'])->name('get_accounts');
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('logout', [authController::class, 'logout'])->name('logout');
@@ -77,8 +81,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('user', [UserController::class, 'show'])->name('profile');
     Route::get('user/update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::get('profile/{id}', [UserController::class, 'profile'])->name('profile_user');
-    Route::get('gallery', [UserController::class, 'gallery'])->name('gallery');
-    Route::get('edit_gallery_info', [UserController::class, 'edit_gallery_info'])->name('edit_gallery_info');
+    Route::get('gallery', [GalleryController::class, 'gallery'])->name('gallery');
+    Route::get('editgallery', [GalleryController::class, 'edit_gallery_info'])->name('edit_gallery_info');
 
 
     Route::get('contact', [MessageController::class, 'getContact'])->name('contact');
