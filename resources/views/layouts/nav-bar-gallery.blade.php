@@ -9,7 +9,29 @@
             <span class="navbar-toggler-icon"></span>
         </button> --}}
 
-        <a href="{{ route('home') }}" class="navbar-brand text-info navbar-title-hover">Fullancer4U</a>
+        <span class="text-start" style="font-family: 'Josefin Sans', sans-serif;">
+            <a href="{{ route('gallery_main_page') }}" class="navbar-brand navbar-title-hover" style="color: #ffda71">
+                Jobs Gallery
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-stars" viewBox="0 0 16 16">
+                    <path
+                        d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z" />
+                </svg>
+            </a>
+        </span>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-search" viewBox="0 0 16 16">
+                <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+
+            </button>
+
+        </form>
+
 
 
         {{-- <form class="form-inline collapse navbar-collapse" id="search-par">
@@ -45,7 +67,7 @@
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-end" id="navbarDropdownMenuLink1">
-                        <li><a class="dropdown-item font-ar" href="{{ route('profile') }}">
+                        <li><a class="dropdown-item font-ar" href="{{ route('gallery_profile') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-person-badge" viewBox="0 0 16 16">
                                     <path
@@ -57,7 +79,7 @@
                             </a>
                         </li>
                         @if (Auth::check() && Auth::user()->is_freelancer)
-                            <li><a class="dropdown-item font-ar" href="{{ route('gallery') }}">
+                            <li><a class="dropdown-item font-ar" href="{{ route('gallery_main_page') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-stars" viewBox="0 0 16 16">
                                         <path
@@ -67,55 +89,7 @@
                                 </a>
                             </li>
                         @endif
-                        @if (Auth::check() && Auth::user()->is_freelancer)
-                            <li><a class="dropdown-item font-ar" href="{{ route('become_freelancer') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
-                                    </svg>
-                                    {{ __('home.addService') }}
-                                </a>
-                            </li>
-                        @endif
-                        <li><a class="dropdown-item font-ar" href="{{ route('create_project') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
-                                </svg>
-                                {{ __('home.addProject') }}
-                            </a>
-                        </li>
-                        <li><a class="dropdown-item font-ar" href="{{ route('contact') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                                </svg>
-                                {{ __('home.myChat') }}
-                            </a>
-                        </li>
-                        @if (Auth::check() && Auth::user()->is_freelancer)
-                            <li><a class="dropdown-item font-ar" href="{{ route('work_page', Auth::id()) }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
-                                        <path
-                                            d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0Zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708ZM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11Z" />
-                                    </svg>
-                                    {{ __('home.myWork') }}
-                                </a>
-                            </li>
-                        @endif
-                        <li><a class="dropdown-item font-ar" href="{{ route('purchase_page', Auth::id()) }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
-                                </svg>
-                                {{ __('home.myPurchase') }}
-                            </a>
-                        </li>
+
                         <li><a class="dropdown-item font-ar" href="{{ route('logout') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
@@ -143,77 +117,6 @@
         {{-- <ul> --}}
         {{-- <li> --}}
         <div class="d-flex">
-            <div>
-                @auth
-                    {{-- Notification --}}
-                    @php
-                        $notification = \App\Models\Notification::latest()
-                            ->where('user_id', Auth::id())
-                            ->take(5)
-                            ->get();
-                    @endphp
-                    <div class="dropdown-notifications" id="navbarNavDarkDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" href="#notifications-panel" class="dropdown-toggle"
-                                    data-toggle="dropdown" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <span class="bg-light border rounded px-1 notif-count text-dark" data-count="0"
-                                        style="position: absolute; top: 0px; left: -7px; font-size: 10px;">0</span>
-                                    <svg style="z-index: 100;color: white;" xmlns="http://www.w3.org/2000/svg"
-                                        width="16" height="16" fill="currentColor" class="bi bi-bell-fill"
-                                        viewBox="0 0 16 16">
-                                        <path
-                                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                                    </svg>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light p-2">
-                                    <div
-                                        style="min-width: 400px !important; display: flex; justify-content: space-between;align-items: center;">
-                                        <span>Notifications (<span class="notif-count">0</span>)</span>
-                                        <span><button class="btn btn-link px-0">mark all as read</button></span>
-                                    </div>
-                                    <div style="overflow: hidden;max-height: 320px;overflow: auto;">
-                                        <ul class="disd" style="display: contents;">
-
-                                            @foreach ($notification as $otif)
-                                                <li>
-                                                    <div class="px-3 pt-1 p-2 mb-2" style="font-size: 13px !important;">
-                                                        <a class="text-decoration-none"
-                                                            href="{{ route('my_notification') }}">
-                                                            {{-- message from who ? --}}
-                                                            <div class="d-flex"
-                                                                style="justify-content: space-between; align-items: center;">
-                                                                <span class="text-danger" style="font-size: 15px">
-                                                                    {{ $otif->title }} </span>
-                                                                <span
-                                                                    class="rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($otif->created_at)->diffForHumans() }}</span>
-                                                            </div>
-                                                            <div class="text-dark" style="word-break: break-word;">
-                                                                {{ $otif->content }}
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-
-                                        </ul>
-                                    </div>
-                                    <br>
-                                    <div class="text-center">
-                                        <a href="{{ route('my_notification') }}"
-                                            class="bg-light text-primary text-decoration-none">View
-                                            all</a>
-                                    </div>
-                                </ul>
-
-
-                            </li>
-                        </ul>
-                    </div>
-                @endauth
-            </div>
 
             <a @if (app()->getLocale() == 'ar') href="{{ route('switchLan', 'en') }}"
         @else
@@ -227,9 +130,8 @@
                 @endif
             </a>
             {{-- toggler button --}}
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-expanded="true"
-                {{-- style="margin-left: auto; margin-right: 10px;" --}}>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight" aria-expanded="true" {{-- style="margin-left: auto; margin-right: 10px;" --}}>
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
@@ -250,29 +152,6 @@
 
             {{-- offcanvas body --}}
             <div class="offcanvas-body d-lg-none d-md-block text-dark">
-                <ul class="navbar-nav ms-1 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
-                    <li class="nav-item h6"><a href="{{ route('professions.index') }}"
-                            class="nav-link in-hover font-ar">{{ __('home.services_title') }}</a>
-                    </li>
-                    <li class="nav-item h6"><a href="{{ route('freelancers.index') }}"
-                            class="nav-link in-hover font-ar">{{ __('home.freelancers_title') }}</a>
-                    </li>
-                    <li class="nav-item h6"><a href="{{ route('projects.index') }}"
-                            class="nav-link in-hover font-ar">{{ __('home.projects_title') }}</a>
-                    </li>
-                    {{-- Bacome freelancer --}}
-
-
-
-                    @if (Auth::check() && !Auth::user()->is_freelancer)
-                        <li><a href="{{ route('become_freelancer') }}"
-                                class="nav-link in-hover-t text-warning fw-bold font-ar">{{ __('home.become') }}</a>
-                        </li>
-                    @endif
-
-
-                </ul>
-
                 @auth
                     <div class="navbar-nav ms-auto dropdown">
 
@@ -288,7 +167,7 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end" id="navbarDropdownMenuLink1">
-                            <li><a class="dropdown-item font-ar" href="{{ route('profile') }}">
+                            <li><a class="dropdown-item font-ar" href="{{ route('gallery_profile') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
                                         <path
@@ -300,54 +179,16 @@
                                 </a>
                             </li>
                             @if (Auth::check() && Auth::user()->is_freelancer)
-                                <li><a class="dropdown-item font-ar" href="{{ route('become_freelancer') }}">
+                                <li><a class="dropdown-item font-ar" href="{{ route('gallery_main_page') }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
+                                            fill="currentColor" class="bi bi-stars" viewBox="0 0 16 16">
                                             <path
-                                                d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
+                                                d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z" />
                                         </svg>
-                                        {{ __('home.addService') }}
+                                        {{ __('home.jobs') }}
                                     </a>
                                 </li>
                             @endif
-                            <li><a class="dropdown-item font-ar" href="{{ route('create_project') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
-                                    </svg>
-                                    {{ __('home.addProject') }}
-                                </a>
-                            </li>
-                            <li><a class="dropdown-item font-ar" href="{{ route('contact') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                                    </svg>
-                                    {{ __('home.myChat') }}
-                                </a>
-                            </li>
-                            @if (Auth::check() && Auth::user()->is_freelancer)
-                                <li><a class="dropdown-item font-ar" href="{{ route('work_page', Auth::id()) }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
-                                            <path
-                                                d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0Zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708ZM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11Z" />
-                                        </svg>
-                                        {{ __('home.myWork') }}
-                                    </a>
-                                </li>
-                            @endif
-                            <li><a class="dropdown-item font-ar" href="{{ route('purchase_page', Auth::id()) }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
-                                    </svg>
-                                    {{ __('home.myPurchase') }}
-                                </a>
-                            </li>
                             <li><a class="dropdown-item font-ar" href="{{ route('logout') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">

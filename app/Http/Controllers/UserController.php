@@ -50,7 +50,19 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-   
+    public function gallery_profile(){
+        return view('pages.user.gallery_profile');
+    }
+
+    public function edit_gallery_info(){
+        $accounts = DB::connection('mongodb')->collection('accounts')->where('user_id', Auth::id())->get();
+
+        return view('pages.user.edit-gallery-info',compact('accounts'));
+    }
+
+    public function gallery_main_page(){
+        return view('pages.user.gallery_main_page');
+    }
 
     public function show()
     {
