@@ -77,7 +77,7 @@
                             </a>
                         </li>
                         @if (Auth::check() && Auth::user()->is_freelancer)
-                            <li><a class="dropdown-item font-ar" href="{{ route('gallery') }}">
+                            <li><a class="dropdown-item font-ar" href="{{ route('gallery_profile') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-stars" viewBox="0 0 16 16">
                                         <path

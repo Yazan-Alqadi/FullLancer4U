@@ -50,12 +50,16 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-         public function gallery(){
-            return view('pages.user.gallery');
-         }
+    public function gallery_profile(){
+        return view('pages.user.gallery_profile');
+    }
 
     public function edit_gallery_info(){
         return view('pages.user.edit-gallery-info');
+    }
+
+    public function gallery_main_page(){
+        return view('pages.user.gallery_main_page');
     }
 
     public function show()
