@@ -179,7 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
 
     ],
 

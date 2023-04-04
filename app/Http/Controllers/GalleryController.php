@@ -41,11 +41,5 @@ class GalleryController extends Controller
             ->with('message', 'You have successfully add account.');
     }
 
-    public function dropAccount(){
-
-        DB::connection('mongodb')->collection('accounts');
-
-
-    }
 
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
@@ -84,6 +85,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('gallery_profile', [UserController::class, 'gallery_profile'])->name('gallery_profile');
     Route::get('edit_gallery_info', [UserController::class, 'edit_gallery_info'])->name('edit_gallery_info');
     Route::get('gallery_main_page', [UserController::class, 'gallery_main_page'])->name('gallery_main_page');
+    Route::post('gallery/addpost', [PostController::class, 'store'])->name('addpost');
+    Route::get('gallery/getposts', [PostController::class, 'index'])->name('getposts');
 
 
     Route::get('contact', [MessageController::class, 'getContact'])->name('contact');
@@ -113,6 +116,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('my_work/project/{id}', [WorkController::class, 'updateWorkProject'])->name('work_project_update');
     Route::get('/professions/search', [ProfessionController::class, 'search'])->name('search_service');
     Route::get('/projects/search', [ProjectController::class, 'search'])->name('search_project');
+
+
 
     Route::view('test', 'test');
 });

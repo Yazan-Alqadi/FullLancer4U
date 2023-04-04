@@ -3,15 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
+use Jenssegers\Mongodb\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $connection = 'mongodb';
 
-    
+    protected $guarded = [];
+    protected $collection = 'posts';
+
 
     public function user(){
         return $this->belongsTo(User::class);

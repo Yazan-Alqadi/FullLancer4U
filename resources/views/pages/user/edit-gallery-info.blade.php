@@ -189,8 +189,9 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function deleteAccount(id) {
-            console.log(id.toString());
+        function deleteAccount(o) {
+            var id = o.id;
+            console.log(id);
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to delete this Account!",

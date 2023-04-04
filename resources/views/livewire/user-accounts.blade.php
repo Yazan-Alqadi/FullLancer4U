@@ -16,7 +16,8 @@
                 </span>
                 <span>
                     <button class="p-1 border border-0 bg-light font-ar text-danger" data-bs-toggle="tooltip"
-                        data-bs-placement="top" data-bs-title="حذف" onclick="">
+                        data-bs-placement="top" data-bs-title="حذف" onclick="deleteAccount(this)"
+                        type="button" id="{{ $acc['_id']}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                             class="bi bi-trash3" viewBox="0 0 16 16">
                             <path
@@ -42,7 +43,8 @@
                 </span>
                 <span>
                     <button class="p-1 border border-0 bg-light font-ar text-danger" data-bs-toggle="tooltip"
-                        data-bs-placement="top" data-bs-title="حذف" onclick="alert({{ $acc['_id'] }})">
+                        data-bs-placement="top" data-bs-title="حذف" onclick="deleteAccount(this)"
+                        type="button" id="{{ $acc['_id']}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                             class="bi bi-trash3" viewBox="0 0 16 16">
                             <path
@@ -70,7 +72,7 @@
                 <span>
                     <button class="p-1 border border-0 bg-light font-ar text-danger" data-bs-toggle="tooltip"
                         data-bs-placement="top" data-bs-title="حذف" type="button"
-                        onclick="deleteAccount({{  $acc['_id'] }})">
+                        onclick="deleteAccount(this)" id="{{ $acc['_id']}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                             class="bi bi-trash3" viewBox="0 0 16 16">
                             <path
@@ -96,7 +98,8 @@
                 </span>
                 <span>
                     <button class="p-1 border border-0 bg-light font-ar text-danger" data-bs-toggle="tooltip"
-                        data-bs-placement="top" data-bs-title="حذف" onclick="">
+                        data-bs-placement="top" data-bs-title="حذف" onclick="deleteAccount(this)"
+                        type="button" id="{{ $acc['_id']}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                             class="bi bi-trash3" viewBox="0 0 16 16">
                             <path

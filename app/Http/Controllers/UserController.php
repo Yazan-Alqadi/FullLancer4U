@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,17 +51,23 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function gallery_profile(){
-        return view('pages.user.gallery_profile');
-    }
-
-    public function edit_gallery_info(){
+    public function gallery_profile()
+    {
         $accounts = DB::connection('mongodb')->collection('accounts')->where('user_id', Auth::id())->get();
 
-        return view('pages.user.edit-gallery-info',compact('accounts'));
+        $posts = Post::all();
+        return view('pages.user.gallery_profile', compact('accounts','posts'));
     }
 
-    public function gallery_main_page(){
+    public function edit_gallery_info()
+    {
+        $accounts = DB::connection('mongodb')->collection('accounts')->where('user_id', Auth::id())->get();
+
+        return view('pages.user.edit-gallery-info', compact('accounts'));
+    }
+
+    public function gallery_main_page()
+    {
         return view('pages.user.gallery_main_page');
     }
 
@@ -170,7 +177,7 @@ class UserController extends Controller
 
         $user = User::find($request->user_id);
 
-        $user['image'] ='/images/'. $imageName;
+        $user['image'] = '/images/' . $imageName;
 
         $user->save();
 
