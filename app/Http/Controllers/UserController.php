@@ -56,6 +56,7 @@ class UserController extends Controller
         $accounts = DB::connection('mongodb')->collection('accounts')->where('user_id', Auth::id())->get();
 
         $posts = Post::all();
+        
         return view('pages.user.gallery_profile', compact('accounts','posts'));
     }
 

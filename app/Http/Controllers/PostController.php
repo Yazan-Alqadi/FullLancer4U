@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class PostController extends Controller
 {
@@ -16,6 +19,12 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        foreach ($posts as $post) {
+            $user = User::find($post->user_id);
+            $post->merge($user);
+
+            dd($post);
+        }
         return $posts;
     }
 
@@ -54,7 +63,21 @@ class PostController extends Controller
 
         $post->user_id = Auth::id();
 
+        DB::connection('mongodb')->collection('reactions')->insert([
+            'likes'=> 0,
+            'dislikes'=>0,
+            'post_id'=>$post->id
+        ]);
+
+
+
         $post->save();
+        DB::connection('mongodb')->collection('reactions')->insert([
+            'likes'=> 0,
+            'dislikes'=>0,
+            'post_id'=>$post->id
+        ]);
+
 
         return back()
             ->with('message', 'You have successfully add new post.');

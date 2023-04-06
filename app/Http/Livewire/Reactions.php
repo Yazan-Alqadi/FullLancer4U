@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Illuminate\Support\Facades\DB;
+
+class Reactions extends Component
+{
+
+    private $post_id;
+
+    public function mount($post_id)
+    {
+        $this->post_id = $post_id;
+    }
+
+    public  function like($post_id)
+    {
+
+        DB::connection('mongodb')->collection('reactions')->where('post_id', $post_id)->increment('likes', 1);
+    }
+
+    public  function dislike($post_id)
+    {
+        DB::connection('mongodb')->collection('reactions')->where('post_id', $post_id)->increment('dislikes', 1);
+    }
+
+
+
+
+    public function render()
+    {
+
+        $reactions = DB::connection('mongodb')->collection('reactions')->where('post_id', $this->post_id)->first();
+        return view('livewire.reactions', compact('reactions'));
+    }
+}
