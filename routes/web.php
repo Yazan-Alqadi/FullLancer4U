@@ -15,6 +15,9 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
+use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\ForgotPasswordController;
+
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -40,6 +43,12 @@ Route::middleware(['guest'])->group(function () {
     Route::get('register', [RegisterController::class, 'index'])->name('register.show');
     Route::post('register', [RegisterController::class, 'store'])->name('register.store');
     Route::post('login', [LoginController::class, 'store'])->name('login.store');
+
+    Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+
 });
 
 Route::post('addacc', [GalleryController::class, 'storeAccounts'])->name('add_account');

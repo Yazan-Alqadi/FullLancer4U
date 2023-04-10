@@ -79,7 +79,7 @@
                            name="remember">
                     <span class="ml-2 text-sm text-gray-600">Remember me</span>
                 </label>
-                <a href="#" class="link-primary ms-4 text-decoration-none">Forgot Your Password?</a>
+                <a href="{{ route('password.request') }}" class="link-primary ms-4 text-decoration-none">Forgot Your Password?</a>
             </div>
 
             <div class="d-grid gap-2">

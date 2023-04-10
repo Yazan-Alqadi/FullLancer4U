@@ -80,8 +80,8 @@ return [
     |
     */
 
-   // 'locale' => 'en',
-   'locale' => env('APP_Languages','ar'),
+    // 'locale' => 'en',
+    'locale' => env('APP_Languages', 'ar'),
 
     /*
     |--------------------------------------------------------------------------

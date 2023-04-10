@@ -20,11 +20,15 @@ class Reactions extends Component
     {
 
         DB::connection('mongodb')->collection('reactions')->where('post_id', $post_id)->increment('likes', 1);
+        $this->post_id = $post_id;
+
     }
 
     public  function dislike($post_id)
     {
         DB::connection('mongodb')->collection('reactions')->where('post_id', $post_id)->increment('dislikes', 1);
+        $this->post_id = $post_id;
+
     }
 
 
