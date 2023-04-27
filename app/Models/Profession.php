@@ -27,4 +27,9 @@ class Profession extends Model
         return $this->belongsToMany(User::class, 'client_service', 'service_id', 'user_id')->withPivot('status')->withTimestamps();
     }
 
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'service_id');
+    }
 }

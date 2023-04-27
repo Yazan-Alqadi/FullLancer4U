@@ -34,5 +34,8 @@ return [
         'client_secret' => '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',
         'redirect' => 'http://127.0.0.1:8000/auth/google/callback'
     ],
+    'stripe'=>[
+        'secret_key'=>env('STRIPE_SECRET')
+    ]
 
 ];

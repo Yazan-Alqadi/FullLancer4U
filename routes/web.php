@@ -17,7 +17,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ForgotPasswordController;
-
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -33,10 +33,16 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
+
+
 Route::get('opp', function () {
     event(new \App\Events\NewMessage(1, 'Someone', 'fdfvf'));
     return "Event has been sent!";
 });
+Route::get('pay', [StripeController::class, 'index'])->name('pay');
+Route::get('checkout', [StripeController::class, 'checkout'])->name('pay');
+Route::get('cancel', [StripeController::class, 'cancel'])->name('cancel');
+Route::get('success', [StripeController::class, 'success'])->name('success');
 
 Route::middleware(['guest'])->group(function () {
     Route::get('login', [LoginController::class, 'index'])->name('login');

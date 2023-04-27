@@ -19,11 +19,8 @@
 
     <img src='files/munt-background.jpg' class="img-log-in" alt="...">
 
-    @if (session('status'))
-        <div class="alert-error-state">
-            {{ session('status') }}
-        </div>
-    @endif
+
+
 
 
     <section class="container bg-light text-dark p-3 mgg mx-auto rounded"
@@ -47,9 +44,14 @@
             <form class="form-login-1 fs-6" method="POST" action="{{ route('password.email') }}">
                 @csrf
                 <div>
-                    @if (session('error'))
+                    @if (session('errors'))
                         <div class="alert alert-danger fs-5" role="alert">
-                            {{ session('error') }}
+                            {{ session('errors') }}
+                        </div>
+                    @endif
+                    @if (session('status'))
+                        <div class="alert-error-state">
+                            {{ session('status') }}
                         </div>
                     @endif
                     <div class="mb-3">
