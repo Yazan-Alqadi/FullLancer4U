@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Stripe\Checkout\Session;
 use Stripe\Customer;
 use Stripe\Stripe;
@@ -42,7 +43,9 @@ class StripeController extends Controller
 
         Order::create([
             'price' => 10,
-            'status' => 'un paid',
+            'status' => 'unpaid',
+            'user_id'=> Auth::id(),
+            'service_id' => 1,
             'session_id' => $checkout_session->id,
 
         ]);
@@ -58,6 +61,7 @@ class StripeController extends Controller
         try {
             Stripe::setApiKey(env('STRIPE_SECRET'));
             $sessionId  = $request->get('session_id');
+
 
             $session = Session::retrieve($sessionId);
 
