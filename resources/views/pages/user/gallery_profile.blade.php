@@ -186,7 +186,7 @@
 
                     <div class="offcanvas offcanvas-bottom rounded-3" tabindex="-1" id="offcanvasBottom-1"
                         aria-labelledby="offcanvasWithBothOptionsLabel"
-                        style="right: 18%;left: 18%;bottom: 25%;height: 50%;">
+                        style="right: 18%;left: 18%;bottom: 25%;height: 50%;overflow: auto;">
                         <div class="offcanvas-header">
                             <h5 class="offcanvas-title" id="offcanvasBottomLabel">Create post</h5>
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
@@ -207,12 +207,14 @@
                                 <div class="input-group">
                                     <input type="file" name="image" class="form-control d-none"
                                         id="photo-upload" aria-describedby="inputGroupFileAddon04"
-                                        aria-label="Upload">
+                                        aria-label="Upload" onchange="setphoto(event)">
                                 </div>
+                                <img src="" alt="choose photo" id="num1"
+                                    style="width: 80%;margin-left: 10%;"> </img>
                             </div>
                             {{-- Submit button --}}
                             <div class="text-center">
-                                <button class="btn p-1" type="submit"
+                                <button class="btn p-1 my-2" type="submit"
                                     style="background-color: #5e1155;border-color: #5e1155; color: antiquewhite;">submit</button>
                             </div>
                         </form>
@@ -338,13 +340,57 @@
                                 </div>
 
                                 {{-- image of the post if existis --}}
-                                <div class="d-inline-block mt-3">
+                                <div class="d-inline-block mt-3" style="width: 100%;height: 400px;">
                                     <img src="{{ $post->image }}" style="width: 100%;height: 100%;">
                                 </div>
 
                                 {{-- reactions section --}}
                                 @livewire('reactions', ['post_id' => $post->id])
 
+                                <div class="my-1 text-center">
+                                    <button class="btn" type="button" data-bs-toggle="offcanvas"
+                                        data-bs-target="#offcanvasRight-1" aria-controls="offcanvasRight"
+                                        style="background-color: #5e1155;border-color: #5e1155; color: antiquewhite;">Write
+                                        Comment</button>
+
+                                </div>
+                                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight-1"
+                                    aria-labelledby="offcanvasRightLabel">
+                                    <div class="offcanvas-header">
+                                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Write Comment in this
+                                            post</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="offcanvas-body">
+                                        <form action="#" method="POST" enctype="multipart/form-data">
+                                            {{-- Add text to the post --}}
+                                            <div class="offcanvas-body small">
+                                                <div class="mb-2">Type text here</div>
+                                                <textarea name="text" type="text" class="form-control font-ar" style="height: 100px !important;"
+                                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput100"
+                                                    placeholder="Type here..."></textarea>
+                                            </div>
+                                            {{-- Add photo --}}
+                                            <div>
+                                                <label class="mx-3 btn" for="photo-upload"> Add photo </label>
+                                                <div class="input-group">
+                                                    <input type="file" name="image" class="form-control d-none"
+                                                        id="photo-upload" aria-describedby="inputGroupFileAddon04"
+                                                        aria-label="Upload" onchange="setphoto(event)">
+                                                </div>
+                                                <img src="" alt="choose photo" id="num1"
+                                                    style="width: 80%;margin-left: 10%;">
+                                                </img>
+                                            </div>
+                                            {{-- Submit button --}}
+                                            <div class="text-center">
+                                                <button class="btn p-1 my-2" type="submit"
+                                                    style="background-color: #5e1155;border-color: #5e1155; color: antiquewhite;">submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -363,6 +409,7 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     @livewireScripts
 
 </body>
