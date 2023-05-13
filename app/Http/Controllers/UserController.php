@@ -56,7 +56,7 @@ class UserController extends Controller
         $accounts = DB::connection('mongodb')->collection('accounts')->where('user_id', Auth::id())->get();
 
         $posts = Post::all();
-        
+
         return view('pages.user.gallery_profile', compact('accounts','posts'));
     }
 
@@ -172,20 +172,21 @@ class UserController extends Controller
             'image' => 'required|image',
         ]);
 
-        $imageName = time() . '.' . $request->image->extension();
+        $file = $request->file('image');
 
-        $request->image->move(public_path('images'), $imageName);
+        $filename = $file->getClientOriginalName();
+        $path = $file->storeAs('profile',$filename,'uploads', );
+
 
         $user = User::find($request->user_id);
 
-        $user['image'] = '/images/' . $imageName;
+        $user['image'] = '/images/' . $path;
 
         $user->save();
 
 
 
         return back()
-            ->with('success', 'You have successfully upload image.')
-            ->with('image', $imageName);
+            ->with('success', 'You have successfully upload image.');
     }
 }

@@ -54,20 +54,16 @@ class PostController extends Controller
             'image' => 'required|image',
         ]);
 
-        $imageName = time() . '.' . $request->image->extension();
 
-        $request->image->move(public_path('images'), $imageName);
+        $file = $request->file('image');
+
+        $filename = $file->getClientOriginalName();
+        $path = $file->storeAs('images',$filename,'uploads', );
 
 
-        $post->image = '/images/' . $imageName;
+        $post->image ='/images/'. $path;
 
         $post->user_id = Auth::id();
-
-        DB::connection('mongodb')->collection('reactions')->insert([
-            'likes'=> 0,
-            'dislikes'=>0,
-            'post_id'=>$post->id
-        ]);
 
 
 
