@@ -21,7 +21,7 @@ class ForgotPasswordController extends Controller
         );
 
         return $status === Password::RESET_LINK_SENT
-            ? back()->with(['status' => $status])
+            ? back()->with(['status' => "reset email is successfully send"])
             : back()->with(['error' => $status]);
     }
 }
