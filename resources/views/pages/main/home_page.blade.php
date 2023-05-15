@@ -51,49 +51,98 @@
         </div>
     </section>
 
-    <div id="carouselExampleCaptions" class="carousel slide carousel-fade my-4" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="5000">
-                <img src="files/Freelancer-7.jpg" class="d-block w-75" alt="..." style="height: 500px; margin-left: 12.5%;">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
+    {{-- Sgin up instruction --}}
+    <section id="Sgin up instruction" class="mx-5" style="margin-top: 400px">
+        <div class="row" style="height: 500px;">
+            <div class="container rounded col-lg-6 col-md-6 container text-light col-lg-6 col-md-6 bg-dark p-4"
+                style="display: flex; flex-direction: column;justify-content: center;">
+                <div class="h1 text-center text-info">how to start</div>
+                <div class="h5 text-center">1- Sign in to this site be press <span class="text-info">sign in</span>
+                    button up
+                    there</div>
+                <div class="h5 text-center">2- <span class="text-info">Enter</span> your infomation</div>
+                <div class="h5 text-center">3- Log in when you finish with <span class="text-info">log in</span> button
+                    up there
+                </div>
+                <div class="h5 text-center"> And here you go you have ign in this site <span
+                        class="text-info">gongrats</span>
                 </div>
             </div>
-            <div class="carousel-item" data-bs-interval="5000">
-                <img src="files/Freelancer-1.png" class="d-block w-75" alt="..." style="height: 500px; margin-left: 12.5%;">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="files/Freelancer-3.png" class="d-block w-75" alt="..." style="height: 500px; margin-left: 12.5%">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
+
+            <div class="container col-lg-6 col-md-6 d-flex justify-content-center">
+                <img src="{{ asset('images/sign-in.svg') }}" alt="" class="w-75">
             </div>
         </div>
-        <button class="carousel-control-prev carousel-dark" type="button" data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next carousel-dark" type="button" data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+    </section>
+
+    {{-- site actions --}}
+    <section id="site-actions" class="mx-5" style="margin-top: 400px">
+        <div class="row" style="height: 500px;">
+            <div class="container col-lg-6 col-md-6 d-flex justify-content-center">
+                <img src="{{ asset('images/thinking.svg') }}" alt="" class="w-75">
+            </div>
+            <div class="container rounded col-lg-6 col-md-6 container text-light col-lg-6 col-md-6 bg-dark p-4"
+                style="display: flex; flex-direction: column;justify-content: center;">
+                <div class="h1 text-center text-info">This website can offer you many services </div>
+                <div class="h6 text-center">You can offer your services to the public with an appropriate price</div>
+                <div class="h6 text-center">You can find many proposed projects on the site</div>
+                <div class="h6 text-center">You can add posts and comments on the services that you dealt with
+                    previously, or search for these posts about a specific service</div>
+                <div class="h6 text-center">All kinds of desired and available services are provided at the present time
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- Slids section --}}
+    <section id="slid-section" style="margin-top: 400px">
+        <div id="carouselExampleCaptions" class="carousel slide carousel-fade my-4" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="5000">
+                    <img src="files/Freelancer-7.jpg" class="d-block w-75" alt="..."
+                        style="height: 500px; margin-left: 12.5%;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="files/Freelancer-1.png" class="d-block w-75" alt="..."
+                        style="height: 500px; margin-left: 12.5%;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="files/Freelancer-3.png" class="d-block w-75" alt="..."
+                        style="height: 500px; margin-left: 12.5%">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev carousel-dark" type="button"
+                data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next carousel-dark" type="button"
+                data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
 
 
     {{-- Top freelancers --}}
