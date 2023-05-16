@@ -102,6 +102,12 @@ label.star:before {
     border-radius: 3px;
 }
 
+.in-hover-gallery:hover {
+    background-color: rgb(148, 41, 125);
+    color: #ffc107 !important;
+    border-radius: 3px;
+}
+
 .navbar-title-hover:hover {
     color: white !important;
 }

@@ -2,7 +2,7 @@
 
 
 <div class="ps-3 pe-2 navbar container-fluid navbar-expand-lg navbar-dark text-light fixed-top h6"
-    style="    background-color: #5e1155;">
+    style="background-color: #5e1155;">
     <div class="container">
         {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search-par"
             aria-expanded="true" style="margin-right: auto;">
@@ -19,18 +19,6 @@
                 </svg>
             </a>
         </span>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-warning" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-search" viewBox="0 0 16 16">
-                <path
-                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-            </svg>
-
-            </button>
-
-        </form>
 
 
 
@@ -50,7 +38,18 @@
 
         <div class="collapse navbar-collapse" id="mainmenu">
 
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-warning" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg>
 
+                </button>
+
+            </form>
 
             @auth
                 <div class="navbar-nav ms-auto dropdown">
@@ -140,7 +139,7 @@
         {{-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
             aria-controls="offcanvasRight">Toggle right offcanvas</button> --}}
         <div class="offcanvas offcanvas-end d-lg-none d-md-inline d-sm-inline bg-dark ar" tabindex="-1"
-            id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="overflow: auto;">
 
             {{-- offcanvas head --}}
             <div class="offcanvas-header">
@@ -151,7 +150,19 @@
             </div>
 
             {{-- offcanvas body --}}
-            <div class="offcanvas-body d-lg-none d-md-block text-dark">
+            <div class="offcanvas-body d-lg-none d-md-block text-dark" style="overflow: auto;">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+
+                    </button>
+
+                </form>
                 @auth
                     <div class="navbar-nav ms-auto dropdown">
 
