@@ -24,7 +24,7 @@
     @include('layouts.nav-bar')
 
     {{-- Slids section --}}
-    <section id="slid-section" class="bg-dark py-4" style="margin-top: 55px">
+    <div id="slid-section" class="bg-dark py-4" style="margin-top: 56px; padding: 0 !important;">
         <div id="carouselExampleCaptions" class="carousel slide carousel-fade my-4" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -37,7 +37,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="5000">
                     <img src="files/Freelancer-7.jpg" class="d-block w-75" alt="..."
-                        style="height: 500px; margin-left: 12.5%;">
+                        style="height: 500px; margin: 0; width: 100% !important;">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>First slide label</h5>
                         <p>Some representative placeholder content for the first slide.</p>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="carousel-item" data-bs-interval="5000">
                     <img src="files/Freelancer-1.png" class="d-block w-75" alt="..."
-                        style="height: 500px; margin-left: 12.5%;">
+                        style="height: 500px; margin: 0; width: 100% !important;">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Second slide label</h5>
                         <p>Some representative placeholder content for the second slide.</p>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="carousel-item">
                     <img src="files/Freelancer-3.png" class="d-block w-75" alt="..."
-                        style="height: 500px; margin-left: 12.5%">
+                        style="height: 500px; margin: 0; width: 100% !important;">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Third slide label</h5>
                         <p>Some representative placeholder content for the third slide.</p>
@@ -71,17 +71,17 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-    </section>
+    </div>
 
     {{-- Instruction of using --}}
-    <section id="Instruction of using" class="mx-5" style="margin-top: 200px">
+    <section id="Instruction of using" class="mx-5 d-inline-block" style="margin-top: 0; margin-bottom: 30px">
         <div class="row" style="height: 500px;">
 
             <div class="container col-lg-6 col-md-6 d-flex justify-content-center">
                 <img src="{{ asset('files/img_hero.svg') }}" alt="" class="w-50">
             </div>
 
-            <div class="container rounded col-lg-6 col-md-6 container text-light col-lg-6 col-md-6 bg-dark p-4 ar"
+            <div class="container rounded col-lg-6 col-md-6 container text-light bg-dark p-4 ar"
                 style="display: flex; flex-direction: column;justify-content: center;">
                 <h2 class="text-center font-ar">{{ __('home.title1') }} <span
                         class="text-info font-ar">{{ __('home.title2') }}</span>
@@ -107,9 +107,9 @@
     </section>
 
     {{-- Sgin up instruction --}}
-    <section id="Sgin up instruction" class="mx-5" style="margin-top: 200px">
+    <section id="Sgin up instruction" class="mx-5 d-inline-block" style="margin-top: 0; margin-bottom: 30px">
         <div class="row" style="height: 500px;">
-            <div class="container rounded col-lg-6 col-md-6 container text-light col-lg-6 col-md-6 bg-dark p-4"
+            <div class="container rounded col-lg-6 col-md-6 container text-light bg-dark p-4"
                 style="display: flex; flex-direction: column;justify-content: center;">
                 <div class="h1 text-center text-info">how to start</div>
                 <div class="h5 text-center">1- Sign in to this site be press <span class="text-info">sign in</span>
@@ -132,12 +132,12 @@
     </section>
 
     {{-- site actions --}}
-    <section id="site-actions" class="mx-5" style="margin-top: 200px">
+    <section id="site-actions" class="mx-5 d-inline-block" style="margin-top: 0; margin-bottom: 30px">
         <div class="row" style="height: 500px;">
             <div class="container col-lg-6 col-md-6 d-flex justify-content-center">
                 <img src="{{ asset('images/thinking.svg') }}" alt="" class="w-75">
             </div>
-            <div class="container rounded col-lg-6 col-md-6 container text-light col-lg-6 col-md-6 bg-dark p-4"
+            <div class="container rounded col-lg-6 col-md-6 container text-light bg-dark p-4"
                 style="display: flex; flex-direction: column;justify-content: center;">
                 <div class="h1 text-center text-info">This website can offer you many services </div>
                 <div class="h6 text-center">You can offer your services to the public with an appropriate price
@@ -152,6 +152,24 @@
         </div>
     </section>
 
+
+    {{-- NNNNNN --}}
+    <section class="bg-dark my-5 p-3">
+        <div class="container">
+            <div class="h4 text-warning text-center">Are you confused and do not know how to display your talents and
+                services?
+            </div>
+            <div class="h4 text-warning text-center">Are you afraid of learning and working for a specific service that
+                has no
+                known future?</div>
+            <div class="h4 text-warning text-center">Would you like to know what are the most requested jobs and
+                services in the
+                last period?</div>
+            <div class="h2 text-center text-success">Here you will find everything you need to know
+                <a href="{{ route('analysis') }}" class="btn btn-success">Info</a>
+            </div>
+        </div>
+    </section>
 
     {{-- Top freelancers --}}
     <section id="top-fl" class="bg-light text-center py-5 ar">
@@ -241,75 +259,6 @@
             </div>
         </div>
     </section>
-
-    {{-- Slide --}}
-
-    {{-- <div class="bd-example">
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class=""
-                    aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                    aria-label="Slide 2" class=""></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3" class="active" aria-current="true"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#777"></rect><text x="50%"
-                            y="50%" fill="#555" dy=".3em">First slide</text>
-                    </svg>
-
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#666"></rect><text x="50%"
-                            y="50%" fill="#444" dy=".3em">Second slide</text>
-                    </svg>
-
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
-                </div>
-                <div class="carousel-item active">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#555"></rect><text x="50%"
-                            y="50%" fill="#333" dy=".3em">Third slide</text>
-                    </svg>
-
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div> --}}
 
     {{-- How works ? --}}
     <section class="py-5 section-style ar font-ar" style=" background-image: url({{ 'files/bilding.jpg' }});">

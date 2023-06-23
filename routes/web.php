@@ -57,6 +57,9 @@ Route::middleware(['guest'])->group(function () {
 
 });
 
+Route::get('/analysis', function () {
+    return view('pages.main.analysis_jobs');
+})->name('analysis');
 Route::post('addacc', [GalleryController::class, 'storeAccounts'])->name('add_account');
 Route::get('getacc', [GalleryController::class, 'getAccounts'])->name('get_accounts');
 
@@ -131,7 +134,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('my_work/project/{id}', [WorkController::class, 'updateWorkProject'])->name('work_project_update');
     Route::get('/professions/search', [ProfessionController::class, 'search'])->name('search_service');
     Route::get('/projects/search', [ProjectController::class, 'search'])->name('search_project');
-
 
 
     Route::view('test', 'test');
