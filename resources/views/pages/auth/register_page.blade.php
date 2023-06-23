@@ -124,8 +124,8 @@
                                     </div>
                                     @foreach (\App\Models\Category::all() as $category)
                                         <div class="form-check">
-                                            <input name="{{ $category->id }}" class="form-check-input"
-                                                type="checkbox" value="OK" id="flexCheckDefault">
+                                            <input name="{{ $category->id }}" class="form-check-input" type="checkbox"
+                                                value="OK" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 {{ $category->title }}
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
