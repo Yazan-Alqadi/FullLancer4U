@@ -49,6 +49,11 @@
             </div>
 
 
+
+
+
+
+
             <div class="mt-5">
                 <div class="text-secondary h6 mb-0 p-3 text-break text-center fw-bold rounded-top bg-light"
                     style="background-color: #e1e1e1 !important;">Lorem
@@ -77,7 +82,6 @@
                 </divc>
             </div>
 
-
             <div class="mt-5">
                 <div class="text-secondary h6 mb-0 p-3 text-break text-center fw-bold rounded-top bg-light"
                     style="background-color: #e1e1e1 !important;">
@@ -95,6 +99,31 @@
                     التكنولوجي وتحسين وسائل الاتصال عن بُعد، ورغبة الأفراد والشركات في تقليل التكاليف والوقت والجهد
                     المرتبطة بالتنقل والاجتماعات الحضورية، وغيرها. كما يشير ذلك إلى أهمية توفير الخدمات الرقمية والتقنية
                     المناسبة لتلبية هذا النوع من الطلب، وتوفير بيئة عمل مناسبة للعمل عن بُعد
+                </div>
+                </divc>
+            </div>
+
+            <div class="mt-5">
+                <div class="text-secondary h6 mb-0 p-3 text-break text-center fw-bold rounded-top bg-light"
+                    style="background-color: #e1e1e1 !important;">
+
+                    يتيح المخطط التالي نظرة سريعة على الأعمال الأكثر طلبًا في مواقع الفريلانسر خلال شهر معين، مما يمكن
+                    المستخدمين من
+                    تحديد المجالات المطلوبة والتركيز عليها، كما يساعد المستخدمين في تحليل اتجاهات الطلب على الأعمال في
+                    هذه المواقع
+
+                </div>
+                <img src="{{ asset('images/diagrams/topjobs.png') }}" class="img-fluid" alt="...">
+                <div class="text-secondary h6 p-3 text-break text-center fw-bold rounded-bottom bg-light"
+                    style="background-color: #e1e1e1 !important;">
+
+                    إذا نظرنا إلى النتائج، فسنلاحظ أن أكثر الخدمات المطلوبة على مواقع الفريلانسر هي خدمات المحاسبة،
+                    تليها خدمات مساعدة المحاسبة. ويمكن القول أن خدمات المحاسبة هي الأكثر طلبًا حيث تم طلبها أكثر من 500
+                    مرة، وتمثل أكثر من ربع الطلبات المسجلة.
+
+                    وبناءً على هذه النتائج، يمكن للعاملين في مجال المحاسبة وخدمات المساعدة المحاسبية الاهتمام بتطوير
+                    مهاراتهم في هذا المجال، وزيادة فرص عملهم على مواقع الفريلانسر. كما يمكن للأفراد الراغبين في العمل
+                    كمستقلين في هذا المجال الاستهداف وتطوير خدماتهم في هذه المجالات لتلبية الطلب المتزايد
                 </div>
                 </divc>
             </div>
