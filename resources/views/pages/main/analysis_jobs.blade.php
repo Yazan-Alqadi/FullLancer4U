@@ -23,29 +23,14 @@
         <div class="container">
             <div>
                 <div class="text-secondary h6 mb-0 p-3 text-break text-center fw-bold rounded-top bg-light"
-                    style="background-color: #e1e1e1 !important;">Lorem
-                    ipsum
-                    dolor, sit
-                    amet
-                    consectetur
-                    adipisicing elit.
-                    Nesciunt
-                    amet
-                    est tempore! Veniam,consequuntur, quaerat necessitatibus illum, iste quam ducimus totam facilis
-                    consectetur suscipit
-                    voluptatibus ex nesciunt? Vero, magnam corporis.</div>
-                <img src="/images/diagrams/download1.png" class="img-fluid" alt="...">
-                <div class="text-secondary h6 p-3 text-break text-center fw-bold rounded-bottom bg-light"
-                    style="background-color: #e1e1e1 !important;">Lorem ipsum
-                    dolor, sit
-                    amet
-                    consectetur
-                    adipisicing elit.
-                    Nesciunt
-                    amet
-                    est tempore! Veniam,consequuntur, quaerat necessitatibus illum, iste quam ducimus totam facilis
-                    consectetur suscipit
-                    voluptatibus ex nesciunt? Vero, magnam corporis.</div>
+                    style="background-color: #e1e1e1 !important;">بعد اجراء دراسة على الخدمات المطلوبة في الموقع، تبين ان
+                    هنالك العديد من المهارات المطلوبة في خدمة واحدة او اكثر، وبذلك كان لا بد من معرفة ما هي المهارات
+                    الاكثر تواجدا في الخدمات بشكل عام</div>
+                <img src="/images/diagrams/download1.png" class="img-fluid w-100" alt="...">
+                <div class="text-secondary h6 p-3 text-break text-center fw-bold rounded-bottom bg-light rtl"
+                    style="background-color: #e1e1e1 !important;">كما هو موضح في المخطط، يوجد لكل مهارات معينة نسبة
+                    مئوية تبين لنا ما هو اكثر تكرارا في الخدمات الموجودة على الموقع بشكل عام، فمثلا اكثر مهارة تكرارا هي
+                    Wealth Management بنسبة 7%.</div>
             </div>
 
 
@@ -56,29 +41,14 @@
 
             <div class="mt-5">
                 <div class="text-secondary h6 mb-0 p-3 text-break text-center fw-bold rounded-top bg-light"
-                    style="background-color: #e1e1e1 !important;">Lorem
-                    ipsum
-                    dolor, sit
-                    amet
-                    consectetur
-                    adipisicing elit.
-                    Nesciunt
-                    amet
-                    est tempore! Veniam,consequuntur, quaerat necessitatibus illum, iste quam ducimus totam facilis
-                    consectetur suscipit
-                    voluptatibus ex nesciunt? Vero, magnam corporis.</div>
-                <img src="/images/diagrams/download3.png" class="img-fluid" alt="...">
-                <div class="text-secondary h6 p-3 text-break text-center fw-bold rounded-bottom bg-light"
-                    style="background-color: #e1e1e1 !important;">Lorem ipsum
-                    dolor, sit
-                    amet
-                    consectetur
-                    adipisicing elit.
-                    Nesciunt
-                    amet
-                    est tempore! Veniam,consequuntur, quaerat necessitatibus illum, iste quam ducimus totam facilis
-                    consectetur suscipit
-                    voluptatibus ex nesciunt? Vero, magnam corporis.</div>
+                    style="background-color: #e1e1e1 !important;">بعد اجراء بحث حول المهارات الاكثر تكرارا، كان من المهم
+                    تحديد المهارات من ناحية السعر لكل مهارة بحسب سعر الخدمات المرتبطة بها، حيث انه يوجد خدمة واحدة او
+                    اكثر تحتاج الى نفس المهارة.</div>
+                <img src="/images/diagrams/download0.png" class="img-fluid w-100" alt="...">
+                <div class="text-secondary h6 p-3 text-break text-center fw-bold rounded-bottom bg-light rtl"
+                    style="background-color: #e1e1e1 !important;">يبيّن لنا المخطط متوسط سعر كل المهارة الواحدة، من
+                    الممكن تحديد سعر الخدمة الزاحدة بحسب سعر كل مهارة مطلوبة في هذه الخدمة، من الممكن ان يكون السعر
+                    النهائي قريب جدا الى مجموع اسعار كل من المهارات المطلوبة في هذه الخدمة.</div>
                 </divc>
             </div>
 
@@ -90,8 +60,8 @@
                     سواء كان ذلك عن بُعد أو جزئيًّا. يشمل هذا الطلب بشكل عام الأعمال المتعلقة بتقنية المعلومات، التسويق
                     الرقمي، الإدارة، التصميم، الكتابة، وغيرها من الخدمات الأخرى التي يمكن تقديمها عن بعد
                 </div>
-                <img src="{{ asset('images/diagrams/remotly onsite.png') }}" class="img-fluid" alt="...">
-                <div class="text-secondary h6 p-3 text-break text-center fw-bold rounded-bottom bg-light"
+                <img src="{{ asset('images/diagrams/remotly onsite.png') }}" class="img-fluid w-100" alt="...">
+                <div class="text-secondary h6 p-3 text-break text-center fw-bold rounded-bottom bg-light rtl"
                     style="background-color: #e1e1e1 !important;">
 
                     تبين لنا بعد الدراسة أن النسبة الأكبر من الطلب على الخدمات والمهارات هي للعمل عن بعد، حيث يبلغ معدل
@@ -113,8 +83,8 @@
                     هذه المواقع
 
                 </div>
-                <img src="{{ asset('images/diagrams/topjobs.png') }}" class="img-fluid" alt="...">
-                <div class="text-secondary h6 p-3 text-break text-center fw-bold rounded-bottom bg-light"
+                <img src="{{ asset('images/diagrams/topjobs.png') }}" class="img-fluid w-100" alt="...">
+                <div class="text-secondary h6 p-3 text-break text-center fw-bold rounded-bottom bg-light rtl"
                     style="background-color: #e1e1e1 !important;">
 
                     إذا نظرنا إلى النتائج، فسنلاحظ أن أكثر الخدمات المطلوبة على مواقع الفريلانسر هي خدمات المحاسبة،

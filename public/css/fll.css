@@ -2,6 +2,8 @@
     border: 1px solid #ebebeb;
 }
 
+
+
 .card {
     border: 0;
     border-radius: 0px;
@@ -46,11 +48,11 @@ h4.card-title {
     font-size: 17px;
 }
 
-.card-header > *:last-child {
+.card-header>*:last-child {
     margin-right: 0;
 }
 
-.card-header > * {
+.card-header>* {
     margin-left: 8px;
     margin-right: 8px;
 }
@@ -142,7 +144,7 @@ h4.card-title {
     color: #9b9b9b;
 }
 
-.media > * {
+.media>* {
     margin: 0 8px;
 }
 
@@ -245,11 +247,11 @@ h4.card-title {
     background-color: #f9fafb;
 }
 
-.publisher > *:first-child {
+.publisher>*:first-child {
     margin-left: 0;
 }
 
-.publisher > * {
+.publisher>* {
     margin: 0 8px;
 }
 

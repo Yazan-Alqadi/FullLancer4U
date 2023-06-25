@@ -3,6 +3,10 @@
     /* direction: rtl; */
 }
 
+.rtl {
+    direction: rtl;
+}
+
 body {
     background-color: #eee;
 }
