@@ -74,14 +74,14 @@
     </div>
 
     {{-- Instruction of using --}}
-    <section id="Instruction of using" class="mx-5 d-inline-block" style="margin-top: 0; margin-bottom: 30px">
-        <div class="row" style="height: 500px;">
+    <section id="Instruction-of-using" class="mx-5" style="margin-top: 0; margin-bottom: 30px">
+        <div class="row">
 
-            <div class="container col-lg-6 col-md-6 d-flex justify-content-center">
+            <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
                 <img src="{{ asset('files/img_hero.svg') }}" alt="" class="w-50">
             </div>
 
-            <div class="container rounded col-lg-6 col-md-6 container text-light bg-dark p-4 ar"
+            <div class="container rounded col-lg-6 container text-light bg-dark p-4 ar"
                 style="display: flex; flex-direction: column;justify-content: center;">
                 <h2 class="text-center font-ar">{{ __('home.title1') }} <span
                         class="text-info font-ar">{{ __('home.title2') }}</span>
@@ -107,9 +107,9 @@
     </section>
 
     {{-- Sgin up instruction --}}
-    <section id="Sgin up instruction" class="mx-5 d-inline-block" style="margin-top: 0; margin-bottom: 30px">
-        <div class="row" style="height: 500px;">
-            <div class="container rounded col-lg-6 col-md-6 container text-light bg-dark p-4"
+    <section id="Sgin up instruction" class="mx-5" style="margin-top: 0; margin-bottom: 30px">
+        <div class="row">
+            <div class="container rounded col-lg-6 container text-light bg-dark p-4"
                 style="display: flex; flex-direction: column;justify-content: center;">
                 <div class="h1 text-center text-info">how to start</div>
                 <div class="h5 text-center">1- Sign in to this site be press <span class="text-info">sign in</span>
@@ -125,19 +125,19 @@
                 </div>
             </div>
 
-            <div class="container col-lg-6 col-md-6 d-flex justify-content-center">
+            <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
                 <img src="{{ asset('images/sign-in.svg') }}" alt="" class="w-75">
             </div>
         </div>
     </section>
 
     {{-- site actions --}}
-    <section id="site-actions" class="mx-5 d-inline-block" style="margin-top: 0; margin-bottom: 30px">
-        <div class="row" style="height: 500px;">
-            <div class="container col-lg-6 col-md-6 d-flex justify-content-center">
+    <section id="site-actions" class="mx-5" style="margin-top: 0; margin-bottom: 30px">
+        <div class="row">
+            <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
                 <img src="{{ asset('images/thinking.svg') }}" alt="" class="w-75">
             </div>
-            <div class="container rounded col-lg-6 col-md-6 container text-light bg-dark p-4"
+            <div class="container rounded col-lg-6 container text-light bg-dark p-4"
                 style="display: flex; flex-direction: column;justify-content: center;">
                 <div class="h1 text-center text-info">This website can offer you many services </div>
                 <div class="h6 text-center">You can offer your services to the public with an appropriate price
@@ -154,22 +154,60 @@
 
 
     {{-- NNNNNN --}}
-    <section class="bg-dark my-5 p-3">
-        <div class="container">
-            <div class="h4 text-warning text-center">Are you confused and do not know how to display your talents and
-                services?
+    <div class="load-from-right-0">
+        <section class="bg-dark my-5 p-3 load-from-right rounded">
+            <div class="container">
+                <div class="h4 text-warning text-center load load-one">Are you confused and do not know how to display
+                    your
+                    talents
+                    and
+                    services?
+                </div>
+                <div class="h4 text-warning text-center load load-two">Are you afraid of learning and working for a
+                    specific
+                    service
+                    that
+                    has no
+                    known future?</div>
+                <div class="h4 text-warning text-center load load-three">Would you like to know what are the most
+                    requested
+                    jobs
+                    and
+                    services in the
+                    last period?</div>
+                <div class="h2 text-center text-success mt-4">Here you will find everything you need to know
+                    <a href="{{ route('analysis') }}" class="btn btn-success">Info</a>
+                </div>
             </div>
-            <div class="h4 text-warning text-center">Are you afraid of learning and working for a specific service that
-                has no
-                known future?</div>
-            <div class="h4 text-warning text-center">Would you like to know what are the most requested jobs and
-                services in the
-                last period?</div>
-            <div class="h2 text-center text-success">Here you will find everything you need to know
-                <a href="{{ route('analysis') }}" class="btn btn-success">Info</a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
+
+    <script>
+        // اختيار العنصر الذي يحتوي على العناصر المفعلة بالانيميشن
+        const animationSection = document.querySelector('.load-from-right-0');
+
+        // تحديد الوظيفة التي سيتم استدعاؤها عند تنفيذ التمرير
+        function handleAnimation() {
+            // إضافة فئة css إذا كان العنصر مرئيًا في السفحة
+            if (isElementInView(animationSection)) {
+                animationSection.classList.add('in-view');
+            }
+        }
+
+        // تحديد الوظيفة التي تحدد ما إذا كان العنصر مرئيًا في السفحة
+        function isElementInView(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom >= 0 &&
+                rect.left >= 0 &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // تسجيل الوظيفة لحدث التمرير على النافذة
+        window.addEventListener('scroll', handleAnimation);
+    </script>
 
     {{-- Top freelancers --}}
     <section id="top-fl" class="bg-light text-center py-5 ar">

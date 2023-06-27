@@ -2,7 +2,7 @@
 
 
 <div class="ps-3 pe-2 navbar container-fluid navbar-expand-lg bg-dark navbar-dark text-light fixed-top h6">
-    <div class="container">
+    <div class="container align-items-start">
         {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search-par"
             aria-expanded="true" style="margin-right: auto;">
             <span class="navbar-toggler-icon"></span>
