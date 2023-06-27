@@ -51,7 +51,7 @@
                         <p>Some representative placeholder content for the second slide.</p>
                     </div>
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" data-bs-interval="5000">
                     <img src="files/Freelancer-3.png" class="d-block w-75" alt="..."
                         style="height: 500px; margin: 0; width: 100% !important;">
                     <div class="carousel-caption d-none d-md-block">
