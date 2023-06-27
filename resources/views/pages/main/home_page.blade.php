@@ -74,88 +74,94 @@
     </div>
 
     {{-- Instruction of using --}}
-    <section id="Instruction-of-using" class="mx-5" style="margin-top: 0; margin-bottom: 30px">
-        <div class="row">
+    <div class="load-from-right-0">
+        <section id="Instruction-of-using" class="mx-5 load-from-right" style="margin-top: 0; margin-bottom: 30px">
+            <div class="row">
 
-            <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
-                <img src="{{ asset('files/img_hero.svg') }}" alt="" class="w-50">
-            </div>
-
-            <div class="container rounded col-lg-6 container text-light bg-dark p-4 ar"
-                style="display: flex; flex-direction: column;justify-content: center;">
-                <h2 class="text-center font-ar">{{ __('home.title1') }} <span
-                        class="text-info font-ar">{{ __('home.title2') }}</span>
-                    <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                        </svg></span>
-                </h2>
-
-                <div class="h5 text-center">
-                    <p class="font-ar">
-                        {{ __('home.text') }}
-                    </p>
+                <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
+                    <img src="{{ asset('files/img_hero.svg') }}" alt="" class="w-50">
                 </div>
-                @auth
-                @else
-                    <a href="{{ route('register.show') }}"
-                        class="btn btn-primary btn-lg font-ar">{{ __('home.registernow') }}</a>
-                @endauth
+
+                <div class="container rounded col-lg-6 container text-light bg-dark p-4 ar"
+                    style="display: flex; flex-direction: column;justify-content: center;">
+                    <h2 class="text-center font-ar">{{ __('home.title1') }} <span
+                            class="text-info font-ar">{{ __('home.title2') }}</span>
+                        <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg></span>
+                    </h2>
+
+                    <div class="h5 text-center">
+                        <p class="font-ar">
+                            {{ __('home.text') }}
+                        </p>
+                    </div>
+                    @auth
+                    @else
+                        <a href="{{ route('register.show') }}"
+                            class="btn btn-primary btn-lg font-ar">{{ __('home.registernow') }}</a>
+                    @endauth
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     {{-- Sgin up instruction --}}
-    <section id="Sgin up instruction" class="mx-5" style="margin-top: 0; margin-bottom: 30px">
-        <div class="row">
-            <div class="container rounded col-lg-6 container text-light bg-dark p-4"
-                style="display: flex; flex-direction: column;justify-content: center;">
-                <div class="h1 text-center text-info">how to start</div>
-                <div class="h5 text-center">1- Sign in to this site be press <span class="text-info">sign in</span>
-                    button up
-                    there</div>
-                <div class="h5 text-center">2- <span class="text-info">Enter</span> your infomation</div>
-                <div class="h5 text-center">3- Log in when you finish with <span class="text-info">log in</span>
-                    button
-                    up there
+    <div class="load-from-left-0">
+        <section id="Sgin up instruction" class="mx-5 load-from-left" style="margin-top: 0; margin-bottom: 30px">
+            <div class="row">
+                <div class="container rounded col-lg-6 container text-light bg-dark p-4"
+                    style="display: flex; flex-direction: column;justify-content: center;">
+                    <div class="h1 text-center text-info">how to start</div>
+                    <div class="h5 text-center">1- Sign in to this site be press <span class="text-info">sign in</span>
+                        button up
+                        there</div>
+                    <div class="h5 text-center">2- <span class="text-info">Enter</span> your infomation</div>
+                    <div class="h5 text-center">3- Log in when you finish with <span class="text-info">log in</span>
+                        button
+                        up there
+                    </div>
+                    <div class="h5 text-center"> And here you go you have ign in this site <span
+                            class="text-info">gongrats</span>
+                    </div>
                 </div>
-                <div class="h5 text-center"> And here you go you have ign in this site <span
-                        class="text-info">gongrats</span>
-                </div>
-            </div>
 
-            <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
-                <img src="{{ asset('images/sign-in.svg') }}" alt="" class="w-75">
+                <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
+                    <img src="{{ asset('images/sign-in.svg') }}" alt="" class="w-75">
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     {{-- site actions --}}
-    <section id="site-actions" class="mx-5" style="margin-top: 0; margin-bottom: 30px">
-        <div class="row">
-            <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
-                <img src="{{ asset('images/thinking.svg') }}" alt="" class="w-75">
-            </div>
-            <div class="container rounded col-lg-6 container text-light bg-dark p-4"
-                style="display: flex; flex-direction: column;justify-content: center;">
-                <div class="h1 text-center text-info">This website can offer you many services </div>
-                <div class="h6 text-center">You can offer your services to the public with an appropriate price
+    <div class="load-from-right-0">
+        <section id="site-actions" class="mx-5 load-from-right" style="margin-top: 0; margin-bottom: 30px">
+            <div class="row">
+                <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
+                    <img src="{{ asset('images/thinking.svg') }}" alt="" class="w-75">
                 </div>
-                <div class="h6 text-center">You can find many proposed projects on the site</div>
-                <div class="h6 text-center">You can add posts and comments on the services that you dealt with
-                    previously, or search for these posts about a specific service</div>
-                <div class="h6 text-center">All kinds of desired and available services are provided at the present
-                    time
+                <div class="container rounded col-lg-6 container text-light bg-dark p-4"
+                    style="display: flex; flex-direction: column;justify-content: center;">
+                    <div class="h1 text-center text-info">This website can offer you many services </div>
+                    <div class="h6 text-center">You can offer your services to the public with an appropriate price
+                    </div>
+                    <div class="h6 text-center">You can find many proposed projects on the site</div>
+                    <div class="h6 text-center">You can add posts and comments on the services that you dealt with
+                        previously, or search for these posts about a specific service</div>
+                    <div class="h6 text-center">All kinds of desired and available services are provided at the present
+                        time
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
 
     {{-- NNNNNN --}}
-    <div class="load-from-right-0">
-        <section class="bg-dark my-5 p-3 load-from-right rounded">
+    <div class="load-from-left-0">
+        <section class="bg-dark my-5 p-3 load-from-left rounded">
             <div class="container">
                 <div class="h4 text-warning text-center load load-one">Are you confused and do not know how to display
                     your
@@ -181,33 +187,6 @@
             </div>
         </section>
     </div>
-
-    <script>
-        // اختيار العنصر الذي يحتوي على العناصر المفعلة بالانيميشن
-        const animationSection = document.querySelector('.load-from-right-0');
-
-        // تحديد الوظيفة التي سيتم استدعاؤها عند تنفيذ التمرير
-        function handleAnimation() {
-            // إضافة فئة css إذا كان العنصر مرئيًا في السفحة
-            if (isElementInView(animationSection)) {
-                animationSection.classList.add('in-view');
-            }
-        }
-
-        // تحديد الوظيفة التي تحدد ما إذا كان العنصر مرئيًا في السفحة
-        function isElementInView(el) {
-            const rect = el.getBoundingClientRect();
-            return (
-                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.bottom >= 0 &&
-                rect.left >= 0 &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
-
-        // تسجيل الوظيفة لحدث التمرير على النافذة
-        window.addEventListener('scroll', handleAnimation);
-    </script>
 
     {{-- Top freelancers --}}
     <section id="top-fl" class="bg-light text-center py-5 ar">
@@ -395,9 +374,6 @@
     {{-- Footer here --}}
     @include('layouts.footer')
 
-
-    <!-- JavaScript Bundle with Popper -->
-    <script src='/js/bootstrap.bundle.min.js'></script>
 </body>
 
 </html>

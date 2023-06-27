@@ -19,24 +19,21 @@
 
 <body style="background-color: rgb(186, 195, 195);">
 
-@include('layouts.nav-bar')
+    @include('layouts.nav-bar')
 
 
 
 
-<!-- card is here -->
-@livewire('service-cards', ['services' => $services, 'categories' => $categories]);
+    <!-- card is here -->
+    @livewire('service-cards', ['services' => $services, 'categories' => $categories]);
 
 
-{{-- Footer here --}}
-@include('layouts.footer')
+    {{-- Footer here --}}
+    @include('layouts.footer')
 
 
 
-@livewireScripts
-
-<!-- JavaScript Bundle with Popper -->
-<script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
+    @livewireScripts
 </body>
 
 </html>

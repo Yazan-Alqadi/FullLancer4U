@@ -314,13 +314,13 @@ input::placeholder {
     transform: translateX(1300px);
 }
 
-.load-from-right-0.in-view .load-from-right {
+.load-from-right-0.in-view-right .load-from-right {
     animation: from-right 1s ease forwards;
 }
 
 @keyframes from-right {
-    form {
-        transform: translate(1300px);
+    from {
+        transform: translateX(1300px);
     }
 
     to {
@@ -331,4 +331,22 @@ input::placeholder {
 .col-bg-color {
     background-color: #e1e1e1 !important;
     color: #1b2387 !important;
+}
+
+.load-from-left {
+    transform: translateX(1300px);
+}
+
+.load-from-left-0.in-view-left .load-from-left {
+    animation: from-left 1s ease forwards;
+}
+
+@keyframes from-left {
+    from {
+        transform: translateX(-1300px);
+    }
+
+    to {
+        transform: translateX(0px);
+    }
 }
