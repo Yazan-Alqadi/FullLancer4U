@@ -324,7 +324,6 @@
 
 
     <!-- JavaScript Bundle with Popper -->
-    <script src=" {{ asset('/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/js/popper.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

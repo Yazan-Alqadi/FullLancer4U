@@ -406,10 +406,6 @@
     {{-- Footer here --}}
     @include('layouts.footer')
 
-
-    <!-- JavaScript Bundle with Popper -->
-    <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
     @livewireScripts
 
 </body>

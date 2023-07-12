@@ -62,7 +62,7 @@
 </div> --}}
 
 
-<section class="bg-dark text-light h6">
+<section class="bg-dark text-light h6 mt-5">
     <div class="text-center p-4">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hurricane"
             viewBox="0 0 16 16" style="height: 100px;width: 100px;">

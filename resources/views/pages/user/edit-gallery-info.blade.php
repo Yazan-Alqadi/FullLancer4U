@@ -181,10 +181,6 @@
     @include('layouts.footer')
 
 
-
-    <!-- JavaScript Bundle with Popper -->
-    <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
-
     @livewireScripts
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

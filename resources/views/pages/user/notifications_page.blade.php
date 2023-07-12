@@ -111,13 +111,8 @@
     </section>
 
     {{-- Footer here --}}
-    {{-- @include('layouts.footer') --}}
+    @include('layouts.footer')
 
-
-
-
-    <!-- JavaScript Bundle with Popper -->
-    <script src=" {{ asset('/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
 

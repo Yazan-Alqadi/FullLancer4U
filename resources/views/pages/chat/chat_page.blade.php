@@ -41,15 +41,12 @@
     @include('components.successful')
 
     @livewire('chat', ['thread' => $thread, 'user' => $user])
+
     {{-- Footer here --}}
     @include('layouts.footer')
 
 
-
-    <!-- JavaScript Bundle with Popper -->
-
     @livewireScripts
-    <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
 
 
 </body>
