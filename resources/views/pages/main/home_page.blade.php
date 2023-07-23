@@ -347,7 +347,7 @@
 
     <!-- Project Cards -->
     <div class="load-from-left-0">
-        <section class="py-5 section-style ar load-from-left" style="background-color: #c0faff99 !important;">
+        <section class="py-5 section-style ar load-from-left bg-color-c0faff99">
 
             <h2 class="text-success ms-3 fw-bold font-ar me-3 color-blue">
                 {{ __('home.projects_title1') }}</h2>
