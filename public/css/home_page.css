@@ -1,0 +1,54 @@
+.slid-section-style {
+    margin-top: 56px;
+    padding: 0 !important;
+}
+
+.image-style-slid {
+    height: 500px;
+    margin: 0;
+    width: 100% !important;
+}
+
+.instruction-of-using-style {
+    margin-top: 0;
+    margin-bottom: 30px
+}
+
+.top-fl-img-style {
+    width: 20% !important;
+}
+
+.span-star {
+    font: normal normal normal 14px/1 FontAwesome !important;
+}
+
+.how-works-section-style {
+    background-image: url('../files/bilding.jpg');
+}
+
+.how-works-h1-style {
+    color: #560b0b !important;
+}
+
+
+.bg-color-cadetblue {
+    background-color: cadetblue;
+}
+
+.bg-color-darkcyan {
+    background-color: darkcyan;
+}
+
+.bg-color-c0faff99 {
+    background-color: #c0faff99 !important;
+}
+
+.color-blue {
+    color: blue !important;
+}
+
+.services-cards-div-1-style {
+    height: 350px;
+    overflow: hidden;
+    overflow-y: scroll;
+}

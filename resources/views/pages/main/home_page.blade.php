@@ -10,6 +10,7 @@
     <link href="{{ asset('/css/profession.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/main_page_css.css') }}">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home_page.css') }}" rel="stylesheet">
 
     <title>Home</title>
 
@@ -24,7 +25,7 @@
     @include('layouts.nav-bar')
 
     {{-- Slids section --}}
-    <div id="slid-section" class="bg-dark py-4" style="margin-top: 56px; padding: 0 !important;">
+    <div id="slid-section" class="bg-dark py-4 main slid-section-style">
         <div id="carouselExampleCaptions" class="carousel slide carousel-fade my-4" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -36,24 +37,21 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="5000">
-                    <img src="files/Freelancer-7.jpg" class="d-block w-75" alt="..."
-                        style="height: 500px; margin: 0; width: 100% !important;">
+                    <img src="files/Freelancer-7.jpg" class="d-block w-75 image-style-slid" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>First slide label</h5>
                         <p>Some representative placeholder content for the first slide.</p>
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="5000">
-                    <img src="files/Freelancer-1.png" class="d-block w-75" alt="..."
-                        style="height: 500px; margin: 0; width: 100% !important;">
+                    <img src="files/Freelancer-1.png" class="d-block w-75 image-style-slid" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Second slide label</h5>
                         <p>Some representative placeholder content for the second slide.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="files/Freelancer-3.png" class="d-block w-75" alt="..."
-                        style="height: 500px; margin: 0; width: 100% !important;">
+                    <img src="files/Freelancer-3.png" class="d-block w-75 image-style-slid" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Third slide label</h5>
                         <p>Some representative placeholder content for the third slide.</p>
@@ -75,15 +73,15 @@
 
     {{-- Instruction of using --}}
     <div class="load-from-right-0">
-        <section id="Instruction-of-using" class="mx-5 load-from-right" style="margin-top: 0; margin-bottom: 30px">
+        <section id="instruction-of-using" class="mx-5 load-from-right instruction-of-using-style">
             <div class="row">
 
                 <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
                     <img src="{{ asset('files/img_hero.svg') }}" alt="" class="w-50">
                 </div>
 
-                <div class="container rounded col-lg-6 container text-light bg-dark p-4 ar"
-                    style="display: flex; flex-direction: column;justify-content: center;">
+                <div
+                    class="container rounded col-lg-6 container text-light bg-dark p-4 ar d-flex flex-column justify-content-center">
                     <h2 class="text-center font-ar">{{ __('home.title1') }} <span
                             class="text-info font-ar">{{ __('home.title2') }}</span>
                         <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -110,10 +108,10 @@
 
     {{-- Sgin up instruction --}}
     <div class="load-from-left-0">
-        <section id="Sgin up instruction" class="mx-5 load-from-left" style="margin-top: 0; margin-bottom: 30px">
+        <section id="sgin-up-instruction" class="mx-5 load-from-left instruction-of-using-style">
             <div class="row">
-                <div class="container rounded col-lg-6 container text-light bg-dark p-4"
-                    style="display: flex; flex-direction: column;justify-content: center;">
+                <div
+                    class="container rounded col-lg-6 container text-light bg-dark p-4 d-flex flex-column justify-content-center">
                     <div class="h1 text-center text-info">how to start</div>
                     <div class="h5 text-center">1- Sign in to this site be press <span class="text-info">sign in</span>
                         button up
@@ -137,13 +135,13 @@
 
     {{-- site actions --}}
     <div class="load-from-right-0">
-        <section id="site-actions" class="mx-5 load-from-right" style="margin-top: 0; margin-bottom: 30px">
+        <section id="site-actions" class="mx-5 load-from-right instruction-of-using-style">
             <div class="row">
                 <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
                     <img src="{{ asset('images/thinking.svg') }}" alt="" class="w-75">
                 </div>
-                <div class="container rounded col-lg-6 container text-light bg-dark p-4"
-                    style="display: flex; flex-direction: column;justify-content: center;">
+                <div
+                    class="container rounded col-lg-6 container text-light bg-dark p-4 d-flex flex-column justify-content-center">
                     <div class="h1 text-center text-info">This website can offer you many services </div>
                     <div class="h6 text-center">You can offer your services to the public with an appropriate price
                     </div>
@@ -195,9 +193,9 @@
                 <h2 class="mb-5 font-ar">{{ __('home.top1') }} <span
                         class="text-warning font-ar">{{ __('home.top2') }}</span></h2>
                 <div class="d-flex">
-                    <img class="ms-2 d-none d-sm-block img-fluid font-ar" alt="photo"
-                        style="width: 20% !important;" src={{ 'files/top_fl.svg' }}>
-                    <div style="flex-grow: 1;" class="table-responsive">
+                    <img class="ms-2 d-none d-sm-block img-fluid font-ar top-fl-img-style" alt="photo"
+                        src={{ 'files/top_fl.svg' }}>
+                    <div class="table-responsive flex-grow-1">
 
                         {{-- <div class="table"> --}}
                         <table class="table">
@@ -222,48 +220,38 @@
                                         </td>
                                         <td>
                                             @if ($freelancer->rate > 0)
-                                                <span class="fa fa-star checked"
-                                                    style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                <span class="fa fa-star checked span-star"></span>
                                                 {{-- star one --}}
                                             @else
-                                                <span class="fa fa-star not-checked"
-                                                    style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                <span class="fa fa-star not-checked span-star"></span>
                                                 {{-- star one --}}
                                             @endif
                                             @if ($freelancer->rate > 1)
-                                                <span class="fa fa-star checked"
-                                                    style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                <span class="fa fa-star checked span-star"></span>
                                                 {{-- star two --}}
                                             @else
-                                                <span class="fa fa-star not-checked"
-                                                    style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                <span class="fa fa-star not-checked span-star"></span>
                                                 {{-- star two --}}
                                             @endif
                                             @if ($freelancer->rate > 2)
-                                                <span class="fa fa-star checked"
-                                                    style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                <span class="fa fa-star checked span-star"></span>
                                                 {{-- star three --}}
                                             @else
-                                                <span class="fa fa-star not-checked"
-                                                    style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                <span class="fa fa-star not-checked span-star"></span>
                                                 {{-- star three --}}
                                             @endif
                                             @if ($freelancer->rate > 3)
-                                                <span class="fa fa-star checked"
-                                                    style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                <span class="fa fa-star checked span-star"></span>
                                                 {{-- star four --}}
                                             @else
-                                                <span class="fa fa-star not-checked"
-                                                    style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                <span class="fa fa-star not-checked span-star"></span>
                                                 {{-- star four --}}
                                             @endif
                                             @if ($freelancer->rate > 4)
-                                                <span class="fa fa-star checked"
-                                                    style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                <span class="fa fa-star checked span-star"></span>
                                                 {{-- star five --}}
                                             @else
-                                                <span class="fa fa-star not-checked"
-                                                    style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                                <span class="fa fa-star not-checked span-star"></span>
                                                 {{-- star five --}}
                                             @endif
 
@@ -281,14 +269,13 @@
 
     {{-- How works ? --}}
     <div class="load-from-left-0">
-        <section class="py-5 section-style ar font-ar load-from-left"
-            style=" background-image: url({{ 'files/bilding.jpg' }});">
+        <section class="py-5 section-style ar font-ar load-from-left how-works-section-style">
 
-            <h1 class="text-center font-ar" style="color: #560b0b !important;">{{ __('home.how') }}</h1>
+            <h1 class="text-center font-ar how-works-h1-style">{{ __('home.how') }}</h1>
 
             <div class="container text-white">
                 <div class="card bg-success mb-3">
-                    <div class="card-text p-3 font-ar" style="background-color: cadetblue;">
+                    <div class="card-text p-3 font-ar bg-color-cadetblue">
                         <h5 class="font-ar">
                             <span class="bg-light text-dark rounded-5 d-inline-block p-1 m-1 font-ar">1</span>
                             {{ __('home.how1') }}
@@ -304,7 +291,7 @@
                 </div>
 
                 <div class="card bg-success mb-3">
-                    <div class="card-text p-3 font-ar" style="background-color: darkcyan;">
+                    <div class="card-text p-3 font-ar bg-color-darkcyan">
                         <h5 class="font-ar"><span class="bg-light text-dark rounded-5 d-inline-block p-1 m-1">2</span>
                             {{ __('home.how2') }}
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -338,12 +325,12 @@
 
     <!-- Services Cards -->
     <div class="load-from-right-0">
-        <section class="py-5 section-style ar load-from-right" style="background-color: #c0faff99 !important;">
+        <section class="py-5 section-style ar load-from-right bg-color-c0faff99">
 
-            <h2 class="text-success ms-3 fw-bold font-ar me-3" style="color: blue  !important;">
+            <h2 class="text-success ms-3 fw-bold font-ar me-3 color-blue">
                 {{ __('home.services_title1') }}</h2>
 
-            <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
+            <div class="container services-cards-div-1-style">
                 <div class="row text-center">
                     @foreach ($services as $service)
                         {{-- @if (Auth::check() && !Auth::user()->category->contains($profession->category_id))
@@ -362,10 +349,10 @@
     <div class="load-from-left-0">
         <section class="py-5 section-style ar load-from-left" style="background-color: #c0faff99 !important;">
 
-            <h2 class="text-success ms-3 fw-bold font-ar me-3" style="color: blue  !important;">
+            <h2 class="text-success ms-3 fw-bold font-ar me-3 color-blue">
                 {{ __('home.projects_title1') }}</h2>
 
-            <div class="container" style="height: 350px; overflow: hidden; overflow-y: scroll;">
+            <div class="container services-cards-div-1-style">
                 <div class="row text-center">
                     @foreach ($projects as $project)
                         {{-- @if (Auth::check() && !Auth::user()->category->contains($project->category_id))
