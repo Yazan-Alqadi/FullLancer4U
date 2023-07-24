@@ -8,6 +8,7 @@
     <!-- CSS only -->
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <link href="{{ asset('../css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login_register_page.css') }}" rel="stylesheet">
     <title>Sign-up</title>
 </head>
 
@@ -18,10 +19,8 @@
     <img src='files/munt-background.jpg' class="img-log-in" alt="...">
 
     <div class="row mx-1">
-        <div class="container col-lg-5 col-md-4 mgg" style="z-index: 5">
-            <section class="container bg-light text-dark p-3 rounded" {{-- style=" z-index: 2; position: absolute;
-    box-shadow: 0 20px 65px 10px #2188f399;
-    left: calc(calc(100% - 50vw)/2); top: calc(calc(100% - 406px)/2);" --}}>
+        <div class="container col-lg-6 col-md-8 mgg z-3">
+            <section class="container bg-light text-dark p-3 rounded">
                 <div class="border-bottom border-dark ps-3 h5 py-1">
                     Sign up
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -98,18 +97,30 @@
                             @enderror
                             <div class="mb-3">
                                 <div class="form-floating">
-                                    <input class="form-control w-100" type="password" name="password" minlength="8"
+                                    <input id="pass-id" class="form-control w-100" type="password" name="password" minlength="8"
                                         required placeholder="*************" id="floatingTextarea" autocomplete="on">
                                     <label for="floatingTextarea">Password</label>
+                                    <div id="div-id-svg" onclick="displayPassIcon()" class="pass-icon-display btn border border-0 p-0"> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>
+                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path>
+                                          </svg>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <div class="form-floating">
-                                    <input class="form-control w-100" type="password" name="password_confirmation"
+                                    <input id="re-pass-id" class="form-control w-100" type="password" name="password_confirmation"
                                         minlength="8" required placeholder="*************" id="floatingTextarea"
                                         autocomplete="on">
                                     <label for="floatingTextarea">Repeat Password</label>
+                                    <div id="re-div-id-svg" onclick="displayRePassIcon()" class="pass-icon-display btn border border-0 p-0"> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>
+                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path>
+                                          </svg>
+                                    </div>
                                 </div>
                             </div>
                             <div>
@@ -165,74 +176,7 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
 
-    {{-- <div class="form-login-div">
-    <form class="form-login-1" method="POST" action="{{ route('register.store') }}">
-        @csrf
-        <span class="form-login-title">Sign Up</span>
-        <div class="wrap-input" data-validate="Name is required">
-            <span class="label-input ho">Full Name</span>
-            <input class="input1" type="text" name="full_name" required placeholder="Name..."
-                @if (session('user')) value="{{ session('user')->name }}" @endif>
-            @error('full_name')
-                <span class="alert-error" role="alert">
-                    <strong> {{ $message }} </strong>
-                </span>
-            @enderror
-        </div>
-        <div class="wrap-input" data-validate="Username is required">
-            <span class="label-input">Username</span>
-            <input class="input1" type="text" name="user_name" required placeholder="Username..."
-                @if (session('user')) value="{{ session('user')->email }}" @endif>
-            @error('user_name')
-                <span class="alert-error" role="alert">
-                    <strong> {{ $message }} </strong>
-                </span>
-            @enderror
-        </div>
-        <div class="wrap-input" data-validate="Valid email is required: ex@abc.xyz">
-            <span class="label-input">Email</span>
-            <input class="input1" type="email" name="email" required placeholder="Email address..."
-                @if (session('user')) value="{{ session('user')->email }}" @endif>
-            @error('email')
-                <span class="alert-error" role="alert">
-                    <strong> {{ $message }} </strong>
-                </span>
-            @enderror
-        </div>
-        <div class="wrap-input" data-validate="Password is required">
-            <span class="label-input">Password</span>
-            <input class="input1" type="password" name="password" minlength="8" required
-                placeholder="*************">
-            @error('password')
-                <span class="alert-error" role="alert">
-                    <strong> {{ $message }} </strong>
-                </span>
-            @enderror
-        </div>
-        <div class="wrap-input" data-validate="Repeat Password is required">
-            <span class="label-input">Repeat Password</span>
-            <input class="input1" type="password" name="password_confirmation" minlength="8" required
-                placeholder="*************">
-        </div>
-        <div class="container-login-form-btn">
-            <div class="login-btn-confirm">
-                <button type="submit" class="login-form-btn">Sign Up</button>
-            </div>
-            <div class="container-asq">
-                <span class="asq">Already have account ?</span>
-                <a href="{{ route('login') }}" class="lin">
-                    Sign in
-                    <i class="fa fa-long-arrow-right m-l-5"></i>
-                </a>
-            </div>
-
-        </div>
-    </form>
-</div>
-
-</div> --}}
-
-
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

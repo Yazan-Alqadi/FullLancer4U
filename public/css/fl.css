@@ -17,9 +17,9 @@ body {
 }
 
 .img-log-in {
-    height: fit-content;
+    height: 100%;
     z-index: 1;
-    position: absolute;
+    position: fixed;
     width: 100% !important;
     opacity: 0.6;
 }
