@@ -84,16 +84,16 @@
                         </div>
 
                         <!-- Remember Me -->
-                        <div class="txt1 row">
+                        <div class="txt1 row d-flex">
 
-                            <label for="remember_me" class="inline-flex items-center col-lg-5 mb-2">
+                            <label for="remember_me" class="inline-flex items-center col-lg-5 mb-2 f-min-content">
                                 <input id="remember_me" type="checkbox"
                                     class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     name="remember">
                                 <span class="ml-2 text-sm text-gray-600">Remember me</span>
                             </label>
 
-                            <a href="{{ route('password.request') }}" class="link-primary text-decoration-none col-lg-7">
+                            <a href="{{ route('password.request') }}" class="link-primary text-decoration-none col-lg-7 f-min-content">
                                 Forgot Your Password?
                             </a>
                         </div>

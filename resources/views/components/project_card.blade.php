@@ -1,10 +1,10 @@
 <div class="col-md-6 col-lg-4 mb-2">
-    <div class="card text-light" style="background-color: #001b24; height: 100%;">
+    <div class="card text-light h-100 bg-c031232">
         <!-- <div class="container">
 
          <-- add image or icon here ----------
 
-            <div style="display: inline-grid;">
+            <div class="d-inline-grid">
                 <span class="card-title">
                     <a href="#" class="navbar-brand text-light name-of-user-hover">
                         name of user
@@ -16,16 +16,15 @@
             </div>
         </div> -->
 
-        <div class="card-body text-center"
-            style="display: flex !important; align-items: center; justify-content: center;">
+        <div class="card-body text-center d-flex align-items-center justify-content-center">
 
             <!-- descreption of the project -->
 
             <div class="card-text">
                 <div class="container">
-                    <div class="col" style="color: #f5ff9f;">
+                    <div class="col color-f5ff9f">
                         <!-- category belong to the profession -->
-                        <div class="row justify-content-center" style="font-size: 18px !important;">
+                        <div class="row justify-content-center font-size-18">
                             <span class="for-size span-number-2 title-des">
                                 {{ $project->title }}
                             </span>
@@ -43,7 +42,7 @@
 
                             </span>
                         </div>
-                        <div class="row justify-content-center mt-3" style="display: block;">
+                        <div class="row justify-content-center mt-3 d-block">
                             <span class="for-size span-number-1 font-ar">{{ __('main_pages.description') }}</span>
                             <span class="for-size span-number-2">
                                 {{ $project->description }}
@@ -51,7 +50,7 @@
                             </span>
                         </div>
 
-                        <div class="mt-2" style="text-align-last: justify">
+                        <div class="mt-2 text-align-last-justify">
                             {{-- Deadline --}}
                             <span>
                                 <span class="text-start d-inline-block">

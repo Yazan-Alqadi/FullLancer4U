@@ -354,3 +354,47 @@ input::placeholder {
         display: block;
     }
 }
+
+.h-100 {
+    height: 100% !important;
+}
+
+.h-534 {
+    height: 534px !important;
+}
+
+.bg-c031232 {
+    background-color: #031232 !important;
+}
+
+.bg-001b24 {
+    background-color: #001b24 !important;
+}
+
+
+.color-f5ff9f {
+    color: #f5ff9f !important;
+}
+
+.font-awesome {
+    font: normal normal normal 14px/1 FontAwesome !important;
+}
+
+.user-pic {
+    width: 55px !important;
+    height: 55px !important;
+    border-radius: 50% !important;
+    margin: 12px 2px 0px 2px !important;
+}
+
+.font-size-18 {
+    font-size: 18px !important;
+}
+
+.text-align-last-justify {
+    text-align-last: justify !important;
+}
+
+.hover-text-footer:hover {
+    color: #666464 !important;
+}

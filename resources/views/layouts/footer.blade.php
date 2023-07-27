@@ -73,11 +73,11 @@
     <div class="row px-5 pb-3 border-bottom border-light me-0">
         <div class="col-lg-4 col-md-4 px-5 mb-4">
             <div class="mb-4 fw-bold">About us and Contact</div>
-            <div class="mb-2"><a href="#" class="text-light text-decoration-none">About us</a></div>
-            <div class="mb-2"><a href="#" class="text-light text-decoration-none">Contact us</a></div>
-            <div class="mb-2"><a href="#" class="text-light text-decoration-none">Blog</a></div>
-            <div class="mb-2"><a href="#" class="text-light text-decoration-none">Team</a></div>
-            <div class=""><a href="#" class="text-light text-decoration-none">Privacy policy</a></div>
+            <div class="mb-2"><a href="#" class="text-light text-decoration-none hover-text-footer">About us</a></div>
+            <div class="mb-2"><a href="#" class="text-light text-decoration-none hover-text-footer">Contact us</a></div>
+            <div class="mb-2"><a href="#" class="text-light text-decoration-none hover-text-footer">Blog</a></div>
+            <div class="mb-2"><a href="#" class="text-light text-decoration-none hover-text-footer">Team</a></div>
+            <div class=""><a href="#" class="text-light text-decoration-none hover-text-footer">Privacy policy</a></div>
         </div>
         <div class="col-lg-4 col-md-4 px-5">
             <div class="mb-4 fw-bold">Join to us</div>
@@ -138,9 +138,9 @@
         </div>
         <div class="col-lg-4 col-md-4 ps-4 my-3 d-flex">
             <ul class="justify-content-start list-unstyled d-flex">
-                <li class="ms-4"><a href="" class="text-light text-decoration-none">Privacy policy</a></li>
-                <li class="ms-4"><a href="" class="text-light text-decoration-none">Terms of use</a></li>
-                <li class="ms-4"><a href="" class="text-light text-decoration-none">Legal</a></li>
+                <li class="ms-4"><a href="" class="text-light text-decoration-none hover-text-footer">Privacy policy</a></li>
+                <li class="ms-4"><a href="" class="text-light text-decoration-none hover-text-footer">Terms of use</a></li>
+                <li class="ms-4"><a href="" class="text-light text-decoration-none hover-text-footer">Legal</a></li>
             </ul>
         </div>
     </div>

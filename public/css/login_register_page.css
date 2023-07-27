@@ -3,3 +3,7 @@
     right: 15px;
     top: 16px;
 }
+
+.f-min-content {
+    flex: min-content;
+}

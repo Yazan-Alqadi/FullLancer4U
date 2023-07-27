@@ -25,10 +25,10 @@
 
         <div class="rounded-lg overflow-hidden shadow mgg mx-2 mb-5">
             <!-- Users box-->
-            <div class="5 px-0 " style="height: 100% !important;">
+            <div class="5 px-0 h-100">
                 <div class="bg-white">
 
-                    <div class="bg-gray px-4 py-2 bg-light d-flex" style="justify-content: space-between;">
+                    <div class="bg-gray px-4 py-2 bg-light d-flex justify-content-between">
                         <span class="h5 mb-0 py-1">
                             My chats
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -48,7 +48,7 @@
                     </div>
 
 
-                    <div class="messages-box" style="height: 534px;">
+                    <div class="messages-box h-534">
                         <div class="list-group rounded-0">
                             @foreach ($threads as $thread)
                                 <a href="{{ route('contact_me', $thread->reciever->id == Auth::id() ? $thread->sender->id : $thread->reciever->id) }}"
