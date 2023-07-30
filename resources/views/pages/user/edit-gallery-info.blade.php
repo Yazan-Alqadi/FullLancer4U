@@ -7,7 +7,6 @@
 
     <!-- CSS only -->
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
     {{-- for font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">

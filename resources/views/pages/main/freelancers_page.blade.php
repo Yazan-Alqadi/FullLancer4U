@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="background-color: rgb(186, 195, 195);">
+<html class="bg-rgb-186-195-195" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 
@@ -7,7 +7,6 @@
 
     <!-- CSS only -->
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
     <title>Freelancers</title>
 

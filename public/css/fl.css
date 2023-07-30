@@ -359,6 +359,10 @@ input::placeholder {
     height: 100% !important;
 }
 
+.h-200 {
+    height: 200px !important;
+}
+
 .h-534 {
     height: 534px !important;
 }
@@ -371,6 +375,29 @@ input::placeholder {
     background-color: #001b24 !important;
 }
 
+.bg-lightgrey {
+    background-color: lightgrey !important;
+}
+
+.bg-rgb-186-195-195 {
+    background-color: rgb(186, 195, 195) !important;
+}
+
+.bg-001b24 {
+    background-color: #001b24 !important;
+}
+
+.bg-rgb-235-235-235 {
+    background-color: rgb(235, 235, 235) !important;
+}
+
+.bg-5bff0045 {
+    background-color: #5bff0045 !important;
+}
+
+.bg-003cff59 {
+    background-color: #003cff59 !important;
+}
 
 .color-f5ff9f {
     color: #f5ff9f !important;
@@ -397,4 +424,9 @@ input::placeholder {
 
 .hover-text-footer:hover {
     color: #666464 !important;
+}
+
+.chat-card {
+    height: 350px !important;
+    overflow: auto !important;
 }

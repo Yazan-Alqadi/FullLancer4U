@@ -15,7 +15,7 @@ const animationSectionRight = document.querySelectorAll('.load-from-right-0');
 function handleAnimation() {
     for (let i = 0; i < animationSectionLeft.length; i++) {
         if (isElementInView(animationSectionLeft[i])) {
-            console.log(animationSectionLeft[i]);
+            // console.log(animationSectionLeft[i]);
             animationSectionLeft[i].classList.add('in-view-left');
         }
     }

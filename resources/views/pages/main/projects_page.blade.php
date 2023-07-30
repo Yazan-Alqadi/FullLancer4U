@@ -8,7 +8,6 @@
     <!-- CSS only -->
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profession.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
     <title>Projects</title>
 
@@ -27,10 +26,8 @@
 
 
     <!-- card is here -->
-
-
-
     @livewire('project-cards', ['projects' => $projects, 'categories' => $categories]);
+
 
     {{-- Footer here --}}
     @include('layouts.footer')

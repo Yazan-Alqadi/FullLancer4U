@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="background-color: lightgrey;">
+<html class="bg-lightgrey" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 
@@ -7,7 +7,6 @@
 
     <!-- CSS only -->
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
     <title>Edit Project</title>
 
@@ -16,12 +15,12 @@
 
 </head>
 
-<body style="background-color: lightgrey;">
+<body class="bg-lightgrey" >
 
     @include('layouts.nav-bar')
 
     <!-- alerts Icons -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <svg class="d-none" xmlns="http://www.w3.org/2000/svg">
         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
             <path
                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
@@ -116,7 +115,7 @@
 
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Description</label>
-                            <textarea name="description" type="text" class="form-control" style="height: 200px !important;"
+                            <textarea name="description" type="text" class="form-control h-200"
                                 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput1"
                                 placeholder="Type at least 2 lines">{{ $project->description }}</textarea>
                         </div>

@@ -4,15 +4,14 @@
         <!--=========================================================-->
         <!-- selected chat -->
         <div class="bg-white ">
-            <div class="p-1" style="height: 350px !important; overflow: auto;">
+            <div class="p-1 chat-card">
                 <ul class="chat">
                     {{-- messages's Sender --}}
                     @if (!is_null($thread))
 
                         @foreach ($thread->messages as $message)
                             @if ($message->user_id == $user->id)
-                                <li class="left clearfix bg-secondary p-2 w-100"
-                                    style="background-color: #5bff0045 !important;">
+                                <li class="left clearfix bg-secondary p-2 w-100 bg-5bff0045">
                                     <div>
 
                                         <span class="chat-img pull-left">
@@ -25,7 +24,7 @@
                                                 <strong class="primary-font h5">{{ $user->full_name }}</strong>
                                             </div>
                                             {{-- the message body --}}
-                                            <p style="word-break: break-word;" class="h6">
+                                            <p class="word-wrap text-break" class="h6">
                                                 {{ $message->body }}
                                             </p>
                                         </div>
@@ -46,7 +45,7 @@
                                     </div>
                                 </li>
                             @else
-                                <li class="right clearfix p-2" style="background-color: #003cff59 !important;">
+                                <li class="right clearfix p-2 bg-003cff59">
                                     <div>
                                         <span class="chat-img pull-right">
                                             <img src="https://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">
@@ -57,7 +56,7 @@
                                                 <strong class="primary-font h5">{{ Auth::user()->full_name }}</strong>
                                             </div>
                                             {{-- the message body --}}
-                                            <p style="word-break: break-word;" class="h6">
+                                            <p class="word-wrap text-break" class="h6">
                                                 {{ $message->body }}
                                             </p>
                                         </div>
@@ -89,7 +88,7 @@
             <div class="bg-white p-3">
                 <div>
                     <textarea id="input" wire:loading.remove name="body" wire:model.defer="messageBody"
-                        style="height: 200px !important;" class="form-control border no-shadow no-rounded"
+                        class="form-control border no-shadow no-rounded h-200"
                         placeholder="Type your message here"></textarea>
                 </div>
                 <div class="input-group-btn text-center my-3" wire:loading.remove>

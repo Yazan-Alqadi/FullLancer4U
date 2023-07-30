@@ -1,4 +1,4 @@
-<div >
+<div>
     <div class="mggg">
         <div class="h3 ms-3 pt-2 text-light"></div>
 
@@ -32,7 +32,9 @@
         <div class="container">
             <div class="row text-center">
                 @foreach ($projects as $project)
+                <div class="col-md-6 col-lg-4 mb-2">
                     @include('components.project_card')
+                </div>
                 @endforeach
             </div>
             {{ $projects->onEachSide(1)->links('pagination::liveware-page') }}

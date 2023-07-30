@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="background-color: rgb(186, 195, 195);">
+<html class="bg-rgb-186-195-195" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 
@@ -7,7 +7,6 @@
 
     <!-- CSS only -->
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
     <title>Freelancers</title>
 
@@ -23,9 +22,7 @@
         <div class="container">
             <div>
                 <div class="lh-base font-ar-para col-bg-color h6 mb-0 p-3 text-break text-center fw-bold rounded-top">بعد
-                    اجراء
-                    دراسة على
-                    الخدمات المطلوبة في
+                    اجراء دراسة على الخدمات المطلوبة في
                     الموقع، تبين
                     ان
                     هنالك العديد من المهارات المطلوبة في خدمة واحدة او اكثر، وبذلك كان لا بد من معرفة ما هي المهارات

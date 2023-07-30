@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto+Slab&display=swap"
         rel="stylesheet">
 
+    {{-- for stars --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -30,3 +31,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mada:wght@600&family=Marhey:wght@500&display=swap"
         rel="stylesheet">
+
+    {{-- BootStrap CSS --}}
+    <link href="{{ asset('css/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">

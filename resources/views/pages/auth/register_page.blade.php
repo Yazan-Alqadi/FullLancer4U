@@ -7,7 +7,6 @@
 
     <!-- CSS only -->
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
-    <link href="{{ asset('../css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login_register_page.css') }}" rel="stylesheet">
     <title>Sign-up</title>
 </head>
@@ -97,29 +96,38 @@
                             @enderror
                             <div class="mb-3">
                                 <div class="form-floating">
-                                    <input id="pass-id" class="form-control w-100" type="password" name="password" minlength="8"
-                                        required placeholder="*************" id="floatingTextarea" autocomplete="on">
+                                    <input id="pass-id" class="form-control w-100" type="password" name="password"
+                                        minlength="8" required placeholder="*************" id="floatingTextarea"
+                                        autocomplete="on">
                                     <label for="floatingTextarea">Password</label>
-                                    <div id="div-id-svg" onclick="displayPassIcon()" class="pass-icon-display btn border border-0 p-0"> 
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <div id="div-id-svg" onclick="displayPassIcon()"
+                                        class="pass-icon-display btn border border-0 p-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>
-                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path>
-                                          </svg>
+                                            <path
+                                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z">
+                                            </path>
+                                        </svg>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <div class="form-floating">
-                                    <input id="re-pass-id" class="form-control w-100" type="password" name="password_confirmation"
-                                        minlength="8" required placeholder="*************" id="floatingTextarea"
-                                        autocomplete="on">
+                                    <input id="re-pass-id" class="form-control w-100" type="password"
+                                        name="password_confirmation" minlength="8" required placeholder="*************"
+                                        id="floatingTextarea" autocomplete="on">
                                     <label for="floatingTextarea">Repeat Password</label>
-                                    <div id="re-div-id-svg" onclick="displayRePassIcon()" class="pass-icon-display btn border border-0 p-0"> 
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <div id="re-div-id-svg" onclick="displayRePassIcon()"
+                                        class="pass-icon-display btn border border-0 p-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>
-                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path>
-                                          </svg>
+                                            <path
+                                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z">
+                                            </path>
+                                        </svg>
                                     </div>
                                 </div>
                             </div>
@@ -134,10 +142,13 @@
                                         </svg>
                                     </div>
                                     @foreach (\App\Models\Category::all() as $category)
+                                        @php
+                                            $uniqueId = uniqid();
+                                        @endphp
                                         <div class="form-check">
-                                            <input name="{{ $category->id }}" class="form-check-input" type="checkbox"
-                                                value="OK" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
+                                            <input name="{{ $category->id }}" class="form-check-input"
+                                                type="checkbox" value="OK" id="{{ $uniqueId }}">
+                                            <label class="form-check-label" for="{{ $uniqueId }}">
                                                 {{ $category->title }}
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">

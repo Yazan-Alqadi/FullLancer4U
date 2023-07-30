@@ -6,10 +6,9 @@
     @include('layouts.head')
 
     <!-- CSS only -->
-    <link rel="stylesheet" href="{{ asset('css/fl.css') }}">
+    <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/profession.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/main_page_css.css') }}">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main_page_css.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home_page.css') }}" rel="stylesheet">
 
     <title>Home</title>

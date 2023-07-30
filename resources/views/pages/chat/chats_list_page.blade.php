@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="background-color: lightgrey;">
+<html class="bg-lightgrey" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 
@@ -9,13 +9,12 @@
 
     <link href="{{ asset('css/fl.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fll.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
     <title>Chat</title>
 
 </head>
 
-<body style="background-color: lightgrey;">
+<body class="bg-lightgrey">
 
     @include('layouts.nav-bar')
 

@@ -13,14 +13,14 @@
 
 </head>
 
-<body style="background-color: rgb(235, 235, 235);">
+<body class="bg-rgb-235-235-235">
 
     @include('layouts.nav-bar')
 
 
 
     <!-- alerts Icons -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <svg class="d-none" xmlns="http://www.w3.org/2000/svg">
         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
             <path
                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
@@ -90,50 +90,41 @@
                         <div class="card-body">
                             <div class="card-text d-inline-block">
                                 <div>
-                                    <span>Rating:</span>
+                                    <span>Rating:</s
+                                        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">pan>
                                     @if ($profession->freelancer->rate > 0)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        <span class="fa fa-star checked font-awesome"></span>
                                         {{-- star one --}}
                                     @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        <span class="fa fa-star not-checked font-awesome"></span>
                                         {{-- star one --}}
                                     @endif
                                     @if ($profession->freelancer->rate > 1)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        <span class="fa fa-star checked font-awesome"></span>
                                         {{-- star two --}}
                                     @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        <span class="fa fa-star not-checked font-awesome"></span>
                                         {{-- star two --}}
                                     @endif
                                     @if ($profession->freelancer->rate > 2)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        <span class="fa fa-star checked font-awesome"></span>
                                         {{-- star three --}}
                                     @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        <span class="fa fa-star not-checked font-awesome"></span>
                                         {{-- star three --}}
                                     @endif
                                     @if ($profession->freelancer->rate > 3)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        <span class="fa fa-star checked font-awesome"></span>
                                         {{-- star four --}}
                                     @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        <span class="fa fa-star not-checked font-awesome"></span>
                                         {{-- star four --}}
                                     @endif
                                     @if ($profession->freelancer->rate > 4)
-                                        <span class="fa fa-star checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        <span class="fa fa-star checked font-awesome"></span>
                                         {{-- star five --}}
                                     @else
-                                        <span class="fa fa-star not-checked"
-                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
+                                        <span class="fa fa-star not-checked font-awesome"></span>
                                         {{-- star five --}}
                                     @endif
                                 </div>
@@ -171,7 +162,7 @@
                                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                                     </svg>
                                 </span>
-                                <div style="display: inline-grid;">
+                                <div class="d-inline-grid">
                                     <span class="card-title">
                                         <a href="{{ route('profile_user', Auth::user()->id) }}"
                                             class="navbar-brand text-dark">
@@ -331,126 +322,10 @@
                         <section class="py-5 section-style">
                             <div class="container">
                                 <div class="row text-center">
-                                    @foreach ($professions as $profession)
-                                        <div class="col-md-6 col-lg-6 mb-2">
-                                            <div class="card text-light"
-                                                style="background-color: #001b24; height: 100%;">
-                                                <!-- <div class="container">
-
-<-- add image or icon here ----------
-
-<div style="display: inline-grid;">
-<span class="card-title">
-<a href="#" class="navbar-brand text-light name-of-user-hover">
-name of user
-</a>
-</span>
-<span class="card-title">
-user name
-</span>
-</div>
-</div> -->
-                                                <div class="card-body text-center"
-                                                    style="display: flex !important;align-items: center;justify-content: center;">
-
-                                                    <!-- descreption of the profession -->
-
-                                                    <div class="card-text">
-                                                        <div class="container">
-                                                            <div class="col" style="color: #f5ff9f;">
-                                                                <!-- category belong to the profession -->
-                                                                <div class="row justify-content-center"
-                                                                    style="font-size: 18px !important;">
-                                                                    {{-- <span class="for-size span-number-1 ">Title:</span> --}}
-                                                                    <span
-                                                                        class="for-size span-number-2 title-des">{{ $profession->title }}</span>
-                                                                </div>
-                                                                <div class="row justify-content-center">
-                                                                    <span
-                                                                        class="for-size span-number-1">Category:</span>
-                                                                    <span
-                                                                        class="for-size span-number-2">{{ "\n" . $profession->category->title }}</span>
-                                                                </div>
-                                                                <div class="row justify-content-center">
-                                                                    <span
-                                                                        class="for-size span-number-1">professional:</span>
-                                                                    <span
-                                                                        class="for-size span-number-2">{{ $profession->freelancer->user->full_name }}</span>
-                                                                </div>
-                                                                <div style="white-space: nowrap;">
-                                                                    <span
-                                                                        class="for-size span-number-1">Rating:</span>
-                                                                    @if ($profession->freelancer->rate > 0)
-                                                                        <span class="fa fa-star checked"
-                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                        {{-- star one --}}
-                                                                    @else
-                                                                        <span class="fa fa-star not-checked"
-                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                        {{-- star one --}}
-                                                                    @endif
-                                                                    @if ($profession->freelancer->rate > 1)
-                                                                        <span class="fa fa-star checked"
-                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                        {{-- star two --}}
-                                                                    @else
-                                                                        <span class="fa fa-star not-checked"
-                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                        {{-- star two --}}
-                                                                    @endif
-                                                                    @if ($profession->freelancer->rate > 2)
-                                                                        <span class="fa fa-star checked"
-                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                        {{-- star three --}}
-                                                                    @else
-                                                                        <span class="fa fa-star not-checked"
-                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                        {{-- star three --}}
-                                                                    @endif
-                                                                    @if ($profession->freelancer->rate > 3)
-                                                                        <span class="fa fa-star checked"
-                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                        {{-- star four --}}
-                                                                    @else
-                                                                        <span class="fa fa-star not-checked"
-                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                        {{-- star four --}}
-                                                                    @endif
-                                                                    @if ($profession->freelancer->rate > 4)
-                                                                        <span class="fa fa-star checked"
-                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                        {{-- star five --}}
-                                                                    @else
-                                                                        <span class="fa fa-star not-checked"
-                                                                            style="font: normal normal normal 14px/1 FontAwesome !important;"></span>
-                                                                        {{-- star five --}}
-                                                                    @endif
-
-                                                                </div>
-                                                                <div class="row justify-content-center">
-                                                                    <span
-                                                                        class="for-size span-number-1">Price:</span>
-                                                                    <span
-                                                                        class="for-size span-number-2">{{ $profession->price }}</span>
-                                                                </div>
-                                                                <div class="row justify-content-center mt-3"
-                                                                    style="display: block;">
-                                                                    <span
-                                                                        class="for-size span-number-1">descreption:</span>
-                                                                    <span
-                                                                        class="for-size span-number-2">{{ $profession->description }}</span>
-                                                                </div>
-                                                                <!-- Profile of the user -->
-                                                                <a href="#"
-                                                                    class="btn btn-info mt-2 btn-font-size">
-                                                                    See more information
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    @foreach ($professions as $service)
+                                    <div class="col-md-6 col-lg-6 mb-2">
+                                        @include('components.service_card')
+                                    </div>
                                     @endforeach
                                 </div>
                             </div>

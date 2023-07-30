@@ -34,7 +34,9 @@
         <div class="container">
             <div class="row text-center">
                 @foreach ($services as $service)
+                <div class="col-md-6 col-lg-4 mb-2">
                     @include('components.service_card')
+                </div>
                 @endforeach
             </div>
             {{ $services->onEachSide(1)->links('pagination::liveware-page') }}
