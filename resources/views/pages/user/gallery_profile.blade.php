@@ -395,7 +395,7 @@
 
                         </section>
                     @empty
-                        <p>There is o posts</p>
+                        <p>There is no posts</p>
                     @endforelse
 
             </section>

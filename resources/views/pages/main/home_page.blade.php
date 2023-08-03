@@ -335,7 +335,9 @@
                         {{-- @if (Auth::check() && !Auth::user()->category->contains($profession->category_id))
                         @continue
                     @endif --}}
+                    <div class="col-md-6 col-lg-4 mb-2 ar">
                         @include('components.service_card')
+                    </div>
                     @endforeach
                 </div>
             </div>
@@ -357,7 +359,9 @@
                         {{-- @if (Auth::check() && !Auth::user()->category->contains($project->category_id))
                         @continue
                     @endif --}}
+                    <div class="col-md-6 col-lg-4 mb-2 ar">
                         @include('components.project_card')
+                    </div>
                     @endforeach
                 </div>
             </div>
