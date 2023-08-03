@@ -10,6 +10,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+use Illuminate\Support\Facades\Crypt;
+
 class FreelancerController extends Controller
 {
     /**
@@ -102,6 +104,11 @@ class FreelancerController extends Controller
     {
         $freelancer = Freelancer::find($id);
         $rate = 0;
+        if ($freelancer->rate > 0)
+            $privousRate = Crypt::decrypt($freelancer->rate);
+        else
+            $privousRate = $freelancer->rate;
+
         if (request('rate5') == 'on')
             $rate += 5;
         else if (request('rate4') == 'on')
@@ -113,7 +120,9 @@ class FreelancerController extends Controller
         else if (request('rate1') == 'on')
             $rate += 1;
 
-        $freelancer->rate = $rate;
+        $total = ($rate + $privousRate) / 2;
+        $encryptedRate = Crypt::encrypt($total);
+        $freelancer->rate = $encryptedRate;
         $freelancer->save();
 
         return back()->with('message', 'You rate this service');

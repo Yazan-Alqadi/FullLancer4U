@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comments;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
@@ -33,9 +34,35 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        try {
+            $request->validate([
+                'text' => 'required',
+                'image' => 'file',
+
+            ]);
+            $comment = new Comment;
+
+
+            if (request('image')) {
+                $file = $request->file('image');
+                $filename = $file->getClientOriginalName();
+                $path = $file->storeAs('images', $filename, 'uploads',);
+                $comment->image = '/images/' . $path;
+            }
+
+            $comment->user_id = Auth::id();
+            $comment->text = $request->text;
+            $comment->post_id = $id;
+
+            $comment->save();
+
+            return back()
+                ->with('message', 'You have successfully add new comment.');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -44,7 +71,7 @@ class CommentsController extends Controller
      * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function show(Comments $comments)
+    public function show(Comment $comments)
     {
         //
     }
@@ -55,7 +82,7 @@ class CommentsController extends Controller
      * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comments $comments)
+    public function edit(Comment $comments)
     {
         //
     }
@@ -67,7 +94,7 @@ class CommentsController extends Controller
      * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comments $comments)
+    public function update(Request $request, Comment $comments)
     {
         //
     }
@@ -78,7 +105,7 @@ class CommentsController extends Controller
      * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comments $comments)
+    public function destroy(Comment $comments)
     {
         //
     }

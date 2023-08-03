@@ -37,6 +37,7 @@ class Reactions extends Component
     public function render()
     {
 
+        
         $reactions = DB::connection('mongodb')->collection('reactions')->where('post_id', $this->post_id)->first();
         return view('livewire.reactions', compact('reactions'));
     }

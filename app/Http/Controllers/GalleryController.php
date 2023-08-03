@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class GalleryController extends Controller
 {
+
+
+    public function index()
+    {
+
+        $posts = Post::with('user','comments')->get();
+        return view('pages.user.gallery_main_page',compact('posts'));
+    }
 
 
     public function gallery()

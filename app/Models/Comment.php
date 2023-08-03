@@ -3,19 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Jenssegers\Mongodb\Eloquent\HybridRelations;
 use Jenssegers\Mongodb\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\HybridRelations;
 
-class Post extends Model
+class Comment extends Model
 {
     use HasFactory;
     use HybridRelations;
 
 
     protected $connection = 'mongodb';
-
     protected $guarded = [];
-    protected $collection = 'posts';
+
+    protected $collection = 'comments';
+
 
 
     public function user()
@@ -23,8 +24,8 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function comments()
+    public function post()
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Post::class);
     }
 }

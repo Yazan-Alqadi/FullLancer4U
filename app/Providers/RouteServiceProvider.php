@@ -46,6 +46,61 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+            Route::prefix('service')
+                ->middleware(['web', 'auth'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/service.php'));
+
+            Route::prefix('project')
+                ->middleware(['web', 'auth'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/project.php'));
+
+            Route::prefix('user')
+                ->middleware(['web', 'auth'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/user.php'));
+
+            Route::prefix('freelancer')
+                ->middleware(['web', 'auth'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/freelancer.php'));
+
+            Route::prefix('message')
+                ->middleware(['web', 'auth'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/message.php'));
+
+            Route::prefix('work')
+                ->middleware(['web', 'auth'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/work.php'));
+
+            Route::prefix('skill')
+                ->middleware(['web', 'auth'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/skill.php'));
+
+            Route::prefix('notification')
+                ->middleware(['web', 'auth'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/notification.php'));
+
+            Route::prefix('stripe')
+                ->middleware(['web', 'auth'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/stripe.php'));
+
+            Route::prefix('gallery')
+                ->middleware(['web', 'auth'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/gallery.php'));
+
+            Route::prefix('auth')
+                ->middleware(['web', 'guest'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/auth.php'));
         });
     }
 

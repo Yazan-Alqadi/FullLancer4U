@@ -67,10 +67,7 @@ class UserController extends Controller
         return view('pages.user.edit-gallery-info', compact('accounts'));
     }
 
-    public function gallery_main_page()
-    {
-        return view('pages.user.gallery_main_page');
-    }
+    
 
     public function show()
     {

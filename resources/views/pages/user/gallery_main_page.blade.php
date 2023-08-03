@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;1,200;1,300&display=swap"
         rel="stylesheet">
+    @livewireStyles
 
     <title>Jobs_gallery</title>
 
@@ -32,14 +33,16 @@
 
                 {{-- posts --}}
                 <section class="my-4">
-
-                    @include('components.gallery_posts')
+                    @foreach ($posts as $post)
+                        @include('components.gallery_posts', ['post' => $post])
+                    @endforeach
 
 
                 </section>
             </section>
         </div>
     </div>
+    @livewireScripts
 
     {{-- Footer here --}}
     @include('layouts.footer')

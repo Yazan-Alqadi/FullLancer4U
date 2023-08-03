@@ -109,9 +109,8 @@
 
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Description</label>
-                            <textarea name="description" type="text" class="form-control h-200"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput1"
-                                placeholder="Type at least 2 lines"></textarea>
+                            <textarea name="description" type="text" class="form-control h-200" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default" id="exampleFormControlInput1" placeholder="Type at least 2 lines"></textarea>
                         </div>
 
                         <div class="d-grid gap-2 col-6 mx-auto">

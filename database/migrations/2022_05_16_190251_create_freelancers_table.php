@@ -18,7 +18,7 @@ class CreateFreelancersTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('rate')->default(0);
+            $table->string('rate')->default(0);
             $table->integer('number_of_professions')->default(0);
             $table->integer('number_of_projects')->default(0);
             $table->timestamps();

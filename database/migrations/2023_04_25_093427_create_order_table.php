@@ -20,6 +20,8 @@ class CreateOrderTable extends Migration
             $table->bigInteger('price');
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('freelancer_id')->unsigned()->index();
+            $table->foreign('freelancer_id')->references('id')->on('freelancers')->onDelete('cascade');
             $table->bigInteger('service_id')->unsigned()->index();
             $table->foreign('service_id')->references('id')->on('professions')->onDelete('cascade');
             $table->timestamps();
