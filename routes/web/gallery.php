@@ -12,3 +12,4 @@ Route::get('/account/get', [GalleryController::class, 'getAccounts'])->name('get
 Route::post('/post/add', [PostController::class, 'store'])->name('addpost');
 Route::get('/post/get', [PostController::class, 'index'])->name('getposts');
 Route::post('/comment/add/{id}', [CommentsController::class, 'store'])->name('add_comment');
+Route::get('/post/delete/{post}', [PostController::class, 'destroy'])->name('delete_post');

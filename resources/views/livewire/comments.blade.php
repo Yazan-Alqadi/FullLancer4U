@@ -28,7 +28,7 @@
                     <div class="profile-image-post rounded-circle d-block m-3">
 
                         <span class="user-name-post">{{ $comment->user->user_name }}</span>
-                        <span class="time-post">{{ $comment->created_at }}</span>
+                        <span class="time-post">{{ $comment->created_at->diffForHumans() }}</span>
 
                     </div>
 

@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Cloudinary\Cloudinary;
 
 class PostController extends Controller
 {
@@ -54,14 +54,17 @@ class PostController extends Controller
             'image' => 'required|image',
         ]);
 
+        $cloudinary = new Cloudinary(config('services.cloudinary'));
 
         $file = $request->file('image');
+        $uploadedImage = $cloudinary->uploadApi()->upload($file->getPathname());
 
-        $filename = $file->getClientOriginalName();
-        $path = $file->storeAs('images',$filename,'uploads', );
+        $imageUrl = $uploadedImage['secure_url'];
+        // $filename = $file->getClientOriginalName();
+        // $path = $file->storeAs('images', $filename, 'uploads',);
 
 
-        $post->image ='/images/'. $path;
+        $post->image = $imageUrl;
 
         $post->user_id = Auth::id();
 
@@ -69,9 +72,9 @@ class PostController extends Controller
 
         $post->save();
         DB::connection('mongodb')->collection('reactions')->insert([
-            'likes'=> 0,
-            'dislikes'=>0,
-            'post_id'=>$post->id
+            'likes' => 0,
+            'dislikes' => 0,
+            'post_id' => $post->id
         ]);
 
 
@@ -121,6 +124,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return back()
+            ->with('message', 'You have successfully delete  post.');
     }
 }

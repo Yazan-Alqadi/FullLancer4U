@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use Cloudinary\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -55,9 +56,9 @@ class UserController extends Controller
     {
         $accounts = DB::connection('mongodb')->collection('accounts')->where('user_id', Auth::id())->get();
 
-        $posts = Post::all();
+        $posts = Post::where('user_id', Auth::id())->get();
 
-        return view('pages.user.gallery_profile', compact('accounts','posts'));
+        return view('pages.user.gallery_profile', compact('accounts', 'posts'));
     }
 
     public function edit_gallery_info()
@@ -67,7 +68,7 @@ class UserController extends Controller
         return view('pages.user.edit-gallery-info', compact('accounts'));
     }
 
-    
+
 
     public function show()
     {
@@ -170,14 +171,17 @@ class UserController extends Controller
         ]);
 
         $file = $request->file('image');
+        $cloudinary = new Cloudinary(config('services.cloudinary'));
 
-        $filename = $file->getClientOriginalName();
-        $path = $file->storeAs('profile',$filename,'uploads', );
+        $uploadedImage = $cloudinary->uploadApi()->upload($file->getPathname());
+
+        $imageUrl = $uploadedImage['secure_url'];
+
 
 
         $user = User::find($request->user_id);
 
-        $user['image'] = '/images/' . $path;
+        $user['image'] = $imageUrl;
 
         $user->save();
 

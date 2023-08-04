@@ -43,10 +43,10 @@
         </button>
     </span>
     <span class="me-1">
-        945883
+        {{ $comments_number }}
     </span>
 
-    <div class="offcanvas offcanvas-bottom rounded-3" tabindex="-1" id="offcanvasBottom-{{ $reactions['post_id']}}"
+    <div class="offcanvas offcanvas-bottom rounded-3" tabindex="-1" id="offcanvasBottom-{{ $reactions['post_id'] }}"
         aria-labelledby="offcanvasWithBothOptionsLabel" style="right: 18%;left: 18%;bottom: 20%;height: 70%;">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasBottomLabel">Comment
@@ -73,7 +73,7 @@
         </button>
     </span>
     <span class="me-1">
-        945883
+        0
     </span>
 
 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
@@ -37,8 +38,9 @@ class Reactions extends Component
     public function render()
     {
 
-        
+
         $reactions = DB::connection('mongodb')->collection('reactions')->where('post_id', $this->post_id)->first();
-        return view('livewire.reactions', compact('reactions'));
+        $comments_number = Comment::where('post_id',$this->post_id)->count();
+        return view('livewire.reactions', compact('reactions','comments_number'));
     }
 }
