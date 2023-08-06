@@ -160,25 +160,17 @@
     <div class="load-from-left-0">
         <section class="bg-dark my-5 p-3 load-from-left rounded">
             <div class="container">
-                <div class="h4 text-warning text-center load load-one">Are you confused and do not know how to display
-                    your
-                    talents
-                    and
-                    services?
+                <div class="h4 text-warning text-center load load-one">
+                    Are you confused and do not know how to display your talents and services?
                 </div>
-                <div class="h4 text-warning text-center load load-two">Are you afraid of learning and working for a
-                    specific
-                    service
-                    that
-                    has no
-                    known future?</div>
-                <div class="h4 text-warning text-center load load-three">Would you like to know what are the most
-                    requested
-                    jobs
-                    and
-                    services in the
-                    last period?</div>
-                <div class="h2 text-center text-success mt-4">Here you will find everything you need to know
+                <div class="h4 text-warning text-center load load-two">
+                    Are you afraid of learning and working for a specific service that has no known future?
+                </div>
+                <div class="h4 text-warning text-center load load-three">
+                    Would you like to know what are the most requested jobs and services in the last period?
+                </div>
+                <div class="h2 text-center text-success mt-4">
+                    Here you will find everything you need to know
                     <a href="{{ route('analysis') }}" class="btn btn-success">Info</a>
                 </div>
             </div>
@@ -335,9 +327,9 @@
                         {{-- @if (Auth::check() && !Auth::user()->category->contains($profession->category_id))
                         @continue
                     @endif --}}
-                    <div class="col-md-6 col-lg-4 mb-2 ar">
-                        @include('components.service_card')
-                    </div>
+                        <div class="col-md-6 col-lg-4 mb-2 ar">
+                            @include('components.service_card')
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -359,9 +351,9 @@
                         {{-- @if (Auth::check() && !Auth::user()->category->contains($project->category_id))
                         @continue
                     @endif --}}
-                    <div class="col-md-6 col-lg-4 mb-2 ar">
-                        @include('components.project_card')
-                    </div>
+                        <div class="col-md-6 col-lg-4 mb-2 ar">
+                            @include('components.project_card')
+                        </div>
                     @endforeach
                 </div>
             </div>

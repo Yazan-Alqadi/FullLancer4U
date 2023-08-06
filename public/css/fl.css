@@ -288,7 +288,7 @@ input::placeholder {
     border-bottom: .3em solid transparent !important;
 } */
 
-.load {
+/* .load {
     animation-name: up-and-down;
     animation-duration: 1s;
     animation-iteration-count: infinite;
@@ -308,7 +308,7 @@ input::placeholder {
         opacity: 0.2;
         transform: translateY(+20px);
     }
-}
+} */
 
 .load-from-right {
     transform: translateX(1300px);
