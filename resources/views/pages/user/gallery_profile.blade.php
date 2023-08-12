@@ -335,12 +335,12 @@
 
                                 <div class="my-1 text-center">
                                     <button class="btn" type="button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvasRight-1" aria-controls="offcanvasRight"
+                                        data-bs-target="#offcanvasRight-{{ $post->id }}" aria-controls="offcanvasRight"
                                         style="background-color: #5e1155;border-color: #5e1155; color: antiquewhite;">Write
                                         Comment</button>
 
                                 </div>
-                                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight-1"
+                                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight-{{ $post->id }}"
                                     aria-labelledby="offcanvasRightLabel">
                                     <div class="offcanvas-header">
                                         <h5 class="offcanvas-title" id="offcanvasRightLabel">Write Comment in this
@@ -349,7 +349,8 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="offcanvas-body">
-                                        <form action="#" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ route('add_comment',$post->id) }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
                                             {{-- Add text to the post --}}
                                             <div class="offcanvas-body small">
                                                 <div class="mb-2">Type text here</div>

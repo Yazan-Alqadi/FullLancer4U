@@ -101,8 +101,12 @@ class ProfessionController extends Controller
 
         $professions = Profession::where('id', '!=', $id)
             ->where('category_id', $category->id)
-            ->with('category', 'freelancer', 'freelancer.user')->get();
+            ->with('category', 'freelancer', 'freelancer.user')->limit(2)->get();
 
+        DB::table('recomnds')->insert([
+            'user_id' => Auth::id(),
+            'service_id' => $id
+        ]);
 
         return view('pages.service.show_service_page', compact('profession', 'professions'));
     }
@@ -121,7 +125,7 @@ class ProfessionController extends Controller
             return Category::all();
         });
 
-        $this->authorize('edit',$service);
+        $this->authorize('edit', $service);
         return view('pages.service.edit_service_page', ['service' => $service, 'categories' => $categories]);
     }
 
@@ -143,7 +147,7 @@ class ProfessionController extends Controller
             'category_id' => 'required|not_in:0,something else'
         ]);
 
-        $this->authorize('update',$service);
+        $this->authorize('update', $service);
         $service->update($inputs);
 
         session()->flash('message', 'Your service has been updated ');
@@ -160,7 +164,7 @@ class ProfessionController extends Controller
     {
         $service = Profession::findOrFail($id);
 
-        $this->authorize('delete',$service);
+        $this->authorize('delete', $service);
 
         $workService = DB::table('client_service')->where('service_id', $service->id)->get();
 
@@ -210,6 +214,4 @@ class ProfessionController extends Controller
         session()->flash('message', 'You Apply for this service has been sent to freelancer');
         return back();
     }
-
-   
 }

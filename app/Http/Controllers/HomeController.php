@@ -27,11 +27,11 @@ class HomeController extends Controller
         });
         $services =
             cache()->remember('services', 60 + 60 + 24, function () {
-                return Profession::with('freelancer', 'category', 'freelancer.user')->get();
+                return Profession::with('freelancer', 'category', 'freelancer.user')->take(9)->get();
             });
         $projects =
             cache()->remember('projects', 60 + 60 + 24, function () {
-                return Project::with('user', 'category')->get();
+                return Project::with('user', 'category')->take(9)->get();
             });
 
         return view('pages.main.home_page', compact('services', 'projects', 'freelancers'));
