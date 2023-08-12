@@ -54,7 +54,7 @@
 
 
             @auth
-                <div class="navbar-nav ms-auto dropdown">
+                <div class="navbar-nav ms-auto dropdown d-flex align-items-center">
 
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -66,6 +66,16 @@
                         </svg>
                         <span class="containar">{{ Auth::user()->full_name }}</span>
                     </a>
+
+                    {{-- Funds --}}
+                    <div class="text-success me-4 ms-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-plus m-0" viewBox="0 0 16 16">
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                        200.00 SP
+                    </div>
 
                     <ul class="dropdown-menu dropdown-menu-end" id="navbarDropdownMenuLink1">
                         <li><a class="dropdown-item font-ar" href="{{ route('profile') }}">
@@ -155,7 +165,7 @@
 
         {{-- <ul> --}}
         {{-- <li> --}}
-        <div class="d-flex">
+        <div class="d-flex align-items-center">
             <div>
                 @auth
                     {{-- Notification --}}
@@ -228,6 +238,7 @@
                 @endauth
             </div>
 
+
             <a @if (app()->getLocale() == 'ar') href="{{ route('switchLan', 'en') }}"
         @else
         href="{{ route('switchLan', 'ar') }}" @endif
@@ -295,6 +306,16 @@
 
                 @auth
                     <div class="navbar-nav ms-auto dropdown">
+
+                        {{-- Funds --}}
+                    <div class="text-success nav-linkfw-bold p-2 font-ar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-plus m-0" viewBox="0 0 16 16">
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                        200.00 SP
+                    </div>
 
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">

@@ -169,9 +169,12 @@
         </div>
         <div class="border-bottom border-dark px-3 pt-3"></div>
 
-        <button class="btn p-1 my-3" type="submit" form="outer"
-            style="background-color: #5e1155;border-color: #5e1155; color: antiquewhite;">submit</button>
-        {{-- </form> --}}
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn p-1 my-3" type="submit" form="outer"
+                style="background-color: #5e1155;border-color: #5e1155; color: antiquewhite;">
+                Submit
+            </button>
+        </div>
 
         </section>
     </div>
