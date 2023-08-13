@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Freelancer;
+use App\Models\Profession;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -23,12 +24,11 @@ class ServicesSeeder extends Seeder
 
         // Read each line of the CSV file
         while (($data = fgetcsv($file)) !== false) {
-            // Store the job in the $jobs array
-            $jobs[] = $data[0]; // Assuming the job title is in the first column of the CSV file
+            
+            $jobs[] = $data[0];
 
-            // Insert the job into the database
-            DB::table('professions')->insert([
-                'title' => $data[0], // Assuming the job title is in the first column of the CSV file
+            Profession::create([
+                'title' => $data[0],
                 'price' => $data[2],
                 'category_id' => Category::inRandomOrder()->first()->id,
                 'description' => $data[1],
