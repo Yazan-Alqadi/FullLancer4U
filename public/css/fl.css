@@ -399,6 +399,10 @@ input::placeholder {
     background-color: #003cff59 !important;
 }
 
+.bg-inherit {
+    background-color: inherit;
+}
+
 .color-f5ff9f {
     color: #f5ff9f !important;
 }
@@ -429,4 +433,8 @@ input::placeholder {
 .chat-card {
     height: 350px !important;
     overflow: auto !important;
+}
+
+.d-content {
+    display: contents;
 }

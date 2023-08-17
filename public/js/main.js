@@ -1,7 +1,7 @@
 function setphoto(event) {
-    var reader = new FileReader();
+    let reader = new FileReader();
     reader.onload = function () {
-        var pre = document.getElementById("num1");
+        let pre = document.getElementById("num1");
         pre.src = reader.result;
     }
     reader.readAsDataURL(event.target.files[0]);
@@ -79,4 +79,63 @@ function displayRePassIcon() {
 
 window.addEventListener('scroll', handleAnimation);
 
+let textElements = document.getElementsByClassName("text-desc");
+let showMoreButtons = document.getElementsByClassName("show-more");
+let arr = [];
 
+for (let i = 0; i < textElements.length; i++) {
+    let span = textElements[i];
+    arr.push(span.textContent.trim());
+    let button = showMoreButtons[i];
+    let truncatedText = span.textContent.trim().substring(0, 40); // احتفظ بأول 20 حرفًا
+    span.textContent = truncatedText
+    let isTruncated = true;
+
+    button.addEventListener("click", createClickListener(span, button, truncatedText, i, isTruncated));
+}
+
+function createClickListener(span, button, truncatedText, i, isTruncated) {
+    return function () {
+        console.log(span.textContent);
+        if (isTruncated) {
+            span.textContent = arr[i]; // لا تقم بتعديل النص
+            button.textContent = "Show Less";
+        } else {
+            span.textContent = truncatedText;
+            button.textContent = "Show More";
+        }
+
+        isTruncated = !isTruncated;
+    };
+};
+
+
+// let textElements1 = document.getElementsByClassName("text-desc-1");
+// let showMoreButtons1 = document.getElementsByClassName("show-more-1");
+// let arr1 = [];
+
+// for (let i = 0; i < textElements1.length; i++) {
+//     let span = textElements1[i];
+//     arr1.push(span.textContent);
+//     let button = showMoreButtons1[i];
+//     let truncatedText = span.textContent.substring(0, 40); // احتفظ بأول 20 حرفًا
+//     span.textContent = truncatedText
+//     var isTruncated1 = true;
+
+//     button.addEventListener("click", createClickListener1(span, button, truncatedText, i));
+// }
+
+// function createClickListener1(span, button, truncatedText, i) {
+//     return function () {
+//         console.log(span.textContent);
+//         if (isTruncated1) {
+//             span.textContent = arr1[i]; // لا تقم بتعديل النص
+//             button.textContent = "Show Less";
+//         } else {
+//             span.textContent = truncatedText;
+//             button.textContent = "Show More";
+//         }
+
+//         isTruncated1 = !isTruncated1;
+//     };
+// }

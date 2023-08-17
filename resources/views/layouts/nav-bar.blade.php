@@ -24,26 +24,31 @@
 
         <div class="collapse navbar-collapse" id="mainmenu">
             <ul class="navbar-nav ms-1 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
-                <li class="nav-item h6"><a href="{{ route('professions.index') }}"
+                <li class="nav-item h6">
+                    <a href="{{ route('professions.index') }}"
                         class="nav-link in-hover font-ar">{{ __('home.services_title') }}</a>
                 </li>
-                <li class="nav-item h6"><a href="{{ route('freelancers.index') }}"
+                <li class="nav-item h6">
+                    <a href="{{ route('freelancers.index') }}"
                         class="nav-link in-hover font-ar">{{ __('home.freelancers_title') }}</a>
                 </li>
-                <li class="nav-item h6"><a href="{{ route('projects.index') }}"
+                <li class="nav-item h6">
+                    <a href="{{ route('projects.index') }}"
                         class="nav-link in-hover font-ar">{{ __('home.projects_title') }}</a>
                 </li>
 
                 {{-- Bacome freelancer --}}
                 @if (Auth::check() && !Auth::user()->is_freelancer)
-                    <li><a href="{{ route('become_freelancer') }}"
+                    <li>
+                        <a href="{{ route('become_freelancer') }}"
                             class="nav-link in-hover-t text-warning fw-bold font-ar">{{ __('home.become') }}</a>
                     </li>
                 @endif
 
                 {{-- Gallery Page --}}
                 @if (Auth::check() && Auth::user()->is_freelancer)
-                    <li class="nav-item h6"><a class="nav-link in-hover-gallery font-ar"
+                    <li class="nav-item h6">
+                        <a class="nav-link in-hover-gallery font-ar"
                             href="{{ route('gallery_profile') }}">
                             {{ __('home.jobs') }}
                         </a>
@@ -67,8 +72,8 @@
                         <span class="containar">{{ Auth::user()->full_name }}</span>
                     </a>
 
-                    {{-- Funds --}}
-                    <div class="text-success me-4 ms-1">
+                    {{-- Funds Or Points --}}
+                    <div class="text-info me-4 ms-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-plus m-0" viewBox="0 0 16 16">
                             <path
@@ -307,8 +312,8 @@
                 @auth
                     <div class="navbar-nav ms-auto dropdown">
 
-                        {{-- Funds --}}
-                    <div class="text-success nav-linkfw-bold p-2 font-ar">
+                        {{-- Funds Or Points --}}
+                    <div class="text-info nav-linkfw-bold p-2 font-ar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-plus m-0" viewBox="0 0 16 16">
                             <path
