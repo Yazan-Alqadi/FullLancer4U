@@ -155,6 +155,35 @@
         </section>
     </div>
 
+    {{-- GO to JOBS Gallery --}}
+    <div class="load-from-left-0">
+        <section id="site-actions" class="mx-5 load-from-left instruction-of-using-style">
+            <div class="row">
+                <div
+                    class="container rounded col-lg-6 container text-light bg-dark p-4 d-flex flex-column justify-content-center">
+                    <div class="h1 text-center text-info">Browse services and view projects and interactions around
+                        them </div>
+                    <div class="h6 text-center">You can browse services through postings on the site and read comments
+                    </div>
+                    <div class="h6 text-center">You can browse projects and see their initial and final stages</div>
+                    <div class="h6 text-center">You can know the number of likes and dislikes about a specific service
+                        or project that is being worked on or finished</div>
+                    <div class="h6 text-center">You can publish the posts you want about services, projects, or
+                        even freelancers who have worked on a specific service that you have assigned to them.
+                    </div>
+                    <span class="h6 text-center">All of this you can find on our new website at the click of a button
+                        <a class="nav-link font-ar bg-94297d ms-1 p-2 rounded color-dea90b d-inline-block text-center" href="{{ route('gallery_profile') }}">
+                            {{ __('home.jobs') }}
+                        </a>
+                    </span>
+                </div>
+                <div class="container col-lg-6 d-flex justify-content-center d-none d-lg-flex">
+                    <img src="{{ asset('files/undraw_posts_re_ormv.svg') }}" alt="" class="w-75">
+                </div>
+            </div>
+        </section>
+    </div>
+
 
     {{-- NNNNNN --}}
     <div class="load-from-left-0">

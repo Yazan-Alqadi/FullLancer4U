@@ -403,8 +403,16 @@ input::placeholder {
     background-color: inherit;
 }
 
+.bg-94297d {
+    background-color: #94297d !important;
+}
+
 .color-f5ff9f {
     color: #f5ff9f !important;
+}
+
+.color-dea90b {
+    color: #dea90b !important;
 }
 
 .font-awesome {
