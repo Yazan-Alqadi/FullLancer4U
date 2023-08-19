@@ -41,7 +41,22 @@
 
             {{-- if there is more than 5 nots then collapse them here --}}
             @foreach ($notifications as $notification)
-                @if ($notification->type != 'message')
+                @if ($notification->type == 'pay')
+                <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 @if ($loop->iteration > 3) collapse @endif"
+                    @if ($loop->iteration > 3) id = "collapseExample1" @endif>
+                    <a class="text-decoration-none" href="{{ route('checkout', $notification->re_id) }}">
+                        {{-- message from who ? --}}
+                        <div class="d-flex " style="justify-content: space-between; align-items: center;">
+                            <span class="h4 text-danger">{{ $notification->title }}</span>
+                            <span
+                                class="h6 rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                        </div>
+                        <div class="h6 text-dark" style="word-break: break-word;">
+                            {{ $notification->content }}
+                        </div>
+                    </a>
+                </div>
+                @elseif ($notification->type != 'message')
                     <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 " id="rr">
                         {{-- message from who ? --}}
 
@@ -56,10 +71,10 @@
 
                         {{-- if reject the applay --}}
                         @if ($notification->status == 1)
-                            <div class="h5 text-info">You reject the applay</div>
+                            <div class="h5 text-info">You reject the apply</div>
                             {{-- if accept the applay --}}
                         @elseif ($notification->status == 2)
-                            <div class="h5 text-info">You accept the applay</div>
+                            <div class="h5 text-info">You accept the apply</div>
                         @else
                             <div class="text-start">
                                 Do you want to Accept this Apply ?

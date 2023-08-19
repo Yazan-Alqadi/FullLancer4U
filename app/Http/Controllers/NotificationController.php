@@ -103,10 +103,10 @@ class NotificationController extends Controller
                 ]);
                 $not = Notification::create([
                     'title' => 'Accept for your apply',
-                    'content' => $service->freelancer->user->full_name . ' Accept your apply for service ' . $service->title,
+                    'content' => $service->freelancer->user->full_name . ' Accept your apply for service ' . $service->title .' You must pay now Click to pay',
                     'user_id' => $notification->reciver_id,
                     'reciver_id' => Auth::id(),
-                    'type' => 'message',
+                    'type' => 'pay',
                     're_id' => $notification->re_id,
                 ]);
                 $title = $not->title;
@@ -124,7 +124,7 @@ class NotificationController extends Controller
                     'content' => Auth::user()->full_name . ' accept your apply to work project ' . $project->title,
                     'user_id' => $notification->reciver_id,
                     'reciver_id' => Auth::id(),
-                    'type' => 'message',
+                    'type' => 'pay',
                     're_id' => $notification->re_id,
                 ]);
                 $title = $not->title;
