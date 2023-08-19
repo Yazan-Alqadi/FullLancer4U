@@ -438,3 +438,19 @@ input::placeholder {
 .d-content {
     display: contents;
 }
+
+.text-descri {
+    overflow: hidden !important;
+    display: block !important;
+    height: 20px !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    width: 294px !important;
+}
+
+.for-size-span {
+    /* width: fit-content !important; */
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    display: contents;
+}

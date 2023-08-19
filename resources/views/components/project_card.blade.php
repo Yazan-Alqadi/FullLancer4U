@@ -43,9 +43,8 @@
                     </div>
                     <div class="row justify-content-center mt-3 d-block">
                         <span class="for-size span-number-1 font-ar">{{ __('main_pages.description') }}</span>
-                        <span class="for-size span-number-2 text-desc">
-                            {{ $project->description }}</span>
-                        <button class="border-0 bg-inherit d-content text-secondary show-more">Show More</button>
+                        <span class="text-descri for-size-span span-number-2"> {{ $project->description }}</span>
+                        {{-- <button class="border-0 bg-inherit d-content text-secondary">Show More</button> --}}
                     </div>
 
                     <div class="mt-2 text-align-last-justify">

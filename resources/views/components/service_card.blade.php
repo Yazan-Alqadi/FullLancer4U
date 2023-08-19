@@ -79,8 +79,8 @@
                     </div>
                     <div class="row justify-content-center mt-3 d-block">
                         <span class="for-size span-number-1 font-ar">{{ __('main_pages.description') }}</span>
-                        <span class="for-size span-number-2 text-desc">{{ $service->description }}</span>
-                        <button class="border-0 bg-inherit d-content text-secondary show-more">Show More</button>
+                        <span class="for-size span-number-2 text-descri">{{ $service->description }}</span>
+                        {{-- <button class="border-0 bg-inherit d-content text-secondary"">Show More</button> --}}
                     </div>
                     <!-- Profile of the user -->
                     <a href="{{ route('more_information', $service) }}"

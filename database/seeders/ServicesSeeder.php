@@ -20,7 +20,7 @@ class ServicesSeeder extends Seeder
         $jobs = [];
 
         // Open the CSV file
-        $file = fopen('/var/www/html/fullancer4You/database/seeders/data.csv', 'r');
+        $file = fopen('/home/yazan/Documents/fullancer4You/database/seeders/data.csv', 'r');
 
         // Read each line of the CSV file
         while (($data = fgetcsv($file)) !== false) {

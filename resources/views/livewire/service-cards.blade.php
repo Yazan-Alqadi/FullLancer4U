@@ -4,7 +4,8 @@
 
         <div class="row justify-content-between m-0">
             <div class="col-lg-4 col-md-5 mb-3">
-                <select wire:model='category' name="category" class="form-select font-ar" aria-label="Default select example">
+                <select wire:model='category' name="category" class="form-select font-ar"
+                    aria-label="Default select example">
                     <option selected value="">{{ __('main_pages.choose-category') }}</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->title }}</option>
@@ -33,10 +34,16 @@
     <section class="py-5 section-style ar">
         <div class="container">
             <div class="row text-center">
+                @php
+                    $uniqueId = 1;
+                @endphp
                 @foreach ($services as $service)
-                <div class="col-md-6 col-lg-4 mb-2">
-                    @include('components.service_card')
-                </div>
+                    <div class="col-md-6 col-lg-4 mb-2">
+                        @include('components.service_card')
+                    </div>
+                    @php
+                        $uniqueId++;
+                    @endphp
                 @endforeach
             </div>
             {{ $services->onEachSide(1)->links('pagination::liveware-page') }}
