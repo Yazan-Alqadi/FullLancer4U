@@ -17,6 +17,8 @@ class AddPhoneAndAddressToUsers extends Migration
             //
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
+            $table->double('balance')->default(0);
+
         });
     }
 

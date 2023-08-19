@@ -50,7 +50,7 @@ Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallb
 
 
 Route::get('/locale/{locale}', function ($locale) {
-    session(['/locale' => $locale]);
+    session()->put('locale', $locale);
     App::setLocale($locale);
     return redirect()->back();
 })->name('switchLan');

@@ -48,8 +48,7 @@
                 {{-- Gallery Page --}}
                 @if (Auth::check() && Auth::user()->is_freelancer)
                     <li class="nav-item h6">
-                        <a class="nav-link in-hover-gallery font-ar"
-                            href="{{ route('gallery_profile') }}">
+                        <a class="nav-link in-hover-gallery font-ar" href="{{ route('gallery_profile') }}">
                             {{ __('home.jobs') }}
                         </a>
                     </li>
@@ -79,7 +78,7 @@
                             <path
                                 d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                         </svg>
-                        200.00 SP
+                        <span>{{ Auth::user()->balance}} $</span>
                     </div>
 
                     <ul class="dropdown-menu dropdown-menu-end" id="navbarDropdownMenuLink1">
@@ -313,14 +312,14 @@
                     <div class="navbar-nav ms-auto dropdown">
 
                         {{-- Funds Or Points --}}
-                    <div class="text-info nav-linkfw-bold p-2 font-ar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-plus m-0" viewBox="0 0 16 16">
-                            <path
-                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                        </svg>
-                        200.00 SP
-                    </div>
+                        <div class="text-info nav-linkfw-bold p-2 font-ar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-plus m-0" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                            </svg>
+                            <span>{{ Auth::user()->balance }}</span>
+                        </div>
 
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
