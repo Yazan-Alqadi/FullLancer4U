@@ -16,6 +16,7 @@
 
     @include('layouts.nav-bar')
 
+    @include('components.successful')
 
     <section class="mgg container mb-3" id="general">
 
@@ -45,6 +46,21 @@
                 <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 @if ($loop->iteration > 3) collapse @endif"
                     @if ($loop->iteration > 3) id = "collapseExample1" @endif>
                     <a class="text-decoration-none" href="{{ route('checkout', $notification->re_id) }}">
+                        {{-- message from who ? --}}
+                        <div class="d-flex " style="justify-content: space-between; align-items: center;">
+                            <span class="h4 text-danger">{{ $notification->title }}</span>
+                            <span
+                                class="h6 rounded-2 p-1 text-secondary">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                        </div>
+                        <div class="h6 text-dark" style="word-break: break-word;">
+                            {{ $notification->content }}
+                        </div>
+                    </a>
+                </div>
+                @elseif ($notification->type == 'verfication')
+                <div class="px-3 pt-3 m-2 border border-secondary p-2 mb-2 border-opacity-25 @if ($loop->iteration > 3) collapse @endif"
+                    @if ($loop->iteration > 3) id = "collapseExample1" @endif>
+                    <a class="text-decoration-none" href="{{ route('verification.resend') }}">
                         {{-- message from who ? --}}
                         <div class="d-flex " style="justify-content: space-between; align-items: center;">
                             <span class="h4 text-danger">{{ $notification->title }}</span>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\FreelancerController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GoogleController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,3 +56,11 @@ Route::get('/locale/{locale}', function ($locale) {
     App::setLocale($locale);
     return redirect()->back();
 })->name('switchLan');
+
+Route::get('phpinfo', fn () => phpinfo());
+// Email Verification Routes...
+Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+Route::get('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+
+Auth::routes();

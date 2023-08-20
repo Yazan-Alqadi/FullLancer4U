@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewMessage;
 use App\Models\Category;
+use App\Models\Notification;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -43,6 +46,16 @@ class RegisterController extends Controller
             'email' => $input['email'],
             'password' => $input['password'],
         ]);
+        event(new Registered($user));
+        event(new NewMessage($user->id, 'Your Account Has Been Created', 'Please Verify Your email if you didn\'t receive verification  email  click here to resend'));
+        $not = Notification::create([
+            'title' => 'Your Account Has Been Created',
+            'content' => 'Please Verify Your email if you didn\'t receive verification  email  click here to resend',
+            'user_id' => $user->id,
+            'reciver_id' => $user->id,
+            'type' => 'verfication',
+            're_id' => 0,
+        ]);
         Auth::login($user);
         $success['token'] = $user->createToken('token')->plainTextToken;
         $success['user_name'] = $user->user_name;
@@ -52,7 +65,6 @@ class RegisterController extends Controller
             if (request($category->id) == "OK") {
 
                 $user->category()->attach($category->id);
-
             }
         }
 

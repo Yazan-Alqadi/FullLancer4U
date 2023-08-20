@@ -17,8 +17,6 @@
 
 <body>
 
-    {{-- <div class="pic"></div> --}}
-
 
 
     @include('layouts.nav-bar')
@@ -172,7 +170,8 @@
                         even freelancers who have worked on a specific service that you have assigned to them.
                     </div>
                     <span class="h6 text-center">All of this you can find on our new website at the click of a button
-                        <a class="nav-link font-ar bg-94297d ms-1 p-2 rounded color-dea90b d-inline-block text-center" href="{{ route('gallery_profile') }}">
+                        <a class="nav-link font-ar bg-94297d ms-1 p-2 rounded color-dea90b d-inline-block text-center"
+                            href="{{ route('gallery_profile') }}">
                             {{ __('home.jobs') }}
                         </a>
                     </span>
@@ -391,6 +390,29 @@
     </div>
 
 
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">message</strong>
+                <small>1 min ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Email Verification Success
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @if (session('verified'))
+        <script>
+            var toast = new bootstrap.Toast(document.querySelector('.toast'));
+            toast.show();
+            setTimeout(function() {
+                toast.hide();
+            }, 10000); // 10000 milliseconds = 10 seconds
+        </script>
+    @endif
     {{-- Footer here --}}
     @include('layouts.footer')
 
