@@ -52,3 +52,6 @@
     overflow: hidden;
     overflow-y: scroll;
 }
+.custom-toast {
+    background-color: #7062f1; /* Change this color to your desired color */
+}
