@@ -52,8 +52,38 @@ return[
     'registernow'=>'Register Now',
     'become'=>'Become Freelancer',
     'menu'=>'Menu',
-    'jobs'=>'Jobs Gallery',
 
+    'how-to-start' => 'How to start',
+    'sign-in' => '1- Sign in to this site be press sign in button up there',
+    'enter' => '2- Enter',
+    'your-infomation' => 'your infomation',
+    'log-in-finish' => '3- Log in when you finish with log in button up there',
+    'gongrats-befor' => 'And here you go you have sign in this site,',
+    'gongrats' => ' Gongrats',
+    
+    'website' => 'This website can offer you many services ',
+    'offer' => 'You can offer your services to the public with an appropriate price',
+    'proposed-projects' => 'You can find many proposed projects on the site',
+    'add-posts' => 'You can add posts and comments on the services that you dealt with previously, or search for these posts about a specific service',
+    'available-services' => 'All kinds of desired and available services are provided at the present time ',
+
+
+    'browse-services' => 'Browse services and view projects and interactions around them',
+    'through-postings' => 'You can browse services through postings on the site and read comments ',
+    'browse-projects' => 'You can browse projects and see their initial and final stages',
+    'number-of-likes' => 'You can know the number of likes and dislikes about a specific service or project that is being worked on or finished',
+    'publish-posts' => 'You can publish the posts you want about services, projects, or even freelancers who have worked on a specific service that you have assigned to them',
+    'new-website' => 'All of this you can find on our new website at the click of a button',
+    'jobs-gallery' => 'Jobs Gallery',
+
+    'confused' => 'Are you confused and do not know how to display your talents and services?',
+    'afraid-of-learning' => 'Are you afraid of learning and working for a specific service that has no known future?',
+    'most-requested-jobs' => 'Would you like to know what are the most requested jobs and services in the last period?',
+    'find-everything' => 'Here you will find everything you need to know',
+    'info' => 'info',
+    'message' => 'message',
+    'password-reset' => 'Your password has been reset successfully',
+    'verification-email' => 'Email Verification Success',
 
 
 ];

@@ -3,24 +3,8 @@
 
 <div class="ps-3 pe-2 navbar container-fluid navbar-expand-lg bg-dark navbar-dark text-light fixed-top h6">
     <div class="container align-items-start">
-        {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search-par"
-            aria-expanded="true" style="margin-right: auto;">
-            <span class="navbar-toggler-icon"></span>
-        </button> --}}
 
         <a href="{{ route('home') }}" class="navbar-brand text-info navbar-title-hover">Fullancer4U</a>
-
-
-        {{-- <form class="form-inline collapse navbar-collapse" id="search-par">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-search" viewBox="0 0 16 16">
-                    <path
-                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                </svg>
-            </button>
-        </form> --}}
 
         <div class="collapse navbar-collapse" id="mainmenu">
             <ul class="navbar-nav ms-1 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
@@ -37,6 +21,15 @@
                         class="nav-link in-hover font-ar">{{ __('home.projects_title') }}</a>
                 </li>
 
+                {{-- Gallery Page --}}
+                @if (Auth::check())
+                    <li class="nav-item h6">
+                        <a class="nav-link in-hover-gallery font-ar" href="{{ route('gallery_main_page') }}">
+                            {{ __('home.jobs-gallery') }}
+                        </a>
+                    </li>
+                @endif
+
                 {{-- Bacome freelancer --}}
                 @if (Auth::check() && !Auth::user()->is_freelancer)
                     <li>
@@ -45,14 +38,6 @@
                     </li>
                 @endif
 
-                {{-- Gallery Page --}}
-                @if (Auth::check() && Auth::user()->is_freelancer)
-                    <li class="nav-item h6">
-                        <a class="nav-link in-hover-gallery font-ar" href="{{ route('gallery_profile') }}">
-                            {{ __('home.jobs') }}
-                        </a>
-                    </li>
-                @endif
 
             </ul>
 
@@ -295,22 +280,23 @@
                             class="nav-link in-hover font-ar">{{ __('home.projects_title') }}</a>
                     </li>
 
-                    {{-- Bacome freelancer --}}
+                    {{-- Gallery Page --}}
+                    @if (Auth::check())
+                        <li class="nav-item h6"><a class="nav-link in-hover-gallery font-ar"
+                                href="{{ route('gallery_main_page') }}">
+                                {{ __('home.jobs-gallery') }}
+                            </a>
+                        </li>
+                    @endif
 
+                    {{-- Bacome freelancer --}}
                     @if (Auth::check() && !Auth::user()->is_freelancer)
                         <li><a href="{{ route('become_freelancer') }}"
                                 class="nav-link in-hover-t text-warning fw-bold font-ar">{{ __('home.become') }}</a>
                         </li>
                     @endif
 
-                    {{-- Gallery Page --}}
-                    @if (Auth::check() && Auth::user()->is_freelancer)
-                        <li class="nav-item h6"><a class="nav-link in-hover-gallery font-ar"
-                                href="{{ route('gallery_profile') }}">
-                                {{ __('home.jobs') }}
-                            </a>
-                        </li>
-                    @endif
+                    
 
 
                 </ul>

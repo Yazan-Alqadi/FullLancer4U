@@ -17,8 +17,6 @@
 
 <body>
 
-
-
     @include('layouts.nav-bar')
 
     {{-- Slids section --}}
@@ -109,17 +107,12 @@
             <div class="row">
                 <div
                     class="container rounded col-lg-6 container text-light bg-dark p-4 d-flex flex-column justify-content-center">
-                    <div class="h1 text-center text-info">how to start</div>
-                    <div class="h5 text-center">1- Sign in to this site be press <span class="text-info">sign in</span>
-                        button up
-                        there</div>
-                    <div class="h5 text-center">2- <span class="text-info">Enter</span> your infomation</div>
-                    <div class="h5 text-center">3- Log in when you finish with <span class="text-info">log in</span>
-                        button
-                        up there
-                    </div>
-                    <div class="h5 text-center"> And here you go you have ign in this site <span
-                            class="text-info">gongrats</span>
+                    <div class="h1 text-center font-ar ar text-info">{{ __('home.how-to-start') }}</div>
+                    <div class="h5 text-center font-ar ar"> {{ __('home.sign-in') }} </div>
+                    <div class="h5 text-center font-ar ar"> <span class="text-info">{{ __('home.enter') }}</span> {{ __('home.your-infomation') }}</div>
+                    <div class="h5 text-center font-ar ar"> {{ __('home.log-in-finish') }} </div>
+                    <div class="h5 text-center font-ar ar"> {{ __('home.gongrats-befor') }} <span
+                            class="text-info font-ar ar"> {{ __('home.gongrats') }} </span>
                     </div>
                 </div>
 
@@ -139,15 +132,11 @@
                 </div>
                 <div
                     class="container rounded col-lg-6 container text-light bg-dark p-4 d-flex flex-column justify-content-center">
-                    <div class="h1 text-center text-info">This website can offer you many services </div>
-                    <div class="h6 text-center">You can offer your services to the public with an appropriate price
-                    </div>
-                    <div class="h6 text-center">You can find many proposed projects on the site</div>
-                    <div class="h6 text-center">You can add posts and comments on the services that you dealt with
-                        previously, or search for these posts about a specific service</div>
-                    <div class="h6 text-center">All kinds of desired and available services are provided at the present
-                        time
-                    </div>
+                    <div class="h1 text-center font-ar ar text-info"> {{ __('home.website') }}  </div>
+                    <div class="h6 text-center font-ar ar"> {{ __('home.offer') }} </div>
+                    <div class="h6 text-center font-ar ar"> {{ __('home.proposed-projects') }} </div>
+                    <div class="h6 text-center font-ar ar"> {{ __('home.add-posts') }} </div>
+                    <div class="h6 text-center font-ar ar"> {{ __('home.available-services') }} </div>
                 </div>
             </div>
         </section>
@@ -159,20 +148,15 @@
             <div class="row">
                 <div
                     class="container rounded col-lg-6 container text-light bg-dark p-4 d-flex flex-column justify-content-center">
-                    <div class="h1 text-center text-info">Browse services and view projects and interactions around
-                        them </div>
-                    <div class="h6 text-center">You can browse services through postings on the site and read comments
-                    </div>
-                    <div class="h6 text-center">You can browse projects and see their initial and final stages</div>
-                    <div class="h6 text-center">You can know the number of likes and dislikes about a specific service
-                        or project that is being worked on or finished</div>
-                    <div class="h6 text-center">You can publish the posts you want about services, projects, or
-                        even freelancers who have worked on a specific service that you have assigned to them.
-                    </div>
-                    <span class="h6 text-center">All of this you can find on our new website at the click of a button
-                        <a class="nav-link font-ar bg-94297d ms-1 p-2 rounded color-dea90b d-inline-block text-center"
-                            href="{{ route('gallery_profile') }}">
-                            {{ __('home.jobs') }}
+                    <div class="h1 text-center font-ar ar text-info"> {{ __('home.browse-services') }} </div>
+                    <div class="h6 text-center font-ar ar"> {{ __('home.through-postings') }} </div>
+                    <div class="h6 text-center font-ar ar"> {{ __('home.browse-projects') }} </div>
+                    <div class="h6 text-center font-ar ar"> {{ __('home.number-of-likes') }} </div>
+                    <div class="h6 text-center font-ar ar"> {{ __('home.publish-posts') }} </div>
+                    <span class="h6 text-center font-ar ar"> {{ __('home.new-website') }} 
+                        <a class="nav-link font-ar bg-94297d ms-1 p-2 rounded color-dea90b d-inline-block text-center font-ar ar"
+                            href="{{ route('gallery_main_page') }}">
+                            {{ __('home.jobs-gallery') }}
                         </a>
                     </span>
                 </div>
@@ -188,18 +172,12 @@
     <div class="load-from-left-0">
         <section class="bg-dark my-5 p-3 load-from-left rounded">
             <div class="container">
-                <div class="h4 text-warning text-center load load-one">
-                    Are you confused and do not know how to display your talents and services?
-                </div>
-                <div class="h4 text-warning text-center load load-two">
-                    Are you afraid of learning and working for a specific service that has no known future?
-                </div>
-                <div class="h4 text-warning text-center load load-three">
-                    Would you like to know what are the most requested jobs and services in the last period?
-                </div>
-                <div class="h2 text-center text-success mt-4">
-                    Here you will find everything you need to know
-                    <a href="{{ route('analysis') }}" class="btn btn-success">Info</a>
+                <div class="h4 text-warning text-center load load-one font-ar ar"> {{ __('home.confused') }} </div>
+                <div class="h4 text-warning text-center load load-two font-ar ar"> {{ __('home.afraid-of-learning') }} </div>
+                <div class="h4 text-warning text-center load load-three font-ar ar"> {{ __('home.most-requested-jobs') }} </div>
+                <div class="h2 text-center text-success mt-4 font-ar ar">
+                    {{ __('home.find-everything') }} 
+                    <a href="{{ route('analysis') }}" class="btn btn-success font-ar ar"> {{ __('home.info') }} </a>
                 </div>
             </div>
         </section>
@@ -389,32 +367,52 @@
         </section>
     </div>
 
-
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
+        <div id="liveToast" class="toast bg-dark toast-verification" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header text-light bg-dark">
                 <img src="" class="rounded me-2" alt="">
-                <strong class="me-auto">message</strong>
+                <strong class="me-auto font-ar ar"> {{ __('home.message') }} </strong>
                 <small>1 min ago</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <div class="toast-body">
-                Email Verification Success
-            </div>
+            <div class="toast-body text-info font-ar ar"> {{ __('home.verification-email') }} </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast bg-dark toast-reset-password" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header text-light bg-dark">
+                <img src="" class="rounded me-2" alt="">
+                <strong class="me-auto font-ar ar"> {{ __('home.message') }} </strong>
+                <small>1 min ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body text-info font-ar ar"> {{ __('home.password-reset') }} </div>
+        </div>
+    </div>
+        
+    {{-- Footer here --}}
+    @include('layouts.footer')
+    
     @if (session('verified'))
         <script>
-            var toast = new bootstrap.Toast(document.querySelector('.toast'));
+            var toast = new bootstrap.Toast(document.querySelector('.toast-verification'));
             toast.show();
             setTimeout(function() {
                 toast.hide();
             }, 10000); // 10000 milliseconds = 10 seconds
         </script>
     @endif
-    {{-- Footer here --}}
-    @include('layouts.footer')
+
+    @if (session('status'))
+        <script>
+            var toast = new bootstrap.Toast(document.querySelector('.toast-reset-password'));
+            toast.show();
+            setTimeout(function() {
+                toast.hide();
+            }, 10000); // 10000 milliseconds = 10 seconds
+        </script>
+    @endif
 
 </body>
 

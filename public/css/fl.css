@@ -462,3 +462,7 @@ input::placeholder {
     padding-right: 5px !important;
     display: contents;
 }
+
+.width-68-percent {
+    width: 68% !important;
+}

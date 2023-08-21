@@ -49,7 +49,7 @@
         <div class="mx-3">
             <div class="row ar">
                 {{-- Info --}}
-                <div class="col-lg-8 col-md-8 mb-5">
+                <div class="col-lg-8 mb-5">
                     <section class="bg-light text-dark rounded p-3">
                         <div class="border-bottom border-dark ps-3 h5 py-1 font-ar">
                             {{ __('profile_page.info') }}
@@ -229,7 +229,7 @@
                 </div>
 
                 {{-- services section --}}
-                <div class="col-lg-4 col-md-4 mb-4">
+                <div class="col-lg-4 mb-4">
 
 
                     @livewire('user-services', ['services' => $services])

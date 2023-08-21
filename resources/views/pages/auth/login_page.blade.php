@@ -17,7 +17,7 @@
 
     @include('layouts.nav-bar')
 
-    <img src='files/munt-background.jpg' class="img-log-in" alt="...">
+    <img src="../../../../public/files/munt-background.jpg" class="img-log-in" alt="...">
 
     @if (session('status'))
         <div class="alert-error-state">
@@ -25,6 +25,7 @@
         </div>
     @endif
 
+    {{-- <img src="../../../../public/images/1680196605.png" alt=""> --}}
 
     <div class="row mx-1">
         <div class="container col-lg-5 col-md-6 z-3">
@@ -39,8 +40,7 @@
                 </div>
 
                 <div class="text-center h4 p-4 border-bottom border-secondary border-opacity-25 text-secondary fw-bold">
-                    Welcome
-                    Back
+                    Welcome Back
                 </div>
 
                 <div>

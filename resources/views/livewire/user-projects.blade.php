@@ -7,7 +7,7 @@
             @forelse($projects as $project)
                 <div class="d-flex mb-1 border-bottom border-secondary pb-1" style="justify-content: space-between;">
                     {{-- here is the title of the service --}}
-                    <span class="mt-1">{{ $project->title }}</span>
+                    <span class="mt-1 width-68-percent">{{ $project->title }}</span>
                     <span>
                         {{-- View project --}}
                         <button class="p-1 border border-0 bg-light font-ar" data-bs-toggle="tooltip"
