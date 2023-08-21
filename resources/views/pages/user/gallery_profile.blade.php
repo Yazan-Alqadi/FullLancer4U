@@ -172,7 +172,7 @@
 
                     <div class="offcanvas offcanvas-bottom rounded-3" tabindex="-1" id="offcanvasBottom-1"
                         aria-labelledby="offcanvasWithBothOptionsLabel"
-                        style="right: 18%;left: 18%;bottom: 35%;height: 50%;overflow: auto;">
+                        style="right: 10%;left: 10%;bottom: 10%;height: 80%;overflow: auto;">
                         <div class="offcanvas-header">
                             <h5 class="offcanvas-title" id="offcanvasBottomLabel">Create post</h5>
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"

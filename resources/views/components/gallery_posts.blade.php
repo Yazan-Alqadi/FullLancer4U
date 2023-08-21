@@ -98,9 +98,6 @@
 
             </div>
 
-
-
-
         </div>
 
         {{-- body of the post --}}

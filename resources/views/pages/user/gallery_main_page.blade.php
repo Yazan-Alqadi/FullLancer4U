@@ -28,9 +28,6 @@
             <section class="bg-light text-dark p-3 rounded mgg">
 
 
-
-
-
                 {{-- posts --}}
                 <section class="my-4">
                     @foreach ($posts as $post)
