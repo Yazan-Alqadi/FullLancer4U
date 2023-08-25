@@ -310,8 +310,10 @@ input::placeholder {
     }
 } */
 
-.load-from-right {
-    transform: translateX(1300px);
+@media (min-width: 1024px) {
+    .load-from-right {
+        /* transform: translateX(1300px); */
+    }
 }
 
 .load-from-right-0.in-view-right .load-from-right {
@@ -335,8 +337,10 @@ input::placeholder {
     color: #1b2387 !important;
 }
 
-.load-from-left {
-    transform: translateX(1300px);
+@media (min-width: 1024px) {
+    .load-from-left {
+        /* transform: translateX(1300px); */
+    }
 }
 
 .load-from-left-0.in-view-left .load-from-left {
