@@ -1,14 +1,10 @@
 <section class="my-4">
     <div class="border my-4 p-3 border-dark rounded" style="--bs-border-opacity: .5;">
 
-
-
         {{-- head of the post --}}
         <div class="d-flex" style="justify-content :space-between; align-items: baseline;">
 
-
             <!-- if user does not have photo display icon -->
-
             @if ($post->user->image === null)
                 <div class="profile-icon-post mb-3" style="text-align: center; ">
 
@@ -29,7 +25,7 @@
                 <!-- here put the image if user have one already -->
 
                 <div class="profile-image-post rounded-circle d-block m-3"
-                    style="background-image: url({{ asset($post->user->image) }}); ">
+                    style="background-image: url({{ asset($post->user->image) }});">
 
                     <span class="user-name-post">{{ $post->user->full_name }}</span>
                     <span class="time-post">{{ $post->created_at->diffForHumans() }}</span>

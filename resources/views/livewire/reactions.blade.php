@@ -47,16 +47,14 @@
     </span>
 
     <div class="offcanvas offcanvas-bottom rounded-3" tabindex="-1" id="offcanvasBottom-{{ $reactions['post_id'] }}"
-        aria-labelledby="offcanvasWithBothOptionsLabel" style="right: 10%;left: 10%;bottom: 10%;height: 80%;">
+        aria-labelledby="offcanvasWithBothOptionsLabel" style="right: 10%;left: 10%;bottom: 5%;height: 95%;">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Comment
-                section</h5>
+            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Comment section</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+        
         {{-- comments --}}
         <div class="offcanvas-body small">
-
-
             @livewire('comments', ['post_id' => $reactions['post_id']])
         </div>
     </div>

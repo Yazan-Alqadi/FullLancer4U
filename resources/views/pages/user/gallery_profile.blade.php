@@ -55,7 +55,7 @@
                     @if (Auth::user()->image === null)
                         <div class="container my-5" style="text-align: center;">
 
-                            <label class="btn" for="file-upload" style="border-radius: 23%;">
+                            <label for="file-upload" style="border-radius: 23%;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"
                                     style="    color: #5e1155;" fill="currentColor" class="bi bi-person-circle"
                                     viewBox="3 3 10 10">
@@ -65,7 +65,7 @@
 
                                 </svg>
                             </label>
-                            <input type="file" id="file-upload" class="d-none">
+                            {{-- <input type="file" id="file-upload" class="d-none"> --}}
                         </div>
 
 
@@ -156,10 +156,10 @@
                             </div>
                         @endif
                     @empty
-                        <p>There is no accounts for this user</p>
+                        <p class="mt-2">There is no accounts for this user</p>
                     @endforelse
 
-                    <div class="border-bottom border-dark px-3 pt-3"></div>
+                    <div class="border-bottom border-dark px-3 pt-1"></div>
 
                     {{-- create post --}}
                     <div>
@@ -379,8 +379,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </section>
                     @empty
                         <p>There is no posts</p>

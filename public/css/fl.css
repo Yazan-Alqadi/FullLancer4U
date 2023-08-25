@@ -320,15 +320,18 @@ input::placeholder {
     animation: from-right 1s ease forwards;
 }
 
-@keyframes from-right {
-    from {
-        transform: translateX(1300px);
-        display: none;
-    }
+@media (min-width: 1024px) {
+    @keyframes from-right {
+        from {
+            transform: translateX(1300px);
+            display: none;
+        }
 
-    to {
-        transform: translateX(0px);
-        display: block;
+        to {
+            transform: translateX(0px);
+            display: block;
+        }
+
     }
 }
 
@@ -347,15 +350,17 @@ input::placeholder {
     animation: from-left 1s ease forwards;
 }
 
-@keyframes from-left {
-    from {
-        transform: translateX(-1300px);
-        display: none;
-    }
+@media (min-width: 1024px) {
+    @keyframes from-left {
+        from {
+            transform: translateX(-1300px);
+            display: none;
+        }
 
-    to {
-        transform: translateX(0px);
-        display: block;
+        to {
+            transform: translateX(0px);
+            display: block;
+        }
     }
 }
 
@@ -469,4 +474,8 @@ input::placeholder {
 
 .width-68-percent {
     width: 68% !important;
+}
+
+.bg-image-text {
+    background-image: url("../files/bilding.jpg");
 }
